@@ -17,6 +17,25 @@
     ::selection { background: #DCD9F7; }
     a { color: #2F7A6F; }
     a:hover { color: #245D54; }
+
+    /* --- Mobile safety net: undo fixed pixel sizes baked into inline styles --- */
+    @media (max-width: 760px) {
+      [style*="width: 900px"], [style*="width:900px"], [style*="width: 904px"],
+      [style*="width: 789px"], [style*="width: 762px"], [style*="width: 553px"],
+      [style*="width: 720px"], [style*="width: 660px"] {
+        width: auto !important; height: auto !important;
+      }
+      img[style*="width:"], img[style*="width :"] {
+        max-width: 100% !important; height: auto !important;
+      }
+      [style*="1.3fr 0.8fr 1.3fr"], [style*="1.4fr 0.8fr"] {
+        grid-template-columns: 1fr !important;
+      }
+      [style*="1.3fr 0.8fr 1.3fr"] > div { border-right: none !important; }
+      /* Information-architecture tree: too dense to reflow, let it scroll sideways */
+      [style*="width: 553px"] { width: 100% !important; height: auto !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+      [style*="width: 553px"] [style*="repeat(4,1fr)"] { min-width: 480px; }
+    }
   </style>
 </helmet>
 

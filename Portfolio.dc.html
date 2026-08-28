@@ -58,7 +58,7 @@
 
       <!-- GAME PANEL -->
       <div style="flex:0 1 400px;min-width:300px;max-width:460px;animation:fadeInRight 0.7s ease 0.3s both">
-        <div onMouseEnter="{{ handleHoverStart }}" style="position: relative; height: 292px; border-radius: 24px; border: 2px solid #6FA294; background: linear-gradient(180deg,#D8ECE6,#F5F1E6); overflow: hidden; cursor: url('data:image/svg+xml;utf8,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 32 32%22&gt;&lt;circle cx=%2213%22 cy=%2213%22 r=%229%22 fill=%22none%22 stroke=%22%231D4E46%22 stroke-width=%223%22/&gt;&lt;line x1=%2219.5%22 y1=%2219.5%22 x2=%2229%22 y2=%2229%22 stroke=%22%231D4E46%22 stroke-width=%223%22 stroke-linecap=%22round%22/&gt;&lt;/svg&gt;') 13 13, crosshair; box-shadow: 0 14px 32px rgba(29,78,70,0.16),0 2px 8px rgba(29,78,70,0.1); width: 408px">
+        <div onMouseEnter="{{ handleHoverStart }}" onClick="{{ handleHoverStart }}" style="position: relative; height: 292px; border-radius: 24px; border: 2px solid #6FA294; background: linear-gradient(180deg,#D8ECE6,#F5F1E6); overflow: hidden; cursor: url('data:image/svg+xml;utf8,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 32 32%22&gt;&lt;circle cx=%2213%22 cy=%2213%22 r=%229%22 fill=%22none%22 stroke=%22%231D4E46%22 stroke-width=%223%22/&gt;&lt;line x1=%2219.5%22 y1=%2219.5%22 x2=%2229%22 y2=%2229%22 stroke=%22%231D4E46%22 stroke-width=%223%22 stroke-linecap=%22round%22/&gt;&lt;/svg&gt;') 13 13, crosshair; box-shadow: 0 14px 32px rgba(29,78,70,0.16),0 2px 8px rgba(29,78,70,0.1); width: 100%; max-width: 408px">
           <sc-if value="{{ isPlaying }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;top:12px;left:14px;display:flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:#1D4E46;animation:fadeInUp 0.35s ease both"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>{{ timeLeft }}s</div>
             <div style="position:absolute;top:12px;right:14px;display:flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:#1D4E46;animation:fadeInUp 0.35s ease both"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.2" fill="currentColor"></circle></svg>{{ score }}</div>
@@ -89,12 +89,12 @@
         <sc-if value="{{ isIdle }}" hint-placeholder-val="{{ true }}">
           <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;pointer-events:none">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D4E46" stroke-width="2"><path d="M9 12.5V6a2 2 0 1 1 4 0v5M13 6a2 2 0 1 1 4 0v6M17 8a2 2 0 1 1 4 0v6.5c0 3.6-2.7 6.5-6.5 6.5h-1C10 21 8 19.6 7 18l-3-5c-.6-1 .2-2.3 1.4-2 .5.1 1 .5 1.3 1l1.3 2"></path></svg>
-            <div style="font-size:14px;font-weight:700;color:#1D4E46;letter-spacing:0.03em">Hover to play</div>
+            <div style="font-size:14px;font-weight:700;color:#1D4E46;letter-spacing:0.03em">Tap or hover to play</div>
           </div>
         </sc-if>
 
         <sc-if value="{{ isOver }}" hint-placeholder-val="{{ false }}">
-          <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: rgba(251,247,240,0.92); width: 400px; height: 284px">
+          <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: rgba(251,247,240,0.92)">
             <div style="font-size:17px;font-weight:700">You squashed {{ bugCountText }}!</div>
             <button onClick="{{ startGame }}" style="border:none;background:#2F7A6F;color:#fff;font-weight:700;font-size:15px;padding:11px 24px;border-radius:100px;cursor:pointer;transition:transform 0.15s,background 0.15s" style-hover="background:#245D54" style-active="transform:scale(0.93)">Play again</button>
           </div>
@@ -210,17 +210,17 @@
   <!-- ABOUT -->
   <div id="about" style="max-width:1100px;margin:0 auto;padding:60px clamp(20px,5vw,64px) 20px;scroll-margin-top:90px">
     <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,4vw,40px);margin:0 0 28px">About Me</h2>
-    <div style="background:linear-gradient(160deg,#FCF3D9,#EAF5F2);border-radius:24px;padding:40px;display:flex;flex-wrap:wrap;gap:40px;align-items:center">
-      <div style="flex:1.2 1 380px;min-width:280px">
-        <p style="font-size: 16px; line-height: 1.7; color: #453F52; margin: 0 0 12px; max-width: 550px; width: 476px; height: 165px">Hi! I am a Computer Science undergraduate at LUMS with a minor in Psychology, based in Lahore, Pakistan. Understanding user behavior drives everything I do. My workflow bridges product research, interface design, and implementation, allowing me to take an idea from initial user insight all the way to a shipped product.</p>
-        <p style="font-size: 16px; line-height: 1.7; color: #453F52; margin: 0 0 20px; max-width: 550px; width: 488px; height: 119px">Beyond the classroom, I've helped build community initiatives like the LUMS Women in Science and Engineering, driven brand engagement across campus, and gained hands-on experience through multiple industry internships. <a href="#experience" class="scp8" style="color: rgb(47, 122, 111); font-weight: 700; text-decoration: none;">Scroll though my journey!</a></p><div style="display:flex;flex-wrap:wrap;gap:14px">
-          
-          <a href="mailto:a.areejb@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #ECE6DA; color: #211F2E; font-weight: 700; font-size: 14px; padding: 11px 24px; border-radius: 100px; text-decoration: none; transition: transform 0.15s,border-color 0.15s; width: 131px; height: 43px" style-hover="border-color:#2F7A6F" style-active="transform:scale(0.95)">Contact Me</a><a href="uploads/Areej_Butt_LUMS_Resume.docx" download="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #ECE6DA;color:#453F52;font-weight:700;font-size:14px;padding:11px 24px;border-radius:100px;text-decoration:none;transition:transform 0.15s,border-color 0.15s" style-hover="border-color:#2F7A6F;color:#2F7A6F" style-active="transform:scale(0.95)">Download my Resume</a>
+    <div style="background:linear-gradient(160deg,#FCF3D9,#EAF5F2);border-radius:24px;padding:clamp(24px,5vw,40px);display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,40px);align-items:center">
+      <div style="flex:1.2 1 380px;min-width:min(280px,100%)">
+        <p style="font-size: 16px; line-height: 1.7; color: #453F52; margin: 0 0 12px; max-width: 550px">Hi! I am a Computer Science undergraduate at LUMS with a minor in Psychology, based in Lahore, Pakistan. Understanding user behavior drives everything I do. My workflow bridges product research, interface design, and implementation, allowing me to take an idea from initial user insight all the way to a shipped product.</p>
+        <p style="font-size: 16px; line-height: 1.7; color: #453F52; margin: 0 0 20px; max-width: 550px">Beyond the classroom, I've helped build community initiatives like the LUMS Women in Science and Engineering, driven brand engagement across campus, and gained hands-on experience through multiple industry internships. <a href="#experience" class="scp8" style="color: rgb(47, 122, 111); font-weight: 700; text-decoration: none;">Scroll though my journey!</a></p><div style="display:flex;flex-wrap:wrap;gap:14px">
+
+          <a href="mailto:a.areejb@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #ECE6DA; color: #211F2E; font-weight: 700; font-size: 14px; padding: 11px 24px; border-radius: 100px; text-decoration: none; transition: transform 0.15s,border-color 0.15s" style-hover="border-color:#2F7A6F" style-active="transform:scale(0.95)">Contact Me</a><a href="uploads/Areej_Butt_LUMS_Resume.docx" download="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #ECE6DA;color:#453F52;font-weight:700;font-size:14px;padding:11px 24px;border-radius:100px;text-decoration:none;transition:transform 0.15s,border-color 0.15s" style-hover="border-color:#2F7A6F;color:#2F7A6F" style-active="transform:scale(0.95)">Download my Resume</a>
         </div>
         
       </div>
-      <div style="flex:1 1 300px;min-width:240px">
-        <image-slot id="about-photo" shape="rounded" radius="20" fit="cover" style="width: 378px; height: 358px" placeholder="Drop a photo of yourself" src="uploads/about-photo.webp"></image-slot>
+      <div style="flex:1 1 300px;min-width:min(240px,100%)">
+        <image-slot id="about-photo" shape="rounded" radius="20" fit="cover" style="width: 100%; max-width: 378px; aspect-ratio: 378 / 358; height: auto" placeholder="Drop a photo of yourself" src="uploads/about-photo.webp"></image-slot>
       </div>
     </div>
   </div>

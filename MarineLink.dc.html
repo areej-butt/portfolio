@@ -17,6 +17,30 @@
     ::selection { background: #DCD9F7; }
     a { color: #214C7A; }
     a:hover { color: #16324F; }
+
+    /* --- Mobile safety net: undo fixed pixel sizes baked into inline styles --- */
+    @media (max-width: 760px) {
+      [style*="width: 900px"], [style*="width:900px"], [style*="width: 904px"],
+      [style*="width: 789px"], [style*="width: 760px"], [style*="width: 720px"],
+      [style*="width: 660px"], [style*="width: 600px"], [style*="width: 560px"] {
+        width: auto !important; height: auto !important;
+      }
+      img[style*="width:"], img[style*="width :"] {
+        max-width: 100% !important; height: auto !important;
+      }
+      [style*="1.3fr 0.8fr 1.3fr"], [style*="1.4fr 0.8fr"] {
+        grid-template-columns: 1fr !important;
+      }
+      [style*="1.3fr 0.8fr 1.3fr"] > div { border-right: none !important; }
+      /* zone colour rows: label on its own line, swatches below */
+      [style*="1.1fr 1fr 1fr 1fr"] { grid-template-columns: 1fr 1fr !important; }
+      [style*="1.1fr 1fr 1fr 1fr"] > div:first-child {
+        grid-column: 1 / -1; border-right: none !important; padding-right: 0 !important;
+      }
+      /* early-sketch thumbnails */
+      [style*="repeat(3,1fr)"], [style*="repeat(3, 1fr)"] { grid-template-columns: 1fr 1fr !important; }
+      image-slot[style*="width:"] { width: 100% !important; height: auto !important; aspect-ratio: 16 / 9; }
+    }
   </style>
 </helmet>
 

@@ -1,0 +1,6 @@
+.DS_Store
+.vercel
+node_modules/
+
+# NOTE: .image-slots.state.json is intentionally NOT ignored — it is a
+# required runtime asset (About Me photo + Marine Link images). Keep it committed.

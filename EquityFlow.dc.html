@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #FBF7F0; font-family: 'Manrope', sans-serif; }
+    * { box-sizing: border-box; }
+    ::selection { background: #DCD9F7; }
+    a { color: #BF6785; }
+    a:hover { color: #9E4E6B; }
+  </style>
+</helmet>
+
+<div style="min-height:100vh;background:#FBF7F0;color:#211F2E;overflow-x:hidden">
+
+  <!-- SIDE NAV -->
+  <div style="position:fixed;top:174px;left:max(12px,calc(50% - 640px));z-index:40;width:190px;display:{{ sideNavDisplay }}">
+    <a href="Portfolio.dc.html" style="display:flex;align-items:center;gap:6px;color:#453F52;text-decoration:none;font-size:14px;font-weight:600;margin-bottom:20px" style-hover="color:#BF6785"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Back</a>
+    <sc-for list="{{ navSections }}" as="sec" hint-placeholder-count="15">
+      <a href="{{ sec.href }}" onClick="{{ sec.onClick }}" style="display:block;font-size:14px;font-weight:{{ sec.weight }};color:{{ sec.color }};text-decoration:none;padding:6px 0;line-height:1.3">{{ sec.label }}</a>
+    </sc-for>
+  </div>
+
+  <!-- NAV -->
+  <div style="position:sticky;top:0;z-index:50;background:rgba(251,247,240,0.85);backdrop-filter:blur(8px);border-bottom:1px solid #ECE6DA">
+    <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,5vw,64px)">
+      <a href="Portfolio.dc.html" aria-label="Areej Butt — back to portfolio" style="color:#BF6785;text-decoration:none;display:inline-flex;cursor:pointer">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2.5 14.2 9.3 21 12 14.2 14.7 12 21.5 9.8 14.7 3 12 9.8 9.3 12 2.5Z"></path></svg>
+      </a>
+      <div style="display:flex;align-items:center;gap:clamp(16px,3vw,32px);font-size:15px;font-weight:600;color:#453F52">
+        <a href="Portfolio.dc.html#about" style="color:#453F52;text-decoration:none" style-hover="color:#BF6785">About Me</a>
+        <a href="uploads/Areej_Butt_LUMS_Resume.docx" download="" style="color:#453F52;text-decoration:none" style-hover="color:#BF6785">Resume</a>
+        <a href="Portfolio.dc.html" style="color:#fff;text-decoration:none;background:#BF6785;padding:9px 18px;border-radius:100px" style-hover="background:#9E4E6B">Back to Portfolio</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div style="max-width:900px;margin:0 auto;padding:clamp(48px,8vw,88px) clamp(20px,5vw,64px) 20px">
+    <div style="font-size:15px;font-weight:700;color:#BF6785;letter-spacing:0.06em;margin-bottom:16px">PRODUCT DESIGN &amp; DESIGN SYSTEMS</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(42px,7vw,72px);line-height:1.05;margin:0 0 24px">EquityFlow</h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.4vw,26px);line-height:1.4;color:#453F52;margin:0 0 22px;max-width:720px">Investing is a legal act. The interface has to carry that weight without scaring anyone off.</p>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 24px">An invite-only equity crowdfunding platform where vetted founders raise capital from everyday investors, and where every screen sits on top of federal rules: identity checks, suitability questions, annual investment caps, escrow. The design problem was never the campaign grid. It was making compliance feel like guidance instead of a wall.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px">
+      <a href="https://app.pen.dev/s/rQJpVihPtcg-NjkIeYvdXGNkCr4jzsic_SOWLt3B3WI" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#BF6785;color:#fff;text-decoration:none;font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:100px" style-hover="background:#9E4E6B"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path></svg>View the wireframes</a>
+      <a href="#harness" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#211F2E;text-decoration:none;border:1.5px solid #ECE6DA;font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:100px" style-hover="border-color:#2F7A6F;color:#2F7A6F"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16M4 12h16M4 19h10"></path></svg>Read the design harness</a>
+    </div>
+  </div>
+
+  <!-- HERO COVER -->
+  <div style="max-width:900px;margin:0 auto;padding:36px clamp(20px,5vw,64px) 0">
+    <img src="uploads/screens-1787332622312-4wnb.png" alt="EquityFlow campaign browse screen" style="width:100%;display:block;border-radius:24px;border:1px solid #ECE6DA">
+  </div>
+
+  <!-- OVERVIEW -->
+  <div id="overview" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 24px">Overview</h2>
+    <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 0; align-items: start; background: #fff; border: 1px solid #ECE6DA; border-radius: 24px; overflow: hidden">
+      <div style="padding:26px 28px">
+        <div style="font-size:11.5px;font-weight:700;letter-spacing:0.08em;color:#8A8494;margin-bottom:10px">ROLE</div>
+        <div style="font-size:15px;line-height:1.6;color:#453F52">Solo product designer. Simulated client work during my internship at Carbonteq.</div>
+      </div>
+      <div style="padding: 26px 28px; border-left: 1px solid #ECE6DA; border-right: 1px solid #ECE6DA">
+        <div style="font-size:11.5px;font-weight:700;letter-spacing:0.08em;color:#8A8494;margin-bottom:10px">TIMELINE</div>
+        <div style="font-size:15px;line-height:1.6;color:#453F52">5 weeks</div>
+      </div>
+      <div style="padding:26px 28px">
+        <div style="font-size:11.5px;font-weight:700;letter-spacing:0.08em;color:#8A8494;margin-bottom:10px">SCOPE</div>
+        <div style="font-size:15px;line-height:1.6;color:#453F52">Research, flows, wireframes, visual system, prototype and the design harness.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <div id="timeline" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">How the five weeks ran</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 28px">Research came first because the constraints were legal, not aesthetic. Nothing could be drawn until I understood what the law required a screen to ask.</p>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px">
+      <sc-for list="{{ processStages }}" as="st" hint-placeholder-count="5">
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:16px;padding:18px 18px 20px">
+          <div style="width:26px;height:26px;border-radius:50%;background:{{ st.color }};color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:12px">{{ st.week }}</div>
+          <div style="font-size:14.5px;font-weight:700;line-height:1.35;margin-bottom:6px">{{ st.label }}</div>
+          <div style="font-size:13px;line-height:1.5;color:#8A8494">{{ st.sub }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- THE PROBLEM -->
+  <div id="problem" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">The problem</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 16px">Equity crowdfunding opened startup investing to people who are not venture capitalists. The rules that made that legal also made it heavy. Before anyone can put in $100, they have to prove who they are, disclose their income and net worth, connect a bank account, and stay inside an annual cap they have probably never heard of.</p>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 16px">Most platforms handle this by front-loading it. A wall of forms, then the interesting part. First-time investors drop out at the forms, and the ones who make it through still do not understand what they bought or when their money moves.</p>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">Founders have the mirror problem. They are asked to publish audited numbers, a Form C, and ongoing updates, in a layout built for a pitch deck.</p>
+  </div>
+
+  <!-- USERS -->
+  <div id="users" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">Three users, one product</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 28px">EquityFlow serves three groups whose interests do not fully align. Investors want speed. Founders want visibility. Operations wants a paper trail. Every screen belongs to one of them, and the permissions had to be settled before the flows.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-bottom:32px">
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:18px;padding:22px 22px 24px;border-top:4px solid #2F7A6F">
+        <div style="font-size:16.5px;font-weight:700;margin-bottom:8px">Everyday investor</div>
+        <div style="font-size:14px;line-height:1.65;color:#453F52">Wants to back a company they believe in without a broker. Needs the cap, the risk and the escrow explained in plain language, at the moment it applies.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:18px;padding:22px 22px 24px;border-top:4px solid #FFCB2B">
+        <div style="font-size:16.5px;font-weight:700;margin-bottom:8px">Founder</div>
+        <div style="font-size:14px;line-height:1.65;color:#453F52">Raising without VC gatekeeping. Needs traction, terms and disclosures to sit on the same page, and a way to answer questions in public.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:18px;padding:22px 22px 24px;border-top:4px solid #B18FCF">
+        <div style="font-size:16.5px;font-weight:700;margin-bottom:8px">Operations team</div>
+        <div style="font-size:14px;line-height:1.65;color:#453F52">Keeps the platform legally sound. Reviews identity checks, approves accreditation, sets caps and releases escrow.</div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #ECE6DA">
+      <div style="display:grid;grid-template-columns:1.7fr 0.8fr 0.8fr 0.8fr;border-bottom:1px solid #ECE6DA">
+        <div style="padding:14px 20px;font-size:11.5px;font-weight:700;letter-spacing:0.07em;color:#8A8494">CAPABILITY</div>
+        <div style="padding:14px 10px;font-size:11.5px;font-weight:700;letter-spacing:0.07em;color:#8A8494;text-align:center">INVESTOR</div>
+        <div style="padding:14px 10px;font-size:11.5px;font-weight:700;letter-spacing:0.07em;color:#8A8494;text-align:center">FOUNDER</div>
+        <div style="padding:14px 10px;font-size:11.5px;font-weight:700;letter-spacing:0.07em;color:#8A8494;text-align:center">OPS</div>
+      </div>
+      <sc-for list="{{ permRows }}" as="row" hint-placeholder-count="8">
+        <div style="display:grid;grid-template-columns:1.7fr 0.8fr 0.8fr 0.8fr;border-bottom:1px solid #F3EEE5;align-items:center">
+          <div style="padding:13px 20px;font-size:14px;color:#211F2E">{{ row.cap }}</div>
+          <div style="padding:13px 10px;text-align:center;font-size:15px;font-weight:700;color:{{ row.iColor }}">{{ row.i }}</div>
+          <div style="padding:13px 10px;text-align:center;font-size:15px;font-weight:700;color:{{ row.fColor }}">{{ row.f }}</div>
+          <div style="padding:13px 10px;text-align:center;font-size:15px;font-weight:700;color:{{ row.oColor }}">{{ row.o }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- IA -->
+  <div id="ia" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">Information architecture</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 24px">The whole investor product resolves to two tabs: Campaigns and Portfolio. Everything else is either a gate on the way in or a detail view hanging off one of those two. Keeping the top-level nav at two items was the first decision I made and the one I defended most often.</p>
+    <div style="padding:8px 0 12px">
+      <svg viewBox="0 0 840 372" style="width:100%;display:block" role="img" aria-label="Information architecture: EquityFlow splits into Onboarding gates, Campaigns and Portfolio, each with child screens.">
+        <rect x="330" y="8" width="180" height="42" rx="12" fill="#211F2E"></rect>
+        <text x="420" y="34" text-anchor="middle" font-family="Manrope,sans-serif" font-size="14" font-weight="700" fill="#ffffff">EquityFlow</text>
+        <path d="M420 50 L420 68 M140 68 L700 68 M140 68 L140 86 M420 68 L420 86 M700 68 L700 86" stroke="#C9C2D6" stroke-width="1.5" fill="none"></path>
+        <rect x="20" y="86" width="240" height="36" rx="10" fill="#DCEAE6" stroke="#2F7A6F" stroke-width="1.5"></rect>
+        <text x="140" y="109" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" font-weight="800" fill="#1A4A43">Onboarding gates</text>
+        <rect x="300" y="86" width="240" height="36" rx="10" fill="#F7E4DA" stroke="#C4653F" stroke-width="1.5"></rect>
+        <text x="420" y="109" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" font-weight="800" fill="#8A3F1E">Campaigns</text>
+        <rect x="580" y="86" width="240" height="36" rx="10" fill="#EDE6F5" stroke="#7B5FA8" stroke-width="1.5"></rect>
+        <text x="700" y="109" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" font-weight="800" fill="#4A2F70">Portfolio</text>
+        <g font-family="Manrope,sans-serif" font-size="11.5" font-weight="600" fill="#211F2E">
+          <rect x="20" y="136" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="34" y="155">Entry · sign up · log in</text>
+          <rect x="20" y="172" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="34" y="191">Forgot password</text>
+          <rect x="20" y="208" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="34" y="227">Welcome · what happens next</text>
+          <rect x="20" y="244" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="34" y="263">KYC identity (3 steps)</text>
+          <rect x="20" y="280" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="34" y="299">Suitability &amp; finances</text>
+          <rect x="20" y="316" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="34" y="335">Bank connection</text>
+
+          <rect x="300" y="136" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="314" y="155">Campaign feed · search · filter</text>
+          <rect x="300" y="172" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="314" y="191">Campaign detail</text>
+          <rect x="300" y="208" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="314" y="227">Form C &amp; document viewer</text>
+          <rect x="300" y="244" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="314" y="263">Q&amp;A board</text>
+          <rect x="300" y="280" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="314" y="299">Founder updates</text>
+          <rect x="300" y="316" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="314" y="335">Invest flow · checkout</text>
+
+          <rect x="580" y="136" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="594" y="155">Dashboard · stats · CF limit</text>
+          <rect x="580" y="172" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="594" y="191">Investment table</text>
+          <rect x="580" y="208" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="594" y="227">Investment detail · escrow</text>
+          <rect x="580" y="244" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="594" y="263">Accredited verification</text>
+          <rect x="580" y="280" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="594" y="299">Account settings</text>
+          <rect x="580" y="316" width="240" height="30" rx="8" fill="#FFFDF9" stroke="#D8D0C0"></rect><text x="594" y="335">Notifications</text>
+        </g>
+        <path d="M140 122 L140 151 M140 151 L20 151 M140 187 L20 187 M140 223 L20 223 M140 259 L20 259 M140 295 L20 295 M140 331 L20 331 M140 122 L140 331" stroke="#ECE6DA" stroke-width="1.2" fill="none" opacity="0"></path>
+      </svg>
+    </div>
+  </div>
+
+  <!-- FLOW -->
+  <div id="flow" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">The path to an investment</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 24px">Interest comes first, verification second. A new user can browse every campaign, open the Form C, and read the Q&amp;A board before the platform asks for a single document. The gates only fire once they commit to an amount, at which point the ask has a reason attached to it.</p>
+    <div style="border:1px solid #ECE6DA;border-radius:20px;padding:26px 20px">
+      <div style="display:grid;gap:0">
+        <div style="display:flex;align-items:center;gap:10px;padding:0 4px 12px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#2F7A6F">OPEN TO ANYONE</div>
+          <div style="flex:1;height:1px;background:#ECE6DA"></div>
+        </div>
+        <sc-for list="{{ flowOpen }}" as="f" hint-placeholder-count="3">
+          <div style="display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:16px;padding:14px 4px;border-bottom:1px solid #F3EEE5">
+            <div style="width:28px;height:28px;border-radius:50%;background:#EAF2F0;color:#2F7A6F;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center">{{ f.n }}</div>
+            <div style="font-size:15px;font-weight:700;color:#211F2E">{{ f.label }}</div>
+            <div style="font-size:12.5px;color:#8A8494;text-align:right">{{ f.meta }}</div>
+          </div>
+        </sc-for>
+
+        <div style="display:flex;align-items:center;gap:10px;padding:26px 4px 12px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#C4653F">GATED — FIRES ONLY AFTER AN AMOUNT IS CHOSEN</div>
+          <div style="flex:1;height:1px;background:#ECE6DA"></div>
+        </div>
+        <sc-for list="{{ flowGates }}" as="f" hint-placeholder-count="3">
+          <div style="display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:16px;padding:14px 4px;border-bottom:1px solid #F3EEE5;background:#FDF6F2">
+            <div style="width:28px;height:28px;border-radius:8px;background:#F2DED4;color:#B0552F;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center">{{ f.n }}</div>
+            <div style="font-size:15px;font-weight:700;color:#211F2E">{{ f.label }}</div>
+            <div style="font-size:12.5px;color:#8A8494;text-align:right">{{ f.meta }}</div>
+          </div>
+        </sc-for>
+
+        <div style="display:flex;align-items:center;gap:10px;padding:26px 4px 12px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#7B5FA8">COMMITTED</div>
+          <div style="flex:1;height:1px;background:#ECE6DA"></div>
+        </div>
+        <sc-for list="{{ flowEnd }}" as="f" hint-placeholder-count="2">
+          <div style="display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:16px;padding:14px 4px;border-bottom:1px solid #F3EEE5">
+            <div style="width:28px;height:28px;border-radius:50%;background:#EDE6F5;color:#6B4B96;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center">{{ f.n }}</div>
+            <div style="font-size:15px;font-weight:700;color:#211F2E">{{ f.label }}</div>
+            <div style="font-size:12.5px;color:#8A8494;text-align:right">{{ f.meta }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPLIANCE -->
+  <div id="compliance" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">Compliance as an interface problem</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 28px">Four legal requirements shaped more of this product than any visual choice. Each one is a moment where the platform has to say no, or not yet, to someone who is trying to give it money. I treated each as a copy and layout problem rather than an error.</p>
+    <div style="display:grid;gap:14px">
+      <sc-for list="{{ complianceRows }}" as="c" hint-placeholder-count="4">
+        <div style="display:grid;grid-template-columns:0.9fr 1.1fr 1.1fr;gap:0;background:#fff;border:1px solid #ECE6DA;border-radius:16px;overflow:hidden">
+          <div style="padding:20px 22px;border-left:4px solid {{ c.color }}">
+            <div style="font-size:15.5px;font-weight:700;line-height:1.35">{{ c.rule }}</div>
+          </div>
+          <div style="padding:20px 22px;border-left:1px solid #ECE6DA">
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;color:#8A8494;margin-bottom:6px">THE TENSION</div>
+            <div style="font-size:13.5px;line-height:1.6;color:#453F52">{{ c.tension }}</div>
+          </div>
+          <div style="padding:20px 22px;border-left:1px solid #ECE6DA">
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;color:#8A8494;margin-bottom:6px">HOW IT SHOWS UP</div>
+            <div style="font-size:13.5px;line-height:1.6;color:#453F52">{{ c.solution }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- SCREENS -->
+  <div id="screens" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">The screens</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 28px">Six of the core investor screens. The layout logic is consistent across all of them: a two-tab nav, a 1200px content column, and a sticky right rail wherever a decision has to stay in view while the reader scrolls.</p>
+    <div style="display:grid;gap:32px">
+      <div>
+        <img src="uploads/screens-1787332619262-b0xc.png" alt="Campaign detail" style="width:100%;display:block;border-radius:16px;border:1px solid #ECE6DA">
+        <div style="font-size:13.5px;color:#8A8494;margin-top:10px;line-height:1.6">Campaign detail. Terms, team, traction and disclosures scroll on the left; the invest panel stays pinned on the right so the amount and the deadline never leave the screen.</div>
+      </div>
+      <div>
+        <img src="uploads/screens-1787332622311-i557.png" alt="Invest flow" style="width:100%;display:block;border-radius:16px;border:1px solid #ECE6DA">
+        <div style="font-size:13.5px;color:#8A8494;margin-top:10px;line-height:1.6">Invest flow. Three numbered steps (amount, subscription agreement, payment) with a running summary sidebar. Financial figures are set in a mono face so digits align down the column.</div>
+      </div>
+      <div>
+        <img src="uploads/screens-1787332619273-ykah.png" alt="Portfolio dashboard" style="width:100%;display:block;border-radius:16px;border:1px solid #ECE6DA">
+        <div style="font-size:13.5px;color:#8A8494;margin-top:10px;line-height:1.6">Portfolio. The Reg CF limit sits in the stats row as a first-class number, not a footnote, with a direct link to lift the cap through accreditation.</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+        <div>
+          <img src="uploads/screens-1787332619276-dmpr.png" alt="KYC identity verification" style="width:100%;display:block;border-radius:14px;border:1px solid #ECE6DA">
+          <div style="font-size:13px;color:#8A8494;margin-top:8px;line-height:1.6">Identity, step one of three. The privacy note comes before the first field.</div>
+        </div>
+        <div>
+          <img src="uploads/screens-1787332622308-awv6.png" alt="Suitability questions" style="width:100%;display:block;border-radius:14px;border:1px solid #ECE6DA">
+          <div style="font-size:13px;color:#8A8494;margin-top:8px;line-height:1.6">Suitability. Framed as required by law, so it does not read as a sales qualifier.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVOLUTION -->
+  <div id="evolution" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">Wireframe to final</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 24px">Every screen was resolved in grayscale first. No color, no logo, no real numbers, only hierarchy, field order and states. It made the flow arguments cheap to lose. Colour and data arrived afterwards and changed almost nothing structural.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:24px">
+      <div>
+        <div style="font-size:11.5px;font-weight:700;letter-spacing:0.07em;color:#8A8494;margin-bottom:10px">WIREFRAME</div>
+        <img src="uploads/wireframes-1787332359373-1ae9.png" alt="Grayscale wireframes" style="width:100%;display:block;border-radius:14px;border:1px solid #ECE6DA;background:#fff">
+      </div>
+      <div>
+        <div style="font-size:11.5px;font-weight:700;letter-spacing:0.07em;color:#BF6785;margin-bottom:10px">FINAL</div>
+        <img src="uploads/screens-1787332619276-dmpr.png" alt="Final identity screen" style="width:100%;display:block;border-radius:14px;border:1px solid #ECE6DA;background:#fff">
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+      <sc-for list="{{ evolutionNotes }}" as="n" hint-placeholder-count="3">
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:14px;padding:18px 18px 20px">
+          <div style="font-size:14px;font-weight:700;margin-bottom:6px">{{ n.title }}</div>
+          <div style="font-size:13.5px;line-height:1.6;color:#453F52">{{ n.body }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- MOODBOARD -->
+  <div id="moodboard" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">Moodboard first, then the system</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 24px">Before choosing a single colour or type size, I collected references in Figma: banking and brokerage products, document-heavy dashboards, and a few editorial layouts for how they handle long disclosure text. The board was a way to argue about tone with something on the wall instead of in the abstract.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:24px">
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:14px;padding:18px 18px 20px">
+        <div style="font-size:14px;font-weight:700;margin-bottom:6px">What I pulled</div>
+        <div style="font-size:13.5px;line-height:1.6;color:#453F52">Fintech dashboards, brokerage statements, document viewers and editorial pages that carry dense legal copy well.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:14px;padding:18px 18px 20px">
+        <div style="font-size:14px;font-weight:700;margin-bottom:6px">What I looked for</div>
+        <div style="font-size:13.5px;line-height:1.6;color:#453F52">How each one signals risk, money and status, and whether restraint reads as trustworthy or as unfinished.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:14px;padding:18px 18px 20px">
+        <div style="font-size:14px;font-weight:700;margin-bottom:6px">What it settled</div>
+        <div style="font-size:13.5px;line-height:1.6;color:#453F52">A neutral base with colour reserved for meaning, and mono figures for anything countable. Both carried straight into the visual system below.</div>
+      </div>
+    </div>
+    <a href="https://www.figma.com/design/EEIDvbK7RSyF01Zq4KJUSZ/EquityFlow-%E2%80%94-Moodboard?node-id=0-1&amp;p=f&amp;t=QS2GMiRaytcJ03ZA-0" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#211F2E;text-decoration:none;border:1.5px solid #ECE6DA;font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:100px" style-hover="border-color:#BF6785;color:#BF6785"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path></svg>Open the moodboard in Figma</a>
+  </div>
+
+  <!-- VISUAL SYSTEM -->
+  <div id="system" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">Visual system</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 28px">A financial product earns trust by being quiet. The palette is mostly neutral: near-black for actions, one green for money and live status, one blue for focus, one red for limits.</p>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:32px">
+      <sc-for list="{{ swatches }}" as="sw" hint-placeholder-count="6">
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:14px;overflow:hidden">
+          <div style="height:64px;background:{{ sw.hex }};border-bottom:1px solid #ECE6DA"></div>
+          <div style="padding:12px 12px 14px">
+            <div style="font-size:12.5px;font-weight:700;margin-bottom:3px">{{ sw.name }}</div>
+            <div style="font-size:11.5px;color:#8A8494;font-variant-numeric:tabular-nums">{{ sw.hex }}</div>
+            <div style="font-size:11.5px;color:#8A8494;line-height:1.5;margin-top:5px">{{ sw.use }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:18px;padding:22px 24px 24px">
+        <div style="font-size:11.5px;font-weight:700;letter-spacing:0.07em;color:#8A8494;margin-bottom:12px">TYPE</div>
+        <div style="font-size:28px;font-weight:700;letter-spacing:-0.025em;margin-bottom:4px">Inter</div>
+        <div style="font-size:13.5px;line-height:1.6;color:#453F52">Everything in the interface. Tight letter-spacing on headings, 13px body to keep dense tables readable without scrolling.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:18px;padding:22px 24px 24px">
+        <div style="font-size:11.5px;font-weight:700;letter-spacing:0.07em;color:#8A8494;margin-bottom:12px">FIGURES</div>
+        <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:26px;font-weight:700;margin-bottom:6px">$12,450</div>
+        <div style="font-size:13.5px;line-height:1.6;color:#453F52">Every currency value is set in a mono face. Amounts stack in a column and the eye can compare them without reading each one.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATES -->
+  <div id="states" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">States, not screens</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 24px">The first version of the portfolio dashboard only existed populated. That is the state a user is least likely to see first. I set a floor: no component ships until its whole state set is drawn, and every screen archetype has to answer six questions.</p>
+    <div style="border-top:1px solid #ECE6DA">
+      <sc-for list="{{ stateRows }}" as="s" hint-placeholder-count="6">
+        <div style="display:grid;grid-template-columns:0.75fr 1.6fr;border-bottom:1px solid #F3EEE5">
+          <div style="padding:16px 20px;font-size:14px;font-weight:700;border-left:4px solid {{ s.color }}">{{ s.cls }}</div>
+          <div style="padding:16px 20px;font-size:13.5px;line-height:1.65;color:#453F52;border-left:1px solid #ECE6DA">{{ s.states }}</div>
+        </div>
+      </sc-for>
+    </div>
+    
+  </div>
+
+  <!-- HARNESS -->
+  <div id="harness" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">Building a design harness</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 16px">By the tenth screen the prototype had drifted. Three button heights, two input borders, a nav that changed padding depending on which screen I had built most recently. Prompting an AI for the next screen made it worse, because there was nothing for it to be consistent with.</p>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 28px">So I stopped building screens and wrote the system down. The harness is a router plus a rulebook: one always-loaded file of about a hundred lines that maps a question to the exact documents needed to answer it, and twenty pattern files loaded only when the router points to them.</p>
+    <div style="padding:8px 0 20px;margin-bottom:4px">
+      <svg viewBox="0 0 840 220" style="width:100%;display:block" role="img" aria-label="Harness loop: build a screen, hit a gap, flag it, get approval, document the pattern, reuse it on the next screen.">
+        <g font-family="Manrope,sans-serif">
+          <rect x="16" y="30" width="150" height="60" rx="14" fill="#ffffff" stroke="#DFD8CB"></rect>
+          <text x="91" y="56" text-anchor="middle" font-size="12.5" font-weight="700" fill="#211F2E">Build a screen</text>
+          <text x="91" y="74" text-anchor="middle" font-size="11" fill="#8A8494">router points to docs</text>
+
+          <rect x="188" y="30" width="150" height="60" rx="14" fill="#F7E4DA" stroke="#E8C4B2"></rect>
+          <text x="263" y="56" text-anchor="middle" font-size="12.5" font-weight="700" fill="#211F2E">Nothing fits</text>
+          <text x="263" y="74" text-anchor="middle" font-size="11" fill="#8A8494">stop, do not improvise</text>
+
+          <rect x="360" y="30" width="150" height="60" rx="14" fill="#F7E4DA" stroke="#E8C4B2"></rect>
+          <text x="435" y="56" text-anchor="middle" font-size="12.5" font-weight="700" fill="#211F2E">Name the gap</text>
+          <text x="435" y="74" text-anchor="middle" font-size="11" fill="#8A8494">closest thing + delta</text>
+
+          <rect x="532" y="30" width="150" height="60" rx="14" fill="#DCEAE6" stroke="#B4D2CA"></rect>
+          <text x="607" y="56" text-anchor="middle" font-size="12.5" font-weight="700" fill="#211F2E">I approve it</text>
+          <text x="607" y="74" text-anchor="middle" font-size="11" fill="#8A8494">or reject the whole idea</text>
+
+          <rect x="704" y="30" width="120" height="60" rx="14" fill="#DCEAE6" stroke="#B4D2CA"></rect>
+          <text x="764" y="56" text-anchor="middle" font-size="12.5" font-weight="700" fill="#211F2E">Document</text>
+          <text x="764" y="74" text-anchor="middle" font-size="11" fill="#8A8494">status: draft</text>
+
+          <g stroke="#8A8494" stroke-width="1.6" fill="none" marker-end="url(#efArrow)">
+            <path d="M166 60 L182 60"></path>
+            <path d="M338 60 L354 60"></path>
+            <path d="M510 60 L526 60"></path>
+            <path d="M682 60 L698 60"></path>
+            <path d="M764 90 L764 140 Q764 156 748 156 L107 156 Q91 156 91 140 L91 96"></path>
+          </g>
+          <defs><marker id="efArrow" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#8A8494"></path></marker></defs>
+          <text x="427" y="178" text-anchor="middle" font-size="11.5" fill="#8A8494">Next screen reuses it. Status moves draft → proven only after a second real build.</text>
+        </g>
+      </svg>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px">
+      <sc-for list="{{ harnessRules }}" as="h" hint-placeholder-count="4">
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:14px;padding:18px 18px 20px;border-top:3px solid {{ h.color }}">
+          <div style="font-size:14px;font-weight:700;margin-bottom:6px">{{ h.title }}</div>
+          <div style="font-size:13.5px;line-height:1.6;color:#453F52">{{ h.body }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">The harness went through three revisions. The first was a generic component library that described buttons nobody was using. The second was rewritten from the live prototype, so every entry described something that actually existed. The third added the creation gate, which is the part that changed my behaviour: when nothing fits, the answer is to stop and name the gap, not to invent a fourth button height at three in the morning.</p>
+  </div>
+
+  <!-- COMPETITIVE -->
+  <div id="competitive" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">Where it sits</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 24px">The existing platforms cluster in two places: polished discovery with compliance buried in a modal, or thorough compliance in an interface built for professionals. EquityFlow aims at the corner nobody occupies — retail-first, with the rails visible.</p>
+    <div style="padding:8px 0 12px">
+      <svg viewBox="0 0 700 400" style="width:100%;max-width:660px;display:block;margin:0 auto" role="img" aria-label="Quadrant: retail-first versus institutional, compliance hidden versus compliance visible. EquityFlow is retail-first with visible compliance.">
+        <defs><marker id="efAx" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#BDB4A6"></path></marker></defs>
+        <rect x="60" y="18" width="277" height="161" fill="#F5F1E8"></rect>
+        <rect x="337" y="18" width="277" height="161" fill="#EAF2EF"></rect>
+        <line x1="60" y1="340" x2="60" y2="18" stroke="#BDB4A6" stroke-width="1.4" marker-end="url(#efAx)"></line>
+        <line x1="60" y1="340" x2="640" y2="340" stroke="#BDB4A6" stroke-width="1.4" marker-end="url(#efAx)"></line>
+        <line x1="337" y1="18" x2="337" y2="340" stroke="#E2DBCC" stroke-width="1.2"></line>
+        <line x1="60" y1="179" x2="614" y2="179" stroke="#E2DBCC" stroke-width="1.2"></line>
+        <g font-family="Manrope,sans-serif" font-size="11.5" font-weight="600" fill="#8A8494">
+          <text x="14" y="24">Retail-first</text>
+          <text x="8" y="336">Institutional</text>
+          <text x="66" y="362">Compliance hidden</text>
+          <text x="614" y="362" text-anchor="end">Compliance visible</text>
+        </g>
+        <g font-family="Manrope,sans-serif">
+          <circle cx="150" cy="92" r="6" fill="#C4BDB0"></circle>
+          <text x="164" y="96" font-size="12.5" fill="#453F52">Consumer-style deal feeds</text>
+          <circle cx="196" cy="142" r="6" fill="#C4BDB0"></circle>
+          <text x="210" y="146" font-size="12.5" fill="#453F52">Reward crowdfunding</text>
+          <circle cx="452" cy="252" r="6" fill="#C4BDB0"></circle>
+          <text x="466" y="256" font-size="12.5" fill="#453F52">Syndicate &amp; SPV tools</text>
+          <circle cx="516" cy="300" r="6" fill="#C4BDB0"></circle>
+          <text x="502" y="322" font-size="12.5" text-anchor="middle" fill="#453F52">Broker-dealer portals</text>
+          <circle cx="430" cy="70" r="10" fill="#2F7A6F"></circle>
+          <text x="448" y="66" font-size="13.5" font-weight="700" fill="#211F2E">EquityFlow</text>
+          <text x="448" y="84" font-size="11.5" fill="#6B6579">caps and escrow in plain view</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- DECISIONS -->
+  <div id="decisions" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 24px">Decisions I owned</h2>
+    <div style="display:grid;gap:0">
+      <sc-for list="{{ decisions }}" as="d" hint-placeholder-count="6">
+        <div style="border-left:4px solid {{ d.color }};padding:4px 0 26px 22px;margin-bottom:0">
+          <div style="font-size:16.5px;font-weight:700;margin-bottom:8px">{{ d.title }}</div>
+          <div style="font-size:15px;line-height:1.7;color:#453F52">{{ d.body }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div id="reflection" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 80px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 24px">Reflection &amp; next steps</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 16px">The thing I would carry into any product, not just a regulated one: write the system down before you scale the screens. Five weeks in, the harness was doing more for consistency than any amount of care on individual layouts, because it moved the decisions out of my head and into a file I could point at.</p>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 16px">What is still open: The founder side exists only as flows, not screens (raise setup, Form C submission and the update composer) are all specified but undrawn. The operations console is the same. And the whole product is desktop-only right now; the two-column detail pages with sticky rails are the pieces that will need real rethinking on a phone, not just reflowing.</p>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">If I ran it again I would test the suitability step with real first-time investors early. It is the screen where the platform sounds least like it is on your side, and I only have my own judgment on the copy.</p>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SECTION_IDS = ['overview','timeline','problem','users','ia','flow','compliance','screens','evolution','moodboard','system','states','harness','competitive','decisions','reflection'];
+const SECTION_LABELS = { overview:'Overview', timeline:'Process', problem:'The Problem', users:'Three Users', ia:'Architecture', flow:'The Path', compliance:'Compliance', screens:'The Screens', evolution:'Wireframe → Final', moodboard:'Moodboard', system:'Visual System', states:'States', harness:'Design Harness', competitive:'Where It Sits', decisions:'Decisions', reflection:'Reflection' };
+
+class Component extends DCLogic {
+  state = { active: 'overview', showNav: true };
+
+  componentDidMount() {
+    this._onResize = () => this.setState({ showNav: window.innerWidth > 1360 });
+    this._onResize();
+    window.addEventListener('resize', this._onResize);
+    this._observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) this.setState({ active: e.target.id }); });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+    SECTION_IDS.forEach((id) => { const el = document.getElementById(id); if (el) this._observer.observe(el); });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onResize);
+    if (this._observer) this._observer.disconnect();
+  }
+
+  scrollToSection(id, e) {
+    if (e) e.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 90, behavior: 'smooth' });
+  }
+
+  renderVals() {
+    const accent = '#BF6785';
+    const active = this.state.active;
+    const yes = accent, no = '#D8D2C6';
+    return {
+      sideNavDisplay: this.state.showNav ? 'block' : 'none',
+      navSections: SECTION_IDS.map((id) => ({
+        href: '#' + id,
+        label: SECTION_LABELS[id],
+        onClick: (e) => this.scrollToSection(id, e),
+        color: id === active ? accent : '#8A8494',
+        weight: id === active ? 700 : 500,
+      })),
+      processStages: [
+        { week: '1', color: '#D97D5E', label: 'Domain research', sub: 'Reg CF rules, caps, escrow, what a Form C is' },
+        { week: '2', color: '#D97D5E', label: 'Users & architecture', sub: 'Three roles, permissions, two-tab IA' },
+        { week: '3', color: '#2F7A6F', label: 'Flows & wireframes', sub: 'Grayscale, every state, no colour using Pencil' },
+        { week: '4', color: '#2F7A6F', label: 'Harness & build', sub: 'Tokens, patterns, hi-fi prototype with Claude Code' },
+        { week: '5', color: '#B18FCF', label: 'States and associated QA', sub: 'Empty, error, limit-reached, polish' },
+      ],
+      permRows: [
+        { cap: 'Browse campaigns', i: '●', f: '●', o: '●', iColor: yes, fColor: yes, oColor: yes },
+        { cap: 'Read Form C and disclosures', i: '●', f: '●', o: '●', iColor: yes, fColor: yes, oColor: yes },
+        { cap: 'Ask a question publicly', i: '●', f: '—', o: '—', iColor: yes, fColor: no, oColor: no },
+        { cap: 'Answer questions', i: '—', f: '●', o: '●', iColor: no, fColor: yes, oColor: yes },
+        { cap: 'Invest', i: '●', f: '—', o: '—', iColor: yes, fColor: no, oColor: no },
+        { cap: 'Post founder updates', i: '—', f: '●', o: '—', iColor: no, fColor: yes, oColor: no },
+        { cap: 'Approve identity checks', i: '—', f: '—', o: '●', iColor: no, fColor: no, oColor: yes },
+        { cap: 'Grant accredited status', i: '—', f: '—', o: '●', iColor: no, fColor: no, oColor: yes },
+        { cap: 'Release escrow', i: '—', f: '—', o: '●', iColor: no, fColor: no, oColor: yes },
+      ],
+      flowOpen: [
+        { n: '1', label: 'Browse campaigns', meta: 'No account required' },
+        { n: '2', label: 'Campaign detail · docs · Q&A', meta: 'Full disclosure, still open' },
+        { n: '3', label: 'Choose an amount', meta: 'Minimum $100–$1,000 by deal' },
+      ],
+      flowGates: [
+        { n: '4', label: 'Identity', meta: 'Name, DOB 18+, address, SSN last 4' },
+        { n: '5', label: 'Suitability', meta: 'Income, net worth, experience' },
+        { n: '6', label: 'Reg CF cap', meta: '$2,200 / 12 months unless accredited' },
+      ],
+      flowEnd: [
+        { n: '7', label: 'Funds to escrow', meta: 'Held until the round closes' },
+        { n: '8', label: 'Portfolio', meta: 'Status, progress, founder updates' },
+      ],
+      complianceRows: [
+        { color: '#D97D5E', rule: 'Identity verification', tension: 'Three steps of personal data — name, date of birth, address, part of a social security number — before any money moves.', solution: 'A privacy callout above the first field explains encryption and why the law requires it. Errors are specific: "You must be at least 18 years old to invest", not "invalid date".' },
+        { color: '#D97D5E', rule: 'Suitability questions', tension: 'Asking about income and net worth reads like a sales qualifier, and people lie or leave.', solution: 'Framed as a legal requirement in the heading, not a benefit. No marketing copy anywhere on the screen.' },
+        { color: '#FFCB2B', rule: 'Reg CF annual cap', tension: 'A non-accredited investor has a 12-month ceiling. Hitting it mid-checkout is the worst possible moment to find out.', solution: 'The remaining allowance lives on the portfolio dashboard as a headline stat. In checkout, an over-cap amount turns the field red and disables the button with the exact number that would fit.' },
+        { color: '#B18FCF', rule: 'Escrow', tension: 'Money is committed but not transferred until the round closes. Users read that as a payment failure.', solution: 'In Escrow is a first-class status in the portfolio table with its own colour, plus a summary card that says how much is held and what releases it.' },
+      ],
+      evolutionNotes: [
+        { title: 'Grayscale bought arguments', body: 'Nobody debated a shade of green when there were none. Reviews stayed on field order and what the screen was asking for.' },
+        { title: 'States were drawn, not implied', body: 'Error and sent variants of the same screen sit side by side on the canvas, so the transition was designed rather than assumed.' },
+        { title: 'Colour changed almost nothing', body: 'The final screens follow the wireframe layout closely. What colour added was meaning: status, limits, money.' },
+      ],
+      swatches: [
+        { hex: '#0F172A', name: 'Ink', use: 'Primary actions, headings' },
+        { hex: '#10B981', name: 'Green', use: 'Money, live status' },
+        { hex: '#2563EB', name: 'Blue', use: 'Focus rings, links' },
+        { hex: '#EF4444', name: 'Red', use: 'Limits, errors, sign out' },
+        { hex: '#64748B', name: 'Slate', use: 'Secondary text' },
+        { hex: '#F8FAFC', name: 'Section', use: 'Page background' },
+      ],
+      stateRows: [
+        { color: '#D8D2C6', cls: 'Static', states: 'Default only. Trust badges, dividers, tags.' },
+        { color: '#2F7A6F', cls: 'Interactive', states: 'Default · hover · focus-visible · active · disabled.' },
+        { color: '#2F7A6F', cls: 'Input', states: 'All of the above, plus empty · filled · error · read-only.' },
+        { color: '#FFCB2B', cls: 'Overlay', states: 'Open · closing · overflow.' },
+        { color: '#D97D5E', cls: 'Data', states: 'Populated · loading · empty · error · partial failure.' },
+        { color: '#B18FCF', cls: 'Screen', states: 'Loaded · skeleton · first-use empty · no results · error · no access.' },
+      ],
+      harnessRules: [
+        { color: '#2F7A6F', title: 'Router, not a library', body: 'One always-loaded file maps a question to the exact docs that answer it. Nothing else loads unless it is pointed to.' },
+        { color: '#FFCB2B', title: 'No hardcoded values', body: 'Every colour, size and radius in a screen resolves to a named token. A hex code in a screen file is a bug.' },
+        { color: '#D97D5E', title: 'Creation gate', body: 'Components, tokens and patterns cannot be invented mid-build. Gap found means stop, name it, wait for a yes.' },
+        { color: '#B18FCF', title: 'Draft until proven', body: 'A pattern is only marked proven after a second real screen has used it and it held up.' },
+      ],
+      decisions: [
+        { color: '#2F7A6F', title: 'Browse before verify', body: 'The obvious build is to gate the whole product behind onboarding — it is simpler to reason about and it is what most platforms do. I put every campaign, document and Q&A thread in front of the gate instead. A first-time investor should be able to decide they want in before being asked for a social security number.' },
+        { color: '#FFCB2B', title: 'Two tabs, permanently', body: 'Campaigns and Portfolio. Watchlists, notifications, settings and accreditation all wanted top-level slots and all got pushed into the account menu or a detail view. A two-item nav means the user never wonders which tab a thing lives under.' },
+        { color: '#B18FCF', title: 'The cap is a headline number', body: 'The Reg CF limit could have been a line of fine print in checkout. It sits in the portfolio stats row next to total value, with the used amount, the reset date, and a link to lift it. A constraint the user can plan around stops being a blocker.' },
+        { color: '#2F7A6F', title: 'Mono for every figure', body: 'Financial values are set in a monospaced face so digits align vertically down a table column. It costs typographic elegance and buys comparison at a glance, which is what the portfolio page is for.' },
+        { color: '#FFCB2B', title: 'Disabled over dismissed', body: 'When an amount breaks the cap, the button says "Fix amount to continue" rather than staying enabled and failing on submit. The interface refuses early and explains what would work.' },
+        { color: '#D97D5E', title: 'Stop building, write the system', body: 'Mid-project I paused screen work for two days to document the harness. It felt like losing time and it was the reason the last fifteen screens took less effort than the first ten.' },
+      ],
+    };
+  }
+}
+
+</script>
+</body>
+</html>

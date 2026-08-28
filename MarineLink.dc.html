@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin: 0; background: #FBF7F0; font-family: 'Manrope', sans-serif; }
+    * { box-sizing: border-box; }
+    ::selection { background: #DCD9F7; }
+    a { color: #214C7A; }
+    a:hover { color: #16324F; }
+  </style>
+</helmet>
+
+<div style="min-height:100vh;background:#FBF7F0;color:#211F2E;overflow-x:hidden">
+
+  <!-- SIDE NAV -->
+  <div style="position:fixed;top:174px;left:max(12px,calc(50% - 640px));z-index:40;width:190px;display:{{ sideNavDisplay }}">
+    <a href="Portfolio.dc.html" style="display:flex;align-items:center;gap:6px;color:#453F52;text-decoration:none;font-size:14px;font-weight:600;margin-bottom:20px" style-hover="color:#214C7A"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Back</a>
+    <sc-for list="{{ navSections }}" as="sec" hint-placeholder-count="14">
+      <a href="{{ sec.href }}" onClick="{{ sec.onClick }}" style="display:block;font-size:14px;font-weight:{{ sec.weight }};color:{{ sec.color }};text-decoration:none;padding:6px 0;line-height:1.3">{{ sec.label }}</a>
+    </sc-for>
+  </div>
+
+  <!-- NAV -->
+  <div style="position:sticky;top:0;z-index:50;background:rgba(251,247,240,0.85);backdrop-filter:blur(8px);border-bottom:1px solid #ECE6DA">
+    <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,5vw,64px)">
+      <a href="Portfolio.dc.html" aria-label="Areej Butt — back to portfolio" style="color:#214C7A;text-decoration:none;display:inline-flex;cursor:pointer">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2.5 14.2 9.3 21 12 14.2 14.7 12 21.5 9.8 14.7 3 12 9.8 9.3 12 2.5Z"></path></svg>
+      </a>
+      <div style="display:flex;align-items:center;gap:clamp(16px,3vw,32px);font-size:15px;font-weight:600;color:#453F52">
+        <a href="Portfolio.dc.html#about" style="color:#453F52;text-decoration:none" style-hover="color:#214C7A">About Me</a>
+        <a href="uploads/Areej_Butt_LUMS_Resume.docx" download="" style="color:#453F52;text-decoration:none" style-hover="color:#214C7A">Resume</a>
+        <a href="Portfolio.dc.html" style="color:#fff;text-decoration:none;background:#214C7A;padding:9px 18px;border-radius:100px" style-hover="background:#16324F">Back to Portfolio</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div style="max-width:900px;margin:0 auto;padding:clamp(48px,8vw,88px) clamp(20px,5vw,64px) 20px">
+    <div style="font-size: 15px; font-weight: 700; color: #214C7A; letter-spacing: 0.06em; margin-bottom: 16px">CONCEPT, BRAND &amp; VISUAL DESIGN</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(42px,7vw,72px);line-height:1.05;margin:0 0 24px">Marine Link</h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.4vw,26px);line-height:1.4;color:#453F52;margin:0 0 22px;max-width:720px">Most ocean content is informative. Marine Link is immersive.</p>
+    <p style="font-size:17px;line-height:1.7;color:#453F52;margin:0 0 24px">An interactive, exploration-driven ocean experience that turns the five layers of the sea into a place to visit. Designed for <b><span style="font-weight: normal;">pre-K and early elementary kids</span></b>, Marine Link transforms a scroll into a deep-sea descent and every meter down into a reason to keep going.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px">
+      <a href="https://areej-butt.github.io/marine-link/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#214C7A;color:#fff;text-decoration:none;font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:100px" style-hover="background:#16324F"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path></svg>View Website</a>
+      <a href="https://drive.google.com/drive/folders/1txE1RCJqWGsSNUsiuyGUULwDY3NtB_1P?usp=sharing" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#211F2E;text-decoration:none;border:1.5px solid #ECE6DA;font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:100px" style-hover="border-color:#214C7A;color:#214C7A"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0-4.5-4.5M12 16l4.5-4.5"></path><path d="M4 19.5h16"></path></svg>Download the Harness</a>
+    </div>
+  </div>
+
+  <!-- HERO COVER -->
+  <div style="max-width:900px;margin:0 auto;padding:36px clamp(20px,5vw,64px) 0">
+    <image-slot id="marinelink-hero-cover" shape="rounded" radius="24" fit="contain" style="width:100%;aspect-ratio:1672/1042;height:auto" placeholder="Drop the hero cover shot / app mockup" src="uploads/pasted-1785841138503-0.png"></image-slot>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div id="overview" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 24px">Overview</h2>
+    <div style="display:grid;grid-template-columns:1.3fr 0.8fr 1.3fr;gap:0;background:#fff;border:1px solid #ECE6DA;border-radius:24px;overflow:hidden">
+      <div style="padding:28px;border-right:1px solid #ECE6DA">
+        <div style="font-size:12px;font-weight:700;color:#8A8494;letter-spacing:0.05em;margin-bottom:10px">ROLE</div>
+        <div style="font-size:15px;line-height:1.4;font-weight:700;color:#211F2E;margin-bottom:16px">Lead Designer: concept, brand &amp; visual design</div>
+        <div style="font-size:12px;font-weight:700;color:#8A8494;letter-spacing:0.05em;margin-bottom:10px">TEAM</div>
+        <div style="font-size:15px;line-height:1.5;font-weight:700;color:#211F2E">2 designers</div>
+      </div>
+      <div style="padding:28px;border-right:1px solid #ECE6DA;display:flex;flex-direction:column;gap:22px">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#8A8494;letter-spacing:0.05em;margin-bottom:10px">PLATFORM</div>
+          <div style="font-size:15px;line-height:1.5;font-weight:700;color:#211F2E">Web</div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#8A8494;letter-spacing:0.05em;margin-bottom:10px">DURATION</div>
+          <div style="font-size:15px;line-height:1.5;font-weight:700;color:#211F2E">2 weeks</div>
+        </div>
+      </div>
+      <div style="padding:28px">
+        <div style="font-size:12px;font-weight:700;color:#8A8494;letter-spacing:0.05em;margin-bottom:10px">METHODS</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <span style="background:#EAF5F2;color:#1D4E46;font-size:12px;font-weight:600;padding:5px 10px;border-radius:100px">Concept Exploration</span>
+          <span style="background:#EAF5F2;color:#1D4E46;font-size:12px;font-weight:600;padding:5px 10px;border-radius:100px">Competitive Research</span>
+          <span style="background:#EAF5F2;color:#1D4E46;font-size:12px;font-weight:600;padding:5px 10px;border-radius:100px">Brand Identity</span>
+          <span style="background:#EAF5F2;color:#1D4E46;font-size:12px;font-weight:600;padding:5px 10px;border-radius:100px">Color Systems</span>
+          <span style="background:#EAF5F2;color:#1D4E46;font-size:12px;font-weight:600;padding:5px 10px;border-radius:100px">Illustration Direction</span>
+          <span style="background:#EAF5F2;color:#1D4E46;font-size:12px;font-weight:600;padding:5px 10px;border-radius:100px">UX Audit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS TIMELINE -->
+  <div id="timeline" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">The End-to-End Journey</h2>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,64px) 20px">
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div style="display:flex;gap:6px;margin-bottom:14px">
+        <sc-for list="{{ processStages }}" as="stage" hint-placeholder-count="7">
+          <div style="flex: 1; text-align: center; padding: 0 4px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #453F52; line-height: 1.3; min-height: 26px; display: flex; align-items: flex-end; justify-content: center">{{ stage.label }}</div>
+        </sc-for>
+      </div>
+      <div style="position:relative;height:14px;margin-bottom:12px">
+        <div style="position:absolute;top:50%;left:7.15%;right:7.15%;transform:translateY(-50%);border-top:1.5px solid #C9C2D6;z-index:0"></div>
+        <div style="display:flex;gap:6px;position:relative;z-index:1">
+          <sc-for list="{{ processStages }}" as="stage" hint-placeholder-count="7">
+            <div style="flex:1;display:flex;justify-content:center"><div style="width:14px;height:14px;border-radius:50%;background:{{ stage.color }}"></div></div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;gap:6px">
+        <sc-for list="{{ processStages }}" as="stage" hint-placeholder-count="7">
+          <div style="flex:1;text-align:center;padding:0 4px;font-size:11.5px;color:#8A8494;line-height:1.3">{{ stage.sub }}</div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="font-size:13px;font-style:italic;color:#8A8494;margin-top:20px;text-align:center">Two designers, two weeks: ideation moved fast so more time could go into the system underneath it</div>
+    <div style="font-size:12px;color:#8A8494;margin-top:6px;text-align:center"><span style="color:#D97D5E;font-weight:600">Coral</span> = ideation &amp; research · <span style="color:#2F7A6F;font-weight:600">Teal</span> = system build &amp; content generation · <span style="color:#B18FCF;font-weight:600">Purple</span> = execution &amp; refinement</div>
+  </div>
+
+  <!-- THE IDEA -->
+  <div id="idea" style="scroll-margin-top: 90px; max-width: 900px; margin: 0 auto; padding: 56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 24px">The Idea</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 16px">The ocean is one of the least explored and most exciting places on Earth. Yet, most ocean content treats learning like a test through dry facts and quizzes.&nbsp;</p>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">Marine Link puts curiosity first instead. Most websites are too hard for non-readers and feel like schoolwork. This project works like the ocean itself: an immersive descent where kids discover one creature at a time.</p>
+  </div>
+
+  <!-- WHERE THE CONCEPT STARTED -->
+  <div id="concept-start" style="scroll-margin-top: 90px; max-width: 900px; margin: 0 auto; padding: 56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">Building the Concept</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 20px">The process started on paper: hand sketches of a scroll-driven depth meter, a UI that darkens as you descend, creatures that only reveal themselves on interaction. Those sketches fed a Canva moodboard that locked our vision: a bioluminescent descent from daylight at the surface into near-total darkness, lit only by the creatures and the user's curiosity.</p>
+    <div style="background:#fff;border:1px solid #ECE6DA;border-radius:16px;padding:22px 26px">
+      <div style="font-size:14px;font-weight:700;color:#211F2E;margin-bottom:10px">Early questions that shaped scope</div>
+      <ul style="margin:0;padding-left:20px;font-size:15.5px;line-height:1.7;color:#453F52">
+        <li>How can we make the facts seem digestible and fun?</li>
+        <li>Should depth be a literal scroll axis or a menu?</li>
+        <li>Is there a gamified layer (progress, collection) or is exploration its own reward?</li>
+      </ul>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px">
+      <image-slot id="marinelink-early-sketch-1" shape="rounded" radius="16" fit="cover" style="width: 241px; height: 133px" placeholder="Early sketch" src="uploads/marinelink-early-sketch-1.webp"></image-slot>
+      <image-slot id="marinelink-early-sketch-2" shape="rounded" radius="16" fit="cover" style="width: 246px; height: 138px" placeholder="Early sketch" src="uploads/marinelink-early-sketch-2.webp"></image-slot>
+      <image-slot id="marinelink-early-sketch-3" shape="rounded" radius="16" fit="cover" style="width: 243px; height: 138px" placeholder="Early sketch" src="uploads/marinelink-early-sketch-3.webp"></image-slot>
+    </div>
+    <div style="font-size:13px;color:#8A8494;margin-top:10px">Early paper sketches of the sunlight-to-twilight depth meter, the creature-card layout, and the submarine encounter concept.</div>
+    <div style="margin-top:24px">
+      <img src="uploads/pasted-1785841516867-0.png" alt="Early mood-board direction: warm coral-reef scene, kawaii jellyfish, octopus and submarine, percentage-based progress and a book-style quiz icon" style="width:100%;border-radius:16px;display:block">
+      <div style="font-size:13px;color:#8A8494;margin-top:10px">The initial Canva moodboard for the Sunlight Zone.</div>
+    </div>
+  </div>
+
+  <!-- COMPETITIVE LANDSCAPE -->
+  <div id="competitive" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 0">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 24px">Competitive Analysis</h2>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,64px)">
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 20px">Our competitive research covered three lanes: educational apps for young kids, dedicated ocean exploration tools, and ocean video content made for children to understand the pacing, tone, and features before building.</p>
+    <div style="padding:8px 0 28px">
+      <svg viewBox="0 0 860 420" style="width:100%;max-width:760px;display:block;margin:0 auto" role="img" aria-label="Four references feed Marine Link; clinical 3D rendering and quiz-first structure were deliberately not adopted">
+        <defs><marker id="mlAdoptArrow" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#8A8494"></path></marker><marker id="mlAvoidArrow" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#D97D5E"></path></marker></defs>
+<g>
+          <rect x="41" y="18" width="172" height="64" rx="14" fill="#ECE6DA" stroke="#C9C2D6"></rect>
+          <text x="127" y="46" text-anchor="middle" font-size="15" font-weight="700" fill="#211F2E" font-family="Manrope,sans-serif">Smart Biology</text>
+          <text x="127" y="68" text-anchor="middle" font-size="12.5" fill="#5C5668" font-family="Manrope,sans-serif">Bio-education</text>
+          <line x1="127" y1="82" x2="430" y2="172" stroke="#8A8494" stroke-width="1.5" marker-end="url(#mlAdoptArrow)"></line>
+        </g>
+        <g>
+          <rect x="243" y="18" width="172" height="64" rx="14" fill="#ECE6DA" stroke="#C9C2D6"></rect>
+          <text x="329" y="46" text-anchor="middle" font-size="15" font-weight="700" fill="#211F2E" font-family="Manrope,sans-serif">Learn Your Way</text>
+          <text x="329" y="68" text-anchor="middle" font-size="12.5" fill="#5C5668" font-family="Manrope,sans-serif">AI-adaptive</text>
+          <line x1="329" y1="82" x2="430" y2="172" stroke="#8A8494" stroke-width="1.5" marker-end="url(#mlAdoptArrow)"></line>
+        </g>
+        <g>
+          <rect x="445" y="18" width="172" height="64" rx="14" fill="#ECE6DA" stroke="#C9C2D6"></rect>
+          <text x="531" y="46" text-anchor="middle" font-size="15" font-weight="700" fill="#211F2E" font-family="Manrope,sans-serif">Creature refs</text>
+          <text x="531" y="68" text-anchor="middle" font-size="12.5" fill="#5C5668" font-family="Manrope,sans-serif">Meshy/Sketchfab</text>
+          <line x1="531" y1="82" x2="430" y2="172" stroke="#8A8494" stroke-width="1.5" marker-end="url(#mlAdoptArrow)"></line>
+        </g>
+        <g>
+          <rect x="647" y="18" width="172" height="64" rx="14" fill="#ECE6DA" stroke="#C9C2D6"></rect>
+          <text x="733" y="46" text-anchor="middle" font-size="15" font-weight="700" fill="#211F2E" font-family="Manrope,sans-serif">BioDigital</text>
+          <text x="733" y="68" text-anchor="middle" font-size="12.5" fill="#5C5668" font-family="Manrope,sans-serif">Anatomical 3D</text>
+          <line x1="733" y1="82" x2="430" y2="172" stroke="#8A8494" stroke-width="1.5" marker-end="url(#mlAdoptArrow)"></line>
+        </g>
+        <rect x="330" y="180" width="200" height="66" rx="14" fill="#E3F2EF" stroke="#2F7A6F"></rect>
+        <text x="430" y="210" text-anchor="middle" font-size="17" font-weight="700" fill="#1D4E46" font-family="Manrope,sans-serif">Marine Link</text>
+        <text x="430" y="232" text-anchor="middle" font-size="12.5" fill="#1D4E46" font-family="Manrope,sans-serif">Built to reward looking</text>
+        <line x1="390" y1="246" x2="270" y2="326" stroke="#D97D5E" stroke-width="1.5" stroke-dasharray="5 5" marker-end="url(#mlAvoidArrow)"></line>
+        <line x1="470" y1="246" x2="600" y2="326" stroke="#D97D5E" stroke-width="1.5" stroke-dasharray="5 5" marker-end="url(#mlAvoidArrow)"></line>
+        <rect x="140" y="334" width="260" height="64" rx="14" fill="#FBEAE3" stroke="#E9A98C"></rect>
+        <text x="270" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#B14A2E" font-family="Manrope,sans-serif">Clinical 3D rendering</text>
+        <text x="270" y="382" text-anchor="middle" font-size="12" fill="#B14A2E" font-family="Manrope,sans-serif">Consciously not adopted</text>
+        <rect x="470" y="334" width="260" height="64" rx="14" fill="#FBEAE3" stroke="#E9A98C"></rect>
+        <text x="600" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#B14A2E" font-family="Manrope,sans-serif">Quiz-first structure</text>
+        <text x="600" y="382" text-anchor="middle" font-size="12" fill="#B14A2E" font-family="Manrope,sans-serif">Consciously not adopted</text>
+      </svg>
+      <div style="font-size:12.5px;color:#8A8494;text-align:center;margin-top:14px"><span style="color:#8A8494;font-weight:600">Gray</span> = adopted qualities · <span style="color:#2F7A6F;font-weight:600">Teal</span> = Marine Link · <span style="color:#D97D5E;font-weight:600">Coral dashed</span> = deliberately avoided</div>
+    </div>
+    <div style="padding:8px clamp(20px,4vw,40px) 8px">
+      <svg viewBox="0 0 640 380" style="width:100%;max-width:600px;display:block;margin:0 auto" role="img" aria-label="Competitive quadrant: playful vs. interactive. Marine Link is the most playful and most interactive of the references.">
+        <defs><marker id="mlAx" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#C9C2D6"></path></marker></defs>
+        <line x1="50" y1="330" x2="50" y2="16" stroke="#C9C2D6" stroke-width="1.5" marker-end="url(#mlAx)"></line>
+        <line x1="50" y1="330" x2="604" y2="330" stroke="#C9C2D6" stroke-width="1.5" marker-end="url(#mlAx)"></line>
+        <text x="56" y="26" font-size="13" fill="#8A8494" font-family="Manrope,sans-serif">playful</text>
+        <text x="4" y="352" font-size="13" fill="#8A8494" font-family="Manrope,sans-serif">clinical</text>
+        <text x="50" y="368" font-size="13" fill="#8A8494" font-family="Manrope,sans-serif">static</text>
+        <text x="604" y="368" text-anchor="end" font-size="13" fill="#8A8494" font-family="Manrope,sans-serif">more interactive</text>
+        <circle cx="148" cy="278" r="8" fill="#ECE6DA" stroke="#B18FCF" stroke-width="1.5"></circle>
+        <text x="148" y="300" text-anchor="middle" font-size="12.5" fill="#453F52" font-family="Manrope,sans-serif">Smart Biology</text>
+        <circle cx="452" cy="222" r="8" fill="#ECE6DA" stroke="#7FA3C4" stroke-width="1.5"></circle>
+        <text x="452" y="244" text-anchor="middle" font-size="12.5" fill="#453F52" font-family="Manrope,sans-serif">Learn Your Way</text>
+        <circle cx="536" cy="290" r="8" fill="#ECE6DA" stroke="#D6A947" stroke-width="1.5"></circle>
+        <text x="536" y="312" text-anchor="middle" font-size="12.5" fill="#453F52" font-family="Manrope,sans-serif">Meshy / Sketchfab</text>
+        <circle cx="562" cy="304" r="8" fill="#ECE6DA" stroke="#D97D5E" stroke-width="1.5"></circle>
+        <text x="562" y="326" text-anchor="middle" font-size="12.5" fill="#453F52" font-family="Manrope,sans-serif">BioDigital</text>
+        <circle cx="566" cy="56" r="11" fill="#E3F2EF" stroke="#2F7A6F" stroke-width="2.5"></circle>
+        <text x="566" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="#1D4E46" font-family="Manrope,sans-serif">Marine Link</text>
+      </svg>
+      <div style="font-size:12.5px;color:#8A8494;text-align:center;margin-top:14px">Marine Link lands furthest toward playful and interactive while the references it drew on trend more clinical or static</div>
+    </div>
+  </div>
+
+  <!-- CORE MECHANIC -->
+  <div id="mechanic" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">The Core Mechanic</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 24px">Marine Link runs on a single, seamless loop: scroll deeper, discover a creature, and check it off your map. Making depth the navigation instead of tabs or menus kept the journey intuitive.</p>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,64px) 20px">
+    <div style="max-width:560px;margin:0 auto">
+      <div style="display:flex;justify-content:center;margin-bottom:16px"><span style="width:30px;height:30px;border-radius:50%;background:#FFCB2B"></span></div>
+      <div style="border-radius:16px;overflow:hidden">
+        <div style="background:#9DD4F0;padding:22px 20px;text-align:center">
+          <div style="font-size:16px;font-weight:700;color:#17323D">Sunlight Zone</div>
+          <div style="font-size:13px;color:#2C4B67;margin-top:4px">Epipelagic · 0–600 ft · 7 creatures</div>
+        </div>
+        <div style="background:#6DB7D8;padding:22px 20px;text-align:center">
+          <div style="font-size:16px;font-weight:700;color:#17323D">Twilight Zone</div>
+          <div style="font-size:13px;color:#173250;margin-top:4px">Mesopelagic · 600–3,300 ft · 7 creatures</div>
+        </div>
+        <div style="background:#418EA8;padding:22px 20px;text-align:center">
+          <div style="font-size:16px;font-weight:700;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.35)">Midnight Zone</div>
+          <div style="font-size:13px;color:#EAF5F2;margin-top:4px;text-shadow:0 1px 3px rgba(0,0,0,0.35)">Bathypelagic · 3,300–13,100 ft · 7 creatures</div>
+        </div>
+        <div style="background:#1D6882;padding:22px 20px;text-align:center">
+          <div style="font-size:16px;font-weight:700;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.4)">Abyssal Zone</div>
+          <div style="font-size:13px;color:#E0F7FA;margin-top:4px;text-shadow:0 1px 3px rgba(0,0,0,0.4)">Abyssopelagic · 13,100–19,700 ft · 7 creatures</div>
+        </div>
+        <div style="background:#16324F;padding:22px 20px;text-align:center">
+          <div style="font-size:16px;font-weight:700;color:#fff">Hadal Zone</div>
+          <div style="font-size:13px;color:#B9D4E8;margin-top:4px">Trenches · 19,700+ ft · 7 creatures</div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:28px clamp(20px,5vw,64px) 20px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+      <div style="background:#E3F2EF;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#1D4E46;margin-bottom:6px">Depth range</div><div style="font-size:14px;line-height:1.55;color:#211F2E">Every zone is stated in feet so descent feels measurable rather than abstract.</div></div>
+      <div style="background:#FBF2E0;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#7A5716;margin-bottom:6px">Per-zone palette</div><div style="font-size:14px;line-height:1.55;color:#211F2E">Color shifts from bright surface light to bioluminescent trench accents as you scroll.</div></div>
+      <div style="background:#F3EBFA;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#573A70;margin-bottom:6px">7 creatures per zone</div><div style="font-size:14px;line-height:1.55;color:#211F2E">35 in total so progress is always a fraction a young child can picture and count toward.</div></div>
+    </div>
+    <p style="font-size: 17px; line-height: 1.7; color: #5C5668; margin: 24px 0 12px">The zone banner repeats the same three cues on every entry (name, depth, audio and color shift) so the pattern reads before a child can read the words.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+      <div><div style="background:#0F2A3D;border:1px solid #ECE6DA;border-radius:14px;padding:6px"><img src="uploads/pasted-1785916396718-0.png" alt="Landing page: sunrise over the water with the Marine Link logo and Start Exploring button" style="width:100%;aspect-ratio:1.6;object-fit:cover;border-radius:9px;display:block"></div><div style="font-size:12.5px;color:#8A8494;text-align:center;margin-top:8px">Landing</div></div>
+      <div><div style="background:#0F2A3D;border:1px solid #ECE6DA;border-radius:14px;padding:6px"><img src="uploads/pasted-1785841161329-0.png" alt="Sunlight Zone screen" style="width:100%;aspect-ratio:1.6;object-fit:cover;border-radius:9px;display:block"></div><div style="font-size:12.5px;color:#8A8494;text-align:center;margin-top:8px">Sunlight</div></div>
+      <div><div style="background:#0F2A3D;border:1px solid #ECE6DA;border-radius:14px;padding:6px"><img src="uploads/pasted-1785841258655-0.png" alt="Twilight Zone screen" style="width:100%;aspect-ratio:1.6;object-fit:cover;border-radius:9px;display:block"></div><div style="font-size:12.5px;color:#8A8494;text-align:center;margin-top:8px">Twilight</div></div>
+      <div><div style="background:#0F2A3D;border:1px solid #ECE6DA;border-radius:14px;padding:6px"><img src="uploads/pasted-1785841279276-0.png" alt="Midnight Zone screen" style="width:100%;aspect-ratio:1.6;object-fit:cover;border-radius:9px;display:block"></div><div style="font-size:12.5px;color:#8A8494;text-align:center;margin-top:8px">Midnight</div></div>
+      <div><div style="background:#0F2A3D;border:1px solid #ECE6DA;border-radius:14px;padding:6px"><img src="uploads/pasted-1785841283701-0.png" alt="Abyss screen" style="width:100%;aspect-ratio:1.6;object-fit:cover;border-radius:9px;display:block"></div><div style="font-size:12.5px;color:#8A8494;text-align:center;margin-top:8px">Abyss</div></div>
+      <div><div style="background:#0F2A3D;border:1px solid #ECE6DA;border-radius:14px;padding:6px"><img src="uploads/pasted-1785841289680-0.png" alt="The Trenches screen" style="width:100%;aspect-ratio:1.6;object-fit:cover;border-radius:9px;display:block"></div><div style="font-size:12.5px;color:#8A8494;text-align:center;margin-top:8px">Trenches</div></div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div id="features" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">Features</h2>
+  </div>
+  <div style="max-width: 900px; margin: 0 auto; padding: 0 clamp(20px,5vw,64px) 40px; display: flex; flex-direction: column; gap: 24px">
+    <div style="background:#EAF5F2;border:1px solid #D6E8E3;border-radius:20px;padding:clamp(24px,4vw,32px);display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <img src="uploads/pasted-1785841183096-0.png" alt="Creature detail card, front: Mahi-Mahi illustration and fact" style="width:100%;border-radius:14px;display:block">
+        <img src="uploads/pasted-1785841198939-0.png" alt="Creature detail card, flipped: real Mahi-Mahi photo" style="width:100%;border-radius:14px;display:block">
+      </div>
+      <div>
+        <h3 style="font-family: 'Cormorant Garamond',serif; font-weight: 400; font-size: clamp(22px,3vw,26px); margin: 0 0 8px; color: #211F2E">Creature Detail Card</h3>
+        <div style="font-size: 14px; font-weight: 600; color: #214C7A; margin-bottom: 10px">Tap to reveal, flip for the real thing</div>
+        <p style="font-size: 17px; line-height: 1.65; color: #453F52; margin: 0">A tap opens a kawaii illustration with an interesting voice read fact. A second tap flips it to a real photo of the creature and a deeper fact.&nbsp;</p>
+      </div>
+    </div>
+
+    <div style="background:#EAF5F2;border:1px solid #D6E8E3;border-radius:20px;padding:clamp(24px,4vw,32px);display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center">
+      <div>
+        <h3 style="font-family: 'Cormorant Garamond',serif; font-weight: 400; font-size: clamp(22px,3vw,26px); margin: 0 0 8px; color: #211F2E">Find a Creature</h3>
+        <div style="font-size: 14px; font-weight: 600; color: #214C7A; margin-bottom: 10px">Search or just tap a suggestion</div>
+        <div style="box-sizing: border-box; display: flex; flex-direction: column; gap: 12px"><div style="box-sizing: border-box; display: flex; flex-direction: column; gap: 12px"><p style="font-size: 17px; line-height: 1.65; color: #453F52; margin: 0">Allows browsing for kids who do not know exactly what they are looking for. Results link straight to the creature map and searching for a creature takes you across the ocean to them making navigation easy.</p></div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <img src="uploads/pasted-1785841212346-0.png" alt="Find a creature search modal with suggested creatures" style="width:100%;border-radius:14px;display:block">
+        <img src="uploads/pasted-1785841225956-0.png" alt="Find a creature search filtered to 'mahi', showing the explored Mahi-Mahi result" style="width:100%;border-radius:14px;display:block">
+      </div>
+    </div>
+
+    <div style="background:#EAF5F2;border:1px solid #D6E8E3;border-radius:20px;padding:clamp(24px,4vw,32px)">
+      <h3 style="font-family: 'Cormorant Garamond',serif; font-weight: 400; font-size: clamp(22px,3vw,26px); margin: 0 0 8px; color: #211F2E">Creature Map</h3>
+      <div style="font-size: 14px; font-weight: 600; color: #214C7A; margin-bottom: 10px">Every zone, every creature, one screen</div>
+      <p style="font-size: 17px; line-height: 1.65; color: #453F52; margin: 0 0 20px">Helps navigation. All 35 creatures are grouped by zone with <b>All / Unexplored / Explored</b> tabs and a checkmark legend instead of red/green status. A <b>"you are here"</b> badge anchors to the player's nearest creature instead of floating in open water.</p>
+      <img src="uploads/pasted-1785841237709-0.png" alt="Creature map showing all zones, explored and unexplored creatures, and a 'you are here' badge" style="width:100%;border-radius:14px;display:block">
+    </div>
+
+    <div style="background:#EAF5F2;border:1px solid #D6E8E3;border-radius:20px;padding:clamp(24px,4vw,32px)">
+      <h3 style="font-family: 'Cormorant Garamond',serif; font-weight: 400; font-size: clamp(22px,3vw,26px); margin: 0 0 8px; color: #211F2E">Quiz</h3>
+      <div style="font-size: 14px; font-weight: 600; color: #214C7A; margin-bottom: 10px">A trophy, not a question mark</div>
+      <p style="font-size: 17px; line-height: 1.65; color: #453F52; margin: 0 0 20px">The quiz opens from a trophy, not a question mark since a "?" reads as help to a child and an unexpected test breaks that promise. Capped at 10 questions with a clear progress bar, it favors picture answers over text and a correct pick earns confetti instead of a wrong one earning a buzz.</p>
+      <img src="uploads/pasted-1785841248305-0.png" alt="Quiz screen: 'Which one is the great white shark?' with four picture answer options" style="width:100%;border-radius:14px;display:block">
+    </div>
+
+  </div>
+
+  <!-- AUDIO -->
+  <div id="audio" style="scroll-margin-top: 90px; max-width: 900px; margin: 0 auto; padding: 56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 8px">Audio</h2>
+    
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">&nbsp;For the youngest end of the audience, audio is the primary way the app is used. Creature cards, search, and the quiz all carry a speaker icon with a visual pulse showing who's talking and search takes a tapped microphone in place of typing. Each zone also has its own ambient soundscape - brighter and airier at the surface, low and resonant by the trench - so the descent sounds like it looks, even before a child reads a word.</p>
+  </div>
+
+  <!-- VISUAL IDENTITY -->
+  <div id="identity" style="scroll-margin-top: 90px; max-width: 900px; margin: 0 auto; padding: 56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">Visual identity</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 20px">The logo went through dozens of iterations before landing on a soft, rounded, hand-lettered style. It is easy to read and playful enough to sit alongside creatures without competing with them.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:16px">
+      <div style="background:#FBF2E0;border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;height:100%">
+        <div style="font-weight:700;color:#211F2E;font-size:14px;margin-bottom:6px">Geometric infinity-loop mark</div>
+        <div style="font-size: 14.5px; color: #5C5668; line-height: 1.5; margin-bottom: 14px">Too corporate. Read as fintech rather than ocean.</div>
+        <div style="margin-top:auto;padding-top:8px;display:flex;justify-content:center;align-items:center;height:130px"><div style="background: #fff; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; width: 183px; height: 125px"><img src="uploads/ml-logo-tried-1.png" alt="Infinity-loop mark, cut for reading too corporate" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></div></div>
+      </div>
+      <div style="background:#FBF2E0;border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;height:100%">
+        <div style="font-weight:700;color:#211F2E;font-size:14px;margin-bottom:6px">Wave + coral hybrid icon</div>
+        <div style="font-size: 14px; color: #5C5668; line-height: 1.5; margin-bottom: 14px">Closer but busy at small sizes.</div>
+        <div style="margin-top:auto;padding-top:8px;display:flex;justify-content:center;align-items:center;height:130px"><div style="background: #fff; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; width: 202px; height: 119px"><img src="uploads/ml-logo-tried-2.png" alt="Wave-plus-coral hybrid icon, cut for being busy at small sizes" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></div></div>
+      </div>
+      <div style="background:#E3F2EF;border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;height:100%">
+        <div style="font-weight:700;color:#1D4E46;font-size:14px;margin-bottom:6px">Watercolor coral icon&nbsp;</div>
+        <div style="font-size: 14px; color: #1D4E46; opacity: 0.85; line-height: 1.5; margin-bottom: 14px">Warm enough for a general audience, distinct enough not to blend in with generic ocean conservation branding.</div>
+        <div style="margin-top:auto;padding-top:8px;display:flex;justify-content:center;align-items:center;height:130px"><div style="background:#fff;border-radius:12px;padding:12px;display:flex;align-items:center;justify-content:center;width:100%;height:100%"><img src="uploads/ml-logo-final.png" alt="The final watercolor coral lockup, kept" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; width: 126px; height: 83px"></div></div>
+      </div>
+    </div>
+    <h3 style="font-family: 'Cormorant Garamond',serif; font-weight: 400; font-size: clamp(22px,2.6vw,24px); margin: 24px 0 12px">Typography</h3>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 12px">Went through multiple rounds of testing, comparing bold versus regular, all-caps versus lowercase, and handwritten script versus a rounded sans-serif.</p>
+    <p style="font-size: 17px; line-height: 1.75; color: #453F52; margin: 0 0 16px; font-family: Manrope">Our priorities with the text were that they must feel friendly, be easy to read, and&nbsp;complement the coral icon (and each other), making Fredoka and Lato the best choices.</p>
+    <div style="margin-bottom:8px">
+      <img src="uploads/marinelink-typography-transparent.png" alt="Typography exploration: bold, all-caps, and light weights of the marine link wordmark across multiple typefaces" style="width:100%;display:block">
+      <div style="font-size:12.5px;color:#8A8494;text-align:center;margin-top:8px">Chosen Fonts: Fredoka and Lato</div>
+    </div>
+  </div>
+
+  <!-- COLOR SYSTEM -->
+  <div id="color" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">Color system: one palette per zone</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 24px">Instead of a single brand palette, each ocean zone has its own primary and accent colors to mirror a real descent. While most products avoid changing colors by section, here, that shift makes depth feel real.</p>
+  </div>
+  <div style="max-width: 900px; margin: 0 auto; padding: 0 clamp(20px,5vw,64px) 20px">
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
+      <sc-for list="{{ zoneRows }}" as="zone" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;gap:12px;align-items:center;background:{{ zone.rowBg }};border:1px solid #ECE6DA;border-radius:14px;padding:14px 18px;box-shadow:0 1px 3px rgba(33,31,46,0.04)">
+          <div style="font-weight:700;font-size:14px;color:#211F2E;border-right:2px solid #C9C2D6;padding-right:14px">{{ zone.name }}</div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;border-radius:7px;background:{{ zone.primary }};border:1.5px solid #C9C2D6;flex-shrink:0"></span><span style="font-size:12.5px;color:#5C5668">{{ zone.primaryName }}</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;border-radius:7px;background:{{ zone.accent }};border:1.5px solid #C9C2D6;flex-shrink:0"></span><span style="font-size:12.5px;color:#5C5668">{{ zone.accentName }}</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;border-radius:7px;background:{{ zone.complementary }};border:1.5px solid #C9C2D6;flex-shrink:0"></span><span style="font-size:12.5px;color:#5C5668">{{ zone.complementaryName }}</span></div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-size:14px;font-weight:700;color:#211F2E;margin-bottom:12px">Shared brand palette</div>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:32px">
+      <sc-for list="{{ brandSwatches }}" as="sw" hint-placeholder-count="6">
+        <div style="display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:9px;background:{{ sw.hex }};border:1.5px solid #C9C2D6"></span><span style="font-size:12.5px;color:#5C5668">{{ sw.name }}</span></div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- ILLUSTRATION -->
+  <div id="illustration" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 16px">Bringing the ocean to life</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 24px">Illustrations blend a cozy, kawaii style (big eyes and rounded silhouettes) with warm gradients, feeling more like an exploration game than a documentary. Surface creatures sit in sunlit scenes, while deep-zone species feature moodier lighting and glowing bioluminescent touches. They all have unique animations, motions, and audios as well!</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+      <image-slot id="marinelink-creature-1" shape="rounded" radius="16" fit="cover" style="width:100%;height:180px" placeholder="Sunlight zone creatures" src="uploads/marinelink-creature-1.webp"></image-slot>
+      <image-slot id="marinelink-creature-2" shape="rounded" radius="16" fit="cover" style="width:100%;height:180px" placeholder="Twilight zone creatures" src="uploads/marinelink-creature-2.webp"></image-slot>
+      <image-slot id="marinelink-creature-3" shape="rounded" radius="16" fit="cover" style="width:100%;height:180px" placeholder="Hadal zone creatures" src="uploads/marinelink-creature-3.webp"></image-slot>
+    </div>
+  </div>
+
+  <!-- WHAT WE FIXED -->
+  <div id="testing-broke" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 12px">What broke, and what we fixed</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">A usability audit on the built prototype surfaced problems that the mood board did not.</p>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,64px)">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ fixRows }}" as="fix" hint-placeholder-count="5">
+        <div style="border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center">
+            <div style="background:#FBEAE3;border-radius:14px;padding:16px 20px">
+              <div style="font-size:11px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#B14A2E;opacity:0.7;margin-bottom:6px">Problem</div>
+              <div style="font-weight:700;color:#B14A2E;font-size:14.5px;margin-bottom:4px">{{ fix.issue }}</div>
+              <div style="font-size: 14px; color: #5C5668">{{ fix.why }}</div>
+            </div>
+            <div style="color:#8A8494;font-size:18px">→</div>
+            <div style="background:#E3F2EF;border-radius:14px;padding:16px 20px">
+              <div style="font-size:11px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#1D4E46;opacity:0.7;margin-bottom:6px">Fix</div>
+              <div style="font-weight: 700; color: #1D4E46; font-size: 14px">{{ fix.fix }}</div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  
+
+  <!-- DESIGN PRINCIPLES -->
+  <div id="principles" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 16px">Design principles</h2>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,64px) 20px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+      <div style="background:#E3F2EF;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#1D4E46;margin-bottom:6px">Simplicity</div><div style="font-size:14px;line-height:1.55;color:#211F2E">One core action per screen: scroll to descend, tap to reveal a creature. No secondary menus competing for a five-year-old's attention.</div></div>
+      <div style="background:#FBF2E0;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#7A5716;margin-bottom:6px">Contrast</div><div style="font-size:14px;line-height:1.55;color:#211F2E">Each zone's accent color pops against its darkening background, and status icons replace red/green so meaning never depends on hue alone.</div></div>
+      <div style="background:#F3EBFA;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#573A70;margin-bottom:6px">White space</div><div style="font-size:14px;line-height:1.55;color:#211F2E">Creatures and UI elements get generous breathing room so nothing crowds the water around them.</div></div>
+      <div style="background:#FBF2E0;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#7A5716;margin-bottom:6px">Balance</div><div style="font-size:14px;line-height:1.55;color:#211F2E">The vertical scroll axis is the spine of the whole experience: progress meter on one edge, creature content centered, weight distributed evenly top to bottom.</div></div>
+      <div style="background:#F3EBFA;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#573A70;margin-bottom:6px">Alignment</div><div style="font-size:14px;line-height:1.55;color:#211F2E">A reserved left-edge gutter keeps zone titles clear of creature sprites; facts and labels align consistently to the same left edge.</div></div>
+      <div style="background:#E3F2EF;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#1D4E46;margin-bottom:6px">Consistency</div><div style="font-size:14px;line-height:1.55;color:#211F2E">One creature-card pattern, one progress-bar treatment, one reveal interaction, reused across all five zones so the child never has to relearn the interface.</div></div>
+      <div style="background:#E3F2EF;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#1D4E46;margin-bottom:6px">Proximity</div><div style="font-size:14px;line-height:1.55;color:#211F2E">A creature's fact, image, and name sit together in a single card; the "you are here" marker is now anchored directly to the submarine icon it belongs to.</div></div>
+      <div style="background:#FBF2E0;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#7A5716;margin-bottom:6px">Repetition</div><div style="font-size:14px;line-height:1.55;color:#211F2E">The same descent ritual (scroll, discover, collect) repeats at every zone boundary, building a rhythm the child can predict.</div></div>
+      <div style="background:#F3EBFA;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#573A70;margin-bottom:6px">Typography</div><div style="font-size:14px;line-height:1.55;color:#211F2E">Manrope for UI and facts at a large, bold minimum size; Cormorant Garamond reserved for headings only, keeping the reading layer distinct from the exploring layer.</div></div>
+    </div>
+  </div>
+
+  <!-- USE OF AI -->
+  <div id="ai-usage" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,3vw,26px);margin:0 0 14px">Use of AI in the process</h3>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 24px">AI played a practical, hands-on role in the process. While concept work started on paper and in Canva, AI stepped in once the zones and creatures were locked. Gemini generated exploratory creature art and first draft facts. Claude Design (Sonnet 5) built the interactive prototype, handling the depth-scroll, zone transitions, and creature map.&nbsp;</p>
+    <div style="font-size:17px;font-weight:700;color:#211F2E;margin-bottom:10px">The first AI pass, before we fixed it</div>
+    <p style="font-size:17px;line-height:1.7;color:#453F52;margin:0 0 16px">Claude's first build was rough: tilted, unstyled placeholders instead of finished art, broken alt-text standing in for missing images, a progress icon overlapping the counter, and a quiz button crowding the mute icon (as shown below). Getting from that initial rough draft to the final shipped screens took repeated rounds of re-prompting and manual fixes. The judgment call was ultimately mine while Claude simply helped execute the vision.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:8px">
+      <div><img src="uploads/Screenshot 2026-07-23 at 7.32.04 PM.png" alt="Early AI-generated build: tilted unstyled image placeholders, overlapping progress bar icon" style="width:100%;border-radius:16px;display:block"></div>
+      <div><img src="uploads/Screenshot 2026-07-23 at 8.50.07 PM.png" alt="Early AI-generated build: broken image placeholders with raw alt text, no visual system" style="width:100%;border-radius:16px;display:block"></div>
+    </div>
+  </div>
+
+  <!-- DESIGN HARNESS -->
+  <div id="harness" style="scroll-margin-top: 90px; max-width: 900px; margin: 0 auto; padding: 56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 16px">Building a design harness</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 16px">Once the initial Claude prototype proved that ad-hoc prompting wasn't scalable: the fix was documentation, not more prompting.</p>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 16px">I audited the shipped prototype's markup to extract every actual color, font, spacing value, and component state. From that, I built a dedicated spec featuring a component library (23 core components with required states), design tokens, a motion spec, and a voice guide in the design.md file.</p>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 16px">Instead of guessing, Claude now had to validate everything against this spec before generating code. I enforced a strict creation gate: no new components or tokens without an explicit match. Any gaps were flagged for approval rather than improvised.</p>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 16px">This resulted in new screens that matched the shipped app on the first pass, completely eliminating the manual correction rounds required earlier.</p>
+    
+    
+    <a href="uploads/design-harness.md" download="marine-link-design-harness.md" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#211F2E;text-decoration:none;border:1.5px solid #ECE6DA;font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:100px;margin:8px 0 32px" style-hover="border-color:#214C7A;color:#214C7A"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v13m0 0-4.5-4.5M12 16l4.5-4.5"></path><path d="M4 19.5h16"></path></svg>Download the harness (.md)</a>
+
+    <!-- HARNESS DIAGRAM -->
+    <img src="uploads/pasted-1785926129445-0.png" alt="Marine Link design harness folder structure and routing diagram" style="width:100%;border-radius:16px;display:block;margin:8px 0 16px;border:1px solid #ECE6DA">
+    <p style="font-size:13.5px;line-height:1.6;color:#8A8494;margin:0 0 32px">Solid arrows are routes a real task takes. The dashed arrow is one the rules allow but no file has used yet.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:12px">
+      <div><img src="uploads/pasted-1785915240914-0.png" alt="My Collection modal built from the harness: zone-grouped creature grid with All / Explored / Unexplored tabs and checkmark-based status" style="width:100%;border-radius:16px;display:block"><div style="font-size:12.5px;color:#8A8494;text-align:center;margin-top:8px">Creature collection rebuilt from harness components</div></div>
+      <div><img src="uploads/pasted-1785915263447-0.png" alt="Choose Your Dive zone picker built from the harness, showing the five ocean zones stacked with per-zone color and depth range" style="width:100%;border-radius:16px;display:block"><div style="font-size:12.5px;color:#8A8494;text-align:center;margin-top:8px">Zone picker rebuilt from harness components</div></div>
+    </div>
+    <p style="font-size:14px;line-height:1.65;color:#8A8494;margin:0">Both screens consistently reuse the same modal shell, badge, and chip components documented in the harness rather than one-off markup per screen.</p>
+  </div>
+
+  <!-- DECISIONS -->
+  <div id="decisions" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 24px">Decisions I owned</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 20px">The target audience (pre-K through early elementary) came with specific constraints. Kids in this age group are still developing fine motor skills, easily get lost in complex navigation, and often view negative feedback as failure rather than a gentle nudge to try again. Every decision below was made against these hard constraints, rather than general kid-friendly intuition.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+      <div style="background:#E3F2EF;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#1D4E46;margin-bottom:6px">Per-zone color over a single fixed brand palette</div><div style="font-size:14px;line-height:1.65;color:#453F52">It makes the descent legible with zero instructional text so a pre-reader can tell "I'm somewhere new" from color alone.</div></div>
+      <div style="background:#FBF2E0;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#7A5716;margin-bottom:6px">35 creatures, 7 per zone, not an open-ended list</div><div style="font-size:14px;line-height:1.65;color:#453F52">An open list has no visible end. A fixed, countable one gives a five-year-old something to finish.</div></div>
+      <div style="background:#F3EBFA;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#573A70;margin-bottom:6px">Kawaii illustration over a scientific rendering style</div><div style="font-size:14px;line-height:1.65;color:#453F52">The audience needed creatures they wanted to look at, not study: a realistic anglerfish could scare a child off as easily as it fascinates them.</div></div>
+      <div style="background:#E9F1F8;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#2C4B67;margin-bottom:6px">Depth-as-scroll over a zone menu</div><div style="font-size:14px;line-height:1.65;color:#453F52">A menu would turn "you sink into this" into a settings screen and nested menus are where early-elementary kids get lost fastest.</div></div>
+      <div style="background:#E3F2EF;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#1D4E46;margin-bottom:6px">A trophy for the quiz, never a question mark</div><div style="font-size:14px;line-height:1.65;color:#453F52">A "?" reads as help to a child so a test behind it is a broken promise before the first question loads.</div></div>
+      <div style="background:#FBF2E0;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#7A5716;margin-bottom:6px">Correct answers glow, wrong answers don't buzz</div><div style="font-size:14px;line-height:1.65;color:#453F52">Early-elementary kids disengage fast from negative framing. Success is confirmed loudly and a miss passes quietly.</div></div>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div id="reflection" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 80px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 24px">Reflection &amp; next steps</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 16px">The current build proves the core concept: depth-as-scroll, per-zone coloring, and a countable creature loop make exploring feel genuinely distinct from reading. However, it has yet to prove the harder claim that exploring for fun and actually learning something are the same activity here. Content depth remains shallow beyond discover and admire and accessibility remains an active priority, not an afterthought.</p>
+    <div style="float:right;width:140px;margin:0 0 12px 20px">
+      
+      <img src="uploads/Gemini_Generated_Image_ksa380ksa380ksa3.png" alt="Illustration of me at my desk using Claude Design for the first time" style="width: 145px; height: 140px; border-radius: 50%; object-fit: cover; display: block"><p style="font-size: 13px; color: #8A8494; text-align: center; margin: 8px 0 0; width: 123px; height: 13px">Me exploring Claude Design!!</p>
+    </div>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 16px">Working with AI on this project was deeply engaging but far from effortless. While it could generate a screen in seconds, it couldn't judge what felt right for a five-year-old exploring the ocean nor could it maintain a design system across dozens of prompts. The initial pass made this clear: colors drifted, components were needlessly reinvented, and every new screen required manual alignment.</p>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 28px;clear:right">The fix wasn't better prompting rather it was building a harness. By documenting the exact tokens, components, and states, subsequent prompts had a concrete source of truth to check against. That shift turned AI from an unpredictable tool into an aligned partner. Prompt engineering isn't a shortcut around design skill; it's a new way to apply it.</p>
+    
+    <div style="font-size:17px;font-weight:700;color:#211F2E;margin-bottom:14px">Next steps:</div>
+    <ul style="margin:0;padding-left:20px;font-size:17px;line-height:1.8;color:#453F52">
+      <li style="margin-bottom:10px">Give each creature a second layer of content beyond the reveal so discovery leads somewhere.</li>
+      <li style="margin-bottom:10px">Run the accessibility fixes already identified (icon-based status, contrast, non-color-dependent cues) before adding new features.</li>
+      <li>Test with the actual target age group to see whether the fun vs. learning gap is real or assumed.</li>
+    </ul>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="background:linear-gradient(135deg,#EAF5F2,#F3EBFA);padding:44px 0;border-radius:32px 32px 0 0">
+    <div style="max-width:900px;margin:0 auto;padding:0 clamp(24px,5vw,48px)">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px">
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <a href="mailto:a.areejb@gmail.com" aria-label="Email" style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:11px;background:#fff;border:1px solid #ECE6DA;color:#453F52" style-hover="border-color:#214C7A;color:#214C7A"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2.5"></rect><path d="M2.5 5.5 12 13l9.5-7.5"></path></svg></a>
+          <a href="https://www.linkedin.com/in/areej-butt/" target="_blank" rel="noopener" aria-label="LinkedIn" style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:11px;background:#fff;border:1px solid #ECE6DA;color:#453F52" style-hover="border-color:#214C7A;color:#214C7A"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"></path></svg></a>
+          <a href="https://github.com/areej-butt" target="_blank" rel="noopener" aria-label="GitHub" style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:11px;background:#fff;border:1px solid #ECE6DA;color:#453F52" style-hover="border-color:#214C7A;color:#214C7A"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-1.94c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.6.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.09 0 4.44-2.7 5.4-5.27 5.68.42.36.78 1.07.78 2.17v3.22c0 .3.2.66.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"></path></svg></a>
+        </div>
+        <div style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:600">
+          <a href="Portfolio.dc.html" style="color:#453F52;text-decoration:none" style-hover="color:#214C7A">Home</a>
+          <a href="Portfolio.dc.html#work" style="color:#453F52;text-decoration:none" style-hover="color:#214C7A">Featured Work</a>
+          <a href="Portfolio.dc.html#about" style="color:#453F52;text-decoration:none" style-hover="color:#214C7A">About Me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeLightbox }}" style="position:fixed;inset:0;background:rgba(33,31,46,0.82);display:flex;align-items:center;justify-content:center;z-index:1000;padding:40px;cursor:pointer">
+    <button onClick="{{ closeLightbox }}" aria-label="Close" style="position:absolute;top:28px;right:32px;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,0.14);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer" style-hover="background:rgba(255,255,255,0.24)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    <img src="{{ lightboxSrc }}" alt="Diagram detail" style="max-width:min(700px,90vw);max-height:90vh;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,0.4);display:block">
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SECTION_IDS = ['overview','timeline','idea','concept-start','competitive','mechanic','features','audio','identity','color','illustration','testing-broke','principles','ai-usage','harness','decisions','reflection'];
+const SECTION_LABELS = { overview:'Overview', timeline:'Process', idea:'The Idea', 'concept-start':'Where It Started', competitive:'Competitive Landscape', mechanic:'Core Mechanic', features:'Features', audio:'Audio', identity:'Visual Identity', color:'Color System', illustration:'Illustration', 'testing-broke':'What We Fixed', principles:'Design Principles', 'ai-usage':'Use of AI', harness:'Design Harness', decisions:'Decisions', reflection:'Reflection' };
+
+class Component extends DCLogic {
+  state = { active: 'overview', showNav: true, lightboxSrc: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7', lightboxVisible: false };
+
+  openLightbox(src, e) {
+    if (e) e.preventDefault();
+    this.setState({ lightboxSrc: src, lightboxVisible: true });
+  }
+
+  closeLightbox() {
+    this.setState({ lightboxVisible: false });
+  }
+
+  componentDidMount() {
+    this._onResize = () => this.setState({ showNav: window.innerWidth > 1360 });
+    this._onResize();
+    window.addEventListener('resize', this._onResize);
+    this._observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) this.setState({ active: e.target.id }); });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+    SECTION_IDS.forEach((id) => { const el = document.getElementById(id); if (el) this._observer.observe(el); });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onResize);
+    if (this._observer) this._observer.disconnect();
+  }
+
+  scrollToSection(id, e) {
+    if (e) e.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.pageYOffset - 90;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  renderVals() {
+    const active = this.state.active;
+    const navSections = SECTION_IDS.map((id) => ({
+      href: '#' + id,
+      label: SECTION_LABELS[id],
+      onClick: (e) => this.scrollToSection(id, e),
+      color: id === active ? '#214C7A' : '#8A8494',
+      weight: id === active ? 700 : 500,
+    }));
+
+    return {
+      navSections,
+      sideNavDisplay: this.state.showNav ? 'block' : 'none',
+      lightboxSrc: this.state.lightboxSrc,
+      lightboxOpen: this.state.lightboxVisible,
+      openZonesLightbox: (e) => this.openLightbox('uploads/marine_link_ocean_zones.png', e),
+      openProcessLightbox: (e) => this.openLightbox('uploads/marine_link_design_process.png', e),
+      closeLightbox: () => this.closeLightbox(),
+      processStages: [
+        { label: 'Paper & Canva\n\n', color: '#D97D5E', sub: 'Sketches, moodboard' },
+        { label: 'Competitive scan', color: '#D97D5E', sub: 'Edu & ocean apps and video' },
+        { label: 'Zone design', color: '#2F7A6F', sub: '5 depth zones' },
+        { label: 'Identity & color', color: '#2F7A6F', sub: 'Wordmark, palettes' },
+        { label: 'Content & art (Gemini)', color: '#2F7A6F', sub: 'Facts + creature art' },
+        { label: 'Build (Claude)', color: '#B18FCF', sub: 'Rough first pass' },
+        { label: 'Usability audit', color: '#B18FCF', sub: 'Fixed by hand' },
+      ],
+      compRows: [
+        { name: 'Smart Biology', category: 'Bio-education', bx: 41, bcx: 127 },
+        { name: 'Learn Your Way', category: 'AI-adaptive', bx: 243, bcx: 329 },
+        { name: 'Creature refs', category: 'Meshy/Sketchfab', bx: 445, bcx: 531 },
+        { name: 'BioDigital', category: 'Anatomical 3D', bx: 647, bcx: 733 },
+      ],
+      zoneRows: [
+        { name: 'Sunlight (Epipelagic)', rowBg: '#fff', primary: '#9DD4F0', primaryName: 'Light Sky Blue', accent: '#FFF2B2', accentName: 'Soft Sun Yellow', complementary: '#FFFFFF', complementaryName: 'Pure White' },
+        { name: 'Twilight (Mesopelagic)', rowBg: '#fff', primary: '#6DB7D8', primaryName: 'Medium Cerulean', accent: '#A7FFEB', accentName: 'Mint Glow', complementary: '#4A89A8', complementaryName: 'Muted Teal' },
+        { name: 'Midnight (Bathypelagic)', rowBg: '#fff', primary: '#418EA8', primaryName: 'Muted Teal Blue', accent: '#80D8FF', accentName: 'Bioluminescent Blue', complementary: '#263238', complementaryName: 'Dark Slate' },
+        { name: 'Abyssal (Abyssopelagic)', rowBg: '#fff', primary: '#1D6882', primaryName: 'Deep Teal Blue', accent: '#9B7FD4', accentName: 'Amethyst Glow', complementary: '#D97D5E', complementaryName: 'Coral Ember' },
+        { name: 'Hadal (Trenches)', rowBg: '#fff', primary: '#214C7A', primaryName: 'Dark Navy Blue', accent: '#4DD9E0', accentName: 'Aqua Glow', complementary: '#16324F', complementaryName: 'Near-Black Navy' },
+      ],
+      brandSwatches: [
+        { hex: '#2F7A6F', name: 'Sunlight Zone Teal' },
+        { hex: '#FFCB2B', name: 'Explorer Gold' },
+        { hex: '#D97D5E', name: 'Coral Orange' },
+        { hex: '#E0F7FA', name: 'Sky Mist' },
+        { hex: '#211F2E', name: 'Abyssal Charcoal' },
+        { hex: '#FFFFFF', name: 'Coral White' },
+      ],
+      fixRows: [
+        { issue: 'Red/green status on a dark background', why: 'Low contrast failed WCAG for red-green colorblindness', fix: 'Icon-based status with white drop shadowed labels' },
+        { issue: 'Progress bar filled gold at 0/35', why: 'Inverted metaphor looked complete before any progress', fix: 'Muted empty track; fill grows in accent color as creatures are found' },
+        { issue: 'Filter tabs didn\u2019t actually filter', why: '"Explored" still showed all 31 unexplored creatures', fix: 'Selected tab now hides or dims non- matching creatures' },
+      ],
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    @keyframes bubblePop { from { opacity: 0; transform: scale(0.75) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    @keyframes mascotIdle { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-5px) rotate(-2deg); } }
+    @keyframes mascotWalk { 0%,100% { transform: translateY(0) rotate(0deg); } 25% { transform: translateY(-9px) rotate(3deg); } 50% { transform: translateY(-2px) rotate(-3deg); } 75% { transform: translateY(-10px) rotate(4deg); } }
+    @keyframes groundPulse { 0%,100% { transform: translateX(-50%) scale(1); opacity: 0.32; } 50% { transform: translateX(-50%) scale(1.18); opacity: 0.18; } }
+    @keyframes cloudDrift { 0%,100% { transform: translateX(0); } 50% { transform: translateX(32px); } }
+    @keyframes lwiseIdle { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-4px) rotate(1.5deg); } }
+    @keyframes dogBounce { 0%,100% { transform: translateY(0) rotate(0deg); } 30% { transform: translateY(-6px) rotate(-4deg); } 60% { transform: translateY(0) rotate(3deg); } }
+    .career-track::-webkit-scrollbar { display: none; }
+    .career-track { -webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain; }
+  </style>
+</helmet>
+
+<div id="experience" style="font-family:'Manrope',sans-serif;color:#211F2E">
+  <div style="position:relative;padding:28px 8px 40px">
+    <button onClick="{{ prevNode }}" aria-label="Previous" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);z-index:5;width:38px;height:38px;border-radius:50%;background:#fff;border:1px solid #ECE6DA;color:#2F7A6F;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(33,31,46,0.08)" style-hover="border-color:#2F7A6F"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"></path></svg></button>
+    <button onClick="{{ nextNode }}" aria-label="Next" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);z-index:5;width:38px;height:38px;border-radius:50%;background:#fff;border:1px solid #ECE6DA;color:#2F7A6F;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(33,31,46,0.08)" style-hover="border-color:#2F7A6F"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"></path></svg></button>
+
+    <div ref="{{ setScrollRef }}" class="career-track" style="overflow-x: auto; overflow-y: visible; padding: 165px 70px 0 70px; scrollbar-width: none; position: relative">
+      <div style="position:relative;width:{{ trackWidth }}px;height:460px">
+
+        <div style="position: absolute; left: -70px; right: -70px; top: 230px; height: 80px; background-image: url('uploads/road-tile-v3.png'); background-repeat: repeat-x; background-size: auto 80px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); width: 1568px"></div>
+
+        <img src="uploads/tree-simple.png" alt="" style="position: absolute; left: 400px; width: 70px; top: 166px; height: 62px">
+        <img src="uploads/tree-round-small.png" alt="" style="position:absolute;left:490px;width:52px;top:180px;height:59px">
+        <img src="uploads/tree-simple.png" alt="" style="position:absolute;left:700px;width:64px;top:170px;height:60px">
+        <img src="uploads/tree-round-big.png" alt="" style="position:absolute;left:790px;width:58px;top:174px;height:65px">
+        <img src="uploads/tree-simple.png" alt="" style="position:absolute;left:940px;width:64px;top:166px;height:60px">
+        <img src="uploads/dog-pixel.png" alt="" style="position:absolute;left:1410px;width:46px;top:198px;height:37px;animation:dogBounce 1.4s ease-in-out infinite;transform-origin:bottom center">
+
+        <sc-for list="{{ nodes }}" as="node" hint-placeholder-count="7">
+          <div style="position:absolute;top:0;left:{{ node.xPx }};width:150px;display:flex;flex-direction:column;align-items:center">
+            <div style="position:relative;height:0;width:100%;display:flex;justify-content:center">
+              <sc-if value="{{ node.isActive }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute;bottom:13px;background:{{ node.color }};padding:3px;clip-path:polygon(12px 0,calc(100% - 12px) 0,calc(100% - 12px) 6px,calc(100% - 6px) 6px,calc(100% - 6px) 12px,100% 12px,100% calc(100% - 12px),calc(100% - 6px) calc(100% - 12px),calc(100% - 6px) calc(100% - 6px),calc(100% - 12px) calc(100% - 6px),calc(100% - 12px) 100%,12px 100%,12px calc(100% - 6px),6px calc(100% - 6px),6px calc(100% - 12px),0 calc(100% - 12px),0 12px,6px 12px,6px 6px,12px 6px);box-shadow:0 10px 26px rgba(33,31,46,0.16);animation:bubblePop 0.35s cubic-bezier(0.3,1.4,0.4,1) both;z-index:6">
+                  <div style="background:#fff;clip-path:polygon(12px 0,calc(100% - 12px) 0,calc(100% - 12px) 6px,calc(100% - 6px) 6px,calc(100% - 6px) 12px,100% 12px,100% calc(100% - 12px),calc(100% - 6px) calc(100% - 12px),calc(100% - 6px) calc(100% - 6px),calc(100% - 12px) calc(100% - 6px),calc(100% - 12px) 100%,12px 100%,12px calc(100% - 6px),6px calc(100% - 6px),6px calc(100% - 12px),0 calc(100% - 12px),0 12px,6px 12px,6px 6px,12px 6px);color:#211F2E;font-weight:700;font-size:12.5px;padding:12px 18px;max-width:190px;text-align:center">
+                    <div style="line-height:1.4">{{ node.headline }}</div>
+                    <sc-if value="{{ node.subheadline }}" hint-placeholder-val="{{ false }}">
+                      <div style="font-weight:600;color:#8A8494;font-size:11.5px;line-height:1.4;margin-top:6px">{{ node.subheadline }}</div>
+                    </sc-if>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ node.isActive }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute;bottom:0;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:11px solid {{ node.color }};z-index:6;animation:bubblePop 0.35s cubic-bezier(0.3,1.4,0.4,1) both">
+                  <div style="position:absolute;top:-11px;left:-5px;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:8px solid #fff"></div>
+                </div>
+              </sc-if>
+            </div>
+
+            <div onClick="{{ node.select }}" style="cursor:pointer;height:230px;width:340px;max-width:340px;display:flex;align-items:flex-end;justify-content:center;transition:transform 0.25s ease;transform:{{ node.hoverBase }};position:relative" style-hover="transform:scale(1.06)">
+              <div style="position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:150px;height:22px;border-radius:50%;background:radial-gradient(ellipse,rgba(33,31,46,0.9) 0%,rgba(33,31,46,0) 72%);opacity:{{ node.shadowOpacity }};animation:{{ node.pulseAnim }};z-index:0"></div>
+              <sc-if value="{{ node.isFoundation }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/lums-building-v2.png" alt="LUMS" style="width:auto;max-width:215px;height:88%;object-fit:contain;margin-bottom:-28px">
+              </sc-if>
+              <sc-if value="{{ node.isDesign }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/carbonteq-v2.png" alt="Carbonteq" style="width:auto;max-width:215px;height:100%;object-fit:contain">
+              </sc-if>
+              <sc-if value="{{ node.isData }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/systems-v2.png" alt="Systems Limited" style="width:auto;max-width:215px;height:100%;object-fit:contain;margin-bottom:-26px">
+              </sc-if>
+              <sc-if value="{{ node.isResearch }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/lums-building-v2.png" alt="LUMS" style="width:auto;max-width:215px;height:88%;object-fit:contain">
+              </sc-if>
+              <sc-if value="{{ node.isLwise }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/lwise-v2.png" alt="LWiSE" style="width:auto;max-width:215px;height:66%;object-fit:contain;animation:lwiseIdle 2.6s ease-in-out infinite">
+              </sc-if>
+              <sc-if value="{{ node.isLeadershipOther }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/loreal-atomcamp-nobrown.png" alt="L'Oréal &amp; atomcamp" style="width:auto;max-width:255px;height:84%;object-fit:contain;margin-bottom:-20px">
+              </sc-if>
+            </div>
+
+            <div style="margin-top:95px;text-align:center;width:170px;display:flex;flex-direction:column;align-items:center">
+              <div style="font-weight:800;font-size:15px;line-height:1.3;color:{{ node.roleColor }};min-height:40px;display:flex;align-items:flex-end;justify-content:center;text-align:center;transition:color 0.25s ease">{{ node.role }}</div>
+              <div style="font-size:13px;font-weight:600;line-height:1.3;color:#5B5568;margin-top:6px;min-height:34px;display:flex;align-items:flex-start;justify-content:center;text-align:center">{{ node.org }}</div>
+            </div>
+          </div>
+        </sc-for>
+
+        <img src="uploads/areej-mascot-v2.png" alt="Areej mascot" style="position: absolute; top: 145px; height: 100px; width: 81px; left: {{ mascotLeft }}px; transition: left 0.5s cubic-bezier(0.3,0.9,0.4,1); z-index: 4; filter: drop-shadow(0 6px 6px rgba(33,31,46,0.28)); animation: {{ mascotAnim }}">
+      </div><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 59px; left: 67px; width: 60px; opacity: 0.6; animation: cloudDrift 7s ease-in-out infinite"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 47px; left: 811px; width: 68px; opacity: 0.7; animation: cloudDrift 8.5s ease-in-out infinite; animation-delay: 1.2s"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 51px; left: 442px; width: 64px; opacity: 0.75; animation: cloudDrift 6.5s ease-in-out infinite; animation-delay: 2.4s"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 55px; left: 1180px; width: 62px; opacity: 0.65; animation: cloudDrift 7.5s ease-in-out infinite; animation-delay: 0.6s"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 49px; left: 1520px; width: 66px; opacity: 0.7; animation: cloudDrift 9s ease-in-out infinite; animation-delay: 1.8s"></div>
+
+    <div style="margin-top:20px;display:flex;align-items:center;gap:14px">
+      <div style="flex:1;height:8px;border-radius:100px;background:#ECE6DA;overflow:hidden">
+        <div style="height:100%;border-radius:100px;background:#2F7A6F;width:{{ progressPct }}%;transition:width 0.4s ease"></div>
+      </div>
+      <div style="font-size:13px;font-weight:700;color:#2F7A6F;white-space:nowrap">Career Level: {{ activeIndex1 }} of {{ totalNodes }} Unlocked</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:700}}">
+const CATEGORY_COLOR = {
+  foundation: '#2F7A6F',
+  design: '#B18FCF',
+  data: '#D6A947',
+  research: '#2F7A6F',
+  lwise: '#D98BA8',
+  leadership: '#D98BA8',
+};
+const NODE_SPACING = 300;
+
+class Component extends DCLogic {
+  state = { activeIndex: 0, isWalking: false };
+
+  setScrollRef = (el) => { this.scrollEl = el; };
+
+  goTo(i, total) {
+    const idx = Math.max(0, Math.min(total - 1, i));
+    if (idx === this.state.activeIndex) return;
+    clearTimeout(this._walkTimeout);
+    this.setState({ activeIndex: idx, isWalking: true });
+    this._walkTimeout = setTimeout(() => this.setState({ isWalking: false }), 560);
+    if (this.scrollEl) {
+      this.scrollEl.scrollTo({ left: Math.max(0, idx * NODE_SPACING - 140), behavior: 'smooth' });
+    }
+  }
+
+  renderVals() {
+    const raw = [
+      { category: 'foundation', role: 'Research Assistant', org: 'HCI Lab (CHISEL @ LUMS)', headline: 'Where it all began' },
+      { category: 'design', role: 'Product Design Intern', org: 'Carbonteq', headline: 'Trained in produt, design and development' },
+      { category: 'lwise', role: 'Treasurer', org: 'LWiSE', headline: 'Executive member of the first women in science club on campus!' },
+      { category: 'data', role: 'Data Analytics Intern', org: 'Systems Limited', headline: 'Learnt all things data from SQL Optimization to Schema Design' },
+      { category: 'leadership', role: 'Campus Ambassador', org: "atomcamp & L'Oréal", headline: 'Represented reputed companies building my professional network' },
+    ];
+    const total = raw.length;
+    const active = this.state.activeIndex;
+
+    const nodes = raw.map((n, i) => {
+      const color = CATEGORY_COLOR[n.category];
+      const isActive = i === active;
+      return {
+        ...n,
+        color,
+        xPx: `${i * NODE_SPACING}px`,
+        isActive,
+        isFoundation: n.category === 'foundation',
+        isDesign: n.category === 'design',
+        isData: n.category === 'data',
+        isResearch: n.category === 'research',
+        isLwise: n.category === 'lwise',
+        isLeadershipOther: n.category === 'leadership',
+        isLeadership: n.category === 'leadership' || n.category === 'lwise',
+        hoverBase: isActive ? 'scale(1.06)' : 'scale(1)',
+        roleColor: isActive ? color : '#211F2E',
+        barWidth: isActive ? '28px' : '0px',
+        barOpacity: isActive ? 1 : 0,
+        shadowOpacity: isActive ? 0.32 : 0.14,
+        pulseAnim: isActive ? 'groundPulse 1.6s ease-in-out infinite' : 'none',
+        select: () => this.goTo(i, total),
+      };
+    });
+
+    return {
+      nodes,
+      totalNodes: total,
+      activeIndex1: active + 1,
+      progressPct: Math.round(((active + 1) / total) * 100),
+      trackWidth: (total - 1) * NODE_SPACING + 150,
+      mascotLeft: active * NODE_SPACING + (raw[active].category === 'lwise' ? -23 : 1),
+      mascotAnim: this.state.isWalking ? 'mascotWalk 0.28s ease-in-out infinite' : 'mascotIdle 1.6s ease-in-out infinite',
+      setScrollRef: this.setScrollRef,
+      prevNode: () => this.goTo(active - 1, total),
+      nextNode: () => this.goTo(active + 1, total),
+    };
+  }
+}
+</script>
+</body>
+</html>

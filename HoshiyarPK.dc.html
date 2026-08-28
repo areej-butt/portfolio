@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin: 0; background: #FBF7F0; font-family: 'Manrope', sans-serif; }
+    * { box-sizing: border-box; }
+    ::selection { background: #DCD9F7; }
+    a { color: #2F7A6F; }
+    a:hover { color: #245D54; }
+  </style>
+</helmet>
+
+<div style="min-height:100vh;background:#FBF7F0;color:#211F2E;overflow-x:hidden">
+
+  <!-- SIDE NAV -->
+  <div style="position:fixed;top:174px;left:max(12px,calc(50% - 640px));z-index:40;width:190px;display:{{ sideNavDisplay }}">
+    <a href="Portfolio.dc.html" style="display:flex;align-items:center;gap:6px;color:#453F52;text-decoration:none;font-size:14px;font-weight:600;margin-bottom:20px" style-hover="color:#2F7A6F"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Back</a>
+    <sc-for list="{{ navSections }}" as="sec" hint-placeholder-count="12">
+      <a href="{{ sec.href }}" onClick="{{ sec.onClick }}" style="display:block;font-size:14px;font-weight:{{ sec.weight }};color:{{ sec.color }};text-decoration:none;padding:6px 0;line-height:1.3">{{ sec.label }}</a>
+    </sc-for>
+  </div>
+
+  <!-- NAV -->
+  <div style="position:sticky;top:0;z-index:50;background:rgba(251,247,240,0.85);backdrop-filter:blur(8px);border-bottom:1px solid #ECE6DA">
+    <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,5vw,64px)">
+      <a href="Portfolio.dc.html" aria-label="Areej Butt — back to portfolio" style="color:#2F7A6F;text-decoration:none;display:inline-flex;cursor:pointer">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2.5 14.2 9.3 21 12 14.2 14.7 12 21.5 9.8 14.7 3 12 9.8 9.3 12 2.5Z"></path></svg>
+      </a>
+      <div style="display:flex;align-items:center;gap:clamp(16px,3vw,32px);font-size:15px;font-weight:600;color:#453F52">
+        <a href="Portfolio.dc.html#about" style="color:#453F52;text-decoration:none" style-hover="color:#2F7A6F">About Me</a>
+        <a href="uploads/Areej_Butt_LUMS_Resume.docx" download="" style="color:#453F52;text-decoration:none" style-hover="color:#2F7A6F">Resume</a>
+        <a href="Portfolio.dc.html" style="color:#fff;text-decoration:none;background:#2F7A6F;padding:9px 18px;border-radius:100px" style-hover="background:#245D54">Back to Portfolio</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div style="max-width:900px;margin:0 auto;padding:clamp(48px,8vw,88px) clamp(20px,5vw,64px) 20px">
+    <div style="font-size: 15px; font-weight: 700; color: #2F7A6F; letter-spacing: 0.06em; margin-bottom: 16px">RESEARCH &amp; PRODUCT DESIGN</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(42px,7vw,72px);line-height:1.05;margin:0 0 24px">HoshiyarPK</h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.4vw,26px);line-height:1.4;color:#453F52;margin:0 0 22px;max-width:720px">Teaching Pakistan's most-targeted generation to pause before they pay.</p>
+    <p style="font-size:17px;line-height:1.7;color:#453F52;margin:0 0 24px">A behavioral training app that turns scam awareness into muscle memory through simulated scam calls, real-time message verification, and a reporting flow built for people who don't trust institutes.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px">
+      <a href="https://www.figma.com/proto/69ytBgNnagjB1kAP7QzxHi/HoshiyarPK-Hi-fi--Copy-?node-id=427-946&amp;starting-point-node-id=427%3A946&amp;t=sK2C2Okw6G6wRnZX-1" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#2F7A6F;color:#fff;text-decoration:none;font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:100px" style-hover="background:#245D54"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path></svg>View Figma Prototype</a>
+      <button onClick="{{ downloadAllScreens }}" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#211F2E;border:1.5px solid #ECE6DA;font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:100px;cursor:pointer" style-hover="border-color:#2F7A6F;color:#2F7A6F"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0-4.5-4.5M12 16l4.5-4.5"></path><path d="M4 19.5h16"></path></svg>{{ downloadLabel }}</button>
+    </div>
+  </div>
+
+  <!-- HERO COVER -->
+  <div style="max-width:900px;margin:0 auto;padding:36px clamp(20px,5vw,64px) 0">
+    <image-slot id="hoshiyar-hero-cover" shape="rounded" radius="24" fit="contain" style="width:100%;aspect-ratio:2146/1236;height:auto" placeholder="Drop the hero cover shot / app mockup" src="uploads/hoshiyar-hero-pastel.png"></image-slot>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div id="overview" style="scroll-margin-top:90px;max-width: 900px; margin: 0 auto; padding: 56px clamp(20px,5vw,64px) 20px; width: 900px; height: 308px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 24px">Overview</h2>
+    <div style="display:grid;grid-template-columns:1.3fr 0.8fr 1.3fr;gap:0;background:#fff;border:1px solid #ECE6DA;border-radius:24px;overflow:hidden">
+      <div style="padding:28px;border-right:1px solid #ECE6DA">
+        <div style="font-size:12px;font-weight:700;color:#8A8494;letter-spacing:0.05em;margin-bottom:10px">ROLE</div>
+        <div style="font-size:15px;line-height:1.4;font-weight:700;color:#211F2E;margin-bottom:16px">Lead Researcher &amp; Designer</div>
+        <div style="font-size:12px;font-weight:700;color:#8A8494;letter-spacing:0.05em;margin-bottom:10px">TEAM</div>
+        <div style="font-size:15px;line-height:1.5;font-weight:700;color:#211F2E">5 designers</div>
+      </div>
+      <div style="padding:28px;border-right:1px solid #ECE6DA;display:flex;flex-direction:column;gap:22px">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#8A8494;letter-spacing:0.05em;margin-bottom:10px">PLATFORM</div>
+          <div style="font-size:15px;line-height:1.5;font-weight:700;color:#211F2E">Mobile (iOS)</div>
+          
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#8A8494;letter-spacing:0.05em;margin-bottom:10px">DURATION</div>
+          <div style="font-size:15px;line-height:1.5;font-weight:700;color:#211F2E">3 months</div>
+        </div>
+      </div>
+      <div style="padding:28px">
+        <div style="font-size:12px;font-weight:700;color:#8A8494;letter-spacing:0.05em;margin-bottom:10px">METHODS</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <span style="background:#EAF5F2;color:#1D4E46;font-size:12px;font-weight:600;padding:5px 10px;border-radius:100px">Survey Design</span>
+          <span style="background:#EAF5F2;color:#1D4E46;font-size:12px;font-weight:600;padding:5px 10px;border-radius:100px">Contextual Inquiry</span>
+          <span style="background:#EAF5F2;color:#1D4E46;font-size:12px;font-weight:600;padding:5px 10px;border-radius:100px">Prototyping</span>
+          <span style="background:#EAF5F2;color:#1D4E46;font-size:12px;font-weight:600;padding:5px 10px;border-radius:100px">Hi-fi Screens</span>
+          <span style="background:#EAF5F2;color:#1D4E46;font-size:12px;font-weight:600;padding:5px 10px;border-radius:100px">Usability testing&nbsp;</span><span style="background:#EAF5F2;color:#1D4E46;font-size:12px;font-weight:600;padding:5px 10px;border-radius:100px">SUS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS TIMELINE -->
+  <div id="timeline" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    
+  <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 20px">The end to end journey</h2></div>
+  <div style="max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,64px) 20px">
+    <div>
+      <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:6px;position:relative;padding-top:8px">
+        <div style="position:absolute;top:60px;left:5%;right:5%;border-top:1.5px solid #C9C2D6;z-index:0"></div>
+        <sc-for list="{{ processStages }}" as="stage" hint-placeholder-count="8">
+          <div style="position:relative;z-index:1;text-align:center;padding:0 4px">
+            <div style="font-size:10.5px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#453F52;margin-bottom:14px;line-height:1.3;min-height:26px;display:flex;align-items:flex-end;justify-content:center">{{ stage.label }}</div>
+            
+            <div style="width:14px;height:14px;border-radius:50%;background:{{ stage.color }};margin:0 auto 12px"></div><div style="font-size:11.5px;color:#8A8494;line-height:1.3;white-space:nowrap">{{ stage.sub }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="font-size: 13px; font-style: italic; color: #8A8494; margin-top: 20px; text-align: center">Every stage fed the next. Research shaped design, design shaped validation.</div>
+  </div>
+
+  <!-- THE PROBLEM -->
+  
+  
+
+  <!-- HOW WE UNDERSTOOD THE PROBLEM -->
+  <div id="problem" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 24px">The Problem</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 20px">The ongoing proliferation of digital frauds and scams in Pakistan does not stem from a knowledge gap; rather, they occur at a rapid scale due to a pressure gap. Most individuals understand phishing and modern scams, yet end up surrendering their OTP or sensitive information the moment a scammer manufactures a crisis over the phone.<br><br>To truly understand the problem, we conducted<b> 21 user interviews</b>, transcribed each session, and coded them for common qualitative themes. That qualitative analysis was then paired with a <b>survey of n = 185 participants</b> to measure how broadly those patterns held at scale.</p>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,64px)">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div style="background:#E3F2EF;border-radius:16px;padding:22px"><div style="font-size:34px;font-weight:700;color:#2F7A6F">97.3%</div><div style="font-size:14px;color:#453F52;margin-top:8px">have received a suspicious call, message or link</div></div>
+      <div style="background:#FBF2E0;border-radius:16px;padding:22px"><div style="font-size:34px;font-weight:700;color:#7A5716">91%</div><div style="font-size:14px;color:#453F52;margin-top:8px">of Pakistani consumers are at risk of responding (Visa)</div></div>
+      <div style="background:#E9F1F8;border-radius:16px;padding:22px"><div style="font-size:34px;font-weight:700;color:#2C4B67">47%</div><div style="font-size:14px;color:#453F52;margin-top:8px">say stress or urgency impairs their ability to think clearly</div></div>
+      <div style="background:#F3EBFA;border-radius:16px;padding:22px"><div style="font-size:34px;font-weight:700;color:#573A70">60%</div><div style="font-size:14px;color:#453F52;margin-top:8px">do NOT know how to report fraud to the FIA or PTA</div></div>
+      <div style="background:#E3F2EF;border-radius:16px;padding:22px"><div style="font-size:34px;font-weight:700;color:#2F7A6F">69.1%</div><div style="font-size:14px;color:#453F52;margin-top:8px">of non-reporters believe "nothing would happen" anyway if they report</div></div>
+      <div style="background:#FBF2E0;border-radius:16px;padding:22px"><div style="font-size:34px;font-weight:700;color:#7A5716">28.6%</div><div style="font-size:14px;color:#453F52;margin-top:8px">always read PTA / bank warning SMS; the rest skim or skip</div></div>
+    </div>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:32px clamp(20px,5vw,64px) 20px">
+    
+  <p style="font-size: 17px; line-height: 1.75; color: #211F2E; margin: 0; padding: 0; border-radius: 16px"><strong>The insight that reframed the brief:</strong> <em>this is NOT an awareness problem</em>. Rational thinking collapses under acute stress and every existing intervention, SMS alert, hotline, and the law itself assumes it would not.</p></div>
+
+  <!-- COMPETITIVE LANDSCAPE -->
+  <div id="competitive" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 0">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 24px">Where existing solutions fall short</h2>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,64px)">
+    <div style="padding:0">
+      
+      
+      <table style="width:100%;table-layout:fixed;border-collapse:collapse;font-size:12.5px">
+        <thead>
+          <tr>
+            <th style="text-align:left;padding:0 8px 14px 0;color:#211F2E;font-weight:700;font-size:12.5px">Response</th>
+            <th title="Reaches you before urgency hits" style="text-align:center;padding:0 6px 14px;color:#211F2E;font-weight:700;font-size:11.5px;cursor:help">Timing</th>
+            <th title="Simulates real pressure" style="text-align:center;padding:0 6px 14px;color:#211F2E;font-weight:700;font-size:11.5px;cursor:help">Simulation</th>
+            <th title="Personalized to your risk profile" style="text-align:center;padding:0 6px 14px;color:#211F2E;font-weight:700;font-size:11.5px;cursor:help">Personalized</th>
+            <th title="Guides you through reporting" style="text-align:center;padding:0 6px 14px;color:#211F2E;font-weight:700;font-size:11.5px;cursor:help">Reporting</th>
+            <th title="Designed to reduce shame" style="text-align:center;padding:0 6px 14px;color:#211F2E;font-weight:700;font-size:11.5px;cursor:help">Reduces shame</th>
+            <th title="Available in Urdu" style="text-align:center;padding:0 0 14px 6px;color:#211F2E;font-weight:700;font-size:11.5px;cursor:help">Urdu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <sc-for list="{{ comparisonRows }}" as="row" hint-placeholder-count="5">
+            <tr style="border-top:1px solid #ECE6DA">
+              <td style="padding:12px 8px 12px 0">
+                <div style="font-weight:700;color:#211F2E;font-size:12.5px">{{ row.name }}</div>
+                <div style="font-size:11px;color:#8A8494;margin-top:2px">{{ row.sub }}</div>
+              </td>
+              <td style="text-align:center;padding:12px 6px;font-size:15px;color:{{ row.c1Color }}">{{ row.c1 }}</td>
+              <td style="text-align:center;padding:12px 6px;font-size:15px;color:{{ row.c2Color }}">{{ row.c2 }}</td>
+              <td style="text-align:center;padding:12px 6px;font-size:15px;color:{{ row.c3Color }}">{{ row.c3 }}</td>
+              <td style="text-align:center;padding:12px 6px;font-size:15px;color:{{ row.c4Color }}">{{ row.c4 }}</td>
+              <td style="text-align:center;padding:12px 6px;font-size:15px;color:{{ row.c5Color }}">{{ row.c5 }}</td>
+              <td style="text-align:center;padding:12px 0 12px 6px;font-size:15px;color:{{ row.c6Color }}">{{ row.c6 }}</td>
+            </tr>
+          </sc-for>
+          <tr style="border-top:2px solid #2F7A6F">
+            <td style="padding: 12px 8px 12px 0; background: #E3F2EF; border-radius: 14px 0 0 14px; width: 125px; height: 78px"><div style="font-weight:700;color:#1D4E46;font-size:12.5px">HoshiyarPK</div><div style="font-size:11px;color:#1D4E46;opacity:0.85;margin-top:2px">Active, experiential, built around panic</div></td>
+            <td style="text-align:center;padding:12px 6px;font-size:15px;color:#1D4E46;background:#E3F2EF;font-weight:700">✓</td>
+            <td style="text-align:center;padding:12px 6px;font-size:15px;color:#1D4E46;background:#E3F2EF;font-weight:700">✓</td>
+            <td style="text-align:center;padding:12px 6px;font-size:15px;color:#1D4E46;background:#E3F2EF;font-weight:700">✓</td>
+            <td style="text-align:center;padding:12px 6px;font-size:15px;color:#1D4E46;background:#E3F2EF;font-weight:700">✓</td>
+            <td style="text-align:center;padding:12px 6px;font-size:15px;color:#1D4E46;background:#E3F2EF;font-weight:700">✓</td>
+            <td style="text-align:center;padding:12px 0 12px 6px;font-size:15px;color:#1D4E46;background:#E3F2EF;border-radius:0 14px 14px 0;font-weight:700">✓</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;font-size:12px;color:#8A8494"><span><span style="color:#2F7A6F;font-weight:700">✓</span> yes</span><span><span style="color:#D6A947;font-weight:700">~</span> partial</span><span><span style="color:#D97D5E;font-weight:700">✕</span> no</span><span><span style="color:#8A8494;font-weight:700">n/a</span> not applicable</span></div>
+    </div>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:32px clamp(20px,5vw,64px) 20px">
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">Every existing response is built for a calm reader. None of them are built for the seven seconds where the actual decision gets made.</p>
+  </div>
+
+  <!-- RESEARCH -> DESIGN -->
+  <div style="max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 24px">Research → Design</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 20px">Interviews surfaced patterns a survey alone couldn't:</p>
+    <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:32px">
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:16px;padding:22px 26px"><strong style="color: rgb(33, 31, 46);">Scams are personalized, not generic.</strong> <span style="color: rgb(69, 63, 82);">People described scammers using their real family names, cities, and shopping history, <i style="color:#2F7A6F;font-weight:400">"he used the correct names of cities, the correct names of my family members... which is why I kept talking to him."</i></span></div>
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:16px;padding:22px 26px"><strong style="color:#211F2E">Exhaustion is the real vulnerability.</strong> <span style="color: #453F52">The strongest predictor of falling for a scam wasn't education level; it was being tired, distracted or multitasking when the call came in. Highly educated professionals were just as susceptible in that state as anyone else.</span></div>
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:16px;padding:22px 26px"><strong style="color:#211F2E">Reporting is a dead end people have learned to expect.</strong> <span style="color:#453F52">One participant gave the FIA a scammer's account number and GPS location. Nothing happened. That kind of experience doesn't just fail one victim: it teaches everyone around them that reporting is pointless.</span></div>
+    </div>
+  </div>
+
+  <!-- DESIGN PROCESS -->
+  <div id="design-process" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 16px">Design Process</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0"><b data-path-to-node="1,0" data-index-in-node="0">From Whiteboard to High-Fidelity:</b> We began by brainstorming collaboratively as a team, building user personas grounded in our interview insights. Next, we sketched initial screens and storyboarded the core scam scenario, evaluated early concepts using paper prototypes, and transitioned only the elements that proved effective into the high-fidelity build.</p>
+  </div>
+
+  <!-- BRAINSTORM -->
+  <div style="max-width:900px;margin:0 auto;padding:24px clamp(20px,5vw,64px) 0;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <img src="uploads/brainstorm-board.jpg" alt="Whiteboard brainstorm covering Scammistan features, needs and desires" style="width: 762px; border-radius: 20px; display: block; object-fit: cover; max-height: 520px; height: 574px">
+    
+  </div>
+
+  <!-- PERSONAS -->
+  <div style="max-width:900px;margin:0 auto;padding:8px clamp(20px,5vw,64px) 20px">
+    <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,3vw,26px);margin:0 0 14px"><br>User personas</h3>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">Meet the two primary user personas, Omar Tareen and Seemi Mumtaz, who helped keep HoshiyarPK user centered.&nbsp;</p>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:8px clamp(20px,5vw,64px) 0">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:20px;padding:26px">
+        <img src="uploads/persona-omar.png" alt="Omar Tareen, persona photo" style="width:72px;height:72px;border-radius:50%;object-fit:cover;margin-bottom:14px">
+        <div style="font-size:12px;font-weight:700;color:#8A8494;letter-spacing:0.05em;margin-bottom:6px">OMAR TAREEN</div>
+        <div style="font-size:13px;color:#8A8494;margin-bottom:14px">67, retired law professor, Faisalabad</div>
+        <div style="font-size:14.5px;line-height:1.6;color:#453F52">Trusts direct, official sounding calls, especially under urgency. Doesn't understand why OTPs must stay private and complies with step-by-step instructions once a situation feels urgent without verifying independently.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:20px;padding:26px">
+        <img src="uploads/persona-seemi.png" alt="Seemi Mumtaz, persona photo" style="width:72px;height:72px;border-radius:50%;object-fit:cover;margin-bottom:14px">
+        <div style="font-size:12px;font-weight:700;color:#8A8494;letter-spacing:0.05em;margin-bottom:6px">SEEMI MUMTAZ</div>
+        <div style="font-size:13px;color:#8A8494;margin-bottom:14px">49, homemaker, Karachi</div>
+        <div style="font-size:14.5px;line-height:1.6;color:#453F52">Comfortable with WhatsApp, online shopping, and basic banking apps but judges safety by familiarity, not verification. Skims messages and acts quickly under urgency or time pressure while multitasking.</div>
+      </div>
+      
+    </div>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:24px clamp(20px,5vw,64px) 0">
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 12px">The storyboard walks a specific persona, Omar, a 67-year-old, through a real vishing attempt end to end hand drawn and colored by me!</p>
+    <img src="uploads/storyboard.png" alt="Storyboard of a user receiving a vishing call and using HoshiyarPK" style="width:100%;border-radius:20px;display:block">
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:36px clamp(20px,5vw,64px) 0">
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 12px">Additionally, made A LOT of sketches!! From rough screens to the application flow - pens and papers became my best friend.&nbsp;</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
+      <div><img src="./screenshot-2026-08-03-at-6-41-51-pm-msda85xn-j40k.png" alt="Paper prototype: home page, scam call simulation, and reporting checklist screens" style="width: 358px; height: 623px; object-fit: cover; object-position: top; border-radius: 20px; display: block"></div>
+      <div><img src="uploads/paper-proto-2.png" alt="Paper prototype: onboarding, learn/practice/identify flows, and reporting roadmap" style="width: 369px; height: 621px; object-fit: cover; object-position: top; border-radius: 20px; display: block"></div>
+    </div>
+    
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:24px clamp(20px,5vw,64px) 0">
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 12px">An entire flow using paper prototypes was sketched before opening Figma. Here are some screens I made:</p>
+    <img src="uploads/lowfi-screens.png" alt="Low-fi wireframes: welcome, language, about you, home, learn, banking track, dangerous link phishing trap, and how to stay safe screens" style="width:100%;border-radius:20px;display:block">
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:32px clamp(20px,5vw,64px) 20px">
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">We tested these paper prototypes first: observing where users hesitated, misread an icon or reached for non-existent buttons. We carried forward only the design decisions that survived that round into the high-fidelity Figma screens.</p>
+  </div>
+
+  <!-- WHAT TESTING BROKE -->
+  <div id="testing-broke" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:48px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 12px">What paper prototype testing broke</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">Every fix below came from watching a real user get stuck. Click to view the problematic screens in the paper prototype!</p>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,64px)">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center">
+        <div style="background:#FBEAE3;border-radius:14px;padding:16px 20px"><div onClick="{{ openBankingSketch }}" style="font-weight:700;color:#B14A2E;font-size:14.5px;margin-bottom:4px;cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px">Gamified progress bar</div><div style="font-size:13.5px;color:#5C5668">"What is its purpose? Nothing opened."</div></div>
+        <div style="color:#8A8494;font-size:18px">→</div>
+        <div style="background:#E3F2EF;border-radius:14px;padding:16px 20px"><div style="font-weight:700;color:#1D4E46;font-size:14.5px;margin-bottom:4px">Removed</div><div style="font-size:13.5px;color:#5C5668">Answered a designer assumption, not a real need</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center">
+        <div style="background:#FBEAE3;border-radius:14px;padding:16px 20px"><div onClick="{{ openLightbulbSketch }}" style="font-weight:700;color:#B14A2E;font-size:14.5px;margin-bottom:4px;cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px">Lightbulb = hint icon</div><div style="font-size:13.5px;color:#5C5668">Users never reached for it mid-call</div></div>
+        <div style="color:#8A8494;font-size:18px">→</div>
+        <div style="background:#E3F2EF;border-radius:14px;padding:16px 20px"><div style="font-weight:700;color:#1D4E46;font-size:14.5px;margin-bottom:4px">Plain "Help" button</div><div style="font-size:13.5px;color:#5C5668">Metaphor didn't match user mental model</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center">
+        <div style="background:#FBEAE3;border-radius:14px;padding:16px 20px"><div onClick="{{ openBlockButtonSketch }}" style="font-weight:700;color:#B14A2E;font-size:14.5px;margin-bottom:4px;cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px">No block button in call UI</div><div style="font-size:13.5px;color:#5C5668">"Where is the block button?"</div></div>
+        <div style="color:#8A8494;font-size:18px">→</div>
+        <div style="background:#E3F2EF;border-radius:14px;padding:16px 20px"><div style="font-weight:700;color:#1D4E46;font-size:14.5px;margin-bottom:4px">Added block option</div><div style="font-size:13.5px;color:#5C5668">Missed a feature people expect on a real phone</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center">
+        <div style="background:#FBEAE3;border-radius:14px;padding:16px 20px"><div onClick="{{ openReportingRoadmapSketch }}" style="font-weight:700;color:#B14A2E;font-size:14.5px;margin-bottom:4px;cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px">Icon-only Reporting Roadmap</div><div style="font-size:13.5px;color:#5C5668">Our favorite screen, users couldn't read it</div></div>
+        <div style="color:#8A8494;font-size:18px">→</div>
+        <div style="background:#E3F2EF;border-radius:14px;padding:16px 20px"><div style="font-weight:700;color:#1D4E46;font-size:14.5px;margin-bottom:4px">Rebuilt with labeled tiles</div><div style="font-size:13.5px;color:#5C5668">Consistency beat novelty</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center">
+        <div style="background:#FBEAE3;border-radius:14px;padding:16px 20px"><div onClick="{{ openStepMarkersSketch }}" style="font-weight:700;color:#B14A2E;font-size:14.5px;margin-bottom:4px;cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px">Clickable-looking step markers</div><div style="font-size:13.5px;color:#5C5668">Users kept tapping numbers by mistake</div></div>
+        <div style="color:#8A8494;font-size:18px">→</div>
+        <div style="background:#E3F2EF;border-radius:14px;padding:16px 20px"><div style="font-weight:700;color:#1D4E46;font-size:14.5px;margin-bottom:4px">Made clearly non-interactive</div><div style="font-size:13.5px;color:#5C5668">Removed a false affordance</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center">
+        <div style="background:#FBEAE3;border-radius:14px;padding:16px 20px"><div onClick="{{ openSubtaskTilesSketch }}" style="font-weight:700;color:#B14A2E;font-size:14.5px;margin-bottom:4px;cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px">Unlabeled sub-task tiles</div><div style="font-size:13.5px;color:#5C5668">Users tapped everything, unsure what led where</div></div>
+        <div style="color:#8A8494;font-size:18px">→</div>
+        <div style="background:#E3F2EF;border-radius:14px;padding:16px 20px"><div style="font-weight:700;color:#1D4E46;font-size:14.5px;margin-bottom:4px">Standardized tile pattern</div><div style="font-size:13.5px;color:#5C5668">Reused a pattern that already tested well</div></div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:32px clamp(20px,5vw,64px) 20px">
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">A clear pattern emerged: <strong>novelty lost to consistency almost every single time.</strong> Screens that reused a pattern already established elsewhere tested well whereas screens designed to feel distinctive created friction because users had no existing mental model to map them onto.</p>
+  </div>
+
+  <!-- SOLUTION -->
+  <div id="solution" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 24px">The Solution: HoshiyarPK</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">Keeping all these factors in mind, we finally sat down to build HoshiyarPK.&nbsp;<em>Hoshiyar</em> (ﮨﻮﺷﯿﺎر) is a common Urdu word translating to alert, vigilant or wise. Throughout the application, users are guided by <b>Chacha</b> <b>Hoshiyar</b>, an owl mascot voiced in both Urdu and English, who provides the emotional support traditional institutions often lack by encouraging users and never shaming them.</p>
+  </div>
+
+  <!-- MASCOT DEVELOPMENT -->
+  <div style="max-width:900px;margin:0 auto;padding:32px clamp(20px,5vw,64px) 20px">
+    <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,3vw,26px);margin:0 0 14px">Mascot development</h3>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">We explored several animal mascots (lions, cats, dolphins and even bunnies) before settling on an owl: culturally understood as watchful and wise and visually distinct from the bank and security shield iconography already crowding this space. Chacha Hoshiyar's expressions and props were sketched to carry emotion on their own, since he needed to read clearly even muted or at a glance. I started by sketching him on paper!</p>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:24px clamp(20px,5vw,64px) 0;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start">
+    <div>
+      <img src="./screenshot-2026-08-03-at-6-46-43-pm-msda9jd6-ajpa.png" alt="Mascot exploration sketches: lion, cat, dolphin, bunny options, and Chacha Hoshiyar owl expressions" style="width: 589px; border-radius: 20px; display: block; height: 775px">
+      <div style="font-size:13px;color:#8A8494;margin-top:10px">Early mascot options and Chacha Hoshiyar's expression sheet</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;width:150px;margin:0 auto">
+      
+      <img src="uploads/mascot-final-1.png" alt="Chacha Hoshiyar mascot, standard pose" style="width: 136px; height: 187px; display: block"><img src="uploads/mascot-final-6.png" alt="Chacha Hoshiyar covering his face, concerned" style="width: 173px; height: 195px; display: block">
+      <img src="uploads/mascot-final-4.png" alt="Chacha Hoshiyar holding a report clipboard" style="width:100%;height:auto;display:block">
+      <img src="uploads/mascot-final-5.png" alt="Chacha Hoshiyar holding a safety shield checkmark" style="width:100%;height:auto;display:block">
+      <div style="font-size:13px;color:#8A8494;text-align:center">Final mascot</div>
+    </div>
+  </div>
+  <!-- FINAL INTERFACE & DESIGN SYSTEM -->
+  <div id="final-interface" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 16px">Final Interface &amp; Design System</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 20px">The final interface organizes around four pillars so the app never asks a stressed user to guess where they are.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-bottom:32px">
+      <div style="background:#E3F2EF;border-radius:20px;padding:26px"><div style="font-size:13px;font-weight:700;color:#1D4E46;letter-spacing:0.04em;margin-bottom:8px">LEARN</div><div style="font-size:15px;line-height:1.6;color:#211F2E">Short scam-pattern videos pulled straight from interview transcripts (bank manager impersonation, AI voice-cloned relatives, fake official calls).</div></div>
+      <div style="background:#FBF2E0;border-radius:20px;padding:26px"><div style="font-size:13px;font-weight:700;color:#7A5716;letter-spacing:0.04em;margin-bottom:8px">PRACTICE</div><div style="font-size:15px;line-height:1.6;color:#211F2E">Simulated scam calls with in-the-moment support, timed message-spotting drills, and a lighter card-duel mode.</div></div>
+      <div style="background:#E9F1F8;border-radius:20px;padding:26px"><div style="font-size:13px;font-weight:700;color:#2C4B67;letter-spacing:0.04em;margin-bottom:8px">IDENTIFY</div><div style="font-size:15px;line-height:1.6;color:#211F2E">Screenshot verification, caller lookup, and a crowd-sourced local scam feed.</div></div>
+      <div style="background:#F3EBFA;border-radius:20px;padding:26px"><div style="font-size:13px;font-weight:700;color:#573A70;letter-spacing:0.04em;margin-bottom:8px">REPORT</div><div style="font-size:15px;line-height:1.6;color:#211F2E">A guided, plain-language walkthrough per authority, built to lower the emotional cost of reporting, not just the procedural one.</div></div>
+    </div>
+      <div style="padding: 24px 0 0; display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 32px; align-items: start; width: 789px; height: 422px">
+    <div style="width: 553px; height: 388px">
+    <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,3vw,26px);margin:0 0 20px;color:#211F2E">Information architecture</h3>
+    <div style="display:flex;justify-content:center">
+      <div style="background:#573A70;color:#fff;font-weight:700;font-size:15px;padding:14px 32px;border-radius:12px">Home</div>
+    </div>
+    <div style="position:relative;height:28px">
+      <div style="position:absolute;left:50%;top:0;width:1px;height:12px;background:#B18FCF"></div>
+      <div style="position:absolute;left:63px;right:63px;top:12px;height:1px;background:#B18FCF"></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:absolute;left:0;right:0;top:12px;height:16px">
+        <div style="width:1px;height:16px;background:#B18FCF;margin:0 auto"></div>
+        <div style="width:1px;height:16px;background:#B18FCF;margin:0 auto"></div>
+        <div style="width:1px;height:16px;background:#B18FCF;margin:0 auto"></div>
+        <div style="width:1px;height:16px;background:#B18FCF;margin:0 auto"></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+      <div style="background:#2F7A6F;color:#fff;font-weight:700;font-size:14px;text-align:center;padding:12px;border-radius:10px">Learn</div>
+      <div style="background:#2F7A6F;color:#fff;font-weight:700;font-size:14px;text-align:center;padding:12px;border-radius:10px">Practice</div>
+      <div style="background:#2F7A6F;color:#fff;font-weight:700;font-size:14px;text-align:center;padding:12px;border-radius:10px">Identify</div>
+      <div style="background:#2F7A6F;color:#fff;font-weight:700;font-size:14px;text-align:center;padding:12px;border-radius:10px">Report</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;height:14px">
+      <div style="width:1px;height:14px;background:#B18FCF;margin:0 auto"></div>
+      <div style="width:1px;height:14px;background:#B18FCF;margin:0 auto"></div>
+      <div style="width:1px;height:14px;background:#B18FCF;margin:0 auto"></div>
+      <div style="width:1px;height:14px;background:#B18FCF;margin:0 auto"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:10px;padding:10px 12px;font-size:13px;color:#453F52;text-align:center">Banking&nbsp;</div>
+        <div style="width:1px;height:8px;background:#B18FCF;margin:0 auto"></div>
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:10px;padding:10px 12px;font-size:13px;color:#453F52;text-align:center">Government</div>
+        <div style="width:1px;height:8px;background:#B18FCF;margin:0 auto"></div>
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:10px;padding:10px 12px;font-size:13px;color:#453F52;text-align:center">Family &amp; Identity</div>
+        <div style="width:1px;height:8px;background:#B18FCF;margin:0 auto"></div>
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:10px;padding:10px 12px;font-size:13px;color:#453F52;text-align:center">Prizes&nbsp;</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:10px;padding:10px 12px;font-size:13px;color:#453F52;text-align:center">Fake Calls</div>
+        <div style="width:1px;height:8px;background:#B18FCF;margin:0 auto"></div>
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:10px;padding:10px 12px;font-size:13px;color:#453F52;text-align:center">Spot the Error</div>
+        <div style="width:1px;height:8px;background:#B18FCF;margin:0 auto"></div>
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:10px;padding:10px 12px;font-size:13px;color:#453F52;text-align:center">SMS True / False</div>
+        <div style="width:1px;height:8px;background:#B18FCF;margin:0 auto"></div>
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:10px;padding:10px 12px;font-size:13px;color:#453F52;text-align:center">Scam It (Game)</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:10px;padding:10px 12px;font-size:13px;color:#453F52;text-align:center">Verify Screenshot</div>
+        <div style="width:1px;height:8px;background:#B18FCF;margin:0 auto"></div>
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:10px;padding:10px 12px;font-size:13px;color:#453F52;text-align:center">Identify Caller</div>
+        <div style="width:1px;height:8px;background:#B18FCF;margin:0 auto"></div>
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:10px;padding:10px 12px;font-size:13px;color:#453F52;text-align:center">Community Watch</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:10px;padding:10px 12px;font-size:13px;color:#453F52;text-align:center">Pick authority</div>
+        <div style="width:1px;height:8px;background:#B18FCF;margin:0 auto"></div>
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:10px;padding:10px 12px;font-size:13px;color:#453F52;text-align:center">FIA / PTA / Bank / SBP</div>
+        <div style="width:1px;height:8px;background:#B18FCF;margin:0 auto"></div>
+        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:10px;padding:10px 12px;font-size:13px;color:#453F52;text-align:center">Guided video walkthrough</div>
+      </div>
+    </div>
+    
+    </div>
+    <div style="display:flex;justify-content:center">
+      
+    <img src="uploads/pasted-1785743186512-0.png" alt="HoshiyarPK Home screen with Learn, Practice, Identify, and Report tiles" style="width: 199px; max-width: 220px; border-radius: 20px; display: block; height: 400px"></div>
+  </div>
+
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0"><br>The hi-fi build itself split into <strong>depth</strong> (fully-built vertical slices proving the core loop end-to-end) and <strong>breadth</strong> (horizontal features that show the app's intended scale without slowing the prototype down).</p>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:8px clamp(20px,5vw,64px) 0">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px">
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:20px;padding:28px">
+        <div style="font-size: 17px; font-weight: 700; color: #2F7A6F; letter-spacing: 0.04em; margin-bottom: 12px">DEPTH: fully built</div>
+        <ul style="margin:0;padding-left:18px;font-size:15px;line-height:1.7;color:#453F52">
+          <li>Onboarding, tutorial video &amp; language selection</li>
+          <li>Home dashboard &amp; persistent bottom nav</li>
+          <li>Learn: full Banking track, lesson-to-lesson</li>
+          <li>Practice: Spoofed Calls, Find the Errors, True/False SMS</li>
+          <li>Identify: Screenshot upload &amp; Number Checker</li>
+        </ul>
+      </div>
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:20px;padding:28px">
+        <div style="font-size: 17px; font-weight: 700; color: #D97D5E; letter-spacing: 0.04em; margin-bottom: 12px">BREADTH: scoped, not built out</div>
+        <ul style="margin:0;padding-left:18px;font-size:15px;line-height:1.7;color:#453F52">
+          <li>"About You" personalization (profession, education)</li>
+          <li>Urdu localization (identical flow to English)</li>
+          <li>Learn tracks: Family, Government, Prizes</li>
+          <li>Practice: Scam-It game, Schedule Later</li>
+          <li>Community Watch feed &amp; full Profile (badges, friends)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:900px;margin:0 auto;padding:48px clamp(20px,5vw,64px) 20px">
+    <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,3vw,26px);margin:0 0 16px">Visual design principles</h3>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,64px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+      <div style="background:#E3F2EF;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#1D4E46;margin-bottom:6px">Simplicity</div><div style="font-size:14px;line-height:1.55;color:#211F2E">A 2×2 grid of large buttons and strictly linear flows keep every screen to one task.</div></div>
+      <div style="background:#FBF2E0;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#7A5716;margin-bottom:6px">Contrast</div><div style="font-size:14px;line-height:1.55;color:#211F2E">High-ratio palettes; scam warnings sit on bright red with bold white text.</div></div>
+      <div style="background:#E9F1F8;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#2C4B67;margin-bottom:6px">White Space</div><div style="font-size:14px;line-height:1.55;color:#211F2E">Generous negative space around every tappable element and one focus per screen.</div></div>
+      <div style="background:#F3EBFA;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#573A70;margin-bottom:6px">Balance</div><div style="font-size:14px;line-height:1.55;color:#211F2E">Centered vertical axis; a heavy header is grounded by the fixed bottom nav.</div></div>
+      <div style="background:#E3F2EF;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#1D4E46;margin-bottom:6px">Alignment</div><div style="font-size:14px;line-height:1.55;color:#211F2E">Center-aligned primary actions, left-aligned instructional text.</div></div>
+      <div style="background:#FBF2E0;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#7A5716;margin-bottom:6px">Consistency</div><div style="font-size:14px;line-height:1.55;color:#211F2E">One nav bar, one rounded dark-green button style, everywhere. Builds muscle memory.</div></div>
+      <div style="background:#E9F1F8;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#2C4B67;margin-bottom:6px">Proximity</div><div style="font-size:14px;line-height:1.55;color:#211F2E">Related info lives in one card; labels sit immediately above their fields.</div></div>
+      <div style="background:#F3EBFA;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#573A70;margin-bottom:6px">Repetition</div><div style="font-size:14px;line-height:1.55;color:#211F2E">The mascot and the guided-tutorial pattern recur across every module.</div></div>
+      <div style="background:#E3F2EF;border-radius:16px;padding:20px 22px"><div style="font-size:13px;font-weight:700;color:#1D4E46;margin-bottom:6px">Typography</div><div style="font-size:14px;line-height:1.55;color:#211F2E">Helvetica (English) / Jameel Noori Nastaliq (Urdu), 18px-minimum bold labels, no unexplained icons.</div></div>
+    </div>
+  </div>
+
+  <div style="max-width:900px;margin:0 auto;padding:48px clamp(20px,5vw,64px) 20px">
+    <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,3vw,26px);margin:0 0 16px">Navigation &amp; Interaction Rules</h3>
+    <ul style="margin:0;padding-left:20px;font-size:16px;line-height:1.8;color:#453F52">
+      <li style="margin-bottom: 10px; font-size: 17px">Strictly linear, flat architecture with no sub-menus to get lost in.</li>
+      <li style="margin-bottom: 10px; font-size: 17px">Learn, Practice, Identify, Report stay permanently pinned to the bottom nav.</li>
+      <li style="margin-bottom: 10px; font-size: 17px">Every interactive element is at least 60×60px for reduced fine-motor precision.</li>
+      <li style="margin-bottom: 10px; font-size: 17px">No swipes, pinches, or multi-touch gestures, matching mental models of less phone-fluent users.</li>
+      <li style="font-size: 17px">Every tap fires three cues at once: a color change, a haptic pulse and a short chime. Errors add a plum border and a heavy thump while success adds gold confetti.</li>
+    </ul>
+  </div>
+
+  <div style="max-width:900px;margin:0 auto;padding:48px clamp(20px,5vw,64px) 20px">
+    <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,3vw,26px);margin:0 0 16px">Color Palette</h3>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,64px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:16px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start"><div style="width:36px;height:36px;border-radius:10px;background:#2F7A6F;flex-shrink:0"></div><div><div style="font-size:14px;font-weight:700;color:#211F2E">Deep Forest Green</div><div style="font-size:13px;color:#5C5668;margin-top:4px;line-height:1.5">Headers, primary buttons, "Safe" states. Reads as official and credible.</div></div></div>
+      
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:16px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start"><div style="width:36px;height:36px;border-radius:10px;background:#FBF7F0;border:1px solid #ECE6DA;flex-shrink:0"></div><div><div style="font-size:14px;font-weight:700;color:#211F2E">Linen White</div><div style="font-size:13px;color:#5C5668;margin-top:4px;line-height:1.5">App background &amp; cards. Warmer and easier on older eyes than pure white.</div></div></div>
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:16px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start"><div style="width:36px;height:36px;border-radius:10px;background:#573A70;flex-shrink:0"></div><div><div style="font-size:14px;font-weight:700;color:#211F2E">Royal Plum</div><div style="font-size:13px;color:#5C5668;margin-top:4px;line-height:1.5">Lesson highlights &amp; Detective Mode. Signals hidden logic without panic.</div></div></div>
+      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:16px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start"><div style="width:36px;height:36px;border-radius:10px;background:#211F2E;flex-shrink:0"></div><div><div style="font-size:14px;font-weight:700;color:#211F2E">Charcoal Night</div><div style="font-size:13px;color:#5C5668;margin-top:4px;line-height:1.5">Body text &amp; borders. Grounded, professional, high contrast against Linen.</div></div></div>
+    </div>
+  </div>
+
+  <div id="ai-usage" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:48px clamp(20px,5vw,64px) 20px">
+    <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,3vw,26px);margin:0 0 14px">Use of AI in the process</h3>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">No AI was used to make any of the screens. Each screen was hand sketched on paper first, then hand built in Figma. AI's only role was in mascot creation: Chacha Hoshiyar started as a paper sketch, was redrawn digitally in Procreate and only then did ChatGPT generate a supporting icon pack of his expressions across specific in-app scenarios.</p>
+  </div>
+
+  <!-- DECISIONS -->
+  <div id="decisions" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 24px">Decisions I owned</h2>
+    <ul style="margin:0;padding-left:20px;font-size:16px;line-height:1.8;color:#453F52">
+      <li style="margin-bottom: 14px; font-size: 17px"><strong style="color: rgb(33, 31, 46);">Built "pause" into the interaction, not the content.</strong> Every simulated call gives the user a physical action to interrupt panic in the moment not after it.</li>
+      <li style="margin-bottom: 14px; font-size: 17px"><strong style="color:#211F2E">Made the mascot carry the emotional labor institutions weren't providing.</strong> Positive reinforcement had to come from somewhere non-judgmental and constant, since both family and institutions showed up as shame sources in interviews.</li>
+      <li style="margin-bottom: 14px; font-size: 17px"><strong style="color:#211F2E">Turned shame into pride through the sharing mechanic.</strong> "Hoshiyar Karein!" reframes a completed practice module into a shareable WhatsApp safety post, turning "I almost got scammed" from confession into contribution.</li>
+      <li style="font-size: 17px"><strong style="color: #211F2E; font-size: 17px">Cut novelty in favor of consistency after testing exposed the cost of being "unique."</strong> More below.</li>
+    </ul>
+  </div>
+
+  <!-- USABILITY TESTING -->
+  <div id="usability" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 16px">Usability Testing</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 20px">With the static screens validated, it was time to see how they held up in motion. Once the high-fidelity screens were created, we began usability testing with adults over the age of 45. Each of the 17 sessions followed a structured format: a <strong>pre-test survey</strong> to baseline the participant's scam exposure and confidence, a <strong>task booklet</strong> walking them through core prototype tasks (checking the home screen, running a spoofed call, verifying a screenshot, and finding the report flow), and a <strong>post-test survey</strong> capturing trust, comprehension, and likelihood to recommend.</p>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">Every session closed with the standard 10-item <strong>System Usability Scale (SUS)</strong>. Sessions were recorded and transcribed, ensuring our evaluation of user sentiment was backed by hard data rather than intuition.</p>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,64px)">
+    <div style="background:#fff;border:1px solid #ECE6DA;border-radius:20px;padding:clamp(24px,4vw,36px)">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,3vw,26px);margin:0 0 4px;color:#211F2E">Usability scores, 17 participants</h3>
+      <div style="font-size:14px;color:#8A8494;margin-bottom:24px">System Usability Scale (SUS), 0 to 100</div>
+      <div style="display:flex;gap:40px;flex-wrap:wrap;margin-bottom:28px">
+        <div><div style="font-size:32px;font-weight:700;color:#A574C9">78.1</div><div style="font-size:13px;color:#8A8494;margin-top:2px">mean score</div></div>
+        <div><div style="font-size:32px;font-weight:700;color:#2F7A6F">82.5</div><div style="font-size:13px;color:#8A8494;margin-top:2px">median score</div></div>
+        <div><div style="font-size:32px;font-weight:700;color:#D97D5E">45 to 100</div><div style="font-size:13px;color:#8A8494;margin-top:2px">full range</div></div>
+      </div>
+      <div style="position:relative;display:flex;align-items:flex-end;gap:8px;height:220px;margin-top:8px">
+        <div style="position:absolute;bottom:149.6px;left:0;right:0;border-top:2px dashed #B18FCF"></div>
+        <div style="position:absolute;bottom:154px;right:0;background:#F3EBFA;color:#452256;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px">68 avg. SUS benchmark</div>
+        <sc-for list="{{ susScores }}" as="s" hint-placeholder-count="13">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end">
+            <div style="width:100%;background:{{ s.color }};border-radius:6px 6px 0 0;height:{{ s.h }};min-height:4px"></div>
+            <div style="font-size:11.5px;color:{{ s.labelColor }};font-weight:700">{{ s.v }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="font-size:13px;font-style:italic;color:#8A8494;margin-top:14px;text-align:center">Lower scores tracked to first-time confusion and unfamiliar vocabulary. The oldest participants scored among the highest.</div>
+    </div>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:32px clamp(20px,5vw,64px) 20px">
+    <p style="font-size: 17px; line-height: 1.7; color: #5C5668; margin: 0 0 20px">SUS scores run 0–100; 68 is the industry average, and our 78.1 mean lands in the "good" band, meaning most participants found the app easy to learn and comfortable to use with little friction.</p>
+    <div style="font-size: 17px; font-weight: 700; color: #2F7A6F; margin-bottom: 14px">What worked:</div>
+    <ul style="margin:0 0 32px;padding-left:20px;font-size:16px;line-height:1.8;color:#453F52">
+      <li style="margin-bottom: 10px; font-size: 17px">Nearly every participant correctly explained all four home tiles after a single glance; one compared it directly to Duolingo.</li>
+      <li style="margin-bottom: 10px; font-size: 17px"><strong>Verify Screenshot</strong> was the most understood, most wanted feature; it mirrored an instinct people already had.</li>
+      <li style="font-size: 17px"><strong>Video beat text, decisively.</strong> "No one is going to read. The videos should be short and simple."</li>
+    </ul>
+    <div style="font-size: 17px; font-weight: 700; color: #D97D5E; margin-bottom: 14px">What didn't, and why it matters more:</div>
+    <ul style="margin:0;padding-left:20px;font-size:16px;line-height:1.8;color:#453F52">
+      <li style="margin-bottom: 10px; font-size: 17px"><strong>Good design doesn't fix institutional trust.</strong> One participant who'd already tried reporting a scam, GPS location and all, put it bluntly: "Until there is an immediate response, everything else is meaningless." That's a boundary interface design can't solve alone, and it felt more honest to name than paper over.</li>
+      <li style="font-size: 17px"><strong>Score spread tracked to vocabulary, not age.</strong> The oldest participants scored among the highest; confusion clustered around unfamiliar terms, not general tech comfort.</li>
+    </ul>
+    <div style="font-size: 17px; font-weight: 700; color: #8688CA; margin-top: 28px; margin-bottom: 14px">A few more screens:</div>
+    <a href="https://www.figma.com/proto/69ytBgNnagjB1kAP7QzxHi/HoshiyarPK-Hi-fi--Copy-?node-id=427-946&amp;starting-point-node-id=427%3A946&amp;t=sK2C2Okw6G6wRnZX-1" target="_blank" rel="noopener" style="display:block">
+      <img src="uploads/hifi-practice-screens-mint.png" alt="More HoshiyarPK screens: Practice menu, Real vs Fake SMS tutorial, SMS Practice, and Quiz Completed" style="width:100%;border-radius:16px;display:block;cursor:pointer">
+    </a>
+  </div>
+
+  <!-- BEYOND THE PROTOTYPE -->
+  <div id="beyond" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 16px">Beyond the Prototype</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 20px">Once the build was done, we took HoshiyarPK out of Figma. We wrote and shot a short rap to pitch the app in a format people would actually watch and set up a live testing booth to get real strangers, not scheduled participants, tapping through the prototype.</p>
+  </div>
+  <div style="max-width: 900px; margin: 0 auto; padding: 8px clamp(20px,5vw,64px) 0; width: 904px; height: 288px">
+    
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
+      <div><img src="uploads/rap-video-still.png" alt="Still from the HoshiyarPK promotional rap video, demoing the Identify Caller screen" style="width: 391px; height: 201px; object-fit: cover; border-radius: 20px; display: block"><div style="font-size:13px;color:#8A8494;margin-top:10px">The promo rap: Chacha Hoshiyar in the flesh, demonstrating the Identify Caller feature ft. me as a confused user :)</div></div>
+      <div><img src="uploads/hci-booth.jpeg" alt="HoshiyarPK's booth at the HCI project showcase, with poster, laptops running the prototype, and a QR code for visitors to scan" style="width: 385px; height: 205px; object-fit: cover; border-radius: 20px; display: block"><div style="font-size: 13px; color: #8A8494; margin-top: 10px; width: 368px; height: 52px">The showcase booth at the HCI exhibition: poster, a cute set-up, and QR codes. One of my fav days!</div></div>
+    </div></div>
+
+  <!-- REFLECTION -->
+  <div id="reflection" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 80px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,36px);margin:0 0 24px">Reflection</h2>
+    <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 28px">The problem was far more pervasive than we initially realized. While interface design cannot fix institutional backlogs or systemic response times, user testing suggests it can successfully lower the cognitive cost of the exact moment right before a scam succeeds. A prototype alone cannot solve structural fraud, but active training builds vital cognitive resilience. I am proud to have shaped this product from the ground up.</p>
+    <div style="font-size: 17px; font-weight: 700; color: #211F2E; margin-bottom: 14px">Next steps:</div>
+    <ul style="margin: 0; padding-left: 20px; font-size: 17px; line-height: 1.8; color: #453F52">
+      <li style="margin-bottom: 10px; font-size: 17px">Build the call simulation as a real, unscripted voice interaction; the core premise depends entirely on the element of surprise.</li>
+      <li style="margin-bottom: 10px; font-size: 17px">Ship Urdu as true parity, not an afterthought as every participant raised language preferences unprompted.</li>
+      <li>Design the reporting flow's aftercare to show users what happens after they file, closing the feedback loop.</li>
+    </ul>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="background:linear-gradient(135deg,#EAF5F2,#F3EBFA);padding:44px 0;border-radius:32px 32px 0 0">
+    <div style="max-width:900px;margin:0 auto;padding:0 clamp(24px,5vw,48px)">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px">
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <a href="mailto:a.areejb@gmail.com" aria-label="Email" style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:11px;background:#fff;border:1px solid #ECE6DA;color:#453F52" style-hover="border-color:#2F7A6F;color:#2F7A6F"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2.5"></rect><path d="M2.5 5.5 12 13l9.5-7.5"></path></svg></a>
+          <a href="https://www.linkedin.com/in/areej-butt/" target="_blank" rel="noopener" aria-label="LinkedIn" style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:11px;background:#fff;border:1px solid #ECE6DA;color:#453F52" style-hover="border-color:#2F7A6F;color:#2F7A6F"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"></path></svg></a>
+          <a href="https://github.com/areej-butt" target="_blank" rel="noopener" aria-label="GitHub" style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:11px;background:#fff;border:1px solid #ECE6DA;color:#453F52" style-hover="border-color:#2F7A6F;color:#2F7A6F"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-1.94c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.6.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.09 0 4.44-2.7 5.4-5.27 5.68.42.36.78 1.07.78 2.17v3.22c0 .3.2.66.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"></path></svg></a>
+        </div>
+        <div style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:600">
+          <a href="Portfolio.dc.html" style="color:#453F52;text-decoration:none" style-hover="color:#2F7A6F">Home</a>
+          <a href="Portfolio.dc.html#work" style="color:#453F52;text-decoration:none" style-hover="color:#2F7A6F">Featured Work</a>
+          <a href="Portfolio.dc.html#about" style="color:#453F52;text-decoration:none" style-hover="color:#2F7A6F">About Me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+  <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeLightbox }}" style="position:fixed;inset:0;background:rgba(33,31,46,0.82);display:flex;align-items:center;justify-content:center;z-index:1000;padding:40px;cursor:pointer">
+      <button onClick="{{ closeLightbox }}" aria-label="Close" style="position:absolute;top:28px;right:32px;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,0.14);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer" style-hover="background:rgba(255,255,255,0.24)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+      <sc-if value="{{ lightboxSrc }}" hint-placeholder-val="{{ false }}">
+        <img src="{{ lightboxSrc }}" alt="Design sketch reference" style="max-width:min(600px,90vw);max-height:90vh;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,0.4);display:block">
+      </sc-if>
+    </div>
+  </sc-if></x-dc>
+<script type="text/x-dc" data-dc-script>
+const SECTION_IDS = ['overview','timeline','problem','competitive','design-process','testing-broke','solution','final-interface','ai-usage','decisions','usability','beyond','reflection'];
+const SECTION_LABELS = { overview:'Overview', timeline:'Journey', problem:'The Problem', competitive:'Competitive Landscape', 'design-process':'Design Process', solution:'The Solution', 'testing-broke':'Testing Findings', 'final-interface':'Final Interface', 'ai-usage':'Use of AI', decisions:'Decisions', usability:'Usability Testing', beyond:'Beyond the Prototype', reflection:'Reflection' };
+class Component extends DCLogic {
+  state = { active: 'overview', showNav: true, lightboxSrc: null, downloading: false };
+
+  downloadAllScreens() {
+    const link = document.createElement('a');
+    link.href = 'uploads/Hi-fi Screens- Group 20.pdf';
+    link.download = 'HoshiyarPK Hi-fi Screens.pdf';
+    link.click();
+  }
+
+  openLightbox(src, e) {
+    if (e) e.preventDefault();
+    this.setState({ lightboxSrc: src });
+  }
+
+  closeLightbox() {
+    this.setState({ lightboxSrc: null });
+  }
+
+  componentDidMount() {
+    this._onResize = () => this.setState({ showNav: window.innerWidth > 1360 });
+    this._onResize();
+    window.addEventListener('resize', this._onResize);
+    this._observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) this.setState({ active: e.target.id });
+      });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+    SECTION_IDS.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) this._observer.observe(el);
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onResize);
+    if (this._observer) this._observer.disconnect();
+  }
+
+  scrollToSection(id, e) {
+    if (e) e.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    const navHeight = 90;
+    const top = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  renderVals() {
+    const G='#2F7A6F', R='#D97D5E', Y='#D6A947', N='#8A8494';
+    const active = this.state.active;
+    const navSections = SECTION_IDS.map((id) => ({
+      href: '#' + id,
+      label: SECTION_LABELS[id],
+      onClick: (e) => this.scrollToSection(id, e),
+      color: id === active ? G : '#8A8494',
+      weight: id === active ? 700 : 500,
+    }));
+    function sym(v) { if (v === 1) return '✓'; if (v === 0) return '✕'; if (v === 0.5) return '~'; return 'n/a'; }
+    function col(v) { if (v === 1) return G; if (v === 0) return R; if (v === 0.5) return Y; return N; }
+    function build(name, sub, v1, v2, v3, v4, v5, v6) {
+      return {
+        name: name, sub: sub,
+        c1: sym(v1), c1Color: col(v1),
+        c2: sym(v2), c2Color: col(v2),
+        c3: sym(v3), c3Color: col(v3),
+        c4: sym(v4), c4Color: col(v4),
+        c5: sym(v5), c5Color: col(v5),
+        c6: sym(v6), c6Color: col(v6)
+      };
+    }
+    var comparisonRows = [
+      build('PTA / Bank SMS Alerts', 'Static, broadcast warnings', 1,0,0,0,0,0.5),
+      build('FIA Cybercrime Reporting', 'Post-incident only', 0,0,0,0.5,0,0.5),
+      build('PECA 2016 (Legal Deterrence)', 'Punitive, not user-facing', 0,0,0,0,0,0),
+      build('State Bank Safeguards', 'Bio-verification, cooling-off periods', 1,0,0,0,0,'na'),
+      build('Informal Family Verification', 'Delegated digital literacy', 0.5,0,1,0,0.5,1)
+    ];
+    return {
+      lightboxSrc: this.state.lightboxSrc,
+      lightboxOpen: !!this.state.lightboxSrc,
+      openBankingSketch: (e) => this.openLightbox('uploads/Screenshot 2026-08-03 at 6.50.38 PM.png', e),
+      openLightbulbSketch: (e) => this.openLightbox('uploads/pasted-1785765418282-0.png', e),
+      openBlockButtonSketch: (e) => this.openLightbox('uploads/pasted-1785765441201-0.png', e),
+      openReportingRoadmapSketch: (e) => this.openLightbox('uploads/pasted-1785765453205-0.png', e),
+      openStepMarkersSketch: (e) => this.openLightbox('uploads/pasted-1785765468623-0.png', e),
+      openSubtaskTilesSketch: (e) => this.openLightbox('uploads/pasted-1785765495089-0.png', e),
+      closeLightbox: () => this.closeLightbox(),
+      downloadAllScreens: () => this.downloadAllScreens(),
+      downloadLabel: 'Download All Screens',
+      navSections: navSections,
+      sideNavDisplay: this.state.showNav ? 'block' : 'none',
+      processStages: [
+        { label: 'User research', color: '#B18FCF', sub: '21 interviews' },
+        { label: 'Thematic coding', color: '#7FA3C4', sub: 'Patterns found' },
+        { label: 'Personas', color: '#D6A947', sub: 'Archetypes' },
+        { label: 'Sketches + storyboards', color: '#2F7A6F', sub: 'Exploration' },
+        { label: 'Paper prototype', color: '#B18FCF', sub: 'Early testing' },
+        { label: 'Low-fi testing', color: '#7FA3C4', sub: 'Validation' },
+        { label: 'Hi-fi screens', color: '#D6A947', sub: 'Visual design' },
+        { label: 'Usability tests', color: '#2F7A6F', sub: '17 interviews' },
+      ],
+      comparisonRows: comparisonRows,
+      susScores: [45,50,57.5,65,75,77.5,82.5,82.5,85,90,92.5,97.5,100].map(function(v,i){
+        var barPalette = ['#CDE7E0','#F9E8C4','#D2E2F0','#E5D5F3'];
+        var labelPalette = ['#1D4E46','#7A5716','#2C4B67','#573A70'];
+        return { v: v, h: v + '%', color: barPalette[i % barPalette.length], labelColor: labelPalette[i % labelPalette.length] };
+      }),
+    };
+  }
+}
+</script>
+</body>
+</html>

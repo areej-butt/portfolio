@@ -31,14 +31,16 @@
     <div ref="{{ setScrollRef }}" class="career-track" style="overflow-x: auto; overflow-y: visible; padding: 165px 70px 0 70px; scrollbar-width: none; position: relative">
       <div style="position:relative;width:{{ trackWidth }}px;height:460px">
 
-        <div style="position: absolute; left: -70px; right: -70px; top: 230px; height: 80px; background-image: url('uploads/road-tile-v3.png'); background-repeat: repeat-x; background-size: auto 80px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); width: 1568px"></div>
+        <div style="position: absolute; left: -70px; right: -70px; top: 230px; height: 80px; background-image: url('uploads/road-tile-v3.png'); background-repeat: repeat-x; background-size: auto 80px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); width: calc(100% + 218px)"></div>
 
-        <img src="uploads/tree-simple.png" alt="" style="position: absolute; left: 400px; width: 70px; top: 166px; height: 62px">
-        <img src="uploads/tree-round-small.png" alt="" style="position:absolute;left:490px;width:52px;top:180px;height:59px">
-        <img src="uploads/tree-simple.png" alt="" style="position:absolute;left:700px;width:64px;top:170px;height:60px">
-        <img src="uploads/tree-round-big.png" alt="" style="position:absolute;left:790px;width:58px;top:174px;height:65px">
-        <img src="uploads/tree-simple.png" alt="" style="position:absolute;left:940px;width:64px;top:166px;height:60px">
-        <img src="uploads/dog-pixel.png" alt="" style="position:absolute;left:1410px;width:46px;top:198px;height:37px;animation:dogBounce 1.4s ease-in-out infinite;transform-origin:bottom center">
+        <img src="uploads/tree-round-small.png" alt="" style="position:absolute;left:515px;width:52px;top:180px;height:59px">
+        <img src="uploads/tree-simple.png" alt="" style="position:absolute;left:800px;width:64px;top:170px;height:60px">
+        <img src="uploads/tree-simple.png" alt="" style="position: absolute; left: 1000px; width: 70px; top: 166px; height: 62px">
+        <img src="uploads/tree-round-small.png" alt="" style="position:absolute;left:1090px;width:52px;top:180px;height:59px">
+        <img src="uploads/tree-simple.png" alt="" style="position:absolute;left:1300px;width:64px;top:170px;height:60px">
+        <img src="uploads/tree-round-big.png" alt="" style="position:absolute;left:1390px;width:58px;top:174px;height:65px">
+        <img src="uploads/tree-simple.png" alt="" style="position:absolute;left:1540px;width:64px;top:166px;height:60px">
+        <img src="uploads/dog-pixel.png" alt="" style="position:absolute;left:2010px;width:46px;top:198px;height:37px;animation:dogBounce 1.4s ease-in-out infinite;transform-origin:bottom center">
 
         <sc-for list="{{ nodes }}" as="node" hint-placeholder-count="7">
           <div style="position:absolute;top:0;left:{{ node.xPx }};width:150px;display:flex;flex-direction:column;align-items:center">
@@ -49,6 +51,9 @@
                     <div style="line-height:1.4">{{ node.headline }}</div>
                     <sc-if value="{{ node.subheadline }}" hint-placeholder-val="{{ false }}">
                       <div style="font-weight:600;color:#8A8494;font-size:11.5px;line-height:1.4;margin-top:6px">{{ node.subheadline }}</div>
+                    </sc-if>
+                    <sc-if value="{{ node.link }}" hint-placeholder-val="{{ false }}">
+                      <a href="{{ node.link }}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:6px;font-size:11.5px;font-weight:700;color:{{ node.color }};text-decoration:underline;text-underline-offset:3px">{{ node.linkLabel }}</a>
                     </sc-if>
                   </div>
                 </div>
@@ -80,6 +85,12 @@
               <sc-if value="{{ node.isLeadershipOther }}" hint-placeholder-val="{{ false }}">
                 <img src="uploads/loreal-atomcamp-nobrown.png" alt="L'Oréal &amp; atomcamp" style="width:auto;max-width:255px;height:84%;object-fit:contain;margin-bottom:-20px">
               </sc-if>
+              <sc-if value="{{ node.isRemote }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/k2-remote-desk.png" alt="Work-from-home desk setup" style="width:auto;max-width:215px;height:118px;object-fit:contain;margin-bottom:-14px">
+              </sc-if>
+              <sc-if value="{{ node.isDfg }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/develop-for-good.png" alt="Develop for Good" style="width:auto;max-width:215px;height:136px;object-fit:contain;margin-bottom:-14px">
+              </sc-if>
             </div>
 
             <div style="margin-top:95px;text-align:center;width:170px;display:flex;flex-direction:column;align-items:center">
@@ -90,7 +101,7 @@
         </sc-for>
 
         <img src="uploads/areej-mascot-v2.png" alt="Areej mascot" style="position: absolute; top: 145px; height: 100px; width: 81px; left: {{ mascotLeft }}px; transition: left 0.5s cubic-bezier(0.3,0.9,0.4,1); z-index: 4; filter: drop-shadow(0 6px 6px rgba(33,31,46,0.28)); animation: {{ mascotAnim }}">
-      </div><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 59px; left: 67px; width: 60px; opacity: 0.6; animation: cloudDrift 7s ease-in-out infinite"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 47px; left: 811px; width: 68px; opacity: 0.7; animation: cloudDrift 8.5s ease-in-out infinite; animation-delay: 1.2s"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 51px; left: 442px; width: 64px; opacity: 0.75; animation: cloudDrift 6.5s ease-in-out infinite; animation-delay: 2.4s"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 55px; left: 1180px; width: 62px; opacity: 0.65; animation: cloudDrift 7.5s ease-in-out infinite; animation-delay: 0.6s"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 49px; left: 1520px; width: 66px; opacity: 0.7; animation: cloudDrift 9s ease-in-out infinite; animation-delay: 1.8s"></div>
+      </div><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 59px; left: 67px; width: 60px; opacity: 0.6; animation: cloudDrift 7s ease-in-out infinite"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 47px; left: 811px; width: 68px; opacity: 0.7; animation: cloudDrift 8.5s ease-in-out infinite; animation-delay: 1.2s"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 51px; left: 442px; width: 64px; opacity: 0.75; animation: cloudDrift 6.5s ease-in-out infinite; animation-delay: 2.4s"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 55px; left: 1180px; width: 62px; opacity: 0.65; animation: cloudDrift 7.5s ease-in-out infinite; animation-delay: 0.6s"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 49px; left: 1520px; width: 66px; opacity: 0.7; animation: cloudDrift 9s ease-in-out infinite; animation-delay: 1.8s"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 57px; left: 1880px; width: 60px; opacity: 0.65; animation: cloudDrift 8s ease-in-out infinite; animation-delay: 3s"></div>
 
     <div style="margin-top:20px;display:flex;align-items:center;gap:14px">
       <div style="flex:1;height:8px;border-radius:100px;background:#ECE6DA;overflow:hidden">
@@ -109,6 +120,8 @@ const CATEGORY_COLOR = {
   research: '#2F7A6F',
   lwise: '#D98BA8',
   leadership: '#D98BA8',
+  remote: '#7C93D4',
+  dfg: '#D9506A',
 };
 const NODE_SPACING = 300;
 
@@ -131,7 +144,9 @@ class Component extends DCLogic {
   renderVals() {
     const raw = [
       { category: 'foundation', role: 'Research Assistant', org: 'HCI Lab (CHISEL @ LUMS)', headline: 'Where it all began' },
-      { category: 'design', role: 'Product Design Intern', org: 'Carbonteq', headline: 'Trained in produt, design and development' },
+      { category: 'remote', role: 'Product Designer', org: 'K2 Studio', headline: 'My first remote job!', subheadline: 'Rebuilding Ventura', link: 'https://getventura.co', linkLabel: 'getventura.co ↗' },
+      { category: 'dfg', role: 'Designer', org: 'Develop for Good', headline: 'Designing MoLA Commons, an archive for African art', link: 'https://africanartagenda.art', linkLabel: 'African Art Agenda ↗' },
+      { category: 'design', role: 'Product Design Intern', org: 'Carbonteq', headline: 'Trained in product, design and development' },
       { category: 'lwise', role: 'Treasurer', org: 'LWiSE', headline: 'Executive member of the first women in science club on campus!' },
       { category: 'data', role: 'Data Analytics Intern', org: 'Systems Limited', headline: 'Learnt all things data from SQL Optimization to Schema Design' },
       { category: 'leadership', role: 'Campus Ambassador', org: "atomcamp & L'Oréal", headline: 'Represented reputed companies building my professional network' },
@@ -154,6 +169,8 @@ class Component extends DCLogic {
         isLwise: n.category === 'lwise',
         isLeadershipOther: n.category === 'leadership',
         isLeadership: n.category === 'leadership' || n.category === 'lwise',
+        isRemote: n.category === 'remote',
+        isDfg: n.category === 'dfg',
         hoverBase: isActive ? 'scale(1.06)' : 'scale(1)',
         roleColor: isActive ? color : '#211F2E',
         barWidth: isActive ? '28px' : '0px',
@@ -170,7 +187,7 @@ class Component extends DCLogic {
       activeIndex1: active + 1,
       progressPct: Math.round(((active + 1) / total) * 100),
       trackWidth: (total - 1) * NODE_SPACING + 150,
-      mascotLeft: active * NODE_SPACING + (raw[active].category === 'lwise' ? -23 : 1),
+      mascotLeft: active * NODE_SPACING + ({ lwise: -23, remote: -26, dfg: -40 }[raw[active].category] ?? 1),
       mascotAnim: this.state.isWalking ? 'mascotWalk 0.28s ease-in-out infinite' : 'mascotIdle 1.6s ease-in-out infinite',
       setScrollRef: this.setScrollRef,
       prevNode: () => this.goTo(active - 1, total),

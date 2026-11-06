@@ -49,6 +49,15 @@
     @keyframes skillIconPop { 0% { transform: scale(0.6) rotate(-12deg); } 60% { transform: scale(1.12) rotate(4deg); } 100% { transform: none; } }
     @keyframes skillPillIn { to { opacity: 1; transform: none; } }
     @media (prefers-reduced-motion: reduce) { .skill-card, .skill-pill { opacity: 1; transform: none; } .skill-icon path, .skill-icon circle { stroke-dashoffset: 0; } .skills-in .skill-card, .skills-in .skill-pill, .skills-in .skill-icon, .skills-in .skill-icon path, .skills-in .skill-icon circle { animation: none; } }
+    .work-card { opacity: 0; transform: translateY(40px) scale(0.97); }
+    .work-card.work-in { animation: skillCardIn 0.8s cubic-bezier(0.2,0.9,0.3,1.15) forwards; }
+    .work-bit { opacity: 0; transform: translateY(14px); }
+    .work-in .work-bit { animation: workBitIn 0.55s cubic-bezier(0.3,1.5,0.5,1) calc(220ms + var(--k) * 90ms) forwards; }
+    .work-shot { opacity: 0; transform: translateX(36px) scale(0.9) rotate(2deg); }
+    .work-in .work-shot { animation: workShotIn 0.9s cubic-bezier(0.2,0.9,0.3,1.15) 380ms forwards; }
+    @keyframes workBitIn { to { opacity: 1; transform: none; } }
+    @keyframes workShotIn { 0% { opacity: 0; transform: translateX(36px) scale(0.9) rotate(2deg); } 60% { opacity: 1; transform: translateX(-4px) scale(1.02) rotate(-0.5deg); } 100% { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .work-card, .work-bit, .work-shot { opacity: 1; transform: none; } .work-card.work-in, .work-in .work-bit, .work-in .work-shot { animation: none; } }
     .flip-front, .flip-back { border-radius: 20px; overflow: hidden; }
     .flip-ear { position: absolute; right: 0; bottom: 0; width: 40px; height: 40px; padding: 0; border: 0; background: none; cursor: pointer; transition: width 0.3s cubic-bezier(0.3,1.4,0.5,1), height 0.3s cubic-bezier(0.3,1.4,0.5,1); }
     .flip-ear:hover, .flip-ear:focus-visible { width: 58px; height: 58px; }
@@ -100,23 +109,23 @@
   </div>
   </div>
 
-  <div id="work" style="max-width:1100px;margin:0 auto;padding:60px clamp(20px,5vw,64px) 20px;scroll-margin-top:90px">
+  <div id="work" ref="{{ setWorkRef }}" style="max-width:1100px;margin:0 auto;padding:60px clamp(20px,5vw,64px) 20px;scroll-margin-top:90px">
     <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:28px">
       <h2 style="font-family: 'Fraunces',serif; font-weight: 500; font-size:clamp(25.8px,3.4vw,34.4px); margin: 0">Featured Work</h2>
       <span style="font-size:14px;color:#8A8494">more projects coming soon!</span>
     </div>
     <sc-for list="{{ projects }}" as="project" hint-placeholder-count="3">
       <div style="margin-bottom:56px">
-        <div style="position:relative;background:{{ project.bg }};border-radius:24px;padding:clamp(36px,5vw,64px);display:flex;align-items:center;gap:clamp(28px,4vw,56px);flex-wrap:wrap;overflow:hidden">
+        <div class="work-card" style="position:relative;background:{{ project.bg }};border-radius:24px;padding:clamp(36px,5vw,64px);display:flex;align-items:center;gap:clamp(28px,4vw,56px);flex-wrap:wrap;overflow:hidden">
           <div style="flex:1.1 1 320px;min-width:260px;position:relative;z-index:1">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+            <div class="work-bit" style="--k:0;display:flex;align-items:center;gap:10px;margin-bottom:20px">
               
               <img src="{{ project.icon }}" alt="" style="width: 32px; height: 32px; border-radius: 9px; object-fit: contain"><div style="font-weight:700;font-size:15px;color:#211F2E">{{ project.appName }}</div>
             </div>
-            <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;color:#453F52;margin-bottom:10px">{{ project.eyebrow }}</div>
-            <h3 style="font-size:clamp(28px,3.4vw,38px);font-weight:800;margin:0 0 16px;line-height:1.1">{{ project.title }}</h3>
-            <p style="font-size:15.5px;line-height:1.6;color:#5C5668;margin:0 0 26px;max-width:440px">{{ project.desc }}</p>
-            <a href="{{ project.link }}" onMouseEnter="{{ project.onCtaEnter }}" onMouseLeave="{{ project.onCtaLeave }}" style="display:inline-flex;align-items:center;gap:10px;background:{{ project.ctaBg }};color:{{ project.ctaColor }};font-weight:600;font-size:14.5px;padding:13px 24px;border-radius:100px;text-decoration:none;white-space:nowrap;pointer-events:{{ project.linkPointer }}" style-hover="opacity:0.88">
+            <div class="work-bit" style="--k:1;font-size:13px;font-weight:700;letter-spacing:0.08em;color:#453F52;margin-bottom:10px">{{ project.eyebrow }}</div>
+            <h3 class="work-bit" style="--k:2;font-size:clamp(28px,3.4vw,38px);font-weight:800;margin:0 0 16px;line-height:1.1">{{ project.title }}</h3>
+            <p class="work-bit" style="--k:3;font-size:15.5px;line-height:1.6;color:#5C5668;margin:0 0 26px;max-width:440px">{{ project.desc }}</p>
+            <div class="work-bit" style="--k:4"><a href="{{ project.link }}" onMouseEnter="{{ project.onCtaEnter }}" onMouseLeave="{{ project.onCtaLeave }}" style="display:inline-flex;align-items:center;gap:10px;background:{{ project.ctaBg }};color:{{ project.ctaColor }};font-weight:600;font-size:14.5px;padding:13px 24px;border-radius:100px;text-decoration:none;white-space:nowrap;pointer-events:{{ project.linkPointer }}" style-hover="opacity:0.88">
               <sc-if value="{{ project.ctaHovered }}" hint-placeholder-val="{{ false }}">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:slideArrow 0.25s ease"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
               </sc-if>
@@ -124,9 +133,9 @@
                 <span style="width:9px;height:9px;border-radius:50%;background:currentColor"></span>
               </sc-if>
               {{ project.ctaLabel }}
-            </a>
+            </a></div>
           </div>
-          <div style="flex:1 1 300px;min-width:240px;display:flex;justify-content:center;position:relative;z-index:1">
+          <div class="work-shot" style="flex:1 1 300px;min-width:240px;display:flex;justify-content:center;position:relative;z-index:1">
             <sc-if value="{{ project.imgFull }}" hint-placeholder-val="{{ false }}">
               <image-slot id="{{ project.slotId }}" shape="rect" fit="contain" style="width:100%;height:auto;aspect-ratio:{{ project.imgAspect }};max-width:{{ project.imgMaxW }};mix-blend-mode:{{ project.blendMode }}" placeholder="{{ project.placeholderText }}" src="{{ project.imgSrc }}"></image-slot>
             </sc-if>
@@ -320,6 +329,18 @@ class Component extends DCLogic {
   _tickTimer = null;
   _moveTimer = null;
 
+  setWorkRef = (el) => {
+    if (!el || this._workIO) return;
+    const cards = el.querySelectorAll('.work-card');
+    if (typeof IntersectionObserver !== 'function') { cards.forEach(c => c.classList.add('work-in')); return; }
+    this._workIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('work-in'); this._workIO.unobserve(e.target); }
+      });
+    }, { threshold: 0.18 });
+    cards.forEach(c => this._workIO.observe(c));
+  };
+
   setSkillsRef = (el) => {
     this.skillsEl = el;
     if (!el || this._skillsIO) return;
@@ -392,6 +413,7 @@ class Component extends DCLogic {
     if (this._arenaIO) this._arenaIO.disconnect();
     clearTimeout(this._flipTimer);
     if (this._skillsIO) this._skillsIO.disconnect();
+    if (this._workIO) this._workIO.disconnect();
     this.stopGameLoops();
     this.stopBugLoop();
     clearInterval(this._spawnTimer);
@@ -598,6 +620,7 @@ class Component extends DCLogic {
       pulsePsych: this.pulsePsych,
       pulseTag: this.pulseTag,
       setSkillsRef: this.setSkillsRef,
+      setWorkRef: this.setWorkRef,
       setFlipRef: this.setFlipRef,
       setArenaRef: this.setArenaRef,
       toggleFlip: this.toggleFlip,

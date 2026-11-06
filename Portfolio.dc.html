@@ -49,7 +49,7 @@
     @keyframes skillIconPop { 0% { transform: scale(0.6) rotate(-12deg); } 60% { transform: scale(1.12) rotate(4deg); } 100% { transform: none; } }
     @keyframes skillPillIn { to { opacity: 1; transform: none; } }
     @media (prefers-reduced-motion: reduce) { .skill-card, .skill-pill { opacity: 1; transform: none; } .skill-icon path, .skill-icon circle { stroke-dashoffset: 0; } .skills-in .skill-card, .skills-in .skill-pill, .skills-in .skill-icon, .skills-in .skill-icon path, .skills-in .skill-icon circle { animation: none; } }
-    .flip-front { border-radius: 20px; overflow: hidden; }
+    .flip-front, .flip-back { border-radius: 20px; overflow: hidden; }
     .flip-ear { position: absolute; right: 0; bottom: 0; width: 40px; height: 40px; padding: 0; border: 0; background: none; cursor: pointer; transition: width 0.3s cubic-bezier(0.3,1.4,0.5,1), height 0.3s cubic-bezier(0.3,1.4,0.5,1); }
     .flip-ear:hover, .flip-ear:focus-visible { width: 58px; height: 58px; }
     .flip-ear:focus-visible { outline: none; }
@@ -214,7 +214,7 @@
                 <button onClick="{{ toggleFlip }}" class="flip-ear" aria-label="Flip my photo to play Bug bash" title="Flip me"><span class="ear-cut"></span><span class="ear-flap-wrap"><span class="ear-flap"></span></span></button>
               </div>
 
-              <div class="flip-face" style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);pointer-events:{{ backEvents }}">
+              <div class="flip-face flip-back" style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);pointer-events:{{ backEvents }}">
                 <div ref="{{ setArenaRef }}" data-native-cursor="" class="bug-arena" onMouseEnter="{{ handleHoverStart }}" onClick="{{ handleHoverStart }}" style="position: absolute; inset: 0; height: auto; border-radius: 20px; border: 2px solid #6FA294; background: linear-gradient(180deg,#D8ECE6,#F5F1E6); overflow: hidden; box-shadow: 0 14px 32px rgba(29,78,70,0.16),0 2px 8px rgba(29,78,70,0.1); width: 100%; max-width: 408px">
           <sc-if value="{{ isPlaying }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;top:12px;left:14px;display:flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:#1D4E46;animation:fadeInUp 0.35s ease both"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>{{ timeLeft }}s</div>
@@ -255,6 +255,7 @@
           </div>
         </sc-if>
       </div>
+                <button onClick="{{ toggleFlip }}" class="flip-ear" aria-label="Flip back to my photo" title="Flip back"><span class="ear-cut"></span><span class="ear-flap-wrap"><span class="ear-flap"></span></span></button>
               </div>
 
             </div>
@@ -490,7 +491,7 @@ class Component extends DCLogic {
           el.style.transform = `translate3d(${tx.toFixed(1)}px,${ty.toFixed(1)}px,0)`;
           const b = el.firstElementChild, sp = el.lastElementChild;
           if (b) { b.style.transform = body; b.style.opacity = op; }
-          if (sp && splat) { sp.style.transform = `scale(${splat[0]})`; sp.style.opacity = splat[1]; }
+          if (sp) { sp.style.transform = splat ? `scale(${splat[0]})` : 'scale(0)'; sp.style.opacity = splat ? splat[1] : 0; }
         }
       }
       if (gone.length) {

@@ -60,6 +60,8 @@
     .flip-wrap.peek .flip-peek { animation: flipPeek 1.4s ease-in-out 0.3s 1; }
     @keyframes flipPeek { 0%,100% { transform: rotateY(0); } 35% { transform: rotateY(-22deg); } 60% { transform: rotateY(8deg); } 80% { transform: rotateY(-3deg); } }
     @media (prefers-reduced-motion: reduce) { .flip-card { transition: none !important; } .flip-wrap.peek .flip-peek { animation: none; } }
+    .hero-fs { display: flex; flex-direction: column; }
+    @media (min-width: 900px) and (min-height: 640px) { .hero-fs { min-height: calc(100vh - 81px); min-height: calc(100svh - 81px); } }
     @keyframes slideArrow { from { opacity: 0; transform: translateX(-4px); } to { opacity: 1; transform: translateX(0); } }
 
   </style>
@@ -69,7 +71,7 @@
 
   <!-- NAV -->
   <div style="position:sticky;top:0;z-index:50;background:rgba(251,247,240,0.85);backdrop-filter:blur(8px);border-bottom:1px solid #ECE6DA;animation:fadeInUp 0.5s ease both">
-    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,5vw,64px)">
+    <div style="max-width:2000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,4vw,72px)">
     <a href="#" onClick="{{ handleLogoClick }}" aria-label="Areej Butt — back to top" style="color:#2F7A6F;text-decoration:none;display:inline-flex;cursor:pointer;transform-origin:center;transition:transform 0.35s ease;animation:{{ logoAnimStyle }}" style-hover="transform:scale(1.08)">
       <svg class="logo-mark" width="34" height="34" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="{{ logoBg }}" stroke="#2F7A6F" stroke-width="2" style="transition:fill 0.35s ease"></circle><path fill="{{ logoInk }}" d="M10.89 23.34Q10 23.34 9.5 22.7Q8.99 22.06 9.2 20.63Q9.38 19.31 10.09 17.92Q10.81 16.53 11.86 15.32Q12.91 14.11 14.1 13.37Q15.28 12.63 16.37 12.63Q16.89 12.63 17.44 12.82Q17.98 13.02 18.39 13.45Q18.79 13.87 18.84 14.58L17.28 13.72Q17.72 13.67 18.21 13.3Q18.69 12.94 19.02 12.42Q19.08 12.34 19.22 12.39Q19.36 12.44 19.34 12.5L17.83 20.69Q17.59 21.91 18.11 21.91Q18.37 21.91 18.74 21.66Q19.1 21.41 19.52 21Q19.6 20.92 19.7 21.02Q19.8 21.13 19.73 21.21Q18.92 22.17 18.21 22.7Q17.49 23.23 16.81 23.23Q15.98 23.23 15.68 22.62Q15.38 22.01 15.59 20.69L16.24 17.05L16.79 16.6Q16.16 18.74 15.18 20.24Q14.19 21.75 13.07 22.55Q11.95 23.34 10.89 23.34ZM12.55 21.44Q13.17 21.44 13.8 20.95Q14.42 20.45 14.96 19.67Q15.49 18.89 15.87 18.02Q16.24 17.15 16.37 16.42Q16.58 15.25 16.22 14.58Q15.85 13.9 15.07 13.9Q14.34 13.9 13.64 14.5Q12.94 15.1 12.39 16.14Q11.85 17.18 11.61 18.53Q11.35 20.17 11.67 20.8Q11.98 21.44 12.55 21.44Z" style="transition:fill 0.35s ease"></path><path class="logo-spark" fill="#D97D5E" d="M23.5 5.5 24.6 8.9 28 10 24.6 11.1 23.5 14.5 22.4 11.1 19 10 22.4 8.9Z"></path></svg>
     </a>
@@ -81,8 +83,9 @@
     </div>
   </div>
 
-  <!-- HERO -->
-  <div style="max-width:1100px;margin:0 auto;padding:clamp(36px,6vw,72px) clamp(20px,5vw,64px) 0">
+  <!-- HERO: intro + road fill the first screen on desktop -->
+  <div class="hero-fs">
+  <div style="width:100%;max-width:2000px;margin:0 auto;padding:clamp(28px,5vh,72px) clamp(20px,4vw,72px) 0;box-sizing:border-box">
         <h1 style="position:relative;z-index:1;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(40px,5.5vw,64px);line-height:1.08;margin:0 0 22px;animation:fadeInUp 0.6s ease 0.1s both">Hi there! I'm <span style="color:#2F7A6F;font-style:italic;display:inline-block;opacity:{{ nameOpacity }};filter:{{ nameBlur }};transition:opacity 0.35s ease,filter 0.35s ease">{{ currentName }}</span></h1>
         <p style="position:relative;z-index:1;font-size:clamp(17px,2vw,20px);line-height:1.65;color:#453F52;margin:0;max-width:620px;animation:fadeInUp 0.6s ease 0.22s both">
           Product designer who blends <mark onClick="{{ pulseCS }}" style="background-image:linear-gradient(90deg,#F3EBFA,#F3EBFA);background-repeat:no-repeat;background-size:200% 100%;background-position:0 0;color:#452256;padding:2px 8px;border-radius:6px;font-weight:700;display:inline-block;cursor:pointer;transform-origin:center;animation:{{ csPulseStyle }}, highlightSweep 0.8s ease 0.5s both">Computer Science</mark> and
@@ -90,12 +93,13 @@
         </p>
   </div>
 
-  <!-- EXPERIENCE ROAD (in the hero) -->
-  <div style="max-width:1100px;margin:0 auto;padding:clamp(4px,1vw,12px) clamp(4px,3vw,48px) 0;animation:fadeInUp 0.7s ease 0.35s both">
+  <!-- EXPERIENCE ROAD (in the hero, edge to edge) -->
+  <div class="hero-road" style="width:100%;margin-top:auto;animation:fadeInUp 0.7s ease 0.35s both">
     <dc-import name="CareerLevel" hint-size="100%,560px"></dc-import>
   </div>
+  </div>
 
-  <div id="work" style="max-width:1100px;margin:0 auto;padding:60px clamp(20px,5vw,64px) 20px;scroll-margin-top:90px">
+  <div id="work" style="max-width:2000px;margin:0 auto;padding:60px clamp(20px,4vw,72px) 20px;scroll-margin-top:90px">
     <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:28px">
       <h2 style="font-family: 'Cormorant Garamond',serif; font-weight: 500; font-size: clamp(30px,4vw,40px); margin: 0">Featured Work</h2>
       <span style="font-size:14px;color:#8A8494">more projects coming soon!</span>
@@ -137,7 +141,7 @@
   </div>
 
   <!-- SKILLS -->
-  <div style="max-width:1100px;margin:0 auto;padding:20px clamp(20px,5vw,64px) 20px">
+  <div style="max-width:2000px;margin:0 auto;padding:20px clamp(20px,4vw,72px) 20px">
     <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,4vw,40px);margin:0 0 28px">Skills</h2>
     <div ref="{{ setSkillsRef }}" class="skills-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:stretch">
 
@@ -188,7 +192,7 @@
   </div>
 
   <!-- ABOUT -->
-  <div id="about" style="max-width:1100px;margin:0 auto;padding:60px clamp(20px,5vw,64px) 20px;scroll-margin-top:90px">
+  <div id="about" style="max-width:2000px;margin:0 auto;padding:60px clamp(20px,4vw,72px) 20px;scroll-margin-top:90px">
     <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,4vw,40px);margin:0 0 28px">About Me</h2>
     <div style="background:linear-gradient(160deg,#FCF3D9,#EAF5F2);border-radius:24px;padding:clamp(24px,5vw,40px);display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,40px);align-items:center">
       <div style="flex:1.2 1 380px;min-width:min(280px,100%)">
@@ -210,14 +214,15 @@
               </div>
 
               <div class="flip-face" style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);pointer-events:{{ backEvents }}">
-                <div data-native-cursor="" class="bug-arena" onMouseEnter="{{ handleHoverStart }}" onClick="{{ handleHoverStart }}" style="position: absolute; inset: 0; height: auto; border-radius: 20px; border: 2px solid #6FA294; background: linear-gradient(180deg,#D8ECE6,#F5F1E6); overflow: hidden; box-shadow: 0 14px 32px rgba(29,78,70,0.16),0 2px 8px rgba(29,78,70,0.1); width: 100%; max-width: 408px">
+                <div ref="{{ setArenaRef }}" data-native-cursor="" class="bug-arena" onMouseEnter="{{ handleHoverStart }}" onClick="{{ handleHoverStart }}" style="position: absolute; inset: 0; height: auto; border-radius: 20px; border: 2px solid #6FA294; background: linear-gradient(180deg,#D8ECE6,#F5F1E6); overflow: hidden; box-shadow: 0 14px 32px rgba(29,78,70,0.16),0 2px 8px rgba(29,78,70,0.1); width: 100%; max-width: 408px">
           <sc-if value="{{ isPlaying }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;top:12px;left:14px;display:flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:#1D4E46;animation:fadeInUp 0.35s ease both"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>{{ timeLeft }}s</div>
             <div style="position:absolute;top:12px;right:14px;display:flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:#1D4E46;animation:fadeInUp 0.35s ease both"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.2" fill="currentColor"></circle></svg>{{ score }}</div>
           </sc-if>
 
           <sc-for list="{{ bugs }}" as="bug" hint-placeholder-count="0">
-            <div onClick="{{ squash }}" data-id="{{ bug.id }}" style="position:absolute;width:26px;height:26px;color:{{ bug.color }};cursor:pointer;user-select:none;left:{{ bug.leftPct }}%;top:{{ bug.topPx }}px;opacity:{{ bug.op }};transform:scaleX({{ bug.dir }}) rotate({{ bug.rotDeg }}deg) scale({{ bug.scale }});transition:left 0.05s linear,top 0.05s linear,opacity 0.05s linear,transform 0.08s ease;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.15))">
+            <div class="bug-pos" data-pos="{{ bug.id }}" style="position:absolute;left:0;top:0;width:26px;height:26px;will-change:transform;transform:translate3d(-80px,-80px,0)">
+              <div class="bug-body" onPointerDown="{{ squash }}" data-id="{{ bug.id }}" style="width:26px;height:26px;color:{{ bug.color }};user-select:none;-webkit-user-select:none;touch-action:none;will-change:transform,opacity;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.15))">
                 <sc-if value="{{ bug.isLadybug }}" hint-placeholder-val="{{ true }}">
                   <img src="uploads/bug-ladybug.png" alt="" style="width:100%;height:100%;object-fit:contain">
                 </sc-if>
@@ -230,12 +235,9 @@
               <sc-if value="{{ bug.isFly }}" hint-placeholder-val="{{ false }}">
                 <img src="uploads/bug-dragonfly.png" alt="" style="width:100%;height:100%;object-fit:contain">
               </sc-if>
+              </div>
+              <div class="bug-splat" style="position:absolute;left:-6px;top:-6px;width:38px;height:38px;pointer-events:none;opacity:0;transform:scale(0)"><svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="7" r="4" fill="#2F7A6F"></circle><circle cx="31" cy="18" r="3.2" fill="#D97D5E"></circle><circle cx="7" cy="21" r="3.6" fill="#A574C9"></circle><circle cx="21" cy="31" r="2.8" fill="#D6A947"></circle><circle cx="5" cy="6" r="2.4" fill="#1D4E46"></circle></svg></div>
             </div>
-          <sc-if value="{{ bug.squashed }}" hint-placeholder-val="{{ false }}">
-            <div style="position:absolute;left:{{ bug.leftPct }}%;top:{{ bug.topPx }}px;width:26px;height:26px;pointer-events:none;transform:translate(-6px,-6px) scale({{ bug.splatScale }});opacity:{{ bug.splatOpacity }}">
-              <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="7" r="4" fill="#2F7A6F"></circle><circle cx="31" cy="18" r="3.2" fill="#D97D5E"></circle><circle cx="7" cy="21" r="3.6" fill="#A574C9"></circle><circle cx="21" cy="31" r="2.8" fill="#D6A947"></circle><circle cx="5" cy="6" r="2.4" fill="#1D4E46"></circle></svg>
-            </div>
-          </sc-if>
         </sc-for>
 
         <sc-if value="{{ isIdle }}" hint-placeholder-val="{{ true }}">
@@ -266,7 +268,7 @@
 
   <!-- FOOTER -->
   <div style="background:linear-gradient(135deg,#EAF5F2,#F3EBFA);padding:44px 0;border-radius:32px 32px 0 0;margin-top:0">
-    <div style="max-width:1100px;margin:0 auto;padding:0 clamp(24px,5vw,48px)">
+    <div style="max-width:2000px;margin:0 auto;padding:0 clamp(20px,4vw,72px)">
 
       <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px">
         <div>
@@ -309,6 +311,7 @@ class Component extends DCLogic {
     tagAnim: {},
     skillsOpen: { design: false, product: false, interface: false },
     flipped: false,
+    lastScore: null,
   };
   _nextId = 1;
   _spawnTimer = null;
@@ -363,7 +366,8 @@ class Component extends DCLogic {
       this.stopGameLoops();
       this.setState({ phase: 'idle', bugs: [], score: 0, timeLeft: 30 });
     }
-    this.setState({ flipped });
+    if (!flipped && this._bugPos) this._bugPos.clear();
+    this.setState(flipped ? { flipped } : { flipped, bugs: [] }, () => this.syncBugLoop());
   };
 
   componentDidMount() {
@@ -377,18 +381,18 @@ class Component extends DCLogic {
         }, 350);
       }, 2000);
     }, 6000);
-    this._spawnTimer = setInterval(this.spawnBug, 650);
-    this._moveTimer = setInterval(this.moveBugs, 50);
   }
 
   componentWillUnmount() {
     if (this._flipIO) this._flipIO.disconnect();
     clearTimeout(this._flipBackT);
+    clearTimeout(this._scoreT);
+    if (this._arenaIO) this._arenaIO.disconnect();
     clearTimeout(this._flipTimer);
     if (this._skillsIO) this._skillsIO.disconnect();
     this.stopGameLoops();
+    this.stopBugLoop();
     clearInterval(this._spawnTimer);
-    clearInterval(this._moveTimer);
     clearInterval(this._nameTimer);
     clearTimeout(this._nameFadeTimeout);
     clearTimeout(this._nameStartTimeout);
@@ -399,70 +403,122 @@ class Component extends DCLogic {
     this._tickTimer = null;
   }
 
-  spawnBug = () => {
-    this.setState(s => {
-      if (s.phase === 'over' || s.bugs.length >= 6) return null;
-      const kinds = [
-        { isLadybug: true, isAnt: false, isSpider: false, isFly: false, color: '#B14A2E' },
-        { isLadybug: false, isAnt: true, isSpider: false, isFly: false, color: '#1D4E46' },
-        { isLadybug: false, isAnt: false, isSpider: true, isFly: false, color: '#573A70' },
-        { isLadybug: false, isAnt: false, isSpider: false, isFly: true, color: '#8B6A14' },
-      ];
-      const k = kinds[Math.floor(Math.random() * kinds.length)];
-      const dir = Math.random() < 0.5 ? 1 : -1;
-      const bug = {
-        id: this._nextId++,
-        leftPct: dir === 1 ? -10 : 110,
-        topPx: 20 + Math.random() * (GAME_H - BUG_H - 30),
-        speed: 0.5 + Math.random() * 0.7,
-        dir,
-        wob: Math.random() * 10,
-        ...k,
-        squashed: false,
-        rotDeg: 0,
-        op: 1,
-        scale: 1,
-        splatScale: 0,
-        splatOpacity: 0,
-      };
-      return { bugs: [...s.bugs, bug] };
-    });
+  // ---- bugs: smooth movement on requestAnimationFrame, no page re-renders per frame ----
+  setArenaRef = (el) => {
+    this._arenaEl = el;
+    if (!el || this._arenaIO) return;
+    this._bugPos = this._bugPos || new Map();
+    if (typeof IntersectionObserver !== 'function') { this._arenaVisible = true; this.syncBugLoop(); return; }
+    this._arenaIO = new IntersectionObserver(([e]) => { this._arenaVisible = e.isIntersecting; this.syncBugLoop(); }, { threshold: 0 });
+    this._arenaIO.observe(el);
   };
 
-  moveBugs = () => {
-    this.setState(s => {
-      const next = [];
-      for (const b of s.bugs) {
-        if (b.squashed) {
-          b.topPx += 7; b.rotDeg += 22; b.op -= 0.09; b.scale = Math.max(1, b.scale - 0.09);
-          b.splatScale = Math.min(2.2, b.splatScale + 0.45); b.splatOpacity = Math.max(0, b.splatOpacity - 0.16);
-          if (b.op > 0) next.push(b);
+  // Bugs only run while the game side is showing and on screen.
+  syncBugLoop() {
+    const on = this._arenaVisible && this.state.flipped;
+    if (on && !this._bugRaf) {
+      this._bugLast = performance.now();
+      this._bugRaf = requestAnimationFrame(this.tickBugs);
+      clearInterval(this._spawnTimer);
+      this._spawnTimer = setInterval(this.spawnBug, 650);
+      this.spawnBug();
+    } else if (!on && this._bugRaf) {
+      this.stopBugLoop();
+    }
+  }
+
+  stopBugLoop() {
+    if (this._bugRaf) cancelAnimationFrame(this._bugRaf);
+    this._bugRaf = null;
+    clearInterval(this._spawnTimer);
+    this._spawnTimer = null;
+  }
+
+  spawnBug = () => {
+    if (this.state.phase === 'over' || this.state.bugs.length >= 6) return;
+    const kinds = [
+      { isLadybug: true, isAnt: false, isSpider: false, isFly: false, color: '#B14A2E' },
+      { isLadybug: false, isAnt: true, isSpider: false, isFly: false, color: '#1D4E46' },
+      { isLadybug: false, isAnt: false, isSpider: true, isFly: false, color: '#573A70' },
+      { isLadybug: false, isAnt: false, isSpider: false, isFly: true, color: '#8B6A14' },
+    ];
+    const k = kinds[Math.floor(Math.random() * kinds.length)];
+    const id = this._nextId++;
+    const W = this._arenaEl ? this._arenaEl.clientWidth : 360;
+    const H = this._arenaEl ? this._arenaEl.clientHeight : 340;
+    const dir = Math.random() < 0.5 ? 1 : -1;
+    this._bugPos.set(id, {
+      x: dir === 1 ? -34 : W + 8,
+      y0: 46 + Math.random() * Math.max(40, H - 46 - 60),
+      dir,
+      speed: 0.045 + Math.random() * 0.06,          // px per ms
+      wob: Math.random() * 6.28,
+      squashed: false, t: 0,
+    });
+    this.setState(s => ({ bugs: [...s.bugs, { id, ...k }] }));
+  };
+
+  tickBugs = (now) => {
+    const dt = Math.min(48, now - this._bugLast);
+    this._bugLast = now;
+    const arena = this._arenaEl;
+    if (arena) {
+      const W = arena.clientWidth;
+      const els = new Map();
+      arena.querySelectorAll('.bug-pos').forEach(el => els.set(Number(el.dataset.pos), el));
+      const gone = [];
+      for (const [id, p] of this._bugPos) {
+        let tx, ty, body = '', op = 1, splat = null;
+        if (!p.squashed) {
+          p.x += p.dir * p.speed * dt;
+          p.wob += dt * 0.006;
+          tx = p.x; ty = p.y0 + Math.sin(p.wob) * 6;
+          body = `scaleX(${p.dir}) rotate(${Math.sin(p.wob * 2) * 6}deg)`;
+          if (p.x < -40 || p.x > W + 14) gone.push(id);
         } else {
-          b.leftPct += b.dir * b.speed;
-          if (b.leftPct > -14 && b.leftPct < 114) next.push(b);
+          p.t += dt;
+          const k = Math.min(1, p.t / 450);
+          tx = p.x; ty = p.ty0 + k * 26;
+          body = `scaleX(${p.dir}) rotate(${k * 300}deg) scale(${1.5 - 0.5 * k})`;
+          op = 1 - k;
+          splat = [0.3 + 1.9 * Math.min(1, k * 1.6), 0.95 * (1 - k)];
+          if (k >= 1) gone.push(id);
+        }
+        const el = els.get(id);
+        if (el) {
+          el.style.transform = `translate3d(${tx.toFixed(1)}px,${ty.toFixed(1)}px,0)`;
+          const b = el.firstElementChild, sp = el.lastElementChild;
+          if (b) { b.style.transform = body; b.style.opacity = op; }
+          if (sp && splat) { sp.style.transform = `scale(${splat[0]})`; sp.style.opacity = splat[1]; }
         }
       }
-      return { bugs: next };
-    });
+      if (gone.length) {
+        gone.forEach(id => this._bugPos.delete(id));
+        this.setState(s => ({ bugs: s.bugs.filter(b => !gone.includes(b.id)) }));
+      }
+    }
+    this._bugRaf = requestAnimationFrame(this.tickBugs);
   };
 
   startGame = () => {
     this.stopGameLoops();
+    if (this._bugPos) this._bugPos.clear();
     this.setState({ phase: 'playing', score: 0, timeLeft: 30, bugs: [] });
     this._tickTimer = setInterval(() => {
       this.setState(s => {
         const t = s.timeLeft - 1;
         if (t <= 0) {
           this.stopGameLoops();
-          // Round over: show the score for a moment, then flip back to the photo
-          // (unless they hit "Play again").
-          clearTimeout(this._flipBackT);
-          this._flipBackT = setTimeout(() => {
-            if (this.state.phase === 'over' && this.state.flipped) {
-              this.toggleFlip();
-              if (this.scheduleFlip) this.scheduleFlip(6000);
-            }
-          }, 4000);
+          // Round over: flip straight back to the photo and show the score under it.
+          const final = s.score;
+          setTimeout(() => {
+            if (this._bugPos) this._bugPos.clear();
+            this.setState({ lastScore: final });
+            clearTimeout(this._scoreT);
+            this._scoreT = setTimeout(() => this.setState({ lastScore: null }), 6000);
+            if (this.state.flipped) this.toggleFlip();
+            if (this.scheduleFlip) this.scheduleFlip(7000);
+          }, 0);
           return { timeLeft: 0, phase: 'over', bugs: [] };
         }
         return { timeLeft: t };
@@ -504,23 +560,19 @@ class Component extends DCLogic {
 
   squash = (e) => {
     const id = Number(e.currentTarget.getAttribute('data-id'));
-    this.setState(s => {
-      const b = s.bugs.find(x => x.id === id && !x.squashed);
-      if (b) { b.squashed = true; b.scale = 1.5; b.splatScale = 0.3; b.splatOpacity = 0.95; }
-      return {
-        score: (s.phase === 'playing' && b) ? s.score + 1 : s.score,
-        bugs: [...s.bugs],
-      };
-    });
+    const p = this._bugPos && this._bugPos.get(id);
+    if (!p || p.squashed) return;
+    p.squashed = true; p.t = 0; p.ty0 = p.y0 + Math.sin(p.wob) * 6;
+    if (this.state.phase === 'playing') this.setState(s => ({ score: s.score + 1 }));
   };
 
   renderVals() {
     const hoveredCtaIdx = this.state.hoveredCtaIdx;
     const setHoveredCta = (i) => this.setState({ hoveredCtaIdx: i });
     const projects = [
-      { bg: 'linear-gradient(135deg,#D8ECE6,#E9F3EF)', dot: '#2F7A6F', tag: 'Research', slotId: 'project-shot-1', placeholderText: 'Drop a screenshot of HoshiyarPK', imgSrc: 'uploads/hoshiyarpk-card-mint.png', eyebrow: 'RESEARCH & PRODUCT DESIGN · FEB – APRIL 2026', title: 'HoshiyarPK', category: '', blendMode: 'normal', desc: "A behavioral training app turning scam awareness into muscle memory for Pakistan's most-targeted generation.", tags: ['Figma', 'User Research', 'Usability Testing', 'HCI Lab (CHISEL)'], link: 'HoshiyarPK.dc.html', linkPointer: 'auto', imgFull: true, imgSmall: false, imgMaxW: '420px', imgAspect: '560/287', hasIcon: true, icon: 'uploads/mascot-final-1.png', appName: 'HoshiyarPK', ctaLabel: 'view case study', ctaBg: '#2F7A6F', ctaColor: '#fff' },
-      { bg: 'linear-gradient(135deg,#F3EBFA,#F8F2FB)', dot: '#A574C9', tag: 'Product & Systems', slotId: 'project-shot-3', placeholderText: 'Drop a screenshot of EquityFlow', imgSrc: 'uploads/screens-1787332622312-4wnb.png', eyebrow: 'PRODUCT DESIGN & DESIGN SYSTEMS · AUGUST 2026', title: 'EquityFlow', category: '', blendMode: 'normal', desc: 'An equity crowdfunding platform where federal compliance had to feel like guidance instead of a wall.', tags: ['Product Design', 'Information Architecture', 'Design Systems', 'Prototyping'], link: 'EquityFlow.dc.html', linkPointer: 'auto', imgFull: true, imgSmall: false, imgMaxW: '420px', imgAspect: '1280/900', hasIcon: true, icon: 'uploads/equityflow-logo.png', appName: 'EquityFlow', ctaLabel: 'view case study', ctaBg: '#7B4FA8', ctaColor: '#fff' },
-      { bg: 'linear-gradient(135deg,#DCEEF5,#EAF6F3)', dot: '#2EAFD0', tag: 'Concept & Brand', slotId: 'project-shot-2', placeholderText: 'Drop a screenshot of Marine Link', imgSrc: 'uploads/pasted-1785840864045-0.png', eyebrow: 'CONCEPT, BRAND & VISUAL DESIGN · JULY 2026', title: 'Marine Link', category: '', blendMode: 'normal', desc: 'An exploration-driven ocean experience that turns the five layers of the ocean into a place to visit.', tags: ['Brand Identity', 'Color Systems', 'Illustration Direction', 'UX Audit'], link: 'MarineLink.dc.html', linkPointer: 'auto', imgFull: true, imgSmall: false, imgMaxW: '420px', imgAspect: '3416/2136', hasIcon: true, icon: 'uploads/marinelink-logo-transparent.png', appName: 'Marine Link', ctaLabel: 'view case study', ctaBg: '#1C6E9C', ctaColor: '#fff' },
+      { bg: 'linear-gradient(135deg,#D8ECE6,#E9F3EF)', dot: '#2F7A6F', tag: 'Research', slotId: 'project-shot-1', placeholderText: 'Drop a screenshot of HoshiyarPK', imgSrc: 'uploads/hoshiyarpk-card-mint.png', eyebrow: 'RESEARCH & PRODUCT DESIGN · FEB – APRIL 2026', title: 'HoshiyarPK', category: '', blendMode: 'normal', desc: "A behavioral training app turning scam awareness into muscle memory for Pakistan's most-targeted generation.", tags: ['Figma', 'User Research', 'Usability Testing', 'HCI Lab (CHISEL)'], link: 'HoshiyarPK.dc.html', linkPointer: 'auto', imgFull: true, imgSmall: false, imgMaxW: '640px', imgAspect: '560/287', hasIcon: true, icon: 'uploads/mascot-final-1.png', appName: 'HoshiyarPK', ctaLabel: 'view case study', ctaBg: '#2F7A6F', ctaColor: '#fff' },
+      { bg: 'linear-gradient(135deg,#F3EBFA,#F8F2FB)', dot: '#A574C9', tag: 'Product & Systems', slotId: 'project-shot-3', placeholderText: 'Drop a screenshot of EquityFlow', imgSrc: 'uploads/screens-1787332622312-4wnb.png', eyebrow: 'PRODUCT DESIGN & DESIGN SYSTEMS · AUGUST 2026', title: 'EquityFlow', category: '', blendMode: 'normal', desc: 'An equity crowdfunding platform where federal compliance had to feel like guidance instead of a wall.', tags: ['Product Design', 'Information Architecture', 'Design Systems', 'Prototyping'], link: 'EquityFlow.dc.html', linkPointer: 'auto', imgFull: true, imgSmall: false, imgMaxW: '640px', imgAspect: '1280/900', hasIcon: true, icon: 'uploads/equityflow-logo.png', appName: 'EquityFlow', ctaLabel: 'view case study', ctaBg: '#7B4FA8', ctaColor: '#fff' },
+      { bg: 'linear-gradient(135deg,#DCEEF5,#EAF6F3)', dot: '#2EAFD0', tag: 'Concept & Brand', slotId: 'project-shot-2', placeholderText: 'Drop a screenshot of Marine Link', imgSrc: 'uploads/pasted-1785840864045-0.png', eyebrow: 'CONCEPT, BRAND & VISUAL DESIGN · JULY 2026', title: 'Marine Link', category: '', blendMode: 'normal', desc: 'An exploration-driven ocean experience that turns the five layers of the ocean into a place to visit.', tags: ['Brand Identity', 'Color Systems', 'Illustration Direction', 'UX Audit'], link: 'MarineLink.dc.html', linkPointer: 'auto', imgFull: true, imgSmall: false, imgMaxW: '640px', imgAspect: '3416/2136', hasIcon: true, icon: 'uploads/marinelink-logo-transparent.png', appName: 'Marine Link', ctaLabel: 'view case study', ctaBg: '#1C6E9C', ctaColor: '#fff' },
     ];
     projects.forEach((p, i) => {
       p.ctaHovered = hoveredCtaIdx === i;
@@ -545,11 +597,12 @@ class Component extends DCLogic {
       pulseTag: this.pulseTag,
       setSkillsRef: this.setSkillsRef,
       setFlipRef: this.setFlipRef,
+      setArenaRef: this.setArenaRef,
       toggleFlip: this.toggleFlip,
       flipTransform: this.state.flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
       frontEvents: this.state.flipped ? 'none' : 'auto',
       backEvents: this.state.flipped ? 'auto' : 'none',
-      flipCaption: this.state.flipped ? 'me hunting down bugs before the product ships :)' : 'psst, there’s a game on the back',
+      flipCaption: this.state.flipped ? 'me hunting down bugs before the product ships :)' : (this.state.lastScore != null ? `You squashed ${this.state.lastScore} ${this.state.lastScore === 1 ? 'bug' : 'bugs'}! Nice catch.` : 'psst, there’s a game on the back'),
       flipLabel: this.state.flipped ? 'Flip back' : 'Flip it',
       flipAria: this.state.flipped ? 'Flip back to my photo' : 'Flip my photo to play Bug bash',
       designChevron: this.state.skillsOpen.design ? 180 : 0,

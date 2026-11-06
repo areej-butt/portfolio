@@ -13,6 +13,7 @@
   <style>
     @keyframes bubblePop { from { opacity: 0; transform: scale(0.75) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
     @keyframes mascotIdle { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-5px) rotate(-2deg); } }
+    @keyframes mascotRun { 0%,100% { transform: translateY(0) rotate(5deg) scale(1,1); } 20% { transform: translateY(-11px) rotate(8deg) scale(0.97,1.03); } 45% { transform: translateY(0) rotate(5deg) scale(1.03,0.96); } 70% { transform: translateY(-11px) rotate(2deg) scale(0.97,1.03); } }
     @keyframes mascotWalk { 0%,100% { transform: translateY(0) rotate(0deg); } 25% { transform: translateY(-7px) rotate(2.5deg); } 50% { transform: translateY(-1px) rotate(-2.5deg); } 75% { transform: translateY(-8px) rotate(3deg); } }
     @keyframes groundPulse { 0%,100% { transform: translateX(-50%) scale(1); opacity: 0.32; } 50% { transform: translateX(-50%) scale(1.18); opacity: 0.18; } }
     @keyframes cloudDrift { 0%,100% { transform: translateX(0); } 50% { transform: translateX(32px); } }
@@ -29,11 +30,11 @@
     .road-pet[data-pet="1"] { animation: petSquish 0.45s ease-in-out 2; }
     .road-pet:focus-visible { outline: 2px solid #2F7A6F; outline-offset: 3px; border-radius: 4px; }
     .road-heart { position: absolute; width: 14px; height: 13px; pointer-events: none; z-index: 8; animation: heartFloat 1.1s ease-out forwards; }
-    .road-says { position: absolute; pointer-events: none; z-index: 8; font-size: 11px; font-weight: 800; color: #A8243F; background: #fff; border: 2px solid #D98BA8; padding: 2px 7px; white-space: nowrap; transform: translateX(-50%); animation: saysPop 1.2s ease-out forwards; }
+    .road-says { position: absolute; pointer-events: none; z-index: 8; font-size: 12px; font-weight: 800; color: #A8243F; white-space: nowrap; text-shadow: 0 0 3px #FBF7F0, 0 0 6px #FBF7F0; transform: translateX(-50%); animation: saysPop 1.2s ease-out forwards; }
     @keyframes petSquish { 0%,100% { transform: scale(1,1); } 35% { transform: scale(1.15,0.82); } 65% { transform: translateY(-6px) scale(0.94,1.08); } }
     @keyframes heartFloat { 0% { opacity: 0; transform: translate(0,0) scale(0.4); } 20% { opacity: 1; transform: translate(calc(var(--hx) * 0.3), -10px) scale(1); } 100% { opacity: 0; transform: translate(var(--hx), -46px) scale(0.8); } }
     @keyframes saysPop { 0% { opacity: 0; transform: translate(-50%, 6px) scale(0.6); } 18%,75% { opacity: 1; transform: translate(-50%, 0) scale(1); } 100% { opacity: 0; transform: translate(-50%, -6px); } }
-    .pet-hint { position: absolute; transform: translateX(-50%); z-index: 3; pointer-events: none; font-size: 10.5px; font-weight: 800; color: #A8243F; background: #fff; border: 1.5px solid #D98BA8; padding: 1px 6px; border-radius: 6px; white-space: nowrap; animation: hintBob 1.6s ease-in-out infinite; }
+    .pet-hint { position: absolute; transform: translateX(-50%); z-index: 3; pointer-events: none; font-size: 11px; font-weight: 800; color: #A8243F; white-space: nowrap; text-shadow: 0 0 3px #FBF7F0, 0 0 6px #FBF7F0; animation: hintBob 1.6s ease-in-out infinite; }
     @keyframes hintBob { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,-4px); } }
     .road-tree { cursor: pointer; transform-origin: 50% 100%; z-index: 3; }
     .road-tree[data-shake="1"] { animation: treeShake 0.6s ease-in-out; }
@@ -48,6 +49,14 @@
     .road-quests:focus-visible { outline: 2px solid #A574C9; outline-offset: 2px; }
     .road-quests[data-bump="1"] { animation: pillBump 0.5s cubic-bezier(0.3,1.6,0.5,1); }
     @keyframes pillBump { 0%,100% { transform: scale(1); } 40% { transform: scale(1.18); background: #E5D5F3; } }
+    .road-bar { flex: 1; }
+    @media (max-width: 600px) {
+      .career-track { padding-top: 116px !important; }
+      .road-controls { flex-wrap: wrap; gap: 8px 10px !important; }
+      .road-controls .road-bar { order: -1; flex: 1 1 100%; }
+      .road-controls .road-level { margin-left: auto; font-size: 12px !important; }
+      .road-quest-list { left: 0; }
+    }
     @keyframes toastIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
     .road-link:hover { text-decoration-thickness: 2.5px; }
     .road-link:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 2px; }
@@ -61,12 +70,12 @@
 </helmet>
 
 <div id="experience" ref="{{ setRootRef }}" style="font-family:'Manrope',sans-serif;color:#211F2E">
-  <div style="position:relative;padding:4px 8px 16px">
+  <div class="road-shell" style="position:relative;padding:0 0 14px">
 
-    <div ref="{{ setScrollRef }}" class="career-track" style="overflow-x: auto; overflow-y: visible; padding: 142px 70px 0 70px; scrollbar-width: none; position: relative">
-      <div style="position:relative;width:{{ trackWidth }}px;height:410px">
+    <div ref="{{ setScrollRef }}" class="career-track" style="overflow-x: auto; overflow-y: visible; padding: 128px 70px 0 70px; scrollbar-width: none; position: relative">
+      <div style="position:relative;width:{{ trackWidth }}px;height:392px">
 
-        <div style="position: absolute; left: -70px; right: -70px; top: 230px; height: 80px; background-image: url('uploads/road-tile-v3.png'); background-repeat: repeat-x; background-size: auto 80px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); width: calc(100% + 218px)"></div>
+        <div style="position: absolute; left: -70px; right: -70px; top: 230px; height: 80px; background-image: url('uploads/road-tile-v3.png'); background-repeat: repeat-x; background-size: auto 80px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); width: max(calc(100% + 218px), 100vw)"></div>
 
         <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-round-small.png" alt="" style="position:absolute;left:515px;width:52px;top:180px;height:59px">
         <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-simple.png" alt="" style="position:absolute;left:800px;width:64px;top:170px;height:60px">
@@ -126,7 +135,7 @@
             
             </div>
 
-            <div style="margin-top:95px;text-align:center;width:170px;display:flex;flex-direction:column;align-items:center">
+            <div style="margin-top:84px;text-align:center;width:170px;display:flex;flex-direction:column;align-items:center">
               <div style="font-weight:800;font-size:15px;line-height:1.3;color:{{ node.roleColor }};min-height:40px;display:flex;align-items:flex-end;justify-content:center;text-align:center;transition:color 0.35s ease">{{ node.role }}</div>
               <div style="font-size:13px;font-weight:600;line-height:1.3;color:#5B5568;margin-top:6px;min-height:34px;display:flex;align-items:flex-start;justify-content:center;text-align:center">{{ node.org }}</div>
             </div>
@@ -140,16 +149,16 @@
         </div>
       </div><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 59px; left: 67px; width: 60px; opacity: 0.6; animation: cloudDrift 7s ease-in-out infinite"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 47px; left: 811px; width: 68px; opacity: 0.7; animation: cloudDrift 8.5s ease-in-out infinite; animation-delay: 1.2s"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 51px; left: 442px; width: 64px; opacity: 0.75; animation: cloudDrift 6.5s ease-in-out infinite; animation-delay: 2.4s"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 55px; left: 1180px; width: 62px; opacity: 0.65; animation: cloudDrift 7.5s ease-in-out infinite; animation-delay: 0.6s"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 49px; left: 1520px; width: 66px; opacity: 0.7; animation: cloudDrift 9s ease-in-out infinite; animation-delay: 1.8s"><img src="uploads/cloud-1.png" alt="" style="position: absolute; top: 57px; left: 1880px; width: 60px; opacity: 0.65; animation: cloudDrift 8s ease-in-out infinite; animation-delay: 3s"></div>
 
-    <div style="margin-top:8px;display:flex;align-items:center;gap:14px">
+    <div class="road-controls" style="max-width:2000px;margin:6px auto 0;padding:0 clamp(20px,4vw,72px);box-sizing:border-box;display:flex;align-items:center;gap:14px">
       <button class="road-btn" onClick="{{ togglePause }}" aria-label="{{ pauseLabel }}" title="{{ pauseLabel }}" style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid #ECE6DA;color:#2F7A6F;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0" style-hover="border-color:#2F7A6F">
         <sc-if value="{{ userPaused }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8Z"></path></svg></sc-if>
         <sc-if value="{{ notPaused }}" hint-placeholder-val="{{ true }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"></path></svg></sc-if>
       </button>
-      <div style="flex:1;height:8px;border-radius:100px;background:#ECE6DA;overflow:hidden">
+      <div class="road-bar" style="height:8px;border-radius:100px;background:#ECE6DA;overflow:hidden">
         <div ref="{{ setBarRef }}" style="height:100%;width:100%;border-radius:100px;background:#2F7A6F;transform-origin:0 50%;will-change:transform"></div>
       </div>
       <div class="road-quests" tabindex="0" aria-label="{{ questAria }}" style="position:relative;flex-shrink:0;display:flex;align-items:center;gap:5px;font-size:12.5px;font-weight:800;color:#452256;background:#F3EBFA;padding:4px 10px;border-radius:99px;white-space:nowrap;cursor:default"><svg width="12" height="12" viewBox="0 0 24 24" fill="#A574C9"><path d="M12 0 14.6 9.4 24 12 14.6 14.6 12 24 9.4 14.6 0 12 9.4 9.4Z"></path></svg>{{ questLabel }}<div class="road-quest-list"><div style="font-weight:800;color:#211F2E;margin-bottom:6px">Road secrets</div><sc-for list="{{ quests }}" as="q" hint-placeholder-count="4"><div style="display:flex;align-items:center;gap:7px;padding:3px 0;color:{{ q.color }};font-weight:{{ q.weight }}"><span style="width:14px;height:14px;border-radius:4px;border:1.5px solid #A574C9;background:{{ q.box }};display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:10px;line-height:1">{{ q.tick }}</span>{{ q.label }}</div></sc-for></div></div>
-      <div aria-live="polite" style="font-size:13px;font-weight:700;color:#2F7A6F;white-space:nowrap">Career Level: {{ reached }} of {{ totalNodes }} Unlocked</div>
+      <div class="road-level" aria-live="polite" style="font-size:13px;font-weight:700;color:#2F7A6F;white-space:nowrap">Career Level: {{ reached }} of {{ totalNodes }} Unlocked</div>
     </div>
     <div>
     </div>
@@ -189,9 +198,15 @@ const RAW = [
   { category: 'leadership', role: 'Campus Ambassador', org: "atomcamp & L'Oréal", headline: 'Represented reputed companies building my professional network' },
 ];
 const LAST = RAW.length - 1;
-const STOP_MS = 15000;
+const STOP_MS = 2500;      // whole road in about 30 seconds: ~2.5s per stop, ~1.8s per run
 
-const easeWalk = (t) => -(Math.cos(Math.PI * t) - 1) / 2;   // gentle start, gentle stop
+// Steady running pace with a quick speed-up and slow-down at each end.
+const easeWalk = (t) => {
+  const a = 0.12;
+  if (t < a) return (t * t) / (2 * a * (1 - a));
+  if (t > 1 - a) return 1 - ((1 - t) * (1 - t)) / (2 * a * (1 - a));
+  return (t - a / 2) / (1 - a);
+};
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const stopX = (i) => i * NODE_SPACING + (STOP_OFFSET[RAW[i].category] ?? 1);
 
@@ -211,7 +226,7 @@ class Component extends DCLogic {
     this.x = stopX(0);
     this.cam = 0;
     this.bar = 1 / RAW.length;
-    this.phase = { type: 'dwell', index: 0, remain: STOP_MS };
+    this.phase = { type: 'dwell', index: 0, remain: 2000 };
     this.hover = false;
     this.focusIn = false;
     this.interactUntil = 0;
@@ -330,7 +345,7 @@ class Component extends DCLogic {
     }
     const dist = Math.abs(x1 - x0);
     this.setFacing(x1 < x0);
-    this.phase = { type: 'walk', target, x0, x1, t: 0, dur: clamp(dist * 2.9, 520, 1700) };
+    this.phase = { type: 'walk', target, x0, x1, t: 0, dur: clamp(dist * 6, 700, 3600) };
     this.setState({ activeIndex: -1, isWalking: true });
   }
 
@@ -341,7 +356,7 @@ class Component extends DCLogic {
       return;
     }
     if (target === 'dog') {
-      this.phase = { type: 'rest', remain: 1300 };
+      this.phase = { type: 'rest', remain: 900 };
       this.setState({ isWalking: false });
       return;
     }
@@ -536,7 +551,7 @@ class Component extends DCLogic {
       totalNodes: RAW.length,
       reached: this.state.reached,
       trackWidth: LAST * NODE_SPACING + 280,
-      mascotAnim: this.state.isWalking ? 'mascotWalk 0.26s linear infinite' : 'mascotIdle 1.6s ease-in-out infinite',
+      mascotAnim: this.state.isWalking ? 'mascotRun 0.36s linear infinite' : 'mascotIdle 1.6s ease-in-out infinite',
       mascotFlip: this.state.facingLeft ? 'scaleX(-1)' : 'scaleX(1)',
       userPaused: this.state.userPaused,
       notPaused: !this.state.userPaused,

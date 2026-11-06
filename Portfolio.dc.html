@@ -49,12 +49,14 @@
     @keyframes skillIconPop { 0% { transform: scale(0.6) rotate(-12deg); } 60% { transform: scale(1.12) rotate(4deg); } 100% { transform: none; } }
     @keyframes skillPillIn { to { opacity: 1; transform: none; } }
     @media (prefers-reduced-motion: reduce) { .skill-card, .skill-pill { opacity: 1; transform: none; } .skill-icon path, .skill-icon circle { stroke-dashoffset: 0; } .skills-in .skill-card, .skills-in .skill-pill, .skills-in .skill-icon, .skills-in .skill-icon path, .skills-in .skill-icon circle { animation: none; } }
-    .flip-btn { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-    .flip-btn:hover { transform: translateY(-2px); }
-    .flip-face:last-child .flip-btn:hover { transform: translate(-50%,-2px); }
-    .flip-btn:focus-visible { outline: 2px solid #2F7A6F; outline-offset: 2px; }
-    .flip-btn svg { transition: transform 0.4s ease; }
-    .flip-btn:hover svg { transform: rotate(180deg); }
+    .flip-front { border-radius: 20px; overflow: hidden; }
+    .flip-ear { position: absolute; right: 0; bottom: 0; width: 40px; height: 40px; padding: 0; border: 0; background: none; cursor: pointer; transition: width 0.3s cubic-bezier(0.3,1.4,0.5,1), height 0.3s cubic-bezier(0.3,1.4,0.5,1); }
+    .flip-ear:hover, .flip-ear:focus-visible { width: 58px; height: 58px; }
+    .flip-ear:focus-visible { outline: none; }
+    .flip-ear:focus-visible .ear-flap { background: #CDE7E0; }
+    .ear-cut { position: absolute; inset: 0; background: #EEF4EA; clip-path: polygon(100% 0, 100% 100%, 0 100%); }
+    .ear-flap-wrap { position: absolute; inset: 0; filter: drop-shadow(-3px -3px 4px rgba(33,31,46,0.28)); }
+    .ear-flap { position: absolute; inset: 0; background: linear-gradient(135deg, #FFFFFF 10%, #DCEDE7 100%); clip-path: polygon(0 0, 100% 0, 0 100%); border-radius: 0 0 0 0; }
     .flip-wrap.peek .flip-peek { animation: flipPeek 1.4s ease-in-out 0.3s 1; }
     @keyframes flipPeek { 0%,100% { transform: rotateY(0); } 35% { transform: rotateY(-22deg); } 60% { transform: rotateY(8deg); } 80% { transform: rotateY(-3deg); } }
     @media (prefers-reduced-motion: reduce) { .flip-card { transition: none !important; } .flip-wrap.peek .flip-peek { animation: none; } }
@@ -202,9 +204,9 @@
           <div class="flip-peek" style="position:absolute;inset:0;transform-style:preserve-3d">
             <div class="flip-card" style="position:absolute;inset:0;transform-style:preserve-3d;transition:transform 0.85s cubic-bezier(0.3,1.25,0.45,1);transform:{{ flipTransform }}">
 
-              <div class="flip-face" style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;overflow:hidden;pointer-events:{{ frontEvents }}">
+              <div class="flip-face flip-front" style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;pointer-events:{{ frontEvents }}">
                 <image-slot id="about-photo" shape="rounded" radius="20" fit="cover" style="width: 100%; height: 100%; display: block" placeholder="Drop a photo of yourself" src="uploads/about-photo.webp"></image-slot>
-                <button onClick="{{ toggleFlip }}" class="flip-btn" aria-label="Flip my photo to play Bug bash" style="position:absolute;right:12px;bottom:12px;display:flex;align-items:center;gap:6px;background:#fff;color:#1D4E46;border:1.5px solid #CDE7E0;border-radius:99px;padding:7px 13px 7px 11px;font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 6px 16px rgba(33,31,46,0.18)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><path d="M3 21v-5h5"></path></svg>Flip me</button>
+                <button onClick="{{ toggleFlip }}" class="flip-ear" aria-label="Flip my photo to play Bug bash" title="Flip me"><span class="ear-cut"></span><span class="ear-flap-wrap"><span class="ear-flap"></span></span></button>
               </div>
 
               <div class="flip-face" style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);pointer-events:{{ backEvents }}">
@@ -250,13 +252,14 @@
           </div>
         </sc-if>
       </div>
-                <button onClick="{{ toggleFlip }}" class="flip-btn" aria-label="Flip back to my photo" style="position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:5;display:flex;align-items:center;gap:6px;background:#fff;color:#1D4E46;border:1.5px solid #CDE7E0;border-radius:99px;padding:6px 12px 6px 10px;font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;cursor:pointer"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><path d="M3 21v-5h5"></path></svg>Back to my photo</button>
               </div>
 
             </div>
           </div>
         </div>
-        <p style="font-size:13px;color:#5C5668;font-weight:600;font-style:italic;margin:14px 0 0;text-align:center;min-height:20px">{{ flipCaption }}</p>
+        <div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 12px;margin-top:14px;min-height:30px">
+          <span style="font-size:13px;color:#5C5668;font-weight:600;font-style:italic">{{ flipCaption }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -323,13 +326,35 @@ class Component extends DCLogic {
   };
 
   setFlipRef = (el) => {
-    if (!el || this._flipIO || typeof IntersectionObserver !== 'function') return;
-    // One small "peek" the first time the card scrolls into view, to hint that it flips.
+    if (!el || this._flipEl) return;
+    this._flipEl = el;
+    const reduced = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    el.addEventListener('mouseenter', () => { this._flipHover = true; });
+    el.addEventListener('mouseleave', () => { this._flipHover = false; });
+    el.addEventListener('focusin', () => { this._flipHover = true; });
+    el.addEventListener('focusout', () => { this._flipHover = false; });
+    if (typeof IntersectionObserver !== 'function') return;
     this._flipIO = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { el.classList.add('peek'); this._flipIO.disconnect(); }
-    }, { threshold: 0.6 });
+      this._flipVisible = e.isIntersecting;
+      // A small "peek" the first time it scrolls into view, then it flips on its own.
+      if (e.isIntersecting && !this._peeked) { this._peeked = true; el.classList.add('peek'); }
+      if (e.isIntersecting && !reduced && !this._flipTimer) this.scheduleFlip(4500);
+    }, { threshold: 0.5 });
     this._flipIO.observe(el);
   };
+
+  // Photo shows for ~5s, the game side for ~7s, then back again, until someone interacts.
+  scheduleFlip(ms) {
+    clearTimeout(this._flipTimer);
+    this._flipTimer = setTimeout(() => {
+      this._flipTimer = null;
+      const busy = this._flipHover || this.state.phase === 'playing' || !this._flipVisible || document.hidden;
+      if (busy) { this.scheduleFlip(1500); return; }
+      const showingGame = !this.state.flipped;
+      this.toggleFlip();
+      this.scheduleFlip(showingGame ? 7000 : 5000);
+    }, ms);
+  }
 
   toggleFlip = (e) => {
     if (e && e.stopPropagation) e.stopPropagation();
@@ -358,6 +383,7 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     if (this._flipIO) this._flipIO.disconnect();
+    clearTimeout(this._flipTimer);
     if (this._skillsIO) this._skillsIO.disconnect();
     this.stopGameLoops();
     clearInterval(this._spawnTimer);
@@ -514,6 +540,8 @@ class Component extends DCLogic {
       frontEvents: this.state.flipped ? 'none' : 'auto',
       backEvents: this.state.flipped ? 'auto' : 'none',
       flipCaption: this.state.flipped ? 'me hunting down bugs before the product ships :)' : 'psst, there’s a game on the back',
+      flipLabel: this.state.flipped ? 'Flip back' : 'Flip it',
+      flipAria: this.state.flipped ? 'Flip back to my photo' : 'Flip my photo to play Bug bash',
       designChevron: this.state.skillsOpen.design ? 180 : 0,
       productChevron: this.state.skillsOpen.product ? 180 : 0,
       interfaceChevron: this.state.skillsOpen.interface ? 180 : 0,

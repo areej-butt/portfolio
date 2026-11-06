@@ -33,13 +33,27 @@
     @keyframes petSquish { 0%,100% { transform: scale(1,1); } 35% { transform: scale(1.15,0.82); } 65% { transform: translateY(-6px) scale(0.94,1.08); } }
     @keyframes heartFloat { 0% { opacity: 0; transform: translate(0,0) scale(0.4); } 20% { opacity: 1; transform: translate(calc(var(--hx) * 0.3), -10px) scale(1); } 100% { opacity: 0; transform: translate(var(--hx), -46px) scale(0.8); } }
     @keyframes saysPop { 0% { opacity: 0; transform: translate(-50%, 6px) scale(0.6); } 18%,75% { opacity: 1; transform: translate(-50%, 0) scale(1); } 100% { opacity: 0; transform: translate(-50%, -6px); } }
+    .pet-hint { position: absolute; transform: translateX(-50%); z-index: 3; pointer-events: none; font-size: 10.5px; font-weight: 800; color: #A8243F; background: #fff; border: 1.5px solid #D98BA8; padding: 1px 6px; border-radius: 6px; white-space: nowrap; animation: hintBob 1.6s ease-in-out infinite; }
+    @keyframes hintBob { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,-4px); } }
+    .road-tree { cursor: pointer; transform-origin: 50% 100%; z-index: 3; }
+    .road-tree[data-shake="1"] { animation: treeShake 0.6s ease-in-out; }
+    .road-tree:focus-visible, .road-areej:focus-visible { outline: 2px solid #2F7A6F; outline-offset: 3px; border-radius: 4px; }
+    @keyframes treeShake { 0%,100% { transform: rotate(0); } 20% { transform: rotate(-7deg); } 40% { transform: rotate(6deg); } 60% { transform: rotate(-4deg); } 80% { transform: rotate(2deg); } }
+    .road-leaf { position: absolute; width: 6px; height: 6px; pointer-events: none; z-index: 3; animation: leafFall 1.3s ease-in forwards; }
+    @keyframes leafFall { 0% { opacity: 1; transform: translate(0,0) rotate(0); } 100% { opacity: 0; transform: translate(var(--lx), 52px) rotate(220deg); } }
+    .road-areej[data-jump="1"] img { animation: areejJump 0.55s cubic-bezier(0.3,1.4,0.5,1) !important; }
+    @keyframes areejJump { 0%,100% { transform: translateY(0) scale(1,1); } 25% { transform: translateY(0) scale(1.08,0.9); } 55% { transform: translateY(-22px) scale(0.96,1.05); } }
+    .road-quest-list { position: absolute; bottom: calc(100% + 8px); left: 0; min-width: 190px; background: #fff; border: 1.5px solid #E5D5F3; border-radius: 10px; padding: 10px 12px; font-size: 12.5px; box-shadow: 0 10px 24px rgba(33,31,46,0.14); opacity: 0; transform: translateY(4px); pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; z-index: 9; white-space: nowrap; }
+    .road-quests:hover .road-quest-list, .road-quests:focus .road-quest-list { opacity: 1; transform: none; }
+    .road-quests:focus-visible { outline: 2px solid #A574C9; outline-offset: 2px; }
     @keyframes toastIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
     .road-link:hover { text-decoration-thickness: 2.5px; }
     .road-link:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 2px; }
     .road-btn:focus-visible { outline: 2px solid #2F7A6F; outline-offset: 2px; }
     @media (prefers-reduced-motion: reduce) {
       .road-cat, .road-cat[data-hop="1"], .road-cat:hover, .road-dog, .road-dog:hover, .road-pet[data-pet="1"] { animation: none; }
-      .road-heart, .road-says { animation-duration: 0.01s; }
+      .road-heart, .road-says, .road-leaf { animation-duration: 0.01s; }
+      .pet-hint, .road-tree[data-shake="1"], .road-areej[data-jump="1"] img { animation: none !important; }
     }
   </style>
 </helmet>
@@ -52,14 +66,16 @@
 
         <div style="position: absolute; left: -70px; right: -70px; top: 230px; height: 80px; background-image: url('uploads/road-tile-v3.png'); background-repeat: repeat-x; background-size: auto 80px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); width: calc(100% + 218px)"></div>
 
-        <img src="uploads/tree-round-small.png" alt="" style="position:absolute;left:515px;width:52px;top:180px;height:59px">
-        <img src="uploads/tree-simple.png" alt="" style="position:absolute;left:800px;width:64px;top:170px;height:60px">
-        <img src="uploads/tree-simple.png" alt="" style="position: absolute; left: 1000px; width: 70px; top: 166px; height: 62px">
-        <img src="uploads/tree-round-small.png" alt="" style="position:absolute;left:1090px;width:52px;top:180px;height:59px">
-        <img src="uploads/tree-simple.png" alt="" style="position:absolute;left:1300px;width:64px;top:170px;height:60px">
-        <img src="uploads/tree-round-big.png" alt="" style="position:absolute;left:1390px;width:58px;top:174px;height:65px">
-        <img src="uploads/tree-simple.png" alt="" style="position:absolute;left:1540px;width:64px;top:166px;height:60px">
+        <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-round-small.png" alt="" style="position:absolute;left:515px;width:52px;top:180px;height:59px">
+        <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-simple.png" alt="" style="position:absolute;left:800px;width:64px;top:170px;height:60px">
+        <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-simple.png" alt="" style="position: absolute; left: 1000px; width: 70px; top: 166px; height: 62px">
+        <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-round-small.png" alt="" style="position:absolute;left:1090px;width:52px;top:180px;height:59px">
+        <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-simple.png" alt="" style="position:absolute;left:1300px;width:64px;top:170px;height:60px">
+        <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-round-big.png" alt="" style="position:absolute;left:1390px;width:58px;top:174px;height:65px">
+        <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-simple.png" alt="" style="position:absolute;left:1540px;width:64px;top:166px;height:60px">
         <img ref="{{ setDogRef }}" class="road-pet road-dog" src="uploads/dog-pixel.png" alt="Pet the dog" role="button" tabindex="0" title="Pet the dog" style="position:absolute;left:2010px;width:46px;top:198px;height:37px;transform-origin:bottom center;z-index:2">
+        <sc-if value="{{ hintCat }}" hint-placeholder-val="{{ true }}"><span class="pet-hint" style="left:761px;top:160px">pet me</span></sc-if>
+        <sc-if value="{{ hintDog }}" hint-placeholder-val="{{ true }}"><span class="pet-hint" style="left:2033px;top:166px">pet me</span></sc-if>
         <img ref="{{ setCatRef }}" class="road-pet road-cat" src="uploads/cat-pixel.png" alt="Pet the cat" role="button" tabindex="0" title="Pet the cat" style="position:absolute;left:742px;top:192px;width:34px;height:43px;z-index:2">
 
         <sc-for list="{{ nodes }}" as="node" hint-placeholder-count="7">
@@ -118,8 +134,8 @@
           </div>
         </sc-for>
 
-        <div ref="{{ setMascotRef }}" style="position:absolute;top:145px;left:0;width:81px;height:100px;z-index:4;will-change:transform;transition:opacity 0.45s ease;pointer-events:none">
-          <div style="width:100%;height:100%;transform:{{ mascotFlip }};transition:transform 0.25s ease">
+        <div ref="{{ setMascotRef }}" style="position:absolute;top:145px;left:0;width:81px;height:100px;z-index:4;will-change:transform;transition:opacity 0.45s ease">
+          <div ref="{{ setAreejRef }}" class="road-areej" role="button" tabindex="0" title="Say hi to Areej" aria-label="Say hi to Areej" style="width:100%;height:100%;cursor:pointer;transform:{{ mascotFlip }};transition:transform 0.25s ease">
             <img src="uploads/areej-mascot-v2.png" alt="Areej mascot" style="display:block;height:100px;width:81px;transform-origin:50% 100%;filter:drop-shadow(0 6px 6px rgba(33,31,46,0.28));animation:{{ mascotAnim }}">
           </div>
         </div>
@@ -133,7 +149,7 @@
       <div style="flex:1;height:8px;border-radius:100px;background:#ECE6DA;overflow:hidden">
         <div ref="{{ setBarRef }}" style="height:100%;width:100%;border-radius:100px;background:#2F7A6F;transform-origin:0 50%;will-change:transform"></div>
       </div>
-      <sc-if value="{{ petCount }}" hint-placeholder-val="{{ false }}"><div title="Pets given" style="flex-shrink:0;display:flex;align-items:center;gap:4px;font-size:13px;font-weight:800;color:#A8243F;background:#FBE7EB;padding:3px 9px;border-radius:99px;white-space:nowrap"><svg width="12" height="11" viewBox="0 0 7 6" shape-rendering="crispEdges"><path fill="#D9506A" d="M1 0h2v1h1V0h2v1h1v2H6v1H5v1H4v1H3V5H2V4H1V3H0V1h1Z"></path></svg>{{ petCount }}</div></sc-if>
+      <div class="road-quests" tabindex="0" aria-label="{{ questAria }}" style="position:relative;flex-shrink:0;display:flex;align-items:center;gap:5px;font-size:12.5px;font-weight:800;color:#452256;background:#F3EBFA;padding:4px 10px;border-radius:99px;white-space:nowrap;cursor:default"><svg width="12" height="12" viewBox="0 0 24 24" fill="#A574C9"><path d="M12 0 14.6 9.4 24 12 14.6 14.6 12 24 9.4 14.6 0 12 9.4 9.4Z"></path></svg>{{ questLabel }}<div class="road-quest-list"><div style="font-weight:800;color:#211F2E;margin-bottom:6px">Road secrets</div><sc-for list="{{ quests }}" as="q" hint-placeholder-count="4"><div style="display:flex;align-items:center;gap:7px;padding:3px 0;color:{{ q.color }};font-weight:{{ q.weight }}"><span style="width:14px;height:14px;border-radius:4px;border:1.5px solid #A574C9;background:{{ q.box }};display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:10px;line-height:1">{{ q.tick }}</span>{{ q.label }}</div></sc-for></div></div>
       <div aria-live="polite" style="font-size:13px;font-weight:700;color:#2F7A6F;white-space:nowrap">Career Level: {{ reached }} of {{ totalNodes }} Unlocked</div>
     </div>
     <div aria-live="polite" style="min-height:22px;margin-top:6px;text-align:right">
@@ -167,7 +183,7 @@ const TRACK_PAD = 70;
 // headLink / subLink: the words in the bubble that become the link
 const RAW = [
   { category: 'foundation', role: 'Research Assistant', org: 'HCI Lab (CHISEL @ LUMS)', headline: 'Where it all began' },
-  { category: 'remote', role: 'Product Designer', org: 'K2 Studio', headline: 'My first job!', subLink: 'Rebuilding Ventura', link: 'https://getventura.co', linkLabel: 'getventura.co' },
+  { category: 'remote', role: 'Product Designer', org: 'K2 Studio', headline: 'My first job', headLink: 'My first job', link: 'https://getventura.co', linkLabel: 'getventura.co' },
   { category: 'dfg', role: 'Designer', org: 'Develop for Good', headline: 'Designing MoLA Commons, an archive for African art', headLink: 'MoLA Commons', link: 'https://africanartagenda.art', linkLabel: 'African Art Agenda' },
   { category: 'design', role: 'Product Design Intern', org: 'Carbonteq', headline: 'Trained in product, design and development' },
   { category: 'lwise', role: 'Treasurer', org: 'LWiSE', headline: 'Executive member of the first women in science club on campus!' },
@@ -175,19 +191,21 @@ const RAW = [
   { category: 'leadership', role: 'Campus Ambassador', org: "atomcamp & L'Oréal", headline: 'Represented reputed companies building my professional network' },
 ];
 const LAST = RAW.length - 1;
+const STOP_MS = 15000;
 
 const easeWalk = (t) => -(Math.cos(Math.PI * t) - 1) / 2;   // gentle start, gentle stop
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const stopX = (i) => i * NODE_SPACING + (STOP_OFFSET[RAW[i].category] ?? 1);
 
 class Component extends DCLogic {
-  state = { activeIndex: 0, reached: 1, isWalking: false, facingLeft: false, userPaused: false, petCount: 0, toast: '' };
+  state = { activeIndex: 0, reached: 1, isWalking: false, facingLeft: false, userPaused: false, petCount: 0, toast: '', found: {} };
 
   setScrollRef = (el) => { this.scrollEl = el; };
   setMascotRef = (el) => { this.mascotEl = el; if (el) this.paint(true, 0, 0); };
   setBarRef = (el) => { this.barEl = el; };
   setCatRef = (el) => { this.catEl = el; };
   setDogRef = (el) => { this.dogEl = el; };
+  setAreejRef = (el) => { this.areejEl = el; };
   setRootRef = (el) => { this.rootEl = el; };
 
   componentDidMount() {
@@ -195,7 +213,7 @@ class Component extends DCLogic {
     this.x = stopX(0);
     this.cam = 0;
     this.bar = 1 / RAW.length;
-    this.phase = { type: 'dwell', index: 0, remain: 2200 };
+    this.phase = { type: 'dwell', index: 0, remain: STOP_MS };
     this.hover = false;
     this.focusIn = false;
     this.interactUntil = 0;
@@ -208,7 +226,7 @@ class Component extends DCLogic {
     on(this.scrollEl, 'touchstart', interact, { passive: true });
     on(this.scrollEl, 'touchmove', interact, { passive: true });
     // Only pause while someone is reading a bubble or petting an animal; otherwise she keeps running.
-    on(this.rootEl, 'mouseover', (e) => { this.hover = !!(e.target.closest && e.target.closest('.road-bubble, .road-pet')); });
+    on(this.rootEl, 'mouseover', (e) => { this.hover = !!(e.target.closest && e.target.closest('.road-bubble, .road-pet, .road-areej, .road-quests')); });
     on(this.rootEl, 'mouseleave', () => { this.hover = false; });
     on(this.rootEl, 'focusin', () => { this.focusIn = true; });
     on(this.rootEl, 'focusout', () => { this.focusIn = false; });
@@ -222,6 +240,17 @@ class Component extends DCLogic {
     on(this.catEl, 'keydown', pet('cat'));
     on(this.dogEl, 'click', pet('dog'));
     on(this.dogEl, 'keydown', pet('dog'));
+    const act = (fn) => (e) => {
+      if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+      if (e.type === 'keydown') e.preventDefault();
+      fn(e.currentTarget);
+    };
+    on(this.areejEl, 'click', act(() => this.sayHi()));
+    on(this.areejEl, 'keydown', act(() => this.sayHi()));
+    if (this.rootEl) this.rootEl.querySelectorAll('.road-tree').forEach((t) => {
+      on(t, 'click', act((el) => this.shakeTree(el)));
+      on(t, 'keydown', act((el) => this.shakeTree(el)));
+    });
 
     if (this.rootEl && typeof IntersectionObserver === 'function') {
       this.io = new IntersectionObserver(([e]) => {
@@ -318,7 +347,7 @@ class Component extends DCLogic {
       this.setState({ isWalking: false });
       return;
     }
-    const linger = this.clickBoost ? 7000 : (RAW[target].link ? 4600 : 3400);
+    const linger = STOP_MS;   // she waits 15 seconds at every stop (hovering a bubble still pauses her)
     this.clickBoost = false;
     this.phase = { type: 'dwell', index: target, remain: linger };
     this.setFacing(false);
@@ -371,17 +400,60 @@ class Component extends DCLogic {
     this.pets = this.pets || { cat: 0, dog: 0 };
     this.pets[kind] += 1;
     const total = this.pets.cat + this.pets.dog;
-    let toast = '';
-    if (total === 1) toast = kind === 'cat' ? 'The cat likes you. Find the dog too?' : 'Good boy! Is there a cat somewhere?';
-    else if (this.pets.cat >= 1 && this.pets.dog >= 1 && !this.bothDone) { this.bothDone = true; toast = 'Achievement unlocked: friend to every pet'; }
-    else if (total === 10) toast = 'Achievement unlocked: certified pet whisperer';
-    else if (total === 25) toast = 'Okay, they officially love you more than me';
     this.setState({ petCount: total });
-    if (toast) {
-      this.setState({ toast });
-      clearTimeout(this._toastT);
-      this._toastT = setTimeout(() => this.setState({ toast: '' }), 3200);
+    if (total === 10) this.showToast('Certified pet whisperer');
+    else this.find(kind, kind === 'cat' ? 'The cat likes you!' : 'Good dog! Tail wags all round');
+  }
+
+  sayHi() {
+    const el = this.areejEl;
+    if (!el) return;
+    el.dataset.jump = '0'; void el.offsetWidth; el.dataset.jump = '1';
+    clearTimeout(el._jT); el._jT = setTimeout(() => { el.dataset.jump = '0'; }, 600);
+    const lines = ['hi!', 'thanks for visiting!', 'hire me? :)', 'keep scrolling!', 'that tickles'];
+    this._hiN = (this._hiN || 0) + 1;
+    const say = document.createElement('span');
+    say.className = 'road-says';
+    say.textContent = lines[(this._hiN - 1) % lines.length];
+    say.style.left = (this.x + MASCOT_HALF) + 'px';
+    say.style.top = '120px';
+    this.mascotEl.parentElement.appendChild(say);
+    setTimeout(() => say.remove(), 1300);
+    this.find('areej', 'You said hi to Areej');
+  }
+
+  shakeTree(el) {
+    el.dataset.shake = '0'; void el.offsetWidth; el.dataset.shake = '1';
+    clearTimeout(el._sT); el._sT = setTimeout(() => { el.dataset.shake = '0'; }, 650);
+    const host = el.parentElement, cx = el.offsetLeft + el.offsetWidth / 2, top = el.offsetTop + 8;
+    const greens = ['#7DB24A', '#5E9A3A', '#A7C957', '#D6A947'];
+    for (let k = 0; k < 5; k++) {
+      const leaf = document.createElement('span');
+      leaf.className = 'road-leaf';
+      leaf.style.left = (cx - 14 + Math.random() * 28) + 'px';
+      leaf.style.top = (top + Math.random() * 14) + 'px';
+      leaf.style.background = greens[k % greens.length];
+      leaf.style.setProperty('--lx', (Math.random() * 30 - 15) + 'px');
+      leaf.style.animationDelay = (k * 0.07) + 's';
+      host.appendChild(leaf);
+      setTimeout(() => leaf.remove(), 1600);
     }
+    this.find('tree', 'Leaves everywhere! You shook a tree');
+  }
+
+  // Road secrets: cat, dog, Areej, a tree.
+  find(key, msg) {
+    if (this.state.found[key]) return;
+    const found = { ...this.state.found, [key]: true };
+    const n = Object.keys(found).length;
+    this.setState({ found });
+    this.showToast(n === 4 ? 'All 4 road secrets found. You’re thorough, let’s work together!' : msg + ' (' + n + '/4 secrets)');
+  }
+
+  showToast(toast) {
+    this.setState({ toast });
+    clearTimeout(this._toastT);
+    this._toastT = setTimeout(() => this.setState({ toast: '' }), 3400);
   }
 
   setFacing(left) {
@@ -485,6 +557,16 @@ class Component extends DCLogic {
       setCatRef: this.setCatRef,
       setDogRef: this.setDogRef,
       petCount: this.state.petCount,
+      setAreejRef: this.setAreejRef,
+      hintCat: !this.state.found.cat,
+      hintDog: !this.state.found.dog,
+      questDone: Object.keys(this.state.found).length,
+      questLabel: Object.keys(this.state.found).length + '/4 secrets',
+      questAria: Object.keys(this.state.found).length + ' of 4 road secrets found',
+      quests: [['cat', 'Pet the cat'], ['dog', 'Pet the dog'], ['areej', 'Say hi to Areej'], ['tree', 'Shake a tree']].map(([k, label]) => {
+        const done = !!this.state.found[k];
+        return { label, tick: done ? '\u2713' : '', box: done ? '#A574C9' : '#fff', color: done ? '#452256' : '#5C5668', weight: done ? 800 : 600 };
+      }),
       toast: this.state.toast,
       setRootRef: this.setRootRef,
     };

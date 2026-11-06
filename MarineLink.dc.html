@@ -14,6 +14,7 @@
 <link rel="icon" href="favicon-marinelink.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-marinelink-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon-marinelink.png">
+<script src="video-previews.js" defer></script>
 <script src="sparkle-cursor.js" data-dot="#214C7A" data-spark="#D97D5E" defer></script>
 <script src="./support.js"></script>
 </head>
@@ -112,7 +113,7 @@
 
   <!-- HERO COVER -->
   <div style="max-width:900px;margin:0 auto;padding:36px clamp(20px,5vw,64px) 0">
-    <image-slot id="marinelink-hero-cover" shape="rounded" radius="24" fit="contain" style="width:100%;aspect-ratio:1672/1042;height:auto" placeholder="Drop the hero cover shot / app mockup" src="uploads/pasted-1785841138503-0.png"></image-slot>
+    <div data-video="ml-hero" data-alt="Marine Link: diving from the Sunlight Zone down to the Trenches" style="width:100%;aspect-ratio:1120/700;border-radius:24px"></div>
   </div>
 
   <!-- OVERVIEW -->
@@ -337,8 +338,8 @@
   <div style="max-width: 900px; margin: 0 auto; padding: 0 clamp(20px,5vw,64px) 40px; display: flex; flex-direction: column; gap: 24px">
     <div style="background:#EAF5F2;border:1px solid #D6E8E3;border-radius:20px;padding:clamp(24px,4vw,32px);display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:10px">
-        <img src="uploads/pasted-1785841183096-0.png" alt="Creature detail card, front: Mahi-Mahi illustration and fact" style="width:100%;border-radius:14px;display:block">
-        <img src="uploads/pasted-1785841198939-0.png" alt="Creature detail card, flipped: real Mahi-Mahi photo" style="width:100%;border-radius:14px;display:block">
+        <div data-video="ml-card-front" data-alt="Tapping the octopus opens its creature card with an illustrated fact" style="width:100%;aspect-ratio:1120/700;border-radius:14px"></div>
+        <div data-video="ml-card-flip" data-alt="Flipping the creature card to a real octopus photo and back" style="width:100%;aspect-ratio:1120/700;border-radius:14px"></div>
       </div>
       <div>
         <h3 style="font-family: 'Fraunces',serif; font-weight:500; font-size:clamp(18.9px,2.6vw,22.4px); margin: 0 0 8px; color: #211F2E">Creature Detail Card</h3>
@@ -354,8 +355,8 @@
         <div style="box-sizing: border-box; display: flex; flex-direction: column; gap: 12px"><div style="box-sizing: border-box; display: flex; flex-direction: column; gap: 12px"><p style="font-size: 17px; line-height: 1.65; color: #453F52; margin: 0">Allows browsing for kids who do not know exactly what they are looking for. Results link straight to the creature map and searching for a creature takes you across the ocean to them making navigation easy.</p></div></div>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <img src="uploads/pasted-1785841212346-0.png" alt="Find a creature search modal with suggested creatures" style="width:100%;border-radius:14px;display:block">
-        <img src="uploads/pasted-1785841225956-0.png" alt="Find a creature search filtered to 'mahi', showing the explored Mahi-Mahi result" style="width:100%;border-radius:14px;display:block">
+        <div data-video="ml-search-browse" data-alt="Find a creature: browsing suggestions by zone" style="width:100%;aspect-ratio:1120/700;border-radius:14px"></div>
+        <div data-video="ml-search-find" data-alt="Typing mahi into search and travelling to the Mahi-Mahi" style="width:100%;aspect-ratio:1120/700;border-radius:14px"></div>
       </div>
     </div>
 
@@ -363,14 +364,14 @@
       <h3 style="font-family: 'Fraunces',serif; font-weight:500; font-size:clamp(18.9px,2.6vw,22.4px); margin: 0 0 8px; color: #211F2E">Creature Map</h3>
       <div style="font-size: 14px; font-weight: 600; color: #214C7A; margin-bottom: 10px">Every zone, every creature, one screen</div>
       <p style="font-size: 17px; line-height: 1.65; color: #453F52; margin: 0 0 20px">Helps navigation. All 35 creatures are grouped by zone with <b>All / Unexplored / Explored</b> tabs and a checkmark legend instead of red/green status. A <b>"you are here"</b> badge anchors to the player's nearest creature instead of floating in open water.</p>
-      <img src="uploads/pasted-1785841237709-0.png" alt="Creature map showing all zones, explored and unexplored creatures, and a 'you are here' badge" style="width:100%;border-radius:14px;display:block">
+      <div data-video="ml-map" data-alt="Creature map: switching between all, unexplored and explored creatures" style="width:100%;aspect-ratio:1120/700;border-radius:14px"></div>
     </div>
 
     <div style="background:#EAF5F2;border:1px solid #D6E8E3;border-radius:20px;padding:clamp(24px,4vw,32px)">
       <h3 style="font-family: 'Fraunces',serif; font-weight:500; font-size:clamp(18.9px,2.6vw,22.4px); margin: 0 0 8px; color: #211F2E">Quiz</h3>
       <div style="font-size: 14px; font-weight: 600; color: #214C7A; margin-bottom: 10px">A trophy, not a question mark</div>
       <p style="font-size: 17px; line-height: 1.65; color: #453F52; margin: 0 0 20px">The quiz opens from a trophy, not a question mark since a "?" reads as help to a child and an unexpected test breaks that promise. Capped at 10 questions with a clear progress bar, it favors picture answers over text and a correct pick earns confetti instead of a wrong one earning a buzz.</p>
-      <img src="uploads/pasted-1785841248305-0.png" alt="Quiz screen: 'Which one is the great white shark?' with four picture answer options" style="width:100%;border-radius:14px;display:block">
+      <div data-video="ml-quiz" data-alt="Quiz: picking the octopus, then the great white shark" style="width:100%;aspect-ratio:1120/700;border-radius:14px"></div>
     </div>
 
   </div>

@@ -50,6 +50,22 @@
     @keyframes skillIconPop { 0% { transform: scale(0.6) rotate(-12deg); } 60% { transform: scale(1.12) rotate(4deg); } 100% { transform: none; } }
     @keyframes skillPillIn { to { opacity: 1; transform: none; } }
     @media (prefers-reduced-motion: reduce) { .skill-card, .skill-pill { opacity: 1; transform: none; } .skill-icon path, .skill-icon circle { stroke-dashoffset: 0; } .skills-in .skill-card, .skills-in .skill-pill, .skills-in .skill-icon, .skills-in .skill-icon path, .skills-in .skill-icon circle { animation: none; } }
+    .fw-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-bottom: 40px; }
+    .fw-card { display: flex; flex-direction: column; gap: 14px; text-decoration: none; color: #211F2E; }
+    .fw-media { width: 100%; aspect-ratio: 1120/700; border-radius: 18px; outline: 1px solid rgba(33,31,46,0.06); outline-offset: -1px; transition: box-shadow 0.35s, transform 0.35s cubic-bezier(0.2,0.9,0.3,1); }
+    .fw-card:hover .fw-media, .fw-card:focus-visible .fw-media { box-shadow: 0 16px 34px rgba(33,31,46,0.14); transform: translateY(-3px); }
+    .fw-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .fw-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; }
+    .fw-brand img { width: 30px; height: 30px; border-radius: 8px; object-fit: contain; }
+    .fw-date { font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; color: #453F52; text-transform: uppercase; white-space: nowrap; }
+    .fw-desc { font-size: 15px; line-height: 1.6; color: #5C5668; margin: 0; }
+    .fw-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 14.5px; }
+    .fw-link svg { transition: transform 0.25s cubic-bezier(0.3,1.6,0.5,1); }
+    .fw-card:hover .fw-link svg, .fw-card:focus-visible .fw-link svg { transform: translateX(4px); }
+    .fw-card:focus-visible { outline: 2px solid #2F7A6F; outline-offset: 6px; border-radius: 18px; }
+    .fw-card.work-in { animation-delay: calc(var(--d) * 140ms); }
+    .fw-card.work-in .work-bit { animation-delay: calc(var(--d) * 140ms + 260ms + var(--k) * 90ms); }
+    @media (max-width: 860px) { .fw-grid { grid-template-columns: 1fr; gap: 36px; } .fw-card.work-in, .fw-card.work-in .work-bit { animation-delay: 0ms; } }
     .work-card { opacity: 0; transform: translateY(40px) scale(0.97); }
     .work-card.work-in { animation: skillCardIn 0.8s cubic-bezier(0.2,0.9,0.3,1.15) forwards; }
     .work-bit { opacity: 0; transform: translateY(14px); }
@@ -115,40 +131,19 @@
       <h2 style="font-family: 'Fraunces',serif; font-weight: 500; font-size:clamp(25.8px,3.4vw,34.4px); margin: 0">Featured Work</h2>
       <span style="font-size:14px;color:#8A8494">more projects coming soon!</span>
     </div>
-    <sc-for list="{{ projects }}" as="project" hint-placeholder-count="3">
-      <div style="margin-bottom:56px">
-        <div class="work-card" style="position:relative;background:{{ project.bg }};border-radius:24px;padding:clamp(36px,5vw,64px);display:flex;align-items:center;gap:clamp(28px,4vw,56px);flex-wrap:wrap;overflow:hidden">
-          <div style="flex:1.1 1 320px;min-width:260px;position:relative;z-index:1">
-            <div class="work-bit" style="--k:0;display:flex;align-items:center;gap:10px;margin-bottom:20px">
-              
-              <img src="{{ project.icon }}" alt="" style="width: 32px; height: 32px; border-radius: 9px; object-fit: contain"><div style="font-weight:700;font-size:15px;color:#211F2E">{{ project.appName }}</div>
-            </div>
-            <div class="work-bit" style="--k:1;font-size:13px;font-weight:700;letter-spacing:0.08em;color:#453F52;margin-bottom:10px">{{ project.eyebrow }}</div>
-            <h3 class="work-bit" style="--k:2;font-size:clamp(28px,3.4vw,38px);font-weight:800;margin:0 0 16px;line-height:1.1">{{ project.title }}</h3>
-            <p class="work-bit" style="--k:3;font-size:15.5px;line-height:1.6;color:#5C5668;margin:0 0 26px;max-width:440px">{{ project.desc }}</p>
-            <div class="work-bit" style="--k:4"><a href="{{ project.link }}" onMouseEnter="{{ project.onCtaEnter }}" onMouseLeave="{{ project.onCtaLeave }}" style="display:inline-flex;align-items:center;gap:10px;background:{{ project.ctaBg }};color:{{ project.ctaColor }};font-weight:600;font-size:14.5px;padding:13px 24px;border-radius:100px;text-decoration:none;white-space:nowrap;pointer-events:{{ project.linkPointer }}" style-hover="opacity:0.88">
-              <sc-if value="{{ project.ctaHovered }}" hint-placeholder-val="{{ false }}">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:slideArrow 0.25s ease"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-              </sc-if>
-              <sc-if value="{{ project.ctaDotVisible }}" hint-placeholder-val="{{ true }}">
-                <span style="width:9px;height:9px;border-radius:50%;background:currentColor"></span>
-              </sc-if>
-              {{ project.ctaLabel }}
-            </a></div>
+    <div class="fw-grid">
+      <sc-for list="{{ projects }}" as="project" hint-placeholder-count="3">
+        <a href="{{ project.link }}" class="fw-card work-card" style="--d:{{ project.delay }}">
+          <div class="fw-media" data-video="{{ project.video }}" data-alt="{{ project.videoAlt }}"></div>
+          <div class="fw-row work-bit" style="--k:0">
+            <div class="fw-brand"><img src="{{ project.icon }}" alt=""><span>{{ project.appName }}</span></div>
+            <span class="fw-date">{{ project.date }}</span>
           </div>
-          <div class="work-shot" style="flex:1 1 300px;min-width:240px;display:flex;justify-content:center;position:relative;z-index:1">
-            <sc-if value="{{ project.imgFull }}" hint-placeholder-val="{{ false }}">
-              <div data-video="{{ project.video }}" data-alt="{{ project.videoAlt }}" style="width:100%;aspect-ratio:{{ project.imgAspect }};max-width:{{ project.imgMaxW }};border-radius:16px;box-shadow:0 10px 28px rgba(33,31,46,0.10)"></div>
-            </sc-if>
-            <sc-if value="{{ project.imgSmall }}" hint-placeholder-val="{{ true }}">
-              <div style="width:min(420px,90%)">
-                <image-slot id="{{ project.slotId }}" shape="rounded" radius="16" placeholder="{{ project.placeholderText }}"></image-slot>
-              </div>
-            </sc-if>
-          </div>
-        </div>
-      </div>
-    </sc-for>
+          <p class="fw-desc work-bit" style="--k:1">{{ project.desc }}</p>
+          <span class="fw-link work-bit" style="--k:2;color:{{ project.linkColor }}">View case study<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+        </a>
+      </sc-for>
+    </div>
   </div>
 
   <!-- SKILLS -->
@@ -600,6 +595,9 @@ class Component extends DCLogic {
       { bg: 'linear-gradient(135deg,#DCEEF5,#EAF6F3)', dot: '#2EAFD0', tag: 'Concept & Brand', slotId: 'project-shot-2', placeholderText: 'Drop a screenshot of Marine Link', imgSrc: 'uploads/pasted-1785840864045-0.png', eyebrow: 'CONCEPT, BRAND & VISUAL DESIGN · JULY 2026', title: 'Marine Link', category: '', blendMode: 'normal', desc: 'An exploration-driven ocean experience that turns the five layers of the ocean into a place to visit.', tags: ['Brand Identity', 'Color Systems', 'Illustration Direction', 'UX Audit'], link: 'MarineLink.dc.html', linkPointer: 'auto', imgFull: true, imgSmall: false, imgMaxW: '420px', imgAspect: '1120/700', video: 'ml-card', videoAlt: 'Marine Link landing page and tutorial', hasIcon: true, icon: 'uploads/marinelink-logo-transparent.png', appName: 'Marine Link', ctaLabel: 'view case study', ctaBg: '#1C6E9C', ctaColor: '#fff' },
     ];
     projects.forEach((p, i) => {
+      p.delay = i;
+      p.date = String(p.eyebrow).split(' · ')[1] || '';
+      p.linkColor = p.ctaBg;
       p.ctaHovered = hoveredCtaIdx === i;
       p.ctaDotVisible = hoveredCtaIdx !== i;
       p.onCtaEnter = () => setHoveredCta(i);

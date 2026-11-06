@@ -97,7 +97,7 @@ Built in Claude Design's `.dc.html` format, not a normal framework.
   `imgAspect: '1120/700'`, `imgMaxW: '420px'`.
 - **Skills:** cards reveal on scroll; clicking a pill pulses only that pill. Every pill needs a **unique `data-tag`**
   that is also listed in the `tagAnim` key list in `renderVals`.
-- **About Me:** photo/bug-game flip card. Folded corner flips to the game, and the same corner on the game side flips
+- **About Me:** photo/bug-game flip card (15-second rounds). Folded corner flips to the game, and the same corner on the game side flips
   back. When a round ends it flips back and shows the score for 6s. "Contact Me" and "Download my Resume" both turn
   teal on hover/click.
 

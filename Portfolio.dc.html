@@ -314,7 +314,7 @@ class Component extends DCLogic {
     phase: 'idle', // idle | playing | over
     score: 0,
     hoveredCtaIdx: null,
-    timeLeft: 30,
+    timeLeft: 15,
     bugs: [],
     nameIndex: 0,
     nameFading: false,
@@ -388,7 +388,7 @@ class Component extends DCLogic {
     const flipped = !this.state.flipped;
     if (!flipped && this.state.phase !== 'idle') {
       this.stopGameLoops();
-      this.setState({ phase: 'idle', bugs: [], score: 0, timeLeft: 30 });
+      this.setState({ phase: 'idle', bugs: [], score: 0, timeLeft: 15 });
     }
     if (!flipped && this._bugPos) this._bugPos.clear();
     this.setState(flipped ? { flipped } : { flipped, bugs: [] }, () => this.syncBugLoop());
@@ -528,7 +528,7 @@ class Component extends DCLogic {
   startGame = () => {
     this.stopGameLoops();
     if (this._bugPos) this._bugPos.clear();
-    this.setState({ phase: 'playing', score: 0, timeLeft: 30, bugs: [] });
+    this.setState({ phase: 'playing', score: 0, timeLeft: 15, bugs: [] });
     this._tickTimer = setInterval(() => {
       this.setState(s => {
         const t = s.timeLeft - 1;

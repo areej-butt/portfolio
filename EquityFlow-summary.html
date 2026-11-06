@@ -39,16 +39,17 @@
   .cs-toggle a.on, .cs-toggle a.on:hover { background:var(--teal); color:#fff; }
   header.hero h1 { font-size:clamp(36.1px,6vw,61.9px); line-height:1.05; margin:0 0 24px; }
   header.hero .eyebrow { font-size:15px; letter-spacing:.06em; margin-bottom:16px; line-height:normal; }
-  header.hero p.lead { font-size:clamp(18px,2.2vw,21px); color:var(--body); margin:0 0 22px; max-width:640px; }
+  header.hero p.tagline { font-family:'Fraunces',serif; font-variation-settings:'SOFT' 100,'WONK' 1; font-style:italic; font-size:clamp(17.2px,2.1vw,22.4px); line-height:1.4; color:var(--body); margin:0 0 22px; max-width:720px; }
+  header.hero p.lead { font-size:17px; line-height:1.7; color:var(--body); margin:0 0 24px; max-width:720px; }
   .meta { display:flex; flex-wrap:wrap; gap:10px 28px; font-size:14px; color:var(--muted); }
   .meta b { color:var(--ink); font-weight:700; }
   .cover { margin:32px 0 0; border-radius:24px; overflow:hidden; background:linear-gradient(135deg,#F3E4EA,#F8F2FB); }
   .cover img { display:block; width:100%; height:auto; }
 
   section { padding:clamp(44px,7vw,72px) 0 0; }
-  h2 { font-size:clamp(26px,3.4vw,34px); margin:0 0 16px; line-height:1.15; }
+  h2 { font-size:clamp(24.1px,3.4vw,31px); margin:0 0 20px; line-height:1.2; }
   .num { font:700 13px 'Figtree'; color:var(--teal); letter-spacing:.08em; margin-bottom:8px; }
-  p { margin:0 0 14px; color:var(--body); font-size:16.5px; }
+  p { margin:0 0 16px; color:var(--body); font-size:17px; line-height:1.75; }
 
   .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:22px; }
   .stat { background:#fff; border:1px solid var(--line); border-radius:20px; padding:22px 20px; }
@@ -58,10 +59,27 @@
   .insight { margin-top:22px; background:linear-gradient(135deg,#F3EBFA,#F8F2FB); border-left:4px solid var(--lilac); border-radius:16px; padding:20px 22px; font-size:17px; color:var(--plum); }
   .insight b { color:var(--ink); }
 
-  .process { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
-  .process span { background:#fff; border:1px solid var(--line); border-radius:100px; padding:7px 14px; font-size:14px; font-weight:600; color:var(--body); display:inline-flex; align-items:center; gap:8px; }
-  .process span i { width:8px; height:8px; border-radius:50%; display:inline-block; }
-  .process em { font-style:normal; color:#B5AEA3; align-self:center; }
+  .tl { list-style:none; margin:28px 0 8px; padding:0; display:grid; grid-template-columns:repeat(var(--n),minmax(0,1fr)); position:relative; }
+  .tl::before, .tl::after { content:''; position:absolute; top:15px; left:calc(50% / var(--n)); right:calc(50% / var(--n)); height:3px; border-radius:3px; }
+  .tl::before { background:var(--line); }
+  .tl::after { background:var(--grad); transform:scaleX(0); transform-origin:left center; transition:transform 1.4s cubic-bezier(.45,0,.2,1) .15s; }
+  .reveal.in .tl::after { transform:none; }
+  .tl li { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 6px; }
+  .tl-dot { width:33px; height:33px; border-radius:50%; background:#fff; border:3px solid var(--c); color:var(--ink); font-size:13px; font-weight:800; display:flex; align-items:center; justify-content:center; margin-bottom:12px; transform:scale(0); transition:transform .55s cubic-bezier(.3,1.6,.5,1) calc(.2s + var(--i) * .14s); }
+  .reveal.in .tl-dot { transform:none; }
+  .tl-text { opacity:0; transform:translateY(8px); transition:opacity .5s ease calc(.35s + var(--i) * .14s), transform .5s ease calc(.35s + var(--i) * .14s); }
+  .reveal.in .tl-text { opacity:1; transform:none; }
+  .tl b { display:block; font-size:14px; line-height:1.3; color:var(--ink); }
+  .tl small { display:block; font-size:12.5px; line-height:1.4; color:var(--muted); margin-top:4px; }
+  @media (max-width:720px) {
+    .tl { grid-template-columns:1fr; gap:18px; }
+    .tl::before, .tl::after { top:16px; bottom:16px; left:15px; right:auto; width:3px; height:auto; }
+    .tl::after { background:var(--gradv); transform:scaleY(0); transform-origin:center top; }
+    .tl li { flex-direction:row; align-items:flex-start; text-align:left; gap:14px; padding:0; }
+    .tl-dot { flex-shrink:0; margin:0; }
+    .tl-text { padding-top:5px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .tl::after, .tl-dot, .tl-text { transform:none !important; opacity:1 !important; transition:none !important; } }
 
   .pillars { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:22px; }
   .pillar { background:#fff; border:1px solid var(--line); border-radius:18px; padding:18px; }
@@ -132,10 +150,11 @@
 <main class="wrap">
 
   <header class="hero">
-    <div class="cs-toggle" role="navigation" aria-label="Case study length"><a class="on" href="EquityFlow-summary.html" aria-current="page">Summary</a><a href="EquityFlow.dc.html">Full case study</a></div>
+    <div class="cs-toggle" role="navigation" aria-label="Case study length"><a href="EquityFlow.dc.html">Full case study</a><a class="on" href="EquityFlow-summary.html" aria-current="page">Summary</a></div>
     <div class="eyebrow" style="color:var(--teal)">PRODUCT DESIGN &amp; DESIGN SYSTEMS</div>
     <h1 class="fr">EquityFlow</h1>
-    <p class="lead">Investing is a legal act. An equity crowdfunding platform where compliance had to feel like guidance instead of a wall.</p>
+    <p class="tagline">Investing is a legal act. The interface has to carry that weight without scaring anyone off.</p>
+    <p class="lead">An equity crowdfunding platform where compliance had to feel like guidance instead of a wall.</p>
     <div class="meta">
       <span><b>Role</b> Solo product designer (Carbonteq internship)</span>
       <span><b>Platform</b> Desktop web</span>
@@ -159,13 +178,13 @@
   <section class="reveal">
     <div class="num">02 · THE PROCESS</div>
     <h2 class="fr">Constraints were legal, so research came first</h2>
-    <div class="process">
-      <span><i style="background:var(--coral)"></i>Wk 1 · Domain research</span><em>→</em>
-      <span><i style="background:var(--coral)"></i>Wk 2 · Users &amp; architecture</span><em>→</em>
-      <span><i style="background:#2F7A6F"></i>Wk 3 · Grayscale wireframes</span><em>→</em>
-      <span><i style="background:#2F7A6F"></i>Wk 4 · Harness &amp; build</span><em>→</em>
-      <span><i style="background:var(--lilac)"></i>Wk 5 · States &amp; QA</span>
-    </div>
+    <ol class="tl" style="--n:5;--grad:linear-gradient(90deg, #D97D5E, #D97D5E, #2F7A6F, #2F7A6F, #B18FCF);--gradv:linear-gradient(180deg, #D97D5E, #D97D5E, #2F7A6F, #2F7A6F, #B18FCF)">
+      <li style="--c:#D97D5E;--i:0"><span class="tl-dot">1</span><span class="tl-text"><b>Domain research</b><small>Week 1 · Reg CF rules, caps, escrow</small></span></li>
+      <li style="--c:#D97D5E;--i:1"><span class="tl-dot">2</span><span class="tl-text"><b>Users &amp; architecture</b><small>Week 2 · Three roles, two-tab IA</small></span></li>
+      <li style="--c:#2F7A6F;--i:2"><span class="tl-dot">3</span><span class="tl-text"><b>Flows &amp; wireframes</b><small>Week 3 · Grayscale, every state</small></span></li>
+      <li style="--c:#2F7A6F;--i:3"><span class="tl-dot">4</span><span class="tl-text"><b>Harness &amp; build</b><small>Week 4 · Tokens, patterns, hi-fi</small></span></li>
+      <li style="--c:#B18FCF;--i:4"><span class="tl-dot">5</span><span class="tl-text"><b>States &amp; QA</b><small>Week 5 · Empty, error, polish</small></span></li>
+    </ol>
     <ul class="learn">
       <li><b>Browse before verify.</b>Anyone can open every campaign, its Form C and its Q&amp;A. The identity and suitability checks only appear after someone picks an amount, when the ask has a reason attached.</li>
       <li><b>Grayscale first.</b>Every screen was solved without colour or real numbers, so reviews stayed on field order and what each screen was asking for. Colour later changed almost nothing structural.</li>

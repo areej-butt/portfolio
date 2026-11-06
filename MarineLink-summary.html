@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marine Link in 2 Minutes · Areej Butt</title>
+<meta name="description" content="The short version of the Marine Link case study: an immersive ocean descent for pre-K and early elementary kids.">
+<link rel="icon" href="favicon-marinelink.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-marinelink-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon-marinelink.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Figtree:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+<script src="sparkle-cursor.js" data-dot="#214C7A" data-spark="#D97D5E" defer></script>
+<style>
+  :root { --cream:#FBF7F0; --teal:#214C7A; --deep:#173A5E; --mint:#E3EDF7; --coral:#D97D5E; --gold:#D6A947; --lilac:#B18FCF; --plum:#573A70; --blue:#7FA3C4; --ink:#211F2E; --body:#453F52; --muted:#5C5668; --line:#ECE6DA; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--cream); color:var(--ink); font-family:'Figtree',sans-serif; line-height:1.6; }
+  ::selection { background:#DCD9F7; }
+  .fr { font-family:'Fraunces',serif; font-variation-settings:'SOFT' 100,'WONK' 1; font-optical-sizing:auto; font-weight:500; }
+  .wrap { max-width:900px; margin:0 auto; padding:0 clamp(20px,5vw,64px); }
+  a { color:inherit; }
+
+  nav.top { line-height:normal; position:sticky; top:0; z-index:50; background:rgba(251,247,240,.85); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  nav.top .nav-bar { max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:22px clamp(20px,5vw,64px); }
+  nav.top .links { display:flex; align-items:center; gap:clamp(16px,3vw,32px); font-weight:600; font-size:15px; }
+  nav.top .links a { text-decoration:none; color:var(--body); white-space:nowrap; }
+  nav.top .links a:hover { color:var(--teal); }
+  nav.top .links a.btn, nav.top .links a.btn:hover { color:#fff; }
+  .logo .logo-spark { transform-box:fill-box; transform-origin:center; transition:transform .5s cubic-bezier(.3,1.6,.5,1); }
+  .logo:hover .logo-spark { transform:rotate(90deg) scale(1.3); }
+
+  .eyebrow { font-size:13px; font-weight:700; letter-spacing:.08em; color:var(--muted); }
+  .pill { display:inline-flex; align-items:center; gap:8px; background:var(--mint); color:var(--deep); font-weight:700; font-size:13px; padding:6px 12px; border-radius:100px; }
+
+  header.hero { padding:clamp(48px,8vw,88px) 0 8px; }
+  .cs-toggle { line-height:normal; display:inline-flex; gap:2px; padding:4px; margin:0 0 26px; background:#fff; border:1px solid var(--line); border-radius:100px; font-size:14px; font-weight:600; }
+  .cs-toggle a { padding:8px 16px; border-radius:100px; color:var(--body); text-decoration:none; white-space:nowrap; transition:background .2s, color .2s; }
+  .cs-toggle a:hover { color:var(--teal); }
+  .cs-toggle a.on, .cs-toggle a.on:hover { background:var(--teal); color:#fff; }
+  header.hero h1 { font-size:clamp(36.1px,6vw,61.9px); line-height:1.05; margin:0 0 24px; }
+  header.hero .eyebrow { font-size:15px; letter-spacing:.06em; margin-bottom:16px; line-height:normal; }
+  header.hero p.lead { font-size:clamp(18px,2.2vw,21px); color:var(--body); margin:0 0 22px; max-width:640px; }
+  .meta { display:flex; flex-wrap:wrap; gap:10px 28px; font-size:14px; color:var(--muted); }
+  .meta b { color:var(--ink); font-weight:700; }
+  .cover { margin:32px 0 0; border-radius:24px; overflow:hidden; background:linear-gradient(135deg,#DCEEF5,#EAF6F3); }
+  .cover img { display:block; width:100%; height:auto; }
+
+  section { padding:clamp(44px,7vw,72px) 0 0; }
+  h2 { font-size:clamp(26px,3.4vw,34px); margin:0 0 16px; line-height:1.15; }
+  .num { font:700 13px 'Figtree'; color:var(--teal); letter-spacing:.08em; margin-bottom:8px; }
+  p { margin:0 0 14px; color:var(--body); font-size:16.5px; }
+
+  .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:22px; }
+  .stat { background:#fff; border:1px solid var(--line); border-radius:20px; padding:22px 20px; }
+  .stat .big { font-family:'Fraunces',serif; font-variation-settings:'SOFT' 100,'WONK' 1; font-size:40px; line-height:1; color:var(--deep); margin-bottom:8px; }
+  .stat .lbl { font-size:14.5px; color:var(--body); line-height:1.45; }
+
+  .insight { margin-top:22px; background:linear-gradient(135deg,#F3EBFA,#F8F2FB); border-left:4px solid var(--lilac); border-radius:16px; padding:20px 22px; font-size:17px; color:var(--plum); }
+  .insight b { color:var(--ink); }
+
+  .process { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+  .process span { background:#fff; border:1px solid var(--line); border-radius:100px; padding:7px 14px; font-size:14px; font-weight:600; color:var(--body); display:inline-flex; align-items:center; gap:8px; }
+  .process span i { width:8px; height:8px; border-radius:50%; display:inline-block; }
+  .process em { font-style:normal; color:#B5AEA3; align-self:center; }
+
+  .pillars { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:22px; }
+  .pillar { background:#fff; border:1px solid var(--line); border-radius:18px; padding:18px; }
+  .pillar h3 { font:800 13px 'Figtree'; letter-spacing:.08em; margin:0 0 6px; color:var(--deep); }
+  .pillar p { font-size:14.5px; margin:0; line-height:1.5; }
+  .mascot { display:flex; gap:16px; align-items:center; margin-top:20px; background:var(--mint); border-radius:18px; padding:16px 20px; }
+  .mascot img { width:64px; height:64px; object-fit:contain; flex-shrink:0; }
+  .mascot p { margin:0; font-size:15.5px; color:var(--deep); }
+  .shot { margin-top:22px; border-radius:20px; overflow:hidden; background:#E9F3EF; }
+  .shot img { display:block; width:100%; height:auto; }
+
+  .learn { list-style:none; padding:0; margin:18px 0 0; display:grid; gap:12px; }
+  .learn li { background:#fff; border:1px solid var(--line); border-radius:16px; padding:16px 18px; font-size:15.5px; color:var(--body); }
+  .learn li b { color:var(--ink); display:block; margin-bottom:2px; }
+
+  .sus { display:grid; grid-template-columns:auto 1fr; gap:22px; align-items:center; background:#fff; border:1px solid var(--line); border-radius:20px; padding:24px; margin-top:20px; }
+  .sus .big { font-family:'Fraunces',serif; font-variation-settings:'SOFT' 100,'WONK' 1; font-size:64px; line-height:1; color:var(--teal); }
+  .bar { position:relative; height:12px; border-radius:100px; background:#F1ECE2; margin:12px 0 8px; }
+  .bar .fill { position:absolute; inset:0 auto 0 0; width:78.1%; border-radius:100px; background:linear-gradient(90deg,#7FA3C4,var(--teal)); }
+  .bar .mark { position:absolute; left:68%; top:-5px; bottom:-5px; width:2px; background:var(--coral); }
+  .bar-labels { display:flex; justify-content:space-between; font-size:12.5px; color:var(--muted); }
+
+  .cta { margin:clamp(48px,7vw,72px) 0 0; background:linear-gradient(135deg,#EAF5F2,#F3EBFA); border-radius:24px; padding:clamp(28px,5vw,44px); text-align:center; }
+  .cta h2 { margin-bottom:8px; }
+  .cta p { margin:0 auto 22px; max-width:520px; }
+  .btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .btn { display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:15px; padding:13px 24px; border-radius:100px; text-decoration:none; transition:background .2s, transform .2s cubic-bezier(.3,1.6,.5,1), box-shadow .2s, color .2s, border-color .2s; }
+  .btn.primary { background:var(--teal); color:#fff; }
+  .btn.ghost { background:#fff; color:var(--ink); border:1.5px solid var(--line); }
+  .btn:hover { background:#1A3D63; color:#fff; border-color:#1A3D63; transform:translateY(-2px); box-shadow:0 6px 16px rgba(23,58,94,.22); }
+
+  footer { margin-top:56px; padding:28px 0 40px; text-align:center; font-size:13px; color:var(--muted); }
+
+  .reveal { opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.9,.3,1.1); }
+  .reveal.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } .btn, .logo-spark { transition:none; } }
+
+  @media (max-width:720px) {
+    .stats { grid-template-columns:1fr; }
+    .pillars { grid-template-columns:1fr 1fr; }
+    .sus { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="nav-bar">
+  <a href="Portfolio.dc.html" class="logo" aria-label="Areej Butt home" style="display:inline-flex;color:var(--teal)"><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#FBF7F0" stroke="#214C7A" stroke-width="2"></circle><path fill="#214C7A" d="M10.89 23.34Q10 23.34 9.5 22.7Q8.99 22.06 9.2 20.63Q9.38 19.31 10.09 17.92Q10.81 16.53 11.86 15.32Q12.91 14.11 14.1 13.37Q15.28 12.63 16.37 12.63Q16.89 12.63 17.44 12.82Q17.98 13.02 18.39 13.45Q18.79 13.87 18.84 14.58L17.28 13.72Q17.72 13.67 18.21 13.3Q18.69 12.94 19.02 12.42Q19.08 12.34 19.22 12.39Q19.36 12.44 19.34 12.5L17.83 20.69Q17.59 21.91 18.11 21.91Q18.37 21.91 18.74 21.66Q19.1 21.41 19.52 21Q19.6 20.92 19.7 21.02Q19.8 21.13 19.73 21.21Q18.92 22.17 18.21 22.7Q17.49 23.23 16.81 23.23Q15.98 23.23 15.68 22.62Q15.38 22.01 15.59 20.69L16.24 17.05L16.79 16.6Q16.16 18.74 15.18 20.24Q14.19 21.75 13.07 22.55Q11.95 23.34 10.89 23.34ZM12.55 21.44Q13.17 21.44 13.8 20.95Q14.42 20.45 14.96 19.67Q15.49 18.89 15.87 18.02Q16.24 17.15 16.37 16.42Q16.58 15.25 16.22 14.58Q15.85 13.9 15.07 13.9Q14.34 13.9 13.64 14.5Q12.94 15.1 12.39 16.14Q11.85 17.18 11.61 18.53Q11.35 20.17 11.67 20.8Q11.98 21.44 12.55 21.44Z"></path><path class="logo-spark" fill="#D97D5E" d="M23.5 5.5 24.6 8.9 28 10 24.6 11.1 23.5 14.5 22.4 11.1 19 10 22.4 8.9Z"></path></svg></a>
+  <div class="links">
+    <a href="Portfolio.dc.html#about">About Me</a>
+    <a href="uploads/Areej_Butt_Resume_LUMS.docx" download>Resume</a>
+    <a href="Portfolio.dc.html" class="btn primary" style="padding:9px 18px;font-size:15px">Back to Portfolio</a>
+  </div>
+</div></nav>
+
+<main class="wrap">
+
+  <header class="hero">
+    <div class="cs-toggle" role="navigation" aria-label="Case study length"><a href="MarineLink.dc.html">Full case study</a><a class="on" href="MarineLink-summary.html" aria-current="page">Summary · 2 min</a></div>
+    <div class="eyebrow" style="color:var(--teal)">CONCEPT, BRAND &amp; VISUAL DESIGN</div>
+    <h1 class="fr">Marine Link</h1>
+    <p class="lead">Most ocean content is informative. Marine Link is immersive: a scroll becomes a deep-sea descent for pre-K and early elementary kids.</p>
+    <div class="meta">
+      <span><b>Role</b> Lead Designer: concept, brand &amp; visual design</span>
+      <span><b>Team</b> 2 designers</span>
+      <span><b>Platform</b> Web</span>
+      <span><b>Duration</b> 2 weeks</span>
+    </div>
+    <div class="cover"><img src="uploads/pasted-1785841138503-0.png" alt="Marine Link website"></div>
+  </header>
+
+  <section class="reveal">
+    <div class="num">01 · THE IDEA</div>
+    <h2 class="fr">Curiosity first, not a quiz</h2>
+    <p>Most ocean content treats learning like a test, with dry facts and quizzes, and most websites are too hard for kids who can't read yet. Marine Link works like the ocean itself: kids sink deeper and discover one creature at a time.</p>
+    <div class="stats">
+      <div class="stat"><div class="big">5</div><div class="lbl">ocean zones, from the sunlit surface to the hadal trenches</div></div>
+      <div class="stat"><div class="big">35</div><div class="lbl">creatures, 7 per zone, so progress is a number a child can count toward</div></div>
+      <div class="stat"><div class="big">23</div><div class="lbl">core components documented in the design harness</div></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="num">02 · THE PROCESS</div>
+    <h2 class="fr">Ideate fast, then build the system underneath</h2>
+    <div class="process">
+      <span><i style="background:var(--coral)"></i>Paper &amp; Canva</span><em>→</em>
+      <span><i style="background:var(--coral)"></i>Competitive scan</span><em>→</em>
+      <span><i style="background:#2F7A6F"></i>Zone design</span><em>→</em>
+      <span><i style="background:#2F7A6F"></i>Identity &amp; color</span><em>→</em>
+      <span><i style="background:#2F7A6F"></i>Content &amp; art</span><em>→</em>
+      <span><i style="background:var(--lilac)"></i>Build</span><em>→</em>
+      <span><i style="background:var(--lilac)"></i>Usability audit</span>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="num">03 · THE SOLUTION</div>
+    <h2 class="fr">Scroll deeper, discover, collect</h2>
+    <p>Depth is the navigation, with no tabs or menus. Every zone repeats the same three cues (name, depth, and an audio and color shift), so the pattern reads before a child can read the words.</p>
+    <div class="pillars">
+      <div class="pillar"><h3>CREATURE CARDS</h3><p>Tap for a kawaii illustration and a spoken fact, then flip for a real photo.</p></div>
+      <div class="pillar"><h3>CREATURE MAP</h3><p>All 35 creatures by zone, with a "you are here" badge.</p></div>
+      <div class="pillar"><h3>QUIZ</h3><p>Opens from a trophy, not a "?". Picture answers, and confetti for a correct pick.</p></div>
+      <div class="pillar"><h3>AUDIO</h3><p>Voice-read facts, a tap-to-talk search, and a soundscape for each zone.</p></div>
+    </div>
+    <div class="shot"><img src="uploads/pasted-1785841183096-0.png" alt="Creature detail card" loading="lazy"></div>
+    <p style="margin-top:12px;font-size:14.5px;color:var(--muted)">Each zone has its own palette, from bright surface light down to bioluminescent trench accents, so a pre-reader can tell "I'm somewhere new" from color alone.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="num">04 · WHAT WE FIXED</div>
+    <h2 class="fr">The audit caught what the moodboard didn't</h2>
+    <ul class="learn">
+      <li><b>Red/green status on a dark background</b>Failed for colorblind users. Now icon-based status with clear labels.</li>
+      <li><b>Progress bar filled gold at 0/35</b>Looked complete before any progress. Now a muted track that fills as creatures are found.</li>
+      <li><b>Filter tabs that didn't filter</b>"Explored" still showed every creature. The selected tab now hides or dims the rest.</li>
+    </ul>
+  </section>
+
+  <section class="reveal">
+    <div class="num">05 · THE DESIGN HARNESS</div>
+    <h2 class="fr">The fix was documentation, not more prompting</h2>
+    <p>Claude's first build was rough: placeholder art, overlapping icons and colors that drifted between screens. I audited the shipped prototype and wrote a <b>design harness</b>: design tokens, 23 components with their states, a motion spec and a voice guide, plus a strict rule that nothing new gets invented without approval.</p>
+    <div class="insight" style="border-left-color:var(--teal);background:var(--mint);color:var(--deep)">New screens then <b>matched the shipped app on the first pass</b>, with no more rounds of manual correction.</div>
+  </section>
+
+  <section class="reveal">
+    <div class="num">06 · REFLECTION</div>
+    <h2 class="fr">Prompting isn't a shortcut around design skill</h2>
+    <p>The build proves that depth-as-scroll and a countable creature loop make exploring feel different from reading. It hasn't yet proven that exploring for fun and actually learning are the same thing. Next: a second layer of content for each creature, the accessibility fixes we've already identified, and testing with real kids in the target age group.</p>
+  </section>
+
+  <div class="cta reveal">
+    <h2 class="fr">Want the whole story?</h2>
+    <p>Sketches, the competitive map, logo and type explorations, every zone palette and the full harness diagram are in the full case study.</p>
+    <div class="btns">
+      <a class="btn primary" href="MarineLink.dc.html">Read the full case study</a>
+      <a class="btn ghost" href="https://areej-butt.github.io/marine-link/" target="_blank" rel="noopener">Visit the website</a>
+    </div>
+  </div>
+
+</main>
+
+<footer>Designed &amp; built by Areej Butt</footer>
+
+<script>
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+</body>
+</html>

@@ -11,6 +11,10 @@
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script src="sparkle-cursor.js" data-dot="#2F7A6F" data-spark="#D97D5E" defer></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -29,6 +33,10 @@
     @keyframes logoPopB { 0% { transform: translateY(0) scale(1); } 45% { transform: translateY(-7px) scale(1.04); } 100% { transform: translateY(0) scale(1); } }
     @keyframes markPulseA { 0% { transform: scale(1); } 40% { transform: scale(1.14) rotate(-1.5deg); } 70% { transform: scale(0.97); } 100% { transform: scale(1); } }
     @keyframes markPulseB { 0% { transform: scale(1); } 40% { transform: scale(1.14) rotate(1.5deg); } 70% { transform: scale(0.97); } 100% { transform: scale(1); } }
+    .logo-spark { transform-box: fill-box; transform-origin: center; transition: transform 0.5s cubic-bezier(.3,1.6,.5,1); }
+    a:hover .logo-spark, a:focus-visible .logo-spark { transform: rotate(90deg) scale(1.3); }
+    @media (prefers-reduced-motion: reduce) { .logo-spark { transition: none; } }
+    .bug-arena { cursor: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2213%22 cy=%2213%22 r=%229%22 fill=%22none%22 stroke=%22%231D4E46%22 stroke-width=%223%22/%3E%3Cline x1=%2219.5%22 y1=%2219.5%22 x2=%2229%22 y2=%2229%22 stroke=%22%231D4E46%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3C/svg%3E") 13 13, crosshair; }
     @keyframes slideArrow { from { opacity: 0; transform: translateX(-4px); } to { opacity: 1; transform: translateX(0); } }
 
   </style>
@@ -39,34 +47,82 @@
   <!-- NAV -->
   <div style="position:sticky;top:0;z-index:50;background:rgba(251,247,240,0.85);backdrop-filter:blur(8px);border-bottom:1px solid #ECE6DA;animation:fadeInUp 0.5s ease both">
     <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,5vw,64px)">
-    <a href="#" onClick="{{ handleLogoClick }}" aria-label="Areej Butt — back to top" style="color:#2F7A6F;text-decoration:none;display:inline-flex;cursor:pointer;transform-origin:center;transition:transform 0.35s ease;animation:{{ logoAnimStyle }}" style-hover="transform:scale(1.18) rotate(20deg)">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="{{ logoFill }}" stroke="currentColor" stroke-width="1.7" style="transition:fill 0.35s ease,filter 0.35s ease" style-hover="fill:currentColor;filter:drop-shadow(0 0 6px rgba(47,122,111,0.6))"><path d="M12 2.5 14.2 9.3 21 12 14.2 14.7 12 21.5 9.8 14.7 3 12 9.8 9.3 12 2.5Z"></path></svg>
+    <a href="#" onClick="{{ handleLogoClick }}" aria-label="Areej Butt — back to top" style="color:#2F7A6F;text-decoration:none;display:inline-flex;cursor:pointer;transform-origin:center;transition:transform 0.35s ease;animation:{{ logoAnimStyle }}" style-hover="transform:scale(1.08)">
+      <svg class="logo-mark" width="34" height="34" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="{{ logoBg }}" stroke="#2F7A6F" stroke-width="2" style="transition:fill 0.35s ease"></circle><path fill="{{ logoInk }}" d="M10.89 23.34Q10 23.34 9.5 22.7Q8.99 22.06 9.2 20.63Q9.38 19.31 10.09 17.92Q10.81 16.53 11.86 15.32Q12.91 14.11 14.1 13.37Q15.28 12.63 16.37 12.63Q16.89 12.63 17.44 12.82Q17.98 13.02 18.39 13.45Q18.79 13.87 18.84 14.58L17.28 13.72Q17.72 13.67 18.21 13.3Q18.69 12.94 19.02 12.42Q19.08 12.34 19.22 12.39Q19.36 12.44 19.34 12.5L17.83 20.69Q17.59 21.91 18.11 21.91Q18.37 21.91 18.74 21.66Q19.1 21.41 19.52 21Q19.6 20.92 19.7 21.02Q19.8 21.13 19.73 21.21Q18.92 22.17 18.21 22.7Q17.49 23.23 16.81 23.23Q15.98 23.23 15.68 22.62Q15.38 22.01 15.59 20.69L16.24 17.05L16.79 16.6Q16.16 18.74 15.18 20.24Q14.19 21.75 13.07 22.55Q11.95 23.34 10.89 23.34ZM12.55 21.44Q13.17 21.44 13.8 20.95Q14.42 20.45 14.96 19.67Q15.49 18.89 15.87 18.02Q16.24 17.15 16.37 16.42Q16.58 15.25 16.22 14.58Q15.85 13.9 15.07 13.9Q14.34 13.9 13.64 14.5Q12.94 15.1 12.39 16.14Q11.85 17.18 11.61 18.53Q11.35 20.17 11.67 20.8Q11.98 21.44 12.55 21.44Z" style="transition:fill 0.35s ease"></path><path class="logo-spark" fill="#D97D5E" d="M23.5 5.5 24.6 8.9 28 10 24.6 11.1 23.5 14.5 22.4 11.1 19 10 22.4 8.9Z"></path></svg>
     </a>
     <div style="display:flex;align-items:center;gap:clamp(16px,3vw,32px);font-size:15px;font-weight:600;color:#453F52">
       <a href="#about" style="color:#453F52;text-decoration:none" style-hover="color:#2F7A6F">About Me</a>
-      <a href="uploads/Areej_Butt_LUMS_Resume.docx" download="" style="color:#453F52;text-decoration:none" style-hover="color:#2F7A6F">Resume</a>
+      <a href="uploads/Areej_Butt_Resume_LUMS.docx" download="" style="color:#453F52;text-decoration:none" style-hover="color:#2F7A6F">Resume</a>
       <a href="#work" style="color:#fff;text-decoration:none;background:#2F7A6F;padding:9px 18px;border-radius:100px;transition:transform 0.15s,background 0.15s" style-hover="background:#245D54" style-active="transform:scale(0.95)">View Work</a>
     </div>
     </div>
   </div>
 
   <!-- HERO -->
-  
-
-  <!-- FEATURED WORK -->
-  <div style="max-width:1100px;margin:0 auto;padding:clamp(40px,7vw,88px) clamp(20px,5vw,64px) 40px">
-    <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,6vw,48px);align-items:flex-start">
-      <div style="flex:1.6 1 460px;min-width:300px;position:relative">
+  <div style="max-width:1100px;margin:0 auto;padding:clamp(36px,6vw,72px) clamp(20px,5vw,64px) 0">
         <h1 style="position:relative;z-index:1;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(40px,5.5vw,64px);line-height:1.08;margin:0 0 22px;animation:fadeInUp 0.6s ease 0.1s both">Hi there! I'm <span style="color:#2F7A6F;font-style:italic;display:inline-block;opacity:{{ nameOpacity }};filter:{{ nameBlur }};transition:opacity 0.35s ease,filter 0.35s ease">{{ currentName }}</span></h1>
-        <p style="position:relative;z-index:1;font-size:clamp(17px,2vw,20px);line-height:1.65;color:#453F52;margin:0;max-width:560px;animation:fadeInUp 0.6s ease 0.22s both">
-          I sit at the intersection of <mark onClick="{{ pulseCS }}" style="background-image:linear-gradient(90deg,#F3EBFA,#F3EBFA);background-repeat:no-repeat;background-size:200% 100%;background-position:0 0;color:#452256;padding:2px 8px;border-radius:6px;font-weight:700;display:inline-block;cursor:pointer;transform-origin:center;animation:{{ csPulseStyle }}, highlightSweep 0.8s ease 0.5s both">Computer Science</mark> and
-          <mark onClick="{{ pulsePsych }}" style="background-image:linear-gradient(90deg,#F9E8C4,#F9E8C4);background-repeat:no-repeat;background-size:200% 100%;background-position:0 0;color:#5C3F09;padding:2px 8px;border-radius:6px;font-weight:700;display:inline-block;cursor:pointer;transform-origin:center;animation:{{ psychPulseStyle }}, highlightSweep 0.8s ease 0.7s both">Psychology,</mark> building data driven and end-to-end user centric products that bridge the gap between complex systems and human experience.
+        <p style="position:relative;z-index:1;font-size:clamp(17px,2vw,20px);line-height:1.65;color:#453F52;margin:0;max-width:620px;animation:fadeInUp 0.6s ease 0.22s both">
+          Product designer and CS student at LUMS. I blend <mark onClick="{{ pulseCS }}" style="background-image:linear-gradient(90deg,#F3EBFA,#F3EBFA);background-repeat:no-repeat;background-size:200% 100%;background-position:0 0;color:#452256;padding:2px 8px;border-radius:6px;font-weight:700;display:inline-block;cursor:pointer;transform-origin:center;animation:{{ csPulseStyle }}, highlightSweep 0.8s ease 0.5s both">Computer Science</mark> and
+          <mark onClick="{{ pulsePsych }}" style="background-image:linear-gradient(90deg,#F9E8C4,#F9E8C4);background-repeat:no-repeat;background-size:200% 100%;background-position:0 0;color:#5C3F09;padding:2px 8px;border-radius:6px;font-weight:700;display:inline-block;cursor:pointer;transform-origin:center;animation:{{ psychPulseStyle }}, highlightSweep 0.8s ease 0.7s both">Psychology</mark> to turn user research into products people actually understand, from the first interview to the shipped build.
         </p>
-      </div>
+  </div>
 
-      <!-- GAME PANEL -->
-      <div style="flex:0 1 400px;min-width:300px;max-width:460px;animation:fadeInRight 0.7s ease 0.3s both">
-        <div onMouseEnter="{{ handleHoverStart }}" onClick="{{ handleHoverStart }}" style="position: relative; height: 292px; border-radius: 24px; border: 2px solid #6FA294; background: linear-gradient(180deg,#D8ECE6,#F5F1E6); overflow: hidden; cursor: url('data:image/svg+xml;utf8,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 32 32%22&gt;&lt;circle cx=%2213%22 cy=%2213%22 r=%229%22 fill=%22none%22 stroke=%22%231D4E46%22 stroke-width=%223%22/&gt;&lt;line x1=%2219.5%22 y1=%2219.5%22 x2=%2229%22 y2=%2229%22 stroke=%22%231D4E46%22 stroke-width=%223%22 stroke-linecap=%22round%22/&gt;&lt;/svg&gt;') 13 13, crosshair; box-shadow: 0 14px 32px rgba(29,78,70,0.16),0 2px 8px rgba(29,78,70,0.1); width: 100%; max-width: 408px">
+  <!-- EXPERIENCE ROAD (in the hero) -->
+  <div style="max-width:1100px;margin:0 auto;padding:clamp(4px,1vw,12px) clamp(4px,3vw,48px) 0;animation:fadeInUp 0.7s ease 0.35s both">
+    <dc-import name="CareerLevel" hint-size="100%,560px"></dc-import>
+  </div>
+
+  <div id="work" style="max-width:1100px;margin:0 auto;padding:60px clamp(20px,5vw,64px) 20px;scroll-margin-top:90px">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:28px">
+      <h2 style="font-family: 'Cormorant Garamond',serif; font-weight: 500; font-size: clamp(30px,4vw,40px); margin: 0">Featured Work</h2>
+      <span style="font-size:14px;color:#8A8494">more projects coming soon!</span>
+    </div>
+    <sc-for list="{{ projects }}" as="project" hint-placeholder-count="3">
+      <div style="margin-bottom:56px">
+        <div style="position:relative;background:{{ project.bg }};border-radius:24px;padding:clamp(36px,5vw,64px);display:flex;align-items:center;gap:clamp(28px,4vw,56px);flex-wrap:wrap;overflow:hidden">
+          <div style="flex:1.1 1 320px;min-width:260px;position:relative;z-index:1">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+              
+              <img src="{{ project.icon }}" alt="" style="width: 32px; height: 32px; border-radius: 9px; object-fit: contain"><div style="font-weight:700;font-size:15px;color:#211F2E">{{ project.appName }}</div>
+            </div>
+            <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;color:#453F52;margin-bottom:10px">{{ project.eyebrow }}</div>
+            <h3 style="font-size:clamp(28px,3.4vw,38px);font-weight:800;margin:0 0 16px;line-height:1.1">{{ project.title }}</h3>
+            <p style="font-size:15.5px;line-height:1.6;color:#5C5668;margin:0 0 26px;max-width:440px">{{ project.desc }}</p>
+            <a href="{{ project.link }}" onMouseEnter="{{ project.onCtaEnter }}" onMouseLeave="{{ project.onCtaLeave }}" style="display:inline-flex;align-items:center;gap:10px;background:{{ project.ctaBg }};color:{{ project.ctaColor }};font-weight:600;font-size:14.5px;padding:13px 24px;border-radius:100px;text-decoration:none;white-space:nowrap;pointer-events:{{ project.linkPointer }}" style-hover="opacity:0.88">
+              <sc-if value="{{ project.ctaHovered }}" hint-placeholder-val="{{ false }}">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:slideArrow 0.25s ease"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+              </sc-if>
+              <sc-if value="{{ project.ctaDotVisible }}" hint-placeholder-val="{{ true }}">
+                <span style="width:9px;height:9px;border-radius:50%;background:currentColor"></span>
+              </sc-if>
+              {{ project.ctaLabel }}
+            </a>
+          </div>
+          <div style="flex:1 1 300px;min-width:240px;display:flex;justify-content:center;position:relative;z-index:1">
+            <sc-if value="{{ project.imgFull }}" hint-placeholder-val="{{ false }}">
+              <image-slot id="{{ project.slotId }}" shape="rect" fit="contain" style="width:100%;height:auto;aspect-ratio:{{ project.imgAspect }};max-width:{{ project.imgMaxW }};mix-blend-mode:{{ project.blendMode }}" placeholder="{{ project.placeholderText }}" src="{{ project.imgSrc }}"></image-slot>
+            </sc-if>
+            <sc-if value="{{ project.imgSmall }}" hint-placeholder-val="{{ true }}">
+              <div style="width:min(420px,90%)">
+                <image-slot id="{{ project.slotId }}" shape="rounded" radius="16" placeholder="{{ project.placeholderText }}"></image-slot>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <!-- BUG BASH -->
+  <div id="bug-bash" style="max-width:1100px;margin:0 auto;padding:16px clamp(20px,5vw,64px) 40px;scroll-margin-top:90px">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,56px);align-items:center">
+      <div style="flex:1 1 300px;min-width:min(260px,100%)">
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,4vw,40px);margin:0 0 12px">Bug bash</h2>
+        <p style="font-size:16px;line-height:1.7;color:#453F52;margin:0;max-width:420px">Nothing I design ships with bugs in it. You get 30 seconds to prove you'd catch them too.</p>
+        <p style="font-size:13px;color:#5C5668;font-weight:600;font-style:italic;margin:14px 0 0">me hunting down bugs before the product ships :)</p>
+      </div>
+      <div style="flex:1 1 380px;min-width:min(300px,100%);max-width:480px">
+        <div data-native-cursor="" class="bug-arena" onMouseEnter="{{ handleHoverStart }}" onClick="{{ handleHoverStart }}" style="position: relative; height: 292px; border-radius: 24px; border: 2px solid #6FA294; background: linear-gradient(180deg,#D8ECE6,#F5F1E6); overflow: hidden; box-shadow: 0 14px 32px rgba(29,78,70,0.16),0 2px 8px rgba(29,78,70,0.1); width: 100%; max-width: 408px">
           <sc-if value="{{ isPlaying }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;top:12px;left:14px;display:flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:#1D4E46;animation:fadeInUp 0.35s ease both"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>{{ timeLeft }}s</div>
             <div style="position:absolute;top:12px;right:14px;display:flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:#1D4E46;animation:fadeInUp 0.35s ease both"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.2" fill="currentColor"></circle></svg>{{ score }}</div>
@@ -111,54 +167,6 @@
       
       </div>
     </div>
-
-    <!-- ROW 2: pills + socials -->
-    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;margin-top:36px">
-      <div style="display:flex;flex-wrap:wrap;gap:9px;animation:fadeInUp 0.6s ease 0.34s both">
-        <span onClick="{{ pulseTag }}" data-tag="lahore" style="display:flex;align-items:center;gap:6px;border:1.5px solid #D97D5E;background:#FBEAE3;color:#6E301E;font-size:13.5px;font-weight:700;padding:7px 14px;border-radius:100px;white-space:nowrap;cursor:pointer;transform-origin:center;animation:{{ tagAnim.lahore }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>Lahore, Pakistan</span>
-        <span onClick="{{ pulseTag }}" data-tag="chisel" style="display:flex;align-items:center;gap:6px;border:1.5px solid #A574C9;background:#F3EBFA;color:#452256;font-size:13.5px;font-weight:700;padding:7px 14px;border-radius:100px;white-space:nowrap;cursor:pointer;transform-origin:center;animation:{{ tagAnim.chisel }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 3h6M10 3v5.2L5.5 16a2 2 0 0 0 1.8 3h9.4a2 2 0 0 0 1.8-3L14 8.2V3"></path></svg>UI/UX Research</span>
-        <span onClick="{{ pulseTag }}" data-tag="carbonteq" style="display:flex;align-items:center;gap:6px;border:1.5px solid #5E8CB4;background:#E9F1F8;color:#173250;font-size:13.5px;font-weight:700;padding:7px 14px;border-radius:100px;white-space:nowrap;cursor:pointer;transform-origin:center;animation:{{ tagAnim.carbonteq }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 3 14 8-6 1.5L11 19Z"></path></svg>Product Design</span>
-      </div><div style="text-align:center;margin-top:10px;font-size:13px;color:#5C5668;font-weight:600;font-style:italic">me hunting down bugs before the product ships :)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
-    </div>
-  </div><div id="work" style="max-width:1100px;margin:0 auto;padding:60px clamp(20px,5vw,64px) 20px;scroll-margin-top:90px">
-    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:28px">
-      <h2 style="font-family: 'Cormorant Garamond',serif; font-weight: 500; font-size: clamp(30px,4vw,40px); margin: 0">Featured Work</h2>
-      <span style="font-size:14px;color:#8A8494">more projects coming soon!</span>
-    </div>
-    <sc-for list="{{ projects }}" as="project" hint-placeholder-count="3">
-      <div style="margin-bottom:56px">
-        <div style="position:relative;background:{{ project.bg }};border-radius:24px;padding:clamp(36px,5vw,64px);display:flex;align-items:center;gap:clamp(28px,4vw,56px);flex-wrap:wrap;overflow:hidden">
-          <div style="flex:1.1 1 320px;min-width:260px;position:relative;z-index:1">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
-              
-              <img src="{{ project.icon }}" alt="" style="width: 32px; height: 32px; border-radius: 9px; object-fit: contain"><div style="font-weight:700;font-size:15px;color:#211F2E">{{ project.appName }}</div>
-            </div>
-            <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;color:#453F52;margin-bottom:10px">{{ project.eyebrow }}</div>
-            <h3 style="font-size:clamp(28px,3.4vw,38px);font-weight:800;margin:0 0 16px;line-height:1.1">{{ project.title }}</h3>
-            <p style="font-size:15.5px;line-height:1.6;color:#5C5668;margin:0 0 26px;max-width:440px">{{ project.desc }}</p>
-            <a href="{{ project.link }}" onMouseEnter="{{ project.onCtaEnter }}" onMouseLeave="{{ project.onCtaLeave }}" style="display:inline-flex;align-items:center;gap:10px;background:{{ project.ctaBg }};color:{{ project.ctaColor }};font-weight:600;font-size:14.5px;padding:13px 24px;border-radius:100px;text-decoration:none;white-space:nowrap;pointer-events:{{ project.linkPointer }}" style-hover="opacity:0.88">
-              <sc-if value="{{ project.ctaHovered }}" hint-placeholder-val="{{ false }}">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:slideArrow 0.25s ease"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-              </sc-if>
-              <sc-if value="{{ project.ctaDotVisible }}" hint-placeholder-val="{{ true }}">
-                <span style="width:9px;height:9px;border-radius:50%;background:currentColor"></span>
-              </sc-if>
-              {{ project.ctaLabel }}
-            </a>
-          </div>
-          <div style="flex:1 1 300px;min-width:240px;display:flex;justify-content:center;position:relative;z-index:1">
-            <sc-if value="{{ project.imgFull }}" hint-placeholder-val="{{ false }}">
-              <image-slot id="{{ project.slotId }}" shape="rect" fit="contain" style="width:100%;height:auto;aspect-ratio:{{ project.imgAspect }};max-width:{{ project.imgMaxW }};mix-blend-mode:{{ project.blendMode }}" placeholder="{{ project.placeholderText }}" src="{{ project.imgSrc }}"></image-slot>
-            </sc-if>
-            <sc-if value="{{ project.imgSmall }}" hint-placeholder-val="{{ true }}">
-              <div style="width:min(420px,90%)">
-                <image-slot id="{{ project.slotId }}" shape="rounded" radius="16" placeholder="{{ project.placeholderText }}"></image-slot>
-              </div>
-            </sc-if>
-          </div>
-        </div>
-      </div>
-    </sc-for>
   </div>
 
   <!-- SKILLS -->
@@ -221,24 +229,15 @@
     <div style="background:linear-gradient(160deg,#FCF3D9,#EAF5F2);border-radius:24px;padding:clamp(24px,5vw,40px);display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,40px);align-items:center">
       <div style="flex:1.2 1 380px;min-width:min(280px,100%)">
         <p style="font-size: 16px; line-height: 1.7; color: #453F52; margin: 0 0 12px; max-width: 550px">Hi! I am a Computer Science undergraduate at LUMS with a minor in Psychology, based in Lahore, Pakistan. Understanding user behavior drives everything I do. My workflow bridges product research, interface design, and implementation, allowing me to take an idea from initial user insight all the way to a shipped product.</p>
-        <p style="font-size: 16px; line-height: 1.7; color: #453F52; margin: 0 0 20px; max-width: 550px">Beyond the classroom, I've helped build community initiatives like the LUMS Women in Science and Engineering, driven brand engagement across campus, and gained hands-on experience through multiple industry internships. <a href="#experience" class="scp8" style="color: rgb(47, 122, 111); font-weight: 700; text-decoration: none;">Scroll though my journey!</a></p><div style="display:flex;flex-wrap:wrap;gap:14px">
+        <p style="font-size: 16px; line-height: 1.7; color: #453F52; margin: 0 0 20px; max-width: 550px">Beyond the classroom, I've helped build community initiatives like the LUMS Women in Science and Engineering, driven brand engagement across campus, and gained hands-on experience through multiple industry internships. <a href="#experience" class="scp8" style="color: rgb(47, 122, 111); font-weight: 700; text-decoration: none;">Walk through my journey!</a></p><div style="display:flex;flex-wrap:wrap;gap:14px">
 
-          <a href="mailto:a.areejb@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #ECE6DA; color: #211F2E; font-weight: 700; font-size: 14px; padding: 11px 24px; border-radius: 100px; text-decoration: none; transition: transform 0.15s,border-color 0.15s" style-hover="border-color:#2F7A6F" style-active="transform:scale(0.95)">Contact Me</a><a href="uploads/Areej_Butt_LUMS_Resume.docx" download="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #ECE6DA;color:#453F52;font-weight:700;font-size:14px;padding:11px 24px;border-radius:100px;text-decoration:none;transition:transform 0.15s,border-color 0.15s" style-hover="border-color:#2F7A6F;color:#2F7A6F" style-active="transform:scale(0.95)">Download my Resume</a>
+          <a href="mailto:a.areejb@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #ECE6DA; color: #211F2E; font-weight: 700; font-size: 14px; padding: 11px 24px; border-radius: 100px; text-decoration: none; transition: transform 0.15s,border-color 0.15s" style-hover="border-color:#2F7A6F" style-active="transform:scale(0.95)">Contact Me</a><a href="uploads/Areej_Butt_Resume_LUMS.docx" download="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #ECE6DA;color:#453F52;font-weight:700;font-size:14px;padding:11px 24px;border-radius:100px;text-decoration:none;transition:transform 0.15s,border-color 0.15s" style-hover="border-color:#2F7A6F;color:#2F7A6F" style-active="transform:scale(0.95)">Download my Resume</a>
         </div>
         
       </div>
       <div style="flex:1 1 300px;min-width:min(240px,100%)">
         <image-slot id="about-photo" shape="rounded" radius="20" fit="cover" style="width: 100%; max-width: 378px; aspect-ratio: 378 / 358; height: auto" placeholder="Drop a photo of yourself" src="uploads/about-photo.webp"></image-slot>
       </div>
-    </div>
-  </div>
-
-  <!-- EXPERIENCE ROAD -->
-  <div style="max-width:1100px;margin:0 auto;padding:20px clamp(20px,5vw,64px) 20px">
-    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,4vw,40px);margin:0 0 12px">My Experience Road</h2>
-    <div style="font-size:15px;color:#5C5668;margin-bottom:28px">Click the arrows or a checkpoint to walk through each step of my journey.</div>
-    <div style="padding:10px 0">
-      <dc-import name="CareerLevel" hint-size="100%,700px"></dc-import>
     </div>
   </div>
 
@@ -473,7 +472,8 @@ class Component extends DCLogic {
       nameOpacity: this.state.nameFading ? 0 : 1,
       nameBlur: this.state.nameFading ? 'blur(3px)' : 'blur(0)',
       logoAnimStyle: this.state.logoAnimName ? `${this.state.logoAnimName} 0.8s cubic-bezier(0.34,1.2,0.4,1)` : 'none',
-      logoFill: this.state.logoFilled ? 'currentColor' : 'none',
+      logoBg: this.state.logoFilled ? '#2F7A6F' : '#FBF7F0',
+      logoInk: this.state.logoFilled ? '#FBF7F0' : '#2F7A6F',
       isPlaying: this.state.phase === 'playing',
       timeLeft: this.state.timeLeft,
       score: this.state.score,

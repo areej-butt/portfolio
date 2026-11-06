@@ -37,6 +37,27 @@
     a:hover .logo-spark, a:focus-visible .logo-spark { transform: rotate(90deg) scale(1.3); }
     @media (prefers-reduced-motion: reduce) { .logo-spark { transition: none; } }
     .bug-arena { cursor: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2213%22 cy=%2213%22 r=%229%22 fill=%22none%22 stroke=%22%231D4E46%22 stroke-width=%223%22/%3E%3Cline x1=%2219.5%22 y1=%2219.5%22 x2=%2229%22 y2=%2229%22 stroke=%22%231D4E46%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3C/svg%3E") 13 13, crosshair; }
+    .skill-card { opacity: 0; transform: translateY(28px) scale(0.97); }
+    .skills-in .skill-card { animation: skillCardIn 0.7s cubic-bezier(0.2,0.9,0.3,1.15) calc(var(--i) * 170ms) forwards; }
+    .skill-icon path, .skill-icon circle { stroke-dasharray: 100; stroke-dashoffset: 100; }
+    .skills-in .skill-icon path, .skills-in .skill-icon circle { animation: skillDraw 0.9s ease-out calc(var(--i) * 170ms + 250ms) forwards; }
+    .skills-in .skill-icon { animation: skillIconPop 0.6s cubic-bezier(0.3,1.6,0.5,1) calc(var(--i) * 170ms + 200ms) both; }
+    .skill-pill { display: inline-block; opacity: 0; transform: translateY(12px) scale(0.6); }
+    .skills-in .skill-pill { animation: skillPillIn 0.5s cubic-bezier(0.3,1.6,0.5,1) calc(var(--i) * 170ms + 650ms + var(--j) * 75ms) forwards; }
+    @keyframes skillCardIn { to { opacity: 1; transform: none; } }
+    @keyframes skillDraw { to { stroke-dashoffset: 0; } }
+    @keyframes skillIconPop { 0% { transform: scale(0.6) rotate(-12deg); } 60% { transform: scale(1.12) rotate(4deg); } 100% { transform: none; } }
+    @keyframes skillPillIn { to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .skill-card, .skill-pill { opacity: 1; transform: none; } .skill-icon path, .skill-icon circle { stroke-dashoffset: 0; } .skills-in .skill-card, .skills-in .skill-pill, .skills-in .skill-icon, .skills-in .skill-icon path, .skills-in .skill-icon circle { animation: none; } }
+    .flip-btn { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .flip-btn:hover { transform: translateY(-2px); }
+    .flip-face:last-child .flip-btn:hover { transform: translate(-50%,-2px); }
+    .flip-btn:focus-visible { outline: 2px solid #2F7A6F; outline-offset: 2px; }
+    .flip-btn svg { transition: transform 0.4s ease; }
+    .flip-btn:hover svg { transform: rotate(180deg); }
+    .flip-wrap.peek .flip-peek { animation: flipPeek 1.4s ease-in-out 0.3s 1; }
+    @keyframes flipPeek { 0%,100% { transform: rotateY(0); } 35% { transform: rotateY(-22deg); } 60% { transform: rotateY(8deg); } 80% { transform: rotateY(-3deg); } }
+    @media (prefers-reduced-motion: reduce) { .flip-card { transition: none !important; } .flip-wrap.peek .flip-peek { animation: none; } }
     @keyframes slideArrow { from { opacity: 0; transform: translateX(-4px); } to { opacity: 1; transform: translateX(0); } }
 
   </style>
@@ -62,7 +83,7 @@
   <div style="max-width:1100px;margin:0 auto;padding:clamp(36px,6vw,72px) clamp(20px,5vw,64px) 0">
         <h1 style="position:relative;z-index:1;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(40px,5.5vw,64px);line-height:1.08;margin:0 0 22px;animation:fadeInUp 0.6s ease 0.1s both">Hi there! I'm <span style="color:#2F7A6F;font-style:italic;display:inline-block;opacity:{{ nameOpacity }};filter:{{ nameBlur }};transition:opacity 0.35s ease,filter 0.35s ease">{{ currentName }}</span></h1>
         <p style="position:relative;z-index:1;font-size:clamp(17px,2vw,20px);line-height:1.65;color:#453F52;margin:0;max-width:620px;animation:fadeInUp 0.6s ease 0.22s both">
-          Product designer and CS student at LUMS. I blend <mark onClick="{{ pulseCS }}" style="background-image:linear-gradient(90deg,#F3EBFA,#F3EBFA);background-repeat:no-repeat;background-size:200% 100%;background-position:0 0;color:#452256;padding:2px 8px;border-radius:6px;font-weight:700;display:inline-block;cursor:pointer;transform-origin:center;animation:{{ csPulseStyle }}, highlightSweep 0.8s ease 0.5s both">Computer Science</mark> and
+          Product designer who blends <mark onClick="{{ pulseCS }}" style="background-image:linear-gradient(90deg,#F3EBFA,#F3EBFA);background-repeat:no-repeat;background-size:200% 100%;background-position:0 0;color:#452256;padding:2px 8px;border-radius:6px;font-weight:700;display:inline-block;cursor:pointer;transform-origin:center;animation:{{ csPulseStyle }}, highlightSweep 0.8s ease 0.5s both">Computer Science</mark> and
           <mark onClick="{{ pulsePsych }}" style="background-image:linear-gradient(90deg,#F9E8C4,#F9E8C4);background-repeat:no-repeat;background-size:200% 100%;background-position:0 0;color:#5C3F09;padding:2px 8px;border-radius:6px;font-weight:700;display:inline-block;cursor:pointer;transform-origin:center;animation:{{ psychPulseStyle }}, highlightSweep 0.8s ease 0.7s both">Psychology</mark> to turn user research into products people actually understand, from the first interview to the shipped build.
         </p>
   </div>
@@ -113,16 +134,81 @@
     </sc-for>
   </div>
 
-  <!-- BUG BASH -->
-  <div id="bug-bash" style="max-width:1100px;margin:0 auto;padding:16px clamp(20px,5vw,64px) 40px;scroll-margin-top:90px">
-    <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,56px);align-items:center">
-      <div style="flex:1 1 300px;min-width:min(260px,100%)">
-        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,4vw,40px);margin:0 0 12px">Bug bash</h2>
-        <p style="font-size:16px;line-height:1.7;color:#453F52;margin:0;max-width:420px">Nothing I design ships with bugs in it. You get 30 seconds to prove you'd catch them too.</p>
-        <p style="font-size:13px;color:#5C5668;font-weight:600;font-style:italic;margin:14px 0 0">me hunting down bugs before the product ships :)</p>
+  <!-- SKILLS -->
+  <div style="max-width:1100px;margin:0 auto;padding:20px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,4vw,40px);margin:0 0 28px">Skills</h2>
+    <div ref="{{ setSkillsRef }}" class="skills-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:stretch">
+
+      <div class="skill-card" style="--i:0;background:#fff;border:1px solid #ECE6DA;border-radius:24px;padding:32px 26px;display:flex;flex-direction:column;gap:20px;min-height:220px">
+        <div class="skill-head" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center">
+          <span class="skill-icon" style="display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:18px;background:#E3F2EF;color:#1D4E46;flex-shrink:0"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path pathLength="100" d="M12 19l7-7 3 3-7 7-3-3Z"></path><path pathLength="100" d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5Z"></path><path pathLength="100" d="M2 2l7.5 7.5"></path><circle pathLength="100" cx="11" cy="11" r="2"></circle></svg></span>
+          <div style="font-weight:800;font-size:21px">Design</div>
+        </div>
+        <div class="skill-pills" style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px">
+          <span class="skill-pill" style="--j:0"><span onClick="{{ pulseTag }}" data-tag="figma" style="font-size:13.5px;font-weight:700;background:#E3F2EF;color:#1D4E46;border:1px solid #CDE7E0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.figma }}">Figma</span></span>
+          <span class="skill-pill" style="--j:1"><span onClick="{{ pulseTag }}" data-tag="wireframing" style="font-size:13.5px;font-weight:700;background:#E3F2EF;color:#1D4E46;border:1px solid #CDE7E0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.wireframing }}">Pencil</span></span><span class="skill-pill" style="--j:2"><span onClick="{{ pulseTag }}" data-tag="wireframing" style="font-size:13.5px;font-weight:700;background:#E3F2EF;color:#1D4E46;border:1px solid #CDE7E0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.wireframing }}">Canva</span></span><span class="skill-pill" style="--j:3"><span onClick="{{ pulseTag }}" data-tag="prototyping" style="font-size:13.5px;font-weight:700;background:#E3F2EF;color:#1D4E46;border:1px solid #CDE7E0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.prototyping }}">Prototypes</span></span>
+          
+          <span class="skill-pill" style="--j:4"><span onClick="{{ pulseTag }}" data-tag="pencil" style="font-size:13.5px;font-weight:700;background:#E3F2EF;color:#1D4E46;border:1px solid #CDE7E0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.pencil }}">Design Harness</span></span><span class="skill-pill" style="--j:5"><span onClick="{{ pulseTag }}" data-tag="designharness" style="font-size:13.5px;font-weight:700;background:#E3F2EF;color:#1D4E46;border:1px solid #CDE7E0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.designharness }}">Wireframes</span></span>
+          <span class="skill-pill" style="--j:6"><span onClick="{{ pulseTag }}" data-tag="usability" style="font-size:13.5px;font-weight:700;background:#E3F2EF;color:#1D4E46;border:1px solid #CDE7E0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.usability }}">Usability Testing</span></span>
+          
+        </div>
       </div>
-      <div style="flex:1 1 380px;min-width:min(300px,100%);max-width:480px">
-        <div data-native-cursor="" class="bug-arena" onMouseEnter="{{ handleHoverStart }}" onClick="{{ handleHoverStart }}" style="position: relative; height: 292px; border-radius: 24px; border: 2px solid #6FA294; background: linear-gradient(180deg,#D8ECE6,#F5F1E6); overflow: hidden; box-shadow: 0 14px 32px rgba(29,78,70,0.16),0 2px 8px rgba(29,78,70,0.1); width: 100%; max-width: 408px">
+
+      <div class="skill-card" style="--i:1;background:#fff;border:1px solid #ECE6DA;border-radius:24px;padding:32px 26px;display:flex;flex-direction:column;gap:20px;min-height:220px">
+        <div class="skill-head" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center">
+          <span class="skill-icon" style="display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:18px;background:#F3EBFA;color:#452256;flex-shrink:0"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path pathLength="100" d="M3 3v18h18"></path><path pathLength="100" d="M7 15l4-5 3 3 5-7"></path></svg></span>
+          <div style="font-weight:800;font-size:21px">Product</div>
+        </div>
+        <div class="skill-pills" style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px">
+          <span class="skill-pill" style="--j:0"><span onClick="{{ pulseTag }}" data-tag="strategy" style="font-size:13.5px;font-weight:700;background:#F3EBFA;color:#452256;border:1px solid #E5D5F3;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.strategy }}">Strategy</span></span>
+          <span class="skill-pill" style="--j:1"><span onClick="{{ pulseTag }}" data-tag="research" style="font-size:13.5px;font-weight:700;background:#F3EBFA;color:#452256;border:1px solid #E5D5F3;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.research }}">User Research</span></span>
+          <span class="skill-pill" style="--j:2"><span onClick="{{ pulseTag }}" data-tag="competitive" style="font-size:13.5px;font-weight:700;background:#F3EBFA;color:#452256;border:1px solid #E5D5F3;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.competitive }}">Competitive Analysis</span></span>
+          <span class="skill-pill" style="--j:3"><span onClick="{{ pulseTag }}" data-tag="prioritization" style="font-size:13.5px;font-weight:700;background:#F3EBFA;color:#452256;border:1px solid #E5D5F3;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.prioritization }}">Data Collection &amp; Analysis</span></span>
+        </div>
+      </div>
+
+      <div class="skill-card" style="--i:2;background:#fff;border:1px solid #ECE6DA;border-radius:24px;padding:32px 26px;display:flex;flex-direction:column;gap:20px;min-height:220px">
+        <div class="skill-head" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center">
+          <span class="skill-icon" style="display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:18px;background:#E9F1F8;color:#173250;flex-shrink:0"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path pathLength="100" d="m8 6-6 6 6 6M16 6l6 6-6 6"></path></svg></span>
+          <div style="font-weight:800;font-size:21px">Development</div>
+        </div>
+        <div class="skill-pills" style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px">
+          <span class="skill-pill" style="--j:0"><span onClick="{{ pulseTag }}" data-tag="html5" style="font-size:13.5px;font-weight:700;background:#E9F1F8;color:#173250;border:1px solid #D2E2F0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.html5 }}">HTML</span></span><span class="skill-pill" style="--j:1"><span onClick="{{ pulseTag }}" data-tag="css3" style="font-size:13.5px;font-weight:700;background:#E9F1F8;color:#173250;border:1px solid #D2E2F0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.css3 }}">CSS</span></span><span class="skill-pill" style="--j:2"><span onClick="{{ pulseTag }}" data-tag="react" style="font-size:13.5px;font-weight:700;background:#E9F1F8;color:#173250;border:1px solid #D2E2F0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.react }}">JavaScript</span></span>
+          <span class="skill-pill" style="--j:3"><span onClick="{{ pulseTag }}" data-tag="typescript" style="font-size:13.5px;font-weight:700;background:#E9F1F8;color:#173250;border:1px solid #D2E2F0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.typescript }}">Python</span></span><span class="skill-pill" style="--j:4"><span onClick="{{ pulseTag }}" data-tag="javascript" style="font-size:13.5px;font-weight:700;background:#E9F1F8;color:#173250;border:1px solid #D2E2F0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.javascript }}">MERN Stack</span></span><span class="skill-pill" style="--j:5"><span onClick="{{ pulseTag }}" data-tag="javascript" style="font-size:13.5px;font-weight:700;background:#E9F1F8;color:#173250;border:1px solid #D2E2F0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.javascript }}">C++</span></span><span class="skill-pill" style="--j:6"><span onClick="{{ pulseTag }}" data-tag="javascript" style="font-size:13.5px;font-weight:700;background:#E9F1F8;color:#173250;border:1px solid #D2E2F0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.javascript }}">C</span></span>
+          
+          
+          
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="about" style="max-width:1100px;margin:0 auto;padding:60px clamp(20px,5vw,64px) 20px;scroll-margin-top:90px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,4vw,40px);margin:0 0 28px">About Me</h2>
+    <div style="background:linear-gradient(160deg,#FCF3D9,#EAF5F2);border-radius:24px;padding:clamp(24px,5vw,40px);display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,40px);align-items:center">
+      <div style="flex:1.2 1 380px;min-width:min(280px,100%)">
+        <p style="font-size: 16px; line-height: 1.7; color: #453F52; margin: 0 0 12px; max-width: 550px">Hi! I'm a CS student at LUMS in Lahore with a psychology minor, which mostly means I can't stop asking why people click what they click. I take ideas from the very first user interview all the way to a shipped product.</p>
+        <p style="font-size: 16px; line-height: 1.7; color: #453F52; margin: 0 0 20px; max-width: 550px">Off the clock, I'm treasurer of LUMS Women in Science and Engineering, and I've picked up a few internships (and a lot of opinions about buttons) along the way. <a href="#experience" class="scp8" style="color: rgb(47, 122, 111); font-weight: 700; text-decoration: none;">Walk through my journey!</a></p><div style="display:flex;flex-wrap:wrap;gap:14px">
+
+          <a href="mailto:a.areejb@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #ECE6DA; color: #211F2E; font-weight: 700; font-size: 14px; padding: 11px 24px; border-radius: 100px; text-decoration: none; transition: transform 0.15s,border-color 0.15s" style-hover="border-color:#2F7A6F" style-active="transform:scale(0.95)">Contact Me</a><a href="uploads/Areej_Butt_Resume_LUMS.docx" download="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #ECE6DA;color:#453F52;font-weight:700;font-size:14px;padding:11px 24px;border-radius:100px;text-decoration:none;transition:transform 0.15s,border-color 0.15s" style-hover="border-color:#2F7A6F;color:#2F7A6F" style-active="transform:scale(0.95)">Download my Resume</a>
+        </div>
+        
+      </div>
+      <div style="flex:1 1 300px;min-width:min(260px,100%);display:flex;flex-direction:column;align-items:center">
+        <div ref="{{ setFlipRef }}" class="flip-wrap" style="position:relative;width:100%;max-width:378px;height:340px;perspective:1400px">
+          <div class="flip-peek" style="position:absolute;inset:0;transform-style:preserve-3d">
+            <div class="flip-card" style="position:absolute;inset:0;transform-style:preserve-3d;transition:transform 0.85s cubic-bezier(0.3,1.25,0.45,1);transform:{{ flipTransform }}">
+
+              <div class="flip-face" style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;overflow:hidden;pointer-events:{{ frontEvents }}">
+                <image-slot id="about-photo" shape="rounded" radius="20" fit="cover" style="width: 100%; height: 100%; display: block" placeholder="Drop a photo of yourself" src="uploads/about-photo.webp"></image-slot>
+                <button onClick="{{ toggleFlip }}" class="flip-btn" aria-label="Flip my photo to play Bug bash" style="position:absolute;right:12px;bottom:12px;display:flex;align-items:center;gap:6px;background:#fff;color:#1D4E46;border:1.5px solid #CDE7E0;border-radius:99px;padding:7px 13px 7px 11px;font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 6px 16px rgba(33,31,46,0.18)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><path d="M3 21v-5h5"></path></svg>Flip me</button>
+              </div>
+
+              <div class="flip-face" style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);pointer-events:{{ backEvents }}">
+                <div data-native-cursor="" class="bug-arena" onMouseEnter="{{ handleHoverStart }}" onClick="{{ handleHoverStart }}" style="position: absolute; inset: 0; height: auto; border-radius: 20px; border: 2px solid #6FA294; background: linear-gradient(180deg,#D8ECE6,#F5F1E6); overflow: hidden; box-shadow: 0 14px 32px rgba(29,78,70,0.16),0 2px 8px rgba(29,78,70,0.1); width: 100%; max-width: 408px">
           <sc-if value="{{ isPlaying }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;top:12px;left:14px;display:flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:#1D4E46;animation:fadeInUp 0.35s ease both"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>{{ timeLeft }}s</div>
             <div style="position:absolute;top:12px;right:14px;display:flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:#1D4E46;animation:fadeInUp 0.35s ease both"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.2" fill="currentColor"></circle></svg>{{ score }}</div>
@@ -164,79 +250,13 @@
           </div>
         </sc-if>
       </div>
-      
-      </div>
-    </div>
-  </div>
+                <button onClick="{{ toggleFlip }}" class="flip-btn" aria-label="Flip back to my photo" style="position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:5;display:flex;align-items:center;gap:6px;background:#fff;color:#1D4E46;border:1.5px solid #CDE7E0;border-radius:99px;padding:6px 12px 6px 10px;font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;cursor:pointer"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><path d="M3 21v-5h5"></path></svg>Back to my photo</button>
+              </div>
 
-  <!-- SKILLS -->
-  <div style="max-width:1100px;margin:0 auto;padding:20px clamp(20px,5vw,64px) 20px">
-    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,4vw,40px);margin:0 0 28px">Skills</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:stretch">
-
-      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:24px;padding:32px 26px;display:flex;flex-direction:column;gap:20px;min-height:220px">
-        <div onClick="{{ toggleSkills }}" data-skill-group="design" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;cursor:pointer;text-align:center;flex:1" style-hover="opacity:0.85">
-          <span style="display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:18px;background:#E3F2EF;color:#1D4E46;flex-shrink:0"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3Z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5Z"></path><path d="M2 2l7.5 7.5"></path><circle cx="11" cy="11" r="2"></circle></svg></span>
-          <div style="font-weight:800;font-size:21px">Design</div>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A8494" stroke-width="2.2" style="transition:transform 0.3s ease;transform:rotate({{ designChevron }}deg)"><path d="m6 9 6 6 6-6"></path></svg>
+            </div>
+          </div>
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;overflow:hidden;transition:max-height 0.35s ease,opacity 0.3s ease;max-height:{{ designMaxH }};opacity:{{ designOpacity }}">
-          <span onClick="{{ pulseTag }}" data-tag="figma" style="font-size:13.5px;font-weight:700;background:#E3F2EF;color:#1D4E46;border:1px solid #CDE7E0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.figma }}">Figma</span>
-          <span onClick="{{ pulseTag }}" data-tag="wireframing" style="font-size:13.5px;font-weight:700;background:#E3F2EF;color:#1D4E46;border:1px solid #CDE7E0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.wireframing }}">Pencil</span><span onClick="{{ pulseTag }}" data-tag="wireframing" style="font-size:13.5px;font-weight:700;background:#E3F2EF;color:#1D4E46;border:1px solid #CDE7E0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.wireframing }}">Canva</span><span onClick="{{ pulseTag }}" data-tag="prototyping" style="font-size:13.5px;font-weight:700;background:#E3F2EF;color:#1D4E46;border:1px solid #CDE7E0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.prototyping }}">Prototypes</span>
-          
-          <span onClick="{{ pulseTag }}" data-tag="pencil" style="font-size:13.5px;font-weight:700;background:#E3F2EF;color:#1D4E46;border:1px solid #CDE7E0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.pencil }}">Design Harness</span><span onClick="{{ pulseTag }}" data-tag="designharness" style="font-size:13.5px;font-weight:700;background:#E3F2EF;color:#1D4E46;border:1px solid #CDE7E0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.designharness }}">Wireframes</span>
-          <span onClick="{{ pulseTag }}" data-tag="usability" style="font-size:13.5px;font-weight:700;background:#E3F2EF;color:#1D4E46;border:1px solid #CDE7E0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.usability }}">Usability Testing</span>
-          
-        </div>
-      </div>
-
-      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:24px;padding:32px 26px;display:flex;flex-direction:column;gap:20px;min-height:220px">
-        <div onClick="{{ toggleSkills }}" data-skill-group="product" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;cursor:pointer;text-align:center;flex:1" style-hover="opacity:0.85">
-          <span style="display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:18px;background:#F3EBFA;color:#452256;flex-shrink:0"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"></path><path d="M7 15l4-5 3 3 5-7"></path></svg></span>
-          <div style="font-weight:800;font-size:21px">Product</div>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A8494" stroke-width="2.2" style="transition:transform 0.3s ease;transform:rotate({{ productChevron }}deg)"><path d="m6 9 6 6 6-6"></path></svg>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;overflow:hidden;transition:max-height 0.35s ease,opacity 0.3s ease;max-height:{{ productMaxH }};opacity:{{ productOpacity }}">
-          <span onClick="{{ pulseTag }}" data-tag="strategy" style="font-size:13.5px;font-weight:700;background:#F3EBFA;color:#452256;border:1px solid #E5D5F3;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.strategy }}">Strategy</span>
-          <span onClick="{{ pulseTag }}" data-tag="research" style="font-size:13.5px;font-weight:700;background:#F3EBFA;color:#452256;border:1px solid #E5D5F3;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.research }}">User Research</span>
-          <span onClick="{{ pulseTag }}" data-tag="competitive" style="font-size:13.5px;font-weight:700;background:#F3EBFA;color:#452256;border:1px solid #E5D5F3;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.competitive }}">Competitive Analysis</span>
-          <span onClick="{{ pulseTag }}" data-tag="prioritization" style="font-size:13.5px;font-weight:700;background:#F3EBFA;color:#452256;border:1px solid #E5D5F3;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.prioritization }}">Data Collection &amp; Analysis</span>
-        </div>
-      </div>
-
-      <div style="background:#fff;border:1px solid #ECE6DA;border-radius:24px;padding:32px 26px;display:flex;flex-direction:column;gap:20px;min-height:220px">
-        <div onClick="{{ toggleSkills }}" data-skill-group="interface" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;cursor:pointer;text-align:center;flex:1" style-hover="opacity:0.85">
-          <span style="display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:18px;background:#E9F1F8;color:#173250;flex-shrink:0"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"></path></svg></span>
-          <div style="font-weight:800;font-size:21px">Development</div>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A8494" stroke-width="2.2" style="transition:transform 0.3s ease;transform:rotate({{ interfaceChevron }}deg)"><path d="m6 9 6 6 6-6"></path></svg>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;overflow:hidden;transition:max-height 0.35s ease,opacity 0.3s ease;max-height:{{ interfaceMaxH }};opacity:{{ interfaceOpacity }}">
-          <span onClick="{{ pulseTag }}" data-tag="html5" style="font-size:13.5px;font-weight:700;background:#E9F1F8;color:#173250;border:1px solid #D2E2F0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.html5 }}">HTML</span><span onClick="{{ pulseTag }}" data-tag="css3" style="font-size:13.5px;font-weight:700;background:#E9F1F8;color:#173250;border:1px solid #D2E2F0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.css3 }}">CSS</span><span onClick="{{ pulseTag }}" data-tag="react" style="font-size:13.5px;font-weight:700;background:#E9F1F8;color:#173250;border:1px solid #D2E2F0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.react }}">JavaScript</span>
-          <span onClick="{{ pulseTag }}" data-tag="typescript" style="font-size:13.5px;font-weight:700;background:#E9F1F8;color:#173250;border:1px solid #D2E2F0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.typescript }}">Python</span><span onClick="{{ pulseTag }}" data-tag="javascript" style="font-size:13.5px;font-weight:700;background:#E9F1F8;color:#173250;border:1px solid #D2E2F0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.javascript }}">MERN Stack</span><span onClick="{{ pulseTag }}" data-tag="javascript" style="font-size:13.5px;font-weight:700;background:#E9F1F8;color:#173250;border:1px solid #D2E2F0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.javascript }}">C++</span><span onClick="{{ pulseTag }}" data-tag="javascript" style="font-size:13.5px;font-weight:700;background:#E9F1F8;color:#173250;border:1px solid #D2E2F0;padding:7px 14px;border-radius:100px;cursor:pointer;display:inline-block;transform-origin:center;animation:{{ tagAnim.javascript }}">C</span>
-          
-          
-          
-          
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ABOUT -->
-  <div id="about" style="max-width:1100px;margin:0 auto;padding:60px clamp(20px,5vw,64px) 20px;scroll-margin-top:90px">
-    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,4vw,40px);margin:0 0 28px">About Me</h2>
-    <div style="background:linear-gradient(160deg,#FCF3D9,#EAF5F2);border-radius:24px;padding:clamp(24px,5vw,40px);display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,40px);align-items:center">
-      <div style="flex:1.2 1 380px;min-width:min(280px,100%)">
-        <p style="font-size: 16px; line-height: 1.7; color: #453F52; margin: 0 0 12px; max-width: 550px">Hi! I am a Computer Science undergraduate at LUMS with a minor in Psychology, based in Lahore, Pakistan. Understanding user behavior drives everything I do. My workflow bridges product research, interface design, and implementation, allowing me to take an idea from initial user insight all the way to a shipped product.</p>
-        <p style="font-size: 16px; line-height: 1.7; color: #453F52; margin: 0 0 20px; max-width: 550px">Beyond the classroom, I've helped build community initiatives like the LUMS Women in Science and Engineering, driven brand engagement across campus, and gained hands-on experience through multiple industry internships. <a href="#experience" class="scp8" style="color: rgb(47, 122, 111); font-weight: 700; text-decoration: none;">Walk through my journey!</a></p><div style="display:flex;flex-wrap:wrap;gap:14px">
-
-          <a href="mailto:a.areejb@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #ECE6DA; color: #211F2E; font-weight: 700; font-size: 14px; padding: 11px 24px; border-radius: 100px; text-decoration: none; transition: transform 0.15s,border-color 0.15s" style-hover="border-color:#2F7A6F" style-active="transform:scale(0.95)">Contact Me</a><a href="uploads/Areej_Butt_Resume_LUMS.docx" download="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #ECE6DA;color:#453F52;font-weight:700;font-size:14px;padding:11px 24px;border-radius:100px;text-decoration:none;transition:transform 0.15s,border-color 0.15s" style-hover="border-color:#2F7A6F;color:#2F7A6F" style-active="transform:scale(0.95)">Download my Resume</a>
-        </div>
-        
-      </div>
-      <div style="flex:1 1 300px;min-width:min(240px,100%)">
-        <image-slot id="about-photo" shape="rounded" radius="20" fit="cover" style="width: 100%; max-width: 378px; aspect-ratio: 378 / 358; height: auto" placeholder="Drop a photo of yourself" src="uploads/about-photo.webp"></image-slot>
+        <p style="font-size:13px;color:#5C5668;font-weight:600;font-style:italic;margin:14px 0 0;text-align:center;min-height:20px">{{ flipCaption }}</p>
       </div>
     </div>
   </div>
@@ -269,7 +289,7 @@
 
 </x-dc>
 <script type="text/x-dc" data-dc-script>
-const GAME_H = 260, BUG_H = 26;
+const GAME_H = 300, BUG_H = 26;
 const NAMES = ['Areej', 'عريج', 'Aréej'];
 
 class Component extends DCLogic {
@@ -285,11 +305,41 @@ class Component extends DCLogic {
     psychPulse: '',
     tagAnim: {},
     skillsOpen: { design: false, product: false, interface: false },
+    flipped: false,
   };
   _nextId = 1;
   _spawnTimer = null;
   _tickTimer = null;
   _moveTimer = null;
+
+  setSkillsRef = (el) => {
+    this.skillsEl = el;
+    if (!el || this._skillsIO) return;
+    if (typeof IntersectionObserver !== 'function') { el.classList.add('skills-in'); return; }
+    this._skillsIO = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { el.classList.add('skills-in'); this._skillsIO.disconnect(); }
+    }, { threshold: 0.25 });
+    this._skillsIO.observe(el);
+  };
+
+  setFlipRef = (el) => {
+    if (!el || this._flipIO || typeof IntersectionObserver !== 'function') return;
+    // One small "peek" the first time the card scrolls into view, to hint that it flips.
+    this._flipIO = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { el.classList.add('peek'); this._flipIO.disconnect(); }
+    }, { threshold: 0.6 });
+    this._flipIO.observe(el);
+  };
+
+  toggleFlip = (e) => {
+    if (e && e.stopPropagation) e.stopPropagation();
+    const flipped = !this.state.flipped;
+    if (!flipped && this.state.phase !== 'idle') {
+      this.stopGameLoops();
+      this.setState({ phase: 'idle', bugs: [], score: 0, timeLeft: 30 });
+    }
+    this.setState({ flipped });
+  };
 
   componentDidMount() {
     if (this._mounted) return;
@@ -307,6 +357,8 @@ class Component extends DCLogic {
   }
 
   componentWillUnmount() {
+    if (this._flipIO) this._flipIO.disconnect();
+    if (this._skillsIO) this._skillsIO.disconnect();
     this.stopGameLoops();
     clearInterval(this._spawnTimer);
     clearInterval(this._moveTimer);
@@ -455,7 +507,13 @@ class Component extends DCLogic {
       pulseCS: this.pulseCS,
       pulsePsych: this.pulsePsych,
       pulseTag: this.pulseTag,
-      toggleSkills: this.toggleSkills,
+      setSkillsRef: this.setSkillsRef,
+      setFlipRef: this.setFlipRef,
+      toggleFlip: this.toggleFlip,
+      flipTransform: this.state.flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+      frontEvents: this.state.flipped ? 'none' : 'auto',
+      backEvents: this.state.flipped ? 'auto' : 'none',
+      flipCaption: this.state.flipped ? 'me hunting down bugs before the product ships :)' : 'psst, there’s a game on the back',
       designChevron: this.state.skillsOpen.design ? 180 : 0,
       productChevron: this.state.skillsOpen.product ? 180 : 0,
       interfaceChevron: this.state.skillsOpen.interface ? 180 : 0,

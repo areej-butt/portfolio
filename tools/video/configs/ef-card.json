@@ -1,0 +1,32 @@
+{
+ "repo": ".",
+ "out": "uploads/video/ef-card",
+ "mode": "flow",
+ "slot": 3.6,
+ "steps": [
+  {
+   "screen": "dmpr",
+   "click": [
+    640,
+    762
+   ]
+  },
+  {
+   "screen": "awv6",
+   "click": [
+    640,
+    694
+   ]
+  },
+  {
+   "screen": "ykah",
+   "click": [
+    560,
+    266
+   ]
+  }
+ ],
+ "crop_h": 800,
+ "W": 1120,
+ "H": 700
+}

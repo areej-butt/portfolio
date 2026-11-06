@@ -1,0 +1,29 @@
+{
+ "repo": ".",
+ "out": "uploads/video/ef-hero",
+ "mode": "flow",
+ "slot": 3.6,
+ "steps": [
+  {
+   "screen": "4wnb",
+   "click": [
+    630,
+    524
+   ]
+  },
+  {
+   "screen": "b0xc",
+   "click": [
+    1020,
+    292
+   ]
+  },
+  {
+   "screen": "i557",
+   "click": [
+    250,
+    559
+   ]
+  }
+ ]
+}

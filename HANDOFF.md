@@ -1,5 +1,8 @@
 # Handoff: Deploying Areej's Portfolio
 
+> **Next Claude session: read `CLAUDE.md` first.** It has the full context (how the code works, what Areej has
+> decided, the video system, how to test in a cloud session). This file only covers deployment.
+
 ## What this is
 
 A 5-page personal portfolio site built with **Claude Design's `.dc.html` format** — not a standard React/Vue/static-site-generator build. Each `.dc.html` file is a self-contained HTML document that boots a small custom runtime (`support.js`) which:
@@ -20,9 +23,15 @@ A 5-page personal portfolio site built with **Claude Design's `.dc.html` format*
 ├── CareerLevel.dc.html        ← imported component (Experience Road on the home page)
 ├── support.js                 ← dc-runtime (generic, not project-specific)
 ├── image-slot.js              ← image-slot web component (generic)
+├── *-summary.html             ← short static versions of the three case studies
+├── video-previews.js          ← turns data-video placeholders into looping videos (uploads/video/)
+├── case-motion.js             ← scroll animations on the full case studies
+├── sparkle-cursor.js          ← custom cursor
+├── vercel.json, .vercelignore ← / → Portfolio.dc.html; tools/ is not deployed
+├── tools/                     ← scripts that made the videos (not deployed)
 ├── .image-slots.state.json    ← ⚠️ SEE BELOW — do not skip this file
 ├── screenshot-2026-08-03-...png (x2)  ← root-level images referenced by HoshiyarPK.dc.html
-└── uploads/                    ← 76 files: photos, screenshots, logos, resume docx
+└── uploads/                    ← photos, screenshots, logos, resume docx, and video/ (18 mp4 + still frames)
 ```
 
 Total size ~54MB (mostly high-res real screenshots/photos, nothing to trim without asking).

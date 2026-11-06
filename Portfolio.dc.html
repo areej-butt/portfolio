@@ -71,7 +71,7 @@
 
   <!-- NAV -->
   <div style="position:sticky;top:0;z-index:50;background:rgba(251,247,240,0.85);backdrop-filter:blur(8px);border-bottom:1px solid #ECE6DA;animation:fadeInUp 0.5s ease both">
-    <div style="max-width:2000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,4vw,72px)">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,5vw,64px)">
     <a href="#" onClick="{{ handleLogoClick }}" aria-label="Areej Butt — back to top" style="color:#2F7A6F;text-decoration:none;display:inline-flex;cursor:pointer;transform-origin:center;transition:transform 0.35s ease;animation:{{ logoAnimStyle }}" style-hover="transform:scale(1.08)">
       <svg class="logo-mark" width="34" height="34" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="{{ logoBg }}" stroke="#2F7A6F" stroke-width="2" style="transition:fill 0.35s ease"></circle><path fill="{{ logoInk }}" d="M10.89 23.34Q10 23.34 9.5 22.7Q8.99 22.06 9.2 20.63Q9.38 19.31 10.09 17.92Q10.81 16.53 11.86 15.32Q12.91 14.11 14.1 13.37Q15.28 12.63 16.37 12.63Q16.89 12.63 17.44 12.82Q17.98 13.02 18.39 13.45Q18.79 13.87 18.84 14.58L17.28 13.72Q17.72 13.67 18.21 13.3Q18.69 12.94 19.02 12.42Q19.08 12.34 19.22 12.39Q19.36 12.44 19.34 12.5L17.83 20.69Q17.59 21.91 18.11 21.91Q18.37 21.91 18.74 21.66Q19.1 21.41 19.52 21Q19.6 20.92 19.7 21.02Q19.8 21.13 19.73 21.21Q18.92 22.17 18.21 22.7Q17.49 23.23 16.81 23.23Q15.98 23.23 15.68 22.62Q15.38 22.01 15.59 20.69L16.24 17.05L16.79 16.6Q16.16 18.74 15.18 20.24Q14.19 21.75 13.07 22.55Q11.95 23.34 10.89 23.34ZM12.55 21.44Q13.17 21.44 13.8 20.95Q14.42 20.45 14.96 19.67Q15.49 18.89 15.87 18.02Q16.24 17.15 16.37 16.42Q16.58 15.25 16.22 14.58Q15.85 13.9 15.07 13.9Q14.34 13.9 13.64 14.5Q12.94 15.1 12.39 16.14Q11.85 17.18 11.61 18.53Q11.35 20.17 11.67 20.8Q11.98 21.44 12.55 21.44Z" style="transition:fill 0.35s ease"></path><path class="logo-spark" fill="#D97D5E" d="M23.5 5.5 24.6 8.9 28 10 24.6 11.1 23.5 14.5 22.4 11.1 19 10 22.4 8.9Z"></path></svg>
     </a>
@@ -85,9 +85,9 @@
 
   <!-- HERO: intro + road fill the first screen on desktop -->
   <div class="hero-fs">
-  <div style="width:100%;max-width:2000px;margin:0 auto;padding:clamp(28px,5vh,72px) clamp(20px,4vw,72px) 0;box-sizing:border-box">
-        <h1 style="position:relative;z-index:1;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(40px,5.4vw,108px);line-height:1.04;margin:0 0 clamp(18px,1.6vw,30px);animation:fadeInUp 0.6s ease 0.1s both">Hi there! I'm <span style="color:#2F7A6F;font-style:italic;display:inline-block;opacity:{{ nameOpacity }};filter:{{ nameBlur }};transition:opacity 0.35s ease,filter 0.35s ease">{{ currentName }}</span></h1>
-        <p style="position:relative;z-index:1;font-size:clamp(17px,1.35vw,26px);line-height:1.6;color:#453F52;margin:0;max-width:36em;animation:fadeInUp 0.6s ease 0.22s both">
+  <div style="width:100%;max-width:1100px;margin:0 auto;padding:clamp(28px,5vh,72px) clamp(20px,5vw,64px) 0;box-sizing:border-box">
+        <h1 style="position:relative;z-index:1;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(40px,5.5vw,64px);line-height:1.08;margin:0 0 22px;animation:fadeInUp 0.6s ease 0.1s both">Hi there! I'm <span style="color:#2F7A6F;font-style:italic;display:inline-block;opacity:{{ nameOpacity }};filter:{{ nameBlur }};transition:opacity 0.35s ease,filter 0.35s ease">{{ currentName }}</span></h1>
+        <p style="position:relative;z-index:1;font-size:clamp(17px,2vw,20px);line-height:1.65;color:#453F52;margin:0;max-width:620px;animation:fadeInUp 0.6s ease 0.22s both">
           Product designer who blends <mark onClick="{{ pulseCS }}" style="background-image:linear-gradient(90deg,#F3EBFA,#F3EBFA);background-repeat:no-repeat;background-size:200% 100%;background-position:0 0;color:#452256;padding:2px 8px;border-radius:6px;font-weight:700;display:inline-block;cursor:pointer;transform-origin:center;animation:{{ csPulseStyle }}, highlightSweep 0.8s ease 0.5s both">Computer Science</mark> and
           <mark onClick="{{ pulsePsych }}" style="background-image:linear-gradient(90deg,#F9E8C4,#F9E8C4);background-repeat:no-repeat;background-size:200% 100%;background-position:0 0;color:#5C3F09;padding:2px 8px;border-radius:6px;font-weight:700;display:inline-block;cursor:pointer;transform-origin:center;animation:{{ psychPulseStyle }}, highlightSweep 0.8s ease 0.7s both">Psychology</mark> to turn user research into products people actually understand, from the first interview to the shipped build.
         </p>
@@ -99,22 +99,22 @@
   </div>
   </div>
 
-  <div id="work" style="max-width:2000px;margin:0 auto;padding:60px clamp(20px,4vw,72px) 20px;scroll-margin-top:90px">
+  <div id="work" style="max-width:1100px;margin:0 auto;padding:60px clamp(20px,5vw,64px) 20px;scroll-margin-top:90px">
     <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:28px">
-      <h2 style="font-family: 'Cormorant Garamond',serif; font-weight: 500; font-size: clamp(30px,3.2vw,60px); margin: 0">Featured Work</h2>
+      <h2 style="font-family: 'Cormorant Garamond',serif; font-weight: 500; font-size: clamp(30px,4vw,40px); margin: 0">Featured Work</h2>
       <span style="font-size:14px;color:#8A8494">more projects coming soon!</span>
     </div>
     <sc-for list="{{ projects }}" as="project" hint-placeholder-count="3">
       <div style="margin-bottom:56px">
-        <div style="position:relative;background:{{ project.bg }};border-radius:24px;padding:clamp(36px,4.5vw,88px);display:flex;align-items:center;justify-content:center;gap:clamp(28px,3.5vw,64px);flex-wrap:wrap;overflow:hidden">
-          <div style="flex:0 1 clamp(300px,34vw,660px);min-width:260px;position:relative;z-index:1">
+        <div style="position:relative;background:{{ project.bg }};border-radius:24px;padding:clamp(36px,5vw,64px);display:flex;align-items:center;gap:clamp(28px,4vw,56px);flex-wrap:wrap;overflow:hidden">
+          <div style="flex:1.1 1 320px;min-width:260px;position:relative;z-index:1">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
               
               <img src="{{ project.icon }}" alt="" style="width: 32px; height: 32px; border-radius: 9px; object-fit: contain"><div style="font-weight:700;font-size:15px;color:#211F2E">{{ project.appName }}</div>
             </div>
-            <div style="font-size:clamp(13px,0.85vw,15px);font-weight:700;letter-spacing:0.08em;color:#453F52;margin-bottom:10px">{{ project.eyebrow }}</div>
-            <h3 style="font-size:clamp(28px,3.2vw,60px);font-weight:800;margin:0 0 16px;line-height:1.05">{{ project.title }}</h3>
-            <p style="font-size:clamp(15.5px,1.15vw,21px);line-height:1.6;color:#5C5668;margin:0 0 26px;max-width:28em">{{ project.desc }}</p>
+            <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;color:#453F52;margin-bottom:10px">{{ project.eyebrow }}</div>
+            <h3 style="font-size:clamp(28px,3.4vw,38px);font-weight:800;margin:0 0 16px;line-height:1.1">{{ project.title }}</h3>
+            <p style="font-size:15.5px;line-height:1.6;color:#5C5668;margin:0 0 26px;max-width:440px">{{ project.desc }}</p>
             <a href="{{ project.link }}" onMouseEnter="{{ project.onCtaEnter }}" onMouseLeave="{{ project.onCtaLeave }}" style="display:inline-flex;align-items:center;gap:10px;background:{{ project.ctaBg }};color:{{ project.ctaColor }};font-weight:600;font-size:14.5px;padding:13px 24px;border-radius:100px;text-decoration:none;white-space:nowrap;pointer-events:{{ project.linkPointer }}" style-hover="opacity:0.88">
               <sc-if value="{{ project.ctaHovered }}" hint-placeholder-val="{{ false }}">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:slideArrow 0.25s ease"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
@@ -125,7 +125,7 @@
               {{ project.ctaLabel }}
             </a>
           </div>
-          <div class="proj-img" style="flex:1 1 360px;max-width:760px;min-width:240px;display:flex;justify-content:center;position:relative;z-index:1">
+          <div style="flex:1 1 300px;min-width:240px;display:flex;justify-content:center;position:relative;z-index:1">
             <sc-if value="{{ project.imgFull }}" hint-placeholder-val="{{ false }}">
               <image-slot id="{{ project.slotId }}" shape="rect" fit="contain" style="width:100%;height:auto;aspect-ratio:{{ project.imgAspect }};max-width:{{ project.imgMaxW }};mix-blend-mode:{{ project.blendMode }}" placeholder="{{ project.placeholderText }}" src="{{ project.imgSrc }}"></image-slot>
             </sc-if>
@@ -141,8 +141,8 @@
   </div>
 
   <!-- SKILLS -->
-  <div style="max-width:2000px;margin:0 auto;padding:20px clamp(20px,4vw,72px) 20px">
-    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,3.2vw,60px);margin:0 0 28px">Skills</h2>
+  <div style="max-width:1100px;margin:0 auto;padding:20px clamp(20px,5vw,64px) 20px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,4vw,40px);margin:0 0 28px">Skills</h2>
     <div ref="{{ setSkillsRef }}" class="skills-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:stretch">
 
       <div class="skill-card" style="--i:0;background:#fff;border:1px solid #ECE6DA;border-radius:24px;padding:32px 26px;display:flex;flex-direction:column;gap:20px;min-height:220px">
@@ -192,19 +192,19 @@
   </div>
 
   <!-- ABOUT -->
-  <div id="about" style="max-width:2000px;margin:0 auto;padding:60px clamp(20px,4vw,72px) 20px;scroll-margin-top:90px">
-    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,3.2vw,60px);margin:0 0 28px">About Me</h2>
-    <div style="background:linear-gradient(160deg,#FCF3D9,#EAF5F2);border-radius:24px;padding:clamp(24px,4.5vw,88px);display:flex;flex-wrap:wrap;gap:clamp(28px,3.5vw,64px);align-items:center;justify-content:center">
-      <div style="flex:0 1 clamp(300px,40vw,760px);min-width:min(280px,100%)">
-        <p style="font-size: clamp(16px,1.2vw,22px); line-height: 1.7; color: #453F52; margin: 0 0 12px; max-width: 32em">Hi! I'm a CS student at LUMS in Lahore with a psychology minor, which mostly means I can't stop asking why people click what they click. I take ideas from the very first user interview all the way to a shipped product.</p>
-        <p style="font-size: clamp(16px,1.2vw,22px); line-height: 1.7; color: #453F52; margin: 0 0 20px; max-width: 32em">Off the clock, I'm treasurer of LUMS Women in Science and Engineering, and I've picked up a few internships (and a lot of opinions about buttons) along the way. <a href="#experience" class="scp8" style="color: rgb(47, 122, 111); font-weight: 700; text-decoration: none;">Walk through my journey!</a></p><div style="display:flex;flex-wrap:wrap;gap:14px">
+  <div id="about" style="max-width:1100px;margin:0 auto;padding:60px clamp(20px,5vw,64px) 20px;scroll-margin-top:90px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,4vw,40px);margin:0 0 28px">About Me</h2>
+    <div style="background:linear-gradient(160deg,#FCF3D9,#EAF5F2);border-radius:24px;padding:clamp(24px,5vw,40px);display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,40px);align-items:center">
+      <div style="flex:1.2 1 380px;min-width:min(280px,100%)">
+        <p style="font-size: 16px; line-height: 1.7; color: #453F52; margin: 0 0 12px; max-width: 550px">Hi! I'm a CS student at LUMS in Lahore with a psychology minor, which mostly means I can't stop asking why people click what they click. I take ideas from the very first user interview all the way to a shipped product.</p>
+        <p style="font-size: 16px; line-height: 1.7; color: #453F52; margin: 0 0 20px; max-width: 550px">Off the clock, I'm treasurer of LUMS Women in Science and Engineering, and I've picked up a few internships (and a lot of opinions about buttons) along the way. <a href="#experience" class="scp8" style="color: rgb(47, 122, 111); font-weight: 700; text-decoration: none;">Walk through my journey!</a></p><div style="display:flex;flex-wrap:wrap;gap:14px">
 
           <a href="mailto:a.areejb@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #ECE6DA; color: #211F2E; font-weight: 700; font-size: 14px; padding: 11px 24px; border-radius: 100px; text-decoration: none; transition: transform 0.15s,border-color 0.15s" style-hover="border-color:#2F7A6F" style-active="transform:scale(0.95)">Contact Me</a><a href="uploads/Areej_Butt_Resume_LUMS.docx" download="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #ECE6DA;color:#453F52;font-weight:700;font-size:14px;padding:11px 24px;border-radius:100px;text-decoration:none;transition:transform 0.15s,border-color 0.15s" style-hover="border-color:#2F7A6F;color:#2F7A6F" style-active="transform:scale(0.95)">Download my Resume</a>
         </div>
         
       </div>
-      <div class="about-photo" style="flex:0 1 auto;min-width:min(260px,100%);display:flex;flex-direction:column;align-items:center">
-        <div ref="{{ setFlipRef }}" class="flip-wrap" style="position:relative;width:clamp(300px,26vw,520px);max-width:100%;height:clamp(320px,23vw,470px);perspective:1400px">
+      <div style="flex:1 1 300px;min-width:min(260px,100%);display:flex;flex-direction:column;align-items:center">
+        <div ref="{{ setFlipRef }}" class="flip-wrap" style="position:relative;width:100%;max-width:378px;height:340px;perspective:1400px">
           <div class="flip-peek" style="position:absolute;inset:0;transform-style:preserve-3d">
             <div class="flip-card" style="position:absolute;inset:0;transform-style:preserve-3d;transition:transform 0.85s cubic-bezier(0.3,1.25,0.45,1);transform:{{ flipTransform }}">
 
@@ -268,7 +268,7 @@
 
   <!-- FOOTER -->
   <div style="background:linear-gradient(135deg,#EAF5F2,#F3EBFA);padding:44px 0;border-radius:32px 32px 0 0;margin-top:0">
-    <div style="max-width:2000px;margin:0 auto;padding:0 clamp(20px,4vw,72px)">
+    <div style="max-width:1100px;margin:0 auto;padding:0 clamp(24px,5vw,48px)">
 
       <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px">
         <div>
@@ -570,9 +570,9 @@ class Component extends DCLogic {
     const hoveredCtaIdx = this.state.hoveredCtaIdx;
     const setHoveredCta = (i) => this.setState({ hoveredCtaIdx: i });
     const projects = [
-      { bg: 'linear-gradient(135deg,#D8ECE6,#E9F3EF)', dot: '#2F7A6F', tag: 'Research', slotId: 'project-shot-1', placeholderText: 'Drop a screenshot of HoshiyarPK', imgSrc: 'uploads/hoshiyarpk-card-mint.png', eyebrow: 'RESEARCH & PRODUCT DESIGN · FEB – APRIL 2026', title: 'HoshiyarPK', category: '', blendMode: 'normal', desc: "A behavioral training app turning scam awareness into muscle memory for Pakistan's most-targeted generation.", tags: ['Figma', 'User Research', 'Usability Testing', 'HCI Lab (CHISEL)'], link: 'HoshiyarPK.dc.html', linkPointer: 'auto', imgFull: true, imgSmall: false, imgMaxW: 'min(760px, 100%)', imgAspect: '560/287', hasIcon: true, icon: 'uploads/mascot-final-1.png', appName: 'HoshiyarPK', ctaLabel: 'view case study', ctaBg: '#2F7A6F', ctaColor: '#fff' },
-      { bg: 'linear-gradient(135deg,#F3EBFA,#F8F2FB)', dot: '#A574C9', tag: 'Product & Systems', slotId: 'project-shot-3', placeholderText: 'Drop a screenshot of EquityFlow', imgSrc: 'uploads/screens-1787332622312-4wnb.png', eyebrow: 'PRODUCT DESIGN & DESIGN SYSTEMS · AUGUST 2026', title: 'EquityFlow', category: '', blendMode: 'normal', desc: 'An equity crowdfunding platform where federal compliance had to feel like guidance instead of a wall.', tags: ['Product Design', 'Information Architecture', 'Design Systems', 'Prototyping'], link: 'EquityFlow.dc.html', linkPointer: 'auto', imgFull: true, imgSmall: false, imgMaxW: 'min(760px, 100%)', imgAspect: '1280/900', hasIcon: true, icon: 'uploads/equityflow-logo.png', appName: 'EquityFlow', ctaLabel: 'view case study', ctaBg: '#7B4FA8', ctaColor: '#fff' },
-      { bg: 'linear-gradient(135deg,#DCEEF5,#EAF6F3)', dot: '#2EAFD0', tag: 'Concept & Brand', slotId: 'project-shot-2', placeholderText: 'Drop a screenshot of Marine Link', imgSrc: 'uploads/pasted-1785840864045-0.png', eyebrow: 'CONCEPT, BRAND & VISUAL DESIGN · JULY 2026', title: 'Marine Link', category: '', blendMode: 'normal', desc: 'An exploration-driven ocean experience that turns the five layers of the ocean into a place to visit.', tags: ['Brand Identity', 'Color Systems', 'Illustration Direction', 'UX Audit'], link: 'MarineLink.dc.html', linkPointer: 'auto', imgFull: true, imgSmall: false, imgMaxW: 'min(760px, 100%)', imgAspect: '3416/2136', hasIcon: true, icon: 'uploads/marinelink-logo-transparent.png', appName: 'Marine Link', ctaLabel: 'view case study', ctaBg: '#1C6E9C', ctaColor: '#fff' },
+      { bg: 'linear-gradient(135deg,#D8ECE6,#E9F3EF)', dot: '#2F7A6F', tag: 'Research', slotId: 'project-shot-1', placeholderText: 'Drop a screenshot of HoshiyarPK', imgSrc: 'uploads/hoshiyarpk-card-mint.png', eyebrow: 'RESEARCH & PRODUCT DESIGN · FEB – APRIL 2026', title: 'HoshiyarPK', category: '', blendMode: 'normal', desc: "A behavioral training app turning scam awareness into muscle memory for Pakistan's most-targeted generation.", tags: ['Figma', 'User Research', 'Usability Testing', 'HCI Lab (CHISEL)'], link: 'HoshiyarPK.dc.html', linkPointer: 'auto', imgFull: true, imgSmall: false, imgMaxW: '420px', imgAspect: '560/287', hasIcon: true, icon: 'uploads/mascot-final-1.png', appName: 'HoshiyarPK', ctaLabel: 'view case study', ctaBg: '#2F7A6F', ctaColor: '#fff' },
+      { bg: 'linear-gradient(135deg,#F3EBFA,#F8F2FB)', dot: '#A574C9', tag: 'Product & Systems', slotId: 'project-shot-3', placeholderText: 'Drop a screenshot of EquityFlow', imgSrc: 'uploads/screens-1787332622312-4wnb.png', eyebrow: 'PRODUCT DESIGN & DESIGN SYSTEMS · AUGUST 2026', title: 'EquityFlow', category: '', blendMode: 'normal', desc: 'An equity crowdfunding platform where federal compliance had to feel like guidance instead of a wall.', tags: ['Product Design', 'Information Architecture', 'Design Systems', 'Prototyping'], link: 'EquityFlow.dc.html', linkPointer: 'auto', imgFull: true, imgSmall: false, imgMaxW: '420px', imgAspect: '1280/900', hasIcon: true, icon: 'uploads/equityflow-logo.png', appName: 'EquityFlow', ctaLabel: 'view case study', ctaBg: '#7B4FA8', ctaColor: '#fff' },
+      { bg: 'linear-gradient(135deg,#DCEEF5,#EAF6F3)', dot: '#2EAFD0', tag: 'Concept & Brand', slotId: 'project-shot-2', placeholderText: 'Drop a screenshot of Marine Link', imgSrc: 'uploads/pasted-1785840864045-0.png', eyebrow: 'CONCEPT, BRAND & VISUAL DESIGN · JULY 2026', title: 'Marine Link', category: '', blendMode: 'normal', desc: 'An exploration-driven ocean experience that turns the five layers of the ocean into a place to visit.', tags: ['Brand Identity', 'Color Systems', 'Illustration Direction', 'UX Audit'], link: 'MarineLink.dc.html', linkPointer: 'auto', imgFull: true, imgSmall: false, imgMaxW: '420px', imgAspect: '3416/2136', hasIcon: true, icon: 'uploads/marinelink-logo-transparent.png', appName: 'Marine Link', ctaLabel: 'view case study', ctaBg: '#1C6E9C', ctaColor: '#fff' },
     ];
     projects.forEach((p, i) => {
       p.ctaHovered = hoveredCtaIdx === i;

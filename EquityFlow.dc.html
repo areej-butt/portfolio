@@ -15,6 +15,7 @@
 <link rel="icon" href="favicon-equityflow-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon-equityflow.png">
 <script src="video-previews.js" defer></script>
+<script src="case-motion.js" defer></script>
 <script src="sparkle-cursor.js" data-dot="#BF6785" data-spark="#D6A947" defer></script>
 <script src="./support.js"></script>
 </head>
@@ -42,6 +43,29 @@
     .next-row .arrow { display: inline-block; transition: transform 0.25s cubic-bezier(0.3,1.6,0.5,1); }
     .next-row .nr-next:hover .arrow { transform: translateX(4px); }
     .next-row .nr-home:hover .arrow { transform: translateX(-4px); }
+    .tl { --line: #ECE6DA; --ink: #211F2E; --muted: #5C5668; list-style: none; margin: 8px 0 8px; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); position: relative; font-family: 'Figtree', sans-serif; }
+    .tl::before, .tl::after { content: ''; position: absolute; top: 15px; left: calc(50% / var(--n)); right: calc(50% / var(--n)); height: 3px; border-radius: 3px; }
+    .tl::before { background: var(--line); }
+    .tl::after { background: var(--grad); transform: scaleX(0); transform-origin: left center; transition: transform 1.4s cubic-bezier(.45,0,.2,1) .15s; }
+    .tl.in::after { transform: none; }
+    .tl li { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 6px; }
+    .tl-dot { width: 33px; height: 33px; border-radius: 50%; background: #fff; border: 3px solid var(--c); color: var(--ink); font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; transform: scale(0); transition: transform .55s cubic-bezier(.3,1.6,.5,1) calc(.2s + var(--i) * .14s); }
+    .tl.in .tl-dot { transform: none; }
+    .tl-text { opacity: 0; transform: translateY(8px); transition: opacity .5s ease calc(.35s + var(--i) * .14s), transform .5s ease calc(.35s + var(--i) * .14s); }
+    .tl.in .tl-text { opacity: 1; transform: none; }
+    .tl b { display: block; font-size: 14px; line-height: 1.3; color: var(--ink); }
+    .tl small { display: block; font-size: 12.5px; line-height: 1.4; color: var(--muted); margin-top: 4px; }
+    @media (max-width: 720px) {
+      .tl { grid-template-columns: 1fr; gap: 18px; }
+      .tl::before, .tl::after { top: 16px; bottom: 16px; left: 15px; right: auto; width: 3px; height: auto; }
+      .tl::after { background: var(--gradv); transform: scaleY(0); transform-origin: center top; }
+      .tl li { flex-direction: row; align-items: flex-start; text-align: left; gap: 14px; padding: 0; }
+      .tl-dot { flex-shrink: 0; margin: 0; }
+      .tl-text { padding-top: 5px; }
+    }
+    .cs-reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.9,.3,1.1); }
+    .cs-reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .tl::after, .tl-dot, .tl-text, .cs-reveal { transform: none !important; opacity: 1 !important; transition: none !important; } }
     .cs-toggle { display: inline-flex; gap: 2px; padding: 4px; margin: 0 0 26px; background: #fff; border: 1px solid #ECE6DA; border-radius: 100px; font-family: 'Figtree', sans-serif; font-size: 14px; font-weight: 600; }
     .cs-toggle a { padding: 8px 16px; border-radius: 100px; color: #453F52; text-decoration: none; white-space: nowrap; transition: background 0.2s, color 0.2s; }
     .cs-toggle a:hover { color: var(--acc); }
@@ -114,15 +138,12 @@
   <div id="timeline" style="scroll-margin-top:90px;max-width:900px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 20px">
     <h2 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(24.1px,3.4vw,31px);margin:0 0 20px">How the five weeks ran</h2>
     <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 28px">Research came first because the constraints were legal, not aesthetic. Nothing could be drawn until I understood what the law required a screen to ask.</p>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px">
-      <sc-for list="{{ processStages }}" as="st" hint-placeholder-count="5">
-        <div style="background:#fff;border:1px solid #ECE6DA;border-radius:16px;padding:18px 18px 20px">
-          <div style="width:26px;height:26px;border-radius:50%;background:{{ st.color }};color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:12px">{{ st.week }}</div>
-          <div style="font-size:14.5px;font-weight:700;line-height:1.35;margin-bottom:6px">{{ st.label }}</div>
-          <div style="font-size:13px;line-height:1.5;color:#8A8494">{{ st.sub }}</div>
-        </div>
-      </sc-for>
-    </div>
+    <ol class="tl" style="--n:5;--grad:linear-gradient(90deg, #D97D5E, #D97D5E, #2F7A6F, #2F7A6F, #B18FCF);--gradv:linear-gradient(180deg, #D97D5E, #D97D5E, #2F7A6F, #2F7A6F, #B18FCF)">
+        <sc-for list="{{ processStages }}" as="stage" hint-placeholder-count="5">
+          <li style="--c:{{ stage.color }};--i:{{ stage.i }}"><span class="tl-dot">{{ stage.n }}</span><span class="tl-text"><b>{{ stage.label }}</b><small>{{ stage.sub }}</small></span></li>
+        </sc-for>
+      </ol>
+
   </div>
 
   <!-- THE PROBLEM -->
@@ -581,7 +602,7 @@ class Component extends DCLogic {
         { week: '3', color: '#2F7A6F', label: 'Flows & wireframes', sub: 'Grayscale, every state, no colour using Pencil' },
         { week: '4', color: '#2F7A6F', label: 'Harness & build', sub: 'Tokens, patterns, hi-fi prototype with Claude Code' },
         { week: '5', color: '#B18FCF', label: 'States and associated QA', sub: 'Empty, error, limit-reached, polish' },
-      ],
+      ].map((s, i) => ({ ...s, label: String(s.label).trim(), i, n: s.week || i + 1 })),
       permRows: [
         { cap: 'Browse campaigns', i: '●', f: '●', o: '●', iColor: yes, fColor: yes, oColor: yes },
         { cap: 'Read Form C and disclosures', i: '●', f: '●', o: '●', iColor: yes, fColor: yes, oColor: yes },

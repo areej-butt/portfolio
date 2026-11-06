@@ -46,6 +46,8 @@
     .road-quest-list { position: absolute; bottom: calc(100% + 8px); left: 0; min-width: 190px; background: #fff; border: 1.5px solid #E5D5F3; border-radius: 10px; padding: 10px 12px; font-size: 12.5px; box-shadow: 0 10px 24px rgba(33,31,46,0.14); opacity: 0; transform: translateY(4px); pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; z-index: 9; white-space: nowrap; }
     .road-quests:hover .road-quest-list, .road-quests:focus .road-quest-list { opacity: 1; transform: none; }
     .road-quests:focus-visible { outline: 2px solid #A574C9; outline-offset: 2px; }
+    .road-quests[data-bump="1"] { animation: pillBump 0.5s cubic-bezier(0.3,1.6,0.5,1); }
+    @keyframes pillBump { 0%,100% { transform: scale(1); } 40% { transform: scale(1.18); background: #E5D5F3; } }
     @keyframes toastIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
     .road-link:hover { text-decoration-thickness: 2.5px; }
     .road-link:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 2px; }
@@ -68,11 +70,8 @@
 
         <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-round-small.png" alt="" style="position:absolute;left:515px;width:52px;top:180px;height:59px">
         <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-simple.png" alt="" style="position:absolute;left:800px;width:64px;top:170px;height:60px">
-        <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-simple.png" alt="" style="position: absolute; left: 1000px; width: 70px; top: 166px; height: 62px">
         <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-round-small.png" alt="" style="position:absolute;left:1090px;width:52px;top:180px;height:59px">
-        <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-simple.png" alt="" style="position:absolute;left:1300px;width:64px;top:170px;height:60px">
         <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-round-big.png" alt="" style="position:absolute;left:1390px;width:58px;top:174px;height:65px">
-        <img class="road-tree" role="button" tabindex="0" title="Shake the tree" src="uploads/tree-simple.png" alt="" style="position:absolute;left:1540px;width:64px;top:166px;height:60px">
         <img ref="{{ setDogRef }}" class="road-pet road-dog" src="uploads/dog-pixel.png" alt="Pet the dog" role="button" tabindex="0" title="Pet the dog" style="position:absolute;left:2010px;width:46px;top:198px;height:37px;transform-origin:bottom center;z-index:2">
         <sc-if value="{{ hintCat }}" hint-placeholder-val="{{ true }}"><span class="pet-hint" style="left:761px;top:160px">pet me</span></sc-if>
         <sc-if value="{{ hintDog }}" hint-placeholder-val="{{ true }}"><span class="pet-hint" style="left:2033px;top:166px">pet me</span></sc-if>
@@ -152,8 +151,7 @@
       <div class="road-quests" tabindex="0" aria-label="{{ questAria }}" style="position:relative;flex-shrink:0;display:flex;align-items:center;gap:5px;font-size:12.5px;font-weight:800;color:#452256;background:#F3EBFA;padding:4px 10px;border-radius:99px;white-space:nowrap;cursor:default"><svg width="12" height="12" viewBox="0 0 24 24" fill="#A574C9"><path d="M12 0 14.6 9.4 24 12 14.6 14.6 12 24 9.4 14.6 0 12 9.4 9.4Z"></path></svg>{{ questLabel }}<div class="road-quest-list"><div style="font-weight:800;color:#211F2E;margin-bottom:6px">Road secrets</div><sc-for list="{{ quests }}" as="q" hint-placeholder-count="4"><div style="display:flex;align-items:center;gap:7px;padding:3px 0;color:{{ q.color }};font-weight:{{ q.weight }}"><span style="width:14px;height:14px;border-radius:4px;border:1.5px solid #A574C9;background:{{ q.box }};display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:10px;line-height:1">{{ q.tick }}</span>{{ q.label }}</div></sc-for></div></div>
       <div aria-live="polite" style="font-size:13px;font-weight:700;color:#2F7A6F;white-space:nowrap">Career Level: {{ reached }} of {{ totalNodes }} Unlocked</div>
     </div>
-    <div aria-live="polite" style="min-height:22px;margin-top:6px;text-align:right">
-      <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:#1D4E46;background:#E3F2EF;padding:4px 11px;border-radius:99px;animation:toastIn 0.35s ease both"><svg width="12" height="12" viewBox="0 0 24 24" fill="#D6A947"><path d="M12 0 14.6 9.4 24 12 14.6 14.6 12 24 9.4 14.6 0 12 9.4 9.4Z"></path></svg>{{ toast }}</span></sc-if>
+    <div>
     </div>
   </div>
 </div>
@@ -183,7 +181,7 @@ const TRACK_PAD = 70;
 // headLink / subLink: the words in the bubble that become the link
 const RAW = [
   { category: 'foundation', role: 'Research Assistant', org: 'HCI Lab (CHISEL @ LUMS)', headline: 'Where it all began' },
-  { category: 'remote', role: 'Product Designer', org: 'K2 Studio', headline: 'My first job', headLink: 'My first job', link: 'https://getventura.co', linkLabel: 'getventura.co' },
+  { category: 'remote', role: 'Product Designer', org: 'K2 Studio', headline: 'My first job – Rebuilding Ventura', headLink: 'Rebuilding Ventura', link: 'https://getventura.co', linkLabel: 'getventura.co' },
   { category: 'dfg', role: 'Designer', org: 'Develop for Good', headline: 'Designing MoLA Commons, an archive for African art', headLink: 'MoLA Commons', link: 'https://africanartagenda.art', linkLabel: 'African Art Agenda' },
   { category: 'design', role: 'Product Design Intern', org: 'Carbonteq', headline: 'Trained in product, design and development' },
   { category: 'lwise', role: 'Treasurer', org: 'LWiSE', headline: 'Executive member of the first women in science club on campus!' },
@@ -288,7 +286,7 @@ class Component extends DCLogic {
   tick = (now) => {
     const dt = Math.min(now - this.last, 48);
     this.last = now;
-    const holding = this.reduced || this.hover || this.focusIn || this.state.userPaused || now < this.interactUntil || document.hidden;
+    const holding = this.reduced || this.state.userPaused || document.hidden;
     const ph = this.phase;
 
     if (ph.type === 'walk') {
@@ -401,8 +399,7 @@ class Component extends DCLogic {
     this.pets[kind] += 1;
     const total = this.pets.cat + this.pets.dog;
     this.setState({ petCount: total });
-    if (total === 10) this.showToast('Certified pet whisperer');
-    else this.find(kind, kind === 'cat' ? 'The cat likes you!' : 'Good dog! Tail wags all round');
+    this.find(kind);
   }
 
   sayHi() {
@@ -410,7 +407,7 @@ class Component extends DCLogic {
     if (!el) return;
     el.dataset.jump = '0'; void el.offsetWidth; el.dataset.jump = '1';
     clearTimeout(el._jT); el._jT = setTimeout(() => { el.dataset.jump = '0'; }, 600);
-    const lines = ['hi!', 'thanks for visiting!', 'hire me? :)', 'keep scrolling!', 'that tickles'];
+    const lines = ['hi!', 'thanks for visiting!', 'hire me? :)', 'keep scrolling!'];
     this._hiN = (this._hiN || 0) + 1;
     const say = document.createElement('span');
     say.className = 'road-says';
@@ -419,7 +416,7 @@ class Component extends DCLogic {
     say.style.top = '120px';
     this.mascotEl.parentElement.appendChild(say);
     setTimeout(() => say.remove(), 1300);
-    this.find('areej', 'You said hi to Areej');
+    this.find('areej');
   }
 
   shakeTree(el) {
@@ -438,22 +435,16 @@ class Component extends DCLogic {
       host.appendChild(leaf);
       setTimeout(() => leaf.remove(), 1600);
     }
-    this.find('tree', 'Leaves everywhere! You shook a tree');
+    this.find('tree');
   }
 
   // Road secrets: cat, dog, Areej, a tree.
-  find(key, msg) {
+  find(key) {
     if (this.state.found[key]) return;
-    const found = { ...this.state.found, [key]: true };
-    const n = Object.keys(found).length;
-    this.setState({ found });
-    this.showToast(n === 4 ? 'All 4 road secrets found. You’re thorough, let’s work together!' : msg + ' (' + n + '/4 secrets)');
-  }
-
-  showToast(toast) {
-    this.setState({ toast });
-    clearTimeout(this._toastT);
-    this._toastT = setTimeout(() => this.setState({ toast: '' }), 3400);
+    this.setState({ found: { ...this.state.found, [key]: true } });
+    // No pop-up messages: the secrets pill just gives a little bounce when the count goes up.
+    const pill = this.rootEl && this.rootEl.querySelector('.road-quests');
+    if (pill) { pill.dataset.bump = '0'; void pill.offsetWidth; pill.dataset.bump = '1'; }
   }
 
   setFacing(left) {

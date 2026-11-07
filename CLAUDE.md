@@ -30,6 +30,9 @@ what has been decided, and how to change it safely. Read it all before editing.
   Fraunces italic tagline, Figtree 17px body.
 - **End of every case study and summary:** a "Back to / ← Home" and "Next case study / Name →" row
   (HoshiyarPK → EquityFlow → Marine Link → HoshiyarPK), with no divider line, then the standard footer.
+- **Scrollbar:** option **D, the reading line** (`reading-line.js`) on every page. Touch devices keep the normal
+  scrollbar. Other styles she was shown (teal pill, palette gradient, draggable logo handle) were not chosen.
+- **Bug bash:** 15-second rounds.
 - **Videos instead of static images** for hero covers, home cards and screen galleries, and **every section shows
   something different** (see "Video previews").
 
@@ -44,6 +47,7 @@ what has been decided, and how to change it safely. Read it all before editing.
 | `video-previews.js` | Turns `<div data-video="name">` into a looping muted video (see below) |
 | `case-motion.js` | Scroll motion on the full case studies (timeline + section fade-ups) |
 | `sparkle-cursor.js` | Custom cursor (teal dot + coral sparkle), per-page colours via `data-dot` / `data-spark` |
+| `reading-line.js` | Replaces the browser scrollbar (mouse devices only) with a hairline on the right edge that fills as you read, with a sparkle at the tip. Colours come from the sparkle-cursor tag's `data-dot` / `data-spark`. Click or drag the edge to jump. Must load right after `sparkle-cursor.js` |
 | `support.js`, `image-slot.js` | Generic Claude Design runtime. **Don't edit.** |
 | `uploads/video/` | 18 videos (`.mp4`) + still frames (`.jpg`), 7.8 MB total |
 | `tools/` | Scripts that made the videos (not deployed, see `tools/video/README.md`) |
@@ -75,7 +79,9 @@ Built in Claude Design's `.dc.html` format, not a normal framework.
 6. Road buildings sit in 340px-wide click areas; trees, cat and dog need `z-index` above them.
 7. **Don't find-and-replace font names across files.** Marine Link's Typography card describes that project's own
    fonts and must stay as written.
-8. `.image-slots.state.json` (dotfile) holds the About Me photo crop and six Marine Link images. Never delete or skip it.
+8. The page root `<div style="min-height:100vh;...">` on the case studies uses `overflow-x:clip`, not `hidden`.
+   `hidden` turns it into its own scroll box, which showed a second grey scrollbar. Keep `clip`.
+9. `.image-slots.state.json` (dotfile) holds the About Me photo crop and six Marine Link images. Never delete or skip it.
 
 ## Design system
 

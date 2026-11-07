@@ -33,8 +33,8 @@ what has been decided, and how to change it safely. Read it all before editing.
 - **Scrollbar:** option **D, the reading line** (`reading-line.js`) on every page. Touch devices keep the normal
   scrollbar. Other styles she was shown (teal pill, palette gradient, draggable logo handle) were not chosen.
 - **Bug bash:** 15-second rounds.
-- **Night mode:** a switch in every nav, starting in light mode. It does not follow the device's dark setting
-  automatically (not decided; ask before changing).
+- **No night/dark mode.** One was built (a nav switch that remapped colours by rule) and **she asked to remove it**.
+  Don't add it back unless she asks.
 - **Videos instead of static images** for hero covers, home cards and screen galleries, and **every section shows
   something different** (see "Video previews").
 
@@ -50,7 +50,6 @@ what has been decided, and how to change it safely. Read it all before editing.
 | `case-motion.js` | Scroll motion on the full case studies (timeline + section fade-ups) |
 | `sparkle-cursor.js` | Custom cursor (teal dot + coral sparkle), per-page colours via `data-dot` / `data-spark` |
 | `reading-line.js` | Replaces the browser scrollbar (mouse devices only) with a hairline on the right edge that fills as you read, with a sparkle at the tip. Colours come from the sparkle-cursor tag's `data-dot` / `data-spark`. Click or drag the edge to jump. Must load right after `sparkle-cursor.js` |
-| `night-mode.js` | Night mode: sun/moon switch in every nav (`<button class="nm-toggle">`), loaded early (not deferred) in each head before `reading-line.js`. Remembers the choice in `localStorage.theme`; default is light. Remaps colours by rule (see below) |
 | `support.js`, `image-slot.js` | Generic Claude Design runtime. **Don't edit.** |
 | `vendor/` | Self-hosted React 18.3.1, ReactDOM 18.3.1 and Babel standalone 7.29.0 (byte-identical to unpkg, checked against the runtime's SRI hashes). Each .dc page sets `window.__resources` before `support.js` so the runtime loads these instead of unpkg, and preloads them. Cached for a year (`vercel.json`), so rename the files if you ever change versions |
 | `uploads/og/` | Link-preview images (1200x630) used by the `og:image` tags on every page |
@@ -72,18 +71,6 @@ what has been decided, and how to change it safely. Read it all before editing.
   use the file names.
 - **Meta:** every page has a `<title>`, description, canonical URL, Open Graph and Twitter tags pointing at `uploads/og/`.
 - First-load result: case studies went from about 26 MB to about 4 MB (most of the rest is Babel, cached after the first visit).
-
-## Night mode (`night-mode.js`)
-
-Colours are mostly inline styles (and the .dc pages rewrite them while running), so there is no list of overrides.
-When dark, the script remaps colours **by rule** on inline styles and on every stylesheet rule (helmet CSS, summary
-CSS, custom properties): near-white surfaces (cream, white; chroma ≤ 12) → ink-navy with cards a touch lighter than
-the page; tinted pastels → a dark version of their hue; dark text → light text; light borders → subtle dark lines.
-Photos, videos, the pixel road and saturated accents are untouched. A contrast pass then lifts any dark text that
-lands on a dark surface, and gives text back its original colour if it sits on a surface that stayed light. Originals
-are stored (also in a `data-nm` attribute, because the .dc pages copy their own HTML once) and restored exactly.
-A MutationObserver re-applies after re-renders. When adding new UI, check it in both modes; if something looks
-wrong in the dark, prefer adjusting the rule thresholds in `surf()` / `ink()` / `line()` over special cases.
 
 ## How the .dc.html pages work
 

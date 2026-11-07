@@ -6,7 +6,18 @@
 (function () {
   var BASE = 'uploads/video/';
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function tryPlay(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  function tryPlay(v) {
+    if (!v.getAttribute('src') && v.getAttribute('data-src')) { v.src = v.getAttribute('data-src'); v.preload = 'auto'; }
+    var p = v.play(); if (p && p.catch) p.catch(function () {});
+  }
+  var near = 'IntersectionObserver' in window ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var v = e.target.querySelector('video');
+      if (v && !v.getAttribute('src')) { v.src = v.getAttribute('data-src'); v.preload = 'metadata'; }
+      near.unobserve(e.target);
+    });
+  }, { rootMargin: '600px 0px' }) : null;
   var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       e.target.__vis = e.isIntersecting;
@@ -32,24 +43,29 @@
       if (cur && el.__vis && cur.paused) tryPlay(cur);
       return;
     }
-    if (el.__vp) { if (io) io.unobserve(el); while (el.firstChild) el.removeChild(el.firstChild); }
+    // Fresh setup: clear anything already inside (a previous name, or a copy left by the page re-rendering).
+    if (io) io.unobserve(el);
+    if (near) near.unobserve(el);
+    while (el.firstChild) el.removeChild(el.firstChild);
     el.__vp = name;
     var alt = el.getAttribute('data-alt') || '';
     var img = document.createElement('img');
-    img.src = BASE + name + '.jpg'; img.alt = alt; img.decoding = 'async';
+    img.src = BASE + name + '.jpg'; img.alt = alt; img.decoding = 'async'; img.loading = 'lazy';
     el.appendChild(img);
     if (reduce) return;
     var v = document.createElement('video');
     v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true;
     v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
-    v.preload = 'metadata';
-    v.src = BASE + name + '.mp4';
+    v.preload = 'none';
+    v.setAttribute('data-src', BASE + name + '.mp4');
+    if (!near) v.src = BASE + name + '.mp4';
     v.addEventListener('playing', function () { v.classList.add('vp-on'); });
     v.addEventListener('canplay', function () { if (el.__vis && v.paused) tryPlay(v); });
     v.addEventListener('pause', function () {   // paused by the page re-rendering, not by scrolling away
       setTimeout(function () { if (el.__vis && v.paused && v.isConnected) tryPlay(v); }, 120);
     });
     el.appendChild(v);
+    if (near) near.observe(el);
     if (io) io.observe(el); else tryPlay(v);
   }
 

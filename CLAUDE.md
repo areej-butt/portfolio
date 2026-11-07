@@ -49,8 +49,26 @@ what has been decided, and how to change it safely. Read it all before editing.
 | `sparkle-cursor.js` | Custom cursor (teal dot + coral sparkle), per-page colours via `data-dot` / `data-spark` |
 | `reading-line.js` | Replaces the browser scrollbar (mouse devices only) with a hairline on the right edge that fills as you read, with a sparkle at the tip. Colours come from the sparkle-cursor tag's `data-dot` / `data-spark`. Click or drag the edge to jump. Must load right after `sparkle-cursor.js` |
 | `support.js`, `image-slot.js` | Generic Claude Design runtime. **Don't edit.** |
+| `vendor/` | Self-hosted React 18.3.1, ReactDOM 18.3.1 and Babel standalone 7.29.0 (byte-identical to unpkg, checked against the runtime's SRI hashes). Each .dc page sets `window.__resources` before `support.js` so the runtime loads these instead of unpkg, and preloads them. Cached for a year (`vercel.json`), so rename the files if you ever change versions |
+| `uploads/og/` | Link-preview images (1200x630) used by the `og:image` tags on every page |
 | `uploads/video/` | 18 videos (`.mp4`) + still frames (`.jpg`), 7.8 MB total |
 | `tools/` | Scripts that made the videos (not deployed, see `tools/video/README.md`) |
+
+## Speed and SEO (done, keep it this way)
+
+- **Images:** every referenced image over 80 KB was converted to right-sized WebP (49.7 MB → 2.2 MB). Pages point at
+  the `.webp` files; the original PNG/JPGs are still in `uploads/` but unused. New images: export WebP at about 2x
+  their display size. Pixel-art sprites (`*pixel*`) stay PNG.
+- **Lazy loading:** `<img>` tags below the hero have `loading="lazy" decoding="async"`; videos only start downloading
+  within 600px of the screen (`video-previews.js`).
+- **Fonts:** each .dc page links Google Fonts in the static `<head>` (not only the helmet), so text renders in the
+  right fonts straight away.
+- **Caching (`vercel.json`):** `vendor/` 1 year immutable, `uploads/` 1 week + stale-while-revalidate, root scripts
+  1 hour. Pages themselves use Vercel's default so changes show immediately.
+- **Short URLs:** `/hoshiyarpk`, `/equityflow`, `/marinelink` and `-summary` versions (rewrites). Internal links still
+  use the file names.
+- **Meta:** every page has a `<title>`, description, canonical URL, Open Graph and Twitter tags pointing at `uploads/og/`.
+- First-load result: case studies went from about 26 MB to about 4 MB (most of the rest is Babel, cached after the first visit).
 
 ## How the .dc.html pages work
 
@@ -142,8 +160,9 @@ Marine Link 1120x700. To make or change videos, see `tools/video/README.md`.
 
 Serve locally: `python3 -m http.server 8817` from the repo root, then open `/Portfolio.dc.html`.
 
-**Cloud sessions:** the network blocks `unpkg.com`, so the .dc pages won't boot as-is. Download the exact runtime
-packages from npm and route unpkg to them in Playwright:
+The .dc pages now load React/Babel from `vendor/`, so they work locally and in cloud sessions with no extra setup.
+(Older note, only needed for a checkout from before `vendor/` existed: cloud sessions block `unpkg.com`; route it
+to npm copies in Playwright:)
 
 ```bash
 cd /tmp && npm pack react@18.3.1 react-dom@18.3.1 @babel/standalone@7.29.0
@@ -180,6 +199,8 @@ the session gives you.
 - **MarineLink:** `openZonesLightbox` / `openProcessLightbox` point at missing images but aren't used in the template.
 - **Marine Link site bug** (separate repo, not this one): the "Sunlight Zone" title draws over the quiz/search popup
   near the surface.
+- `video-previews.js` clears a slot before setting it up, because the .dc pages copy their own HTML once while
+  rendering (that copy left a second, blocked video in the hero).
 - Leftover unused code is harmless but could be tidied: `imgSrc` / `slotId` / `placeholderText` and the `imgSmall`
   branch in the home `projects` template (the cards now use `data-video`).
 - Sparkle cursor: Areej once saw the normal arrow next to the sparkle (possibly Safari). Not reproduced.

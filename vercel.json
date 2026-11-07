@@ -1,6 +1,71 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
-    { "source": "/", "destination": "/Portfolio.dc.html" }
+    {
+      "source": "/",
+      "destination": "/Portfolio.dc.html"
+    },
+    {
+      "source": "/hoshiyarpk",
+      "destination": "/HoshiyarPK.dc.html"
+    },
+    {
+      "source": "/equityflow",
+      "destination": "/EquityFlow.dc.html"
+    },
+    {
+      "source": "/marinelink",
+      "destination": "/MarineLink.dc.html"
+    },
+    {
+      "source": "/hoshiyarpk-summary",
+      "destination": "/HoshiyarPK-summary.html"
+    },
+    {
+      "source": "/equityflow-summary",
+      "destination": "/EquityFlow-summary.html"
+    },
+    {
+      "source": "/marinelink-summary",
+      "destination": "/MarineLink-summary.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/vendor/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/uploads/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=2592000"
+        }
+      ]
+    },
+    {
+      "source": "/(support|image-slot|sparkle-cursor|video-previews|case-motion|reading-line)\\.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/(favicon.*|apple-touch-icon.*|k2-remote-desk|develop-for-good|screenshot-2026-08-03.*)\\.(svg|png|webp)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=2592000"
+        }
+      ]
+    }
   ]
 }

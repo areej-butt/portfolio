@@ -11,6 +11,19 @@
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HoshiyarPK · Case Study · Areej Butt</title>
+<meta name="description" content="A behavioural training app that teaches Pakistan&#x27;s most-targeted generation to pause before they pay a scammer. Research, design and usability testing (SUS 78.1).">
+<link rel="canonical" href="https://areejbutt.vercel.app/hoshiyarpk">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Areej Butt">
+<meta property="og:title" content="HoshiyarPK · Case Study · Areej Butt">
+<meta property="og:description" content="A behavioural training app that teaches Pakistan&#x27;s most-targeted generation to pause before they pay a scammer. Research, design and usability testing (SUS 78.1).">
+<meta property="og:url" content="https://areejbutt.vercel.app/hoshiyarpk">
+<meta property="og:image" content="https://areejbutt.vercel.app/uploads/og/hoshiyarpk.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FBF7F0">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -18,6 +31,20 @@
 <script src="case-motion.js" defer></script>
 <script src="sparkle-cursor.js" data-dot="#2F7A6F" data-spark="#D97D5E" defer></script>
 <script src="reading-line.js" defer></script>
+<link rel="preload" href="vendor/react.production.min.js" as="script">
+<link rel="preload" href="vendor/react-dom.production.min.js" as="script">
+<link rel="preload" href="vendor/babel.min.js" as="script">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&amp;family=Figtree:ital,wght@0,400..800;1,400..800&amp;display=swap" rel="stylesheet">
+<script>
+  // Load React/ReactDOM/Babel from this site instead of unpkg (same files, verified against the runtime's SRI hashes).
+  window.__resources = {
+    "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "vendor/react.production.min.js",
+    "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "vendor/react-dom.production.min.js",
+    "https://unpkg.com/@babel/standalone@7.29.0/babel.min.js": "vendor/babel.min.js"
+  };
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -279,7 +306,7 @@
 
   <!-- BRAINSTORM -->
   <div style="max-width:900px;margin:0 auto;padding:24px clamp(20px,5vw,64px) 0;display:grid;grid-template-columns:1fr 1fr;gap:16px">
-    <img src="uploads/brainstorm-board.jpg" alt="Whiteboard brainstorm covering Scammistan features, needs and desires" style="width: 762px; border-radius: 20px; display: block; object-fit: cover; max-height: 520px; height: 574px">
+    <img loading="lazy" decoding="async" src="uploads/brainstorm-board.webp" alt="Whiteboard brainstorm covering Scammistan features, needs and desires" style="width: 762px; border-radius: 20px; display: block; object-fit: cover; max-height: 520px; height: 574px">
     
   </div>
 
@@ -291,13 +318,13 @@
   <div style="max-width:900px;margin:0 auto;padding:8px clamp(20px,5vw,64px) 0">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
       <div style="background:#fff;border:1px solid #ECE6DA;border-radius:20px;padding:26px">
-        <img src="uploads/persona-omar.png" alt="Omar Tareen, persona photo" style="width:72px;height:72px;border-radius:50%;object-fit:cover;margin-bottom:14px">
+        <img loading="lazy" decoding="async" src="uploads/persona-omar.webp" alt="Omar Tareen, persona photo" style="width:72px;height:72px;border-radius:50%;object-fit:cover;margin-bottom:14px">
         <div style="font-size:12px;font-weight:700;color:#8A8494;letter-spacing:0.05em;margin-bottom:6px">OMAR TAREEN</div>
         <div style="font-size:13px;color:#8A8494;margin-bottom:14px">67, retired law professor, Faisalabad</div>
         <div style="font-size:14.5px;line-height:1.6;color:#453F52">Trusts direct, official sounding calls, especially under urgency. Doesn't understand why OTPs must stay private and complies with step-by-step instructions once a situation feels urgent without verifying independently.</div>
       </div>
       <div style="background:#fff;border:1px solid #ECE6DA;border-radius:20px;padding:26px">
-        <img src="uploads/persona-seemi.png" alt="Seemi Mumtaz, persona photo" style="width:72px;height:72px;border-radius:50%;object-fit:cover;margin-bottom:14px">
+        <img loading="lazy" decoding="async" src="uploads/persona-seemi.webp" alt="Seemi Mumtaz, persona photo" style="width:72px;height:72px;border-radius:50%;object-fit:cover;margin-bottom:14px">
         <div style="font-size:12px;font-weight:700;color:#8A8494;letter-spacing:0.05em;margin-bottom:6px">SEEMI MUMTAZ</div>
         <div style="font-size:13px;color:#8A8494;margin-bottom:14px">49, homemaker, Karachi</div>
         <div style="font-size:14.5px;line-height:1.6;color:#453F52">Comfortable with WhatsApp, online shopping, and basic banking apps but judges safety by familiarity, not verification. Skims messages and acts quickly under urgency or time pressure while multitasking.</div>
@@ -307,18 +334,18 @@
   </div>
   <div style="max-width:900px;margin:0 auto;padding:24px clamp(20px,5vw,64px) 0">
     <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 12px">The storyboard walks a specific persona, Omar, a 67-year-old, through a real vishing attempt end to end hand drawn and colored by me!</p>
-    <img src="uploads/storyboard.png" alt="Storyboard of a user receiving a vishing call and using HoshiyarPK" style="width:100%;border-radius:20px;display:block">
+    <img loading="lazy" decoding="async" src="uploads/storyboard.webp" alt="Storyboard of a user receiving a vishing call and using HoshiyarPK" style="width:100%;border-radius:20px;display:block">
   </div>
   <div style="max-width:900px;margin:0 auto;padding:36px clamp(20px,5vw,64px) 0">
     <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 12px">Additionally, made A LOT of sketches!! From rough screens to the application flow - pens and papers became my best friend.&nbsp;</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
-      <div><img src="./screenshot-2026-08-03-at-6-41-51-pm-msda85xn-j40k.png" alt="Paper prototype: home page, scam call simulation, and reporting checklist screens" style="width: 358px; height: 623px; object-fit: cover; object-position: top; border-radius: 20px; display: block"></div>
-      <div><img src="uploads/paper-proto-2.png" alt="Paper prototype: onboarding, learn/practice/identify flows, and reporting roadmap" style="width: 369px; height: 621px; object-fit: cover; object-position: top; border-radius: 20px; display: block"></div>
+      <div><img loading="lazy" decoding="async" src="./screenshot-2026-08-03-at-6-41-51-pm-msda85xn-j40k.webp" alt="Paper prototype: home page, scam call simulation, and reporting checklist screens" style="width: 358px; height: 623px; object-fit: cover; object-position: top; border-radius: 20px; display: block"></div>
+      <div><img loading="lazy" decoding="async" src="uploads/paper-proto-2.webp" alt="Paper prototype: onboarding, learn/practice/identify flows, and reporting roadmap" style="width: 369px; height: 621px; object-fit: cover; object-position: top; border-radius: 20px; display: block"></div>
     </div>
     
   </div>
   <div style="max-width:900px;margin:0 auto;padding:24px clamp(20px,5vw,64px) 0">
     <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 12px">An entire flow using paper prototypes was sketched before opening Figma. Here are some screens I made:</p>
-    <img src="uploads/lowfi-screens.png" alt="Low-fi wireframes: welcome, language, about you, home, learn, banking track, dangerous link phishing trap, and how to stay safe screens" style="width:100%;border-radius:20px;display:block">
+    <img loading="lazy" decoding="async" src="uploads/lowfi-screens.webp" alt="Low-fi wireframes: welcome, language, about you, home, learn, banking track, dangerous link phishing trap, and how to stay safe screens" style="width:100%;border-radius:20px;display:block">
   </div>
   <div style="max-width:900px;margin:0 auto;padding:32px clamp(20px,5vw,64px) 20px">
     <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0">We tested these paper prototypes first: observing where users hesitated, misread an icon or reached for non-existent buttons. We carried forward only the design decisions that survived that round into the high-fidelity Figma screens.</p>
@@ -380,14 +407,14 @@
   </div>
   <div style="max-width:900px;margin:0 auto;padding:24px clamp(20px,5vw,64px) 0;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start">
     <div>
-      <img src="./screenshot-2026-08-03-at-6-46-43-pm-msda9jd6-ajpa.png" alt="Mascot exploration sketches: lion, cat, dolphin, bunny options, and Chacha Hoshiyar owl expressions" style="width: 589px; border-radius: 20px; display: block; height: 775px">
+      <img loading="lazy" decoding="async" src="./screenshot-2026-08-03-at-6-46-43-pm-msda9jd6-ajpa.webp" alt="Mascot exploration sketches: lion, cat, dolphin, bunny options, and Chacha Hoshiyar owl expressions" style="width: 589px; border-radius: 20px; display: block; height: 775px">
       <div style="font-size:13px;color:#8A8494;margin-top:10px">Early mascot options and Chacha Hoshiyar's expression sheet</div>
     </div>
     <div style="display:flex;flex-direction:column;gap:14px;width:150px;margin:0 auto">
       
-      <img src="uploads/mascot-final-1.png" alt="Chacha Hoshiyar mascot, standard pose" style="width: 136px; height: 187px; display: block"><img src="uploads/mascot-final-6.png" alt="Chacha Hoshiyar covering his face, concerned" style="width: 173px; height: 195px; display: block">
-      <img src="uploads/mascot-final-4.png" alt="Chacha Hoshiyar holding a report clipboard" style="width:100%;height:auto;display:block">
-      <img src="uploads/mascot-final-5.png" alt="Chacha Hoshiyar holding a safety shield checkmark" style="width:100%;height:auto;display:block">
+      <img loading="lazy" decoding="async" src="uploads/mascot-final-1.png" alt="Chacha Hoshiyar mascot, standard pose" style="width: 136px; height: 187px; display: block"><img loading="lazy" decoding="async" src="uploads/mascot-final-6.webp" alt="Chacha Hoshiyar covering his face, concerned" style="width: 173px; height: 195px; display: block">
+      <img loading="lazy" decoding="async" src="uploads/mascot-final-4.webp" alt="Chacha Hoshiyar holding a report clipboard" style="width:100%;height:auto;display:block">
+      <img loading="lazy" decoding="async" src="uploads/mascot-final-5.webp" alt="Chacha Hoshiyar holding a safety shield checkmark" style="width:100%;height:auto;display:block">
       <div style="font-size:13px;color:#8A8494;text-align:center">Final mascot</div>
     </div>
   </div>
@@ -467,7 +494,7 @@
     </div>
     <div style="display:flex;justify-content:center">
       
-    <img src="uploads/pasted-1785743186512-0.png" alt="HoshiyarPK Home screen with Learn, Practice, Identify, and Report tiles" style="width: 199px; max-width: 220px; border-radius: 20px; display: block; height: 400px"></div>
+    <img loading="lazy" decoding="async" src="uploads/pasted-1785743186512-0.webp" alt="HoshiyarPK Home screen with Learn, Practice, Identify, and Report tiles" style="width: 199px; max-width: 220px; border-radius: 20px; display: block; height: 400px"></div>
   </div>
 
     <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0"><br>The hi-fi build itself split into <strong>depth</strong> (fully-built vertical slices proving the core loop end-to-end) and <strong>breadth</strong> (horizontal features that show the app's intended scale without slowing the prototype down).</p>
@@ -609,8 +636,8 @@
   <div style="max-width: 900px; margin: 0 auto; padding: 8px clamp(20px,5vw,64px) 0; width: 904px; height: 288px">
     
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
-      <div><img src="uploads/rap-video-still.png" alt="Still from the HoshiyarPK promotional rap video, demoing the Identify Caller screen" style="width: 391px; height: 201px; object-fit: cover; border-radius: 20px; display: block"><div style="font-size:13px;color:#8A8494;margin-top:10px">The promo rap: Chacha Hoshiyar in the flesh, demonstrating the Identify Caller feature ft. me as a confused user :)</div></div>
-      <div><img src="uploads/hci-booth.jpeg" alt="HoshiyarPK's booth at the HCI project showcase, with poster, laptops running the prototype, and a QR code for visitors to scan" style="width: 385px; height: 205px; object-fit: cover; border-radius: 20px; display: block"><div style="font-size: 13px; color: #8A8494; margin-top: 10px; width: 368px; height: 52px">The showcase booth at the HCI exhibition: poster, a cute set-up, and QR codes. One of my fav days!</div></div>
+      <div><img loading="lazy" decoding="async" src="uploads/rap-video-still.webp" alt="Still from the HoshiyarPK promotional rap video, demoing the Identify Caller screen" style="width: 391px; height: 201px; object-fit: cover; border-radius: 20px; display: block"><div style="font-size:13px;color:#8A8494;margin-top:10px">The promo rap: Chacha Hoshiyar in the flesh, demonstrating the Identify Caller feature ft. me as a confused user :)</div></div>
+      <div><img loading="lazy" decoding="async" src="uploads/hci-booth.webp" alt="HoshiyarPK's booth at the HCI project showcase, with poster, laptops running the prototype, and a QR code for visitors to scan" style="width: 385px; height: 205px; object-fit: cover; border-radius: 20px; display: block"><div style="font-size: 13px; color: #8A8494; margin-top: 10px; width: 368px; height: 52px">The showcase booth at the HCI exhibition: poster, a cute set-up, and QR codes. One of my fav days!</div></div>
     </div></div>
 
   <!-- REFLECTION -->
@@ -655,7 +682,7 @@
     <div onClick="{{ closeLightbox }}" style="position:fixed;inset:0;background:rgba(33,31,46,0.82);display:flex;align-items:center;justify-content:center;z-index:1000;padding:40px;cursor:pointer">
       <button onClick="{{ closeLightbox }}" aria-label="Close" style="position:absolute;top:28px;right:32px;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,0.14);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer" style-hover="background:rgba(255,255,255,0.24)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
       <sc-if value="{{ lightboxSrc }}" hint-placeholder-val="{{ false }}">
-        <img src="{{ lightboxSrc }}" alt="Design sketch reference" style="max-width:min(600px,90vw);max-height:90vh;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,0.4);display:block">
+        <img loading="lazy" decoding="async" src="{{ lightboxSrc }}" alt="Design sketch reference" style="max-width:min(600px,90vw);max-height:90vh;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,0.4);display:block">
       </sc-if>
     </div>
   </sc-if></x-dc>

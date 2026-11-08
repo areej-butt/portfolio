@@ -2,6 +2,9 @@
    Anything with class "fx" animates when case-motion.js adds "in" as it scrolls into view.
    Fonts: Figtree for UI text, Fraunces for big figures (matches the rest of the site). */
 
+/* form controls use the page font (browsers default buttons to Arial/system UI) */
+button, input, select, textarea { font-family: inherit; }
+
 .fx, .fx * { box-sizing: border-box; }
 .dg { font-family: 'Figtree', sans-serif; color: #211F2E; }
 .dg-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }

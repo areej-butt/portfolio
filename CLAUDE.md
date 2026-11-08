@@ -50,6 +50,7 @@ what has been decided, and how to change it safely. Read it all before editing.
 | `case-motion.js` | Scroll motion on the full case studies (timeline + section fade-ups) |
 | `sparkle-cursor.js` | Custom cursor (teal dot + coral sparkle), per-page colours via `data-dot` / `data-spark` |
 | `reading-line.js` | Replaces the browser scrollbar (mouse devices only) with a hairline on the right edge that fills as you read, with a sparkle at the tip. Colours come from the sparkle-cursor tag's `data-dot` / `data-spark`. Click or drag the edge to jump. Must load right after `sparkle-cursor.js` |
+| `diagrams.css` | Shared case-study diagram components (coverage strips, role groups, IA tree, journey, compliance cards, state chips, harness loop, positioning map, Marine Link references flow, Figma embed, pan/zoom canvas). Anything with class `fx` animates when `case-motion.js` adds `in` |
 | `support.js`, `image-slot.js` | Generic Claude Design runtime. **Don't edit.** |
 | `vendor/` | Self-hosted React 18.3.1, ReactDOM 18.3.1 and Babel standalone 7.29.0 (byte-identical to unpkg, checked against the runtime's SRI hashes). Each .dc page sets `window.__resources` before `support.js` so the runtime loads these instead of unpkg, and preloads them. Cached for a year (`vercel.json`), so rename the files if you ever change versions |
 | `uploads/og/` | Link-preview images (1200x630) used by the `og:image` tags on every page |
@@ -66,7 +67,10 @@ what has been decided, and how to change it safely. Read it all before editing.
 - **Fonts:** each .dc page links Google Fonts in the static `<head>` (not only the helmet), so text renders in the
   right fonts straight away.
 - **Caching (`vercel.json`):** `vendor/` 1 year immutable, `uploads/` 1 week + stale-while-revalidate, root scripts
-  1 hour. Pages themselves use Vercel's default so changes show immediately.
+  revalidate every visit. Pages use Vercel's default so changes show immediately.
+- **Script/CSS versions:** pages load `case-motion.js?v=…`, `video-previews.js?v=…`, `reading-line.js?v=…`,
+  `sparkle-cursor.js?v=…`, `diagrams.css?v=…`. **Bump the `?v=` date on every page whenever you change one of those
+  files**, or returning visitors can get a new page with an old script (this once left the SUS chart empty).
 - **Short URLs:** `/hoshiyarpk`, `/equityflow`, `/marinelink` and `-summary` versions (rewrites). Internal links still
   use the file names.
 - **Meta:** every page has a `<title>`, description, canonical URL, Open Graph and Twitter tags pointing at `uploads/og/`.
@@ -135,6 +139,17 @@ Built in Claude Design's `.dc.html` format, not a normal framework.
 - `case-motion.js` adds `in` to `.tl` and fades up (`.cs-reveal`) each top-level section below the first screen.
 - Video slots replace the hero and gallery images (see below). EquityFlow's "Wireframe to final" images are still static.
 - `.next-row` (Home / Next case study) before the footer. EquityFlow now has the standard footer too.
+
+### Case-study diagrams (`diagrams.css`, triggered by `case-motion.js`)
+- **HoshiyarPK:** "Where existing solutions fall short" = coverage strips (`.cov-*`) from `comparisonRows` (each cell
+  y/p/n/na + score). Never put `<sc-for>` inside a `<table>`: the browser moves it out and the rows vanish.
+  SUS chart (`.sus`): bars grow, teal ≥ 68 / coral below, benchmark line, hover tooltips. It shows 13 scores although
+  the heading says 17 participants (data question open with Areej).
+- **EquityFlow:** role groups with Investor/Founder/Ops filter (`.roles`, `data-role-btn`), IA tree (`.ia`), phased
+  investment journey (`.jr`), compliance cards with UI snippets (`.cp`), **live Figma embed of the moodboard**
+  (`.fig-embed`, file `EEIDvbK7RSyF01Zq4KJUSZ`, shared publicly), state chips (`.st`), harness loop (`.hl`),
+  positioning map (`.pm`).
+- **Marine Link:** references flow (`.mlf`) and positioning map (`.pm`).
 
 ### Summary pages (`*-summary.html`)
 Static HTML: nav, toggle, eyebrow, title, Fraunces italic tagline, meta row, cover video, six numbered sections

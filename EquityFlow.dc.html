@@ -45,7 +45,7 @@
     "https://unpkg.com/@babel/standalone@7.29.0/babel.min.js": "vendor/babel.min.js"
   };
 </script>
-<link rel="stylesheet" href="diagrams.css?v=20261108">
+<link rel="stylesheet" href="diagrams.css?v=2026110802">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -202,18 +202,18 @@
       </div>
     </div>
     <div class="roles dg fx" data-role="all">
-      <div class="roles-bar"><span>Who can do what:</span>
-        <button type="button" class="role-btn" data-role-btn="all" aria-pressed="true">Everyone</button>
+      <div class="roles-bar"><span>Highlight a role:</span>
+        <button type="button" class="role-btn" data-role-btn="all" aria-pressed="true">All</button>
         <button type="button" class="role-btn" data-role-btn="inv" aria-pressed="false" style="--c:#2F7A6F"><i></i>Investor</button>
         <button type="button" class="role-btn" data-role-btn="fnd" aria-pressed="false" style="--c:#C99A1E"><i></i>Founder</button>
         <button type="button" class="role-btn" data-role-btn="ops" aria-pressed="false" style="--c:#8A63B8"><i></i>Ops</button>
       </div>
       <div class="roles-grid">
-        <div class="rg dg-pop" data-who="inv fnd ops" style="--d:0"><div class="rg-head"><span class="av inv">I</span><span class="av fnd">F</span><span class="av ops">O</span><b>Everyone</b></div><ul><li>Browse campaigns</li><li>Read Form C and disclosures</li></ul></div>
-        <div class="rg dg-pop" data-who="inv" style="--d:110"><div class="rg-head"><span class="av inv">I</span><b>Investor only</b></div><ul><li>Ask a question publicly</li><li>Invest</li></ul></div>
-        <div class="rg dg-pop" data-who="fnd ops" style="--d:220"><div class="rg-head"><span class="av fnd">F</span><span class="av ops">O</span><b>Founder &amp; Ops</b></div><ul><li>Answer questions</li></ul></div>
-        <div class="rg dg-pop" data-who="fnd" style="--d:330"><div class="rg-head"><span class="av fnd">F</span><b>Founder only</b></div><ul><li>Post founder updates</li></ul></div>
-        <div class="rg dg-pop" data-who="ops" style="--d:440"><div class="rg-head"><span class="av ops">O</span><b>Ops only</b></div><ul><li>Approve identity checks</li><li>Grant accredited status</li><li>Release escrow</li></ul></div>
+        <div class="rg dg-pop" data-who="inv fnd ops" style="--d:0"><div class="rg-tags"><span class="rt" style="--c:#2F7A6F">Investor</span><span class="rt" style="--c:#C99A1E">Founder</span><span class="rt" style="--c:#8A63B8">Ops</span></div><ul><li>Browse campaigns</li><li>Read the Form C</li></ul></div>
+        <div class="rg dg-pop" data-who="inv" style="--d:110"><div class="rg-tags"><span class="rt" style="--c:#2F7A6F">Investor</span></div><ul><li>Ask questions</li><li>Invest</li></ul></div>
+        <div class="rg dg-pop" data-who="fnd ops" style="--d:220"><div class="rg-tags"><span class="rt" style="--c:#C99A1E">Founder</span><span class="rt" style="--c:#8A63B8">Ops</span></div><ul><li>Answer questions</li></ul></div>
+        <div class="rg dg-pop" data-who="fnd" style="--d:330"><div class="rg-tags"><span class="rt" style="--c:#C99A1E">Founder</span></div><ul><li>Post updates</li></ul></div>
+        <div class="rg dg-pop" data-who="ops" style="--d:440"><div class="rg-tags"><span class="rt" style="--c:#8A63B8">Ops</span></div><ul><li>Approve ID checks</li><li>Grant accreditation</li><li>Release escrow</li></ul></div>
       </div>
     </div>
   </div>
@@ -239,19 +239,19 @@
     <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 24px">Interest comes first, verification second. A new user can browse every campaign, open the Form C, and read the Q&amp;A board before the platform asks for a single document. The gates only fire once they commit to an amount, at which point the ask has a reason attached to it.</p>
     <div class="jr dg fx">
       <div class="jr-phases">
-        <div class="jr-ph open" style="--c:#2F7A6F;--bg:#E8F3F0"><div class="jr-tag">Open to anyone</div><div class="jr-steps" style="--n:3">
-            <div class="jr-step" style="--g:0"><div class="jr-dot">1</div><b>Browse campaigns</b><small>No account required</small></div>
-            <div class="jr-step" style="--g:1"><div class="jr-dot">2</div><b>Campaign detail · docs · Q&amp;A</b><small>Full disclosure, still open</small></div>
-            <div class="jr-step" style="--g:2"><div class="jr-dot">3</div><b>Choose an amount</b><small>Minimum $100–$1,000 by deal</small></div>
+        <div class="jr-ph open" style="--c:#2F7A6F;--bg:#E8F3F0"><div class="jr-tag">Open</div><div class="jr-steps" style="--n:3">
+            <div class="jr-step" style="--g:0"><div class="jr-dot">1</div><b>Browse</b><small>no account</small></div>
+            <div class="jr-step" style="--g:1"><div class="jr-dot">2</div><b>Read the deal</b><small>docs + Q&amp;A</small></div>
+            <div class="jr-step" style="--g:2"><div class="jr-dot">3</div><b>Pick an amount</b><small>from $100</small></div>
         </div></div>
-        <div class="jr-ph gate" style="--c:#C4653F;--bg:#FBEDE6"><div class="jr-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C4653F" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Gated · fires only after an amount is chosen</div><div class="jr-steps" style="--n:3">
-            <div class="jr-step" style="--g:3"><div class="jr-dot">4</div><b>Identity</b><small>Name, DOB 18+, address, SSN last 4</small></div>
-            <div class="jr-step" style="--g:4"><div class="jr-dot">5</div><b>Suitability</b><small>Income, net worth, experience</small></div>
-            <div class="jr-step" style="--g:5"><div class="jr-dot">6</div><b>Reg CF cap</b><small>$2,200 / 12 months unless accredited</small></div>
+        <div class="jr-ph gate" style="--c:#C4653F;--bg:#FBEDE6"><div class="jr-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C4653F" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Checks · after an amount</div><div class="jr-steps" style="--n:3">
+            <div class="jr-step" style="--g:3"><div class="jr-dot">4</div><b>ID check</b><small>18+</small></div>
+            <div class="jr-step" style="--g:4"><div class="jr-dot">5</div><b>Finances</b><small>income, net worth</small></div>
+            <div class="jr-step" style="--g:5"><div class="jr-dot">6</div><b>Annual cap</b><small>$2,200 / yr</small></div>
         </div></div>
         <div class="jr-ph end" style="--c:#7B5FA8;--bg:#F1EBF8"><div class="jr-tag">Committed</div><div class="jr-steps" style="--n:2">
-            <div class="jr-step" style="--g:6"><div class="jr-dot">7</div><b>Funds to escrow</b><small>Held until the round closes</small></div>
-            <div class="jr-step" style="--g:7"><div class="jr-dot">8</div><b>Portfolio</b><small>Status, progress, founder updates</small></div>
+            <div class="jr-step" style="--g:6"><div class="jr-dot">7</div><b>Escrow</b><small>held until close</small></div>
+            <div class="jr-step" style="--g:7"><div class="jr-dot">8</div><b>Portfolio</b><small>track it</small></div>
         </div></div>
         <div class="jr-runner"></div>
       </div>
@@ -264,32 +264,28 @@
     <p style="font-size:17px;line-height:1.75;color:#453F52;margin:0 0 28px">Four legal requirements shaped more of this product than any visual choice. Each one is a moment where the platform has to say no, or not yet, to someone who is trying to give it money. I treated each as a copy and layout problem rather than an error.</p>
     <div class="cp-grid dg fx">
       <div class="cp dg-pop" style="--c:#D97D5E;--d:0">
-        <div class="cp-top"><span class="cp-n">01</span><b>Identity verification</b></div>
-        <div class="cp-t"><span class="cp-l">THE TENSION</span>Three steps of personal data — name, date of birth, address, part of a social security number — before any money moves.</div>
-        <div class="cp-arrow">design response</div>
-        <div class="cp-s"><span class="cp-l">HOW IT SHOWS UP</span>A privacy callout above the first field explains encryption and why the law requires it. Errors are specific: "You must be at least 18 years old to invest", not "invalid date".</div>
-        <div class="cp-mock"><div class="mk-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><div><b>How we protect your information</b><span>Encrypted in transit and at rest. Required by federal identity rules.</span></div></div><div class="mk-err">⚠ You must be at least 18 years old to invest</div></div>
+        <div class="cp-top"><span class="cp-n">01</span><b>Identity</b></div>
+        <div class="cp-line bad"><i>✕</i>Lots of personal data before any money moves.</div>
+        <div class="cp-line good"><i>✓</i>A privacy note up front, and errors that say exactly what’s wrong.</div>
+        <div class="cp-mock"><div class="mk-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><div><b>How we protect your information</b><span>Encrypted. Required by law.</span></div></div><div class="mk-err">⚠ You must be at least 18 years old to invest</div></div>
       </div>
       <div class="cp dg-pop" style="--c:#D97D5E;--d:120">
-        <div class="cp-top"><span class="cp-n">02</span><b>Suitability questions</b></div>
-        <div class="cp-t"><span class="cp-l">THE TENSION</span>Asking about income and net worth reads like a sales qualifier, and people lie or leave.</div>
-        <div class="cp-arrow">design response</div>
-        <div class="cp-s"><span class="cp-l">HOW IT SHOWS UP</span>Framed as a legal requirement in the heading, not a benefit. No marketing copy anywhere on the screen.</div>
-        <div class="cp-mock"><div class="mk-h"><small>STEP 2 OF 3 · REQUIRED BY THE SEC</small><b>Tell us about your finances</b></div><div class="mk-opts"><span>Under $30,000</span><span class="on">$60,000 – $100,000 ✓</span><span>$100,000+</span></div></div>
+        <div class="cp-top"><span class="cp-n">02</span><b>Suitability</b></div>
+        <div class="cp-line bad"><i>✕</i>Income questions feel like a sales pitch.</div>
+        <div class="cp-line good"><i>✓</i>Framed as a legal requirement. No marketing copy.</div>
+        <div class="cp-mock"><div class="mk-h"><small>REQUIRED BY THE SEC</small><b>Tell us about your finances</b></div><div class="mk-opts"><span>Under $30,000</span><span class="on">$60,000 – $100,000 ✓</span><span>$100,000+</span></div></div>
       </div>
       <div class="cp dg-pop" style="--c:#D6A947;--d:240">
-        <div class="cp-top"><span class="cp-n">03</span><b>Reg CF annual cap</b></div>
-        <div class="cp-t"><span class="cp-l">THE TENSION</span>A non-accredited investor has a 12-month ceiling. Hitting it mid-checkout is the worst possible moment to find out.</div>
-        <div class="cp-arrow">design response</div>
-        <div class="cp-s"><span class="cp-l">HOW IT SHOWS UP</span>The remaining allowance lives on the portfolio dashboard as a headline stat. In checkout, an over-cap amount turns the field red and disables the button with the exact number that would fit.</div>
+        <div class="cp-top"><span class="cp-n">03</span><b>Annual cap</b></div>
+        <div class="cp-line bad"><i>✕</i>Hitting the limit at checkout is the worst surprise.</div>
+        <div class="cp-line good"><i>✓</i>Remaining allowance shown up front; checkout shows exactly what fits.</div>
         <div class="cp-mock"><div class="mk-cap"><span style="color:#64748B;font-size:10.5px;font-weight:800;letter-spacing:.06em">12-MO REG CF LIMIT</span><b class="dg-mono">$1,350 left</b></div><div class="mk-bar"><i></i></div><div class="mk-row"><div class="mk-in dg-mono">$1,500</div><div class="mk-btn">Fix amount to continue</div></div></div>
       </div>
       <div class="cp dg-pop" style="--c:#B18FCF;--d:360">
         <div class="cp-top"><span class="cp-n">04</span><b>Escrow</b></div>
-        <div class="cp-t"><span class="cp-l">THE TENSION</span>Money is committed but not transferred until the round closes. Users read that as a payment failure.</div>
-        <div class="cp-arrow">design response</div>
-        <div class="cp-s"><span class="cp-l">HOW IT SHOWS UP</span>In Escrow is a first-class status in the portfolio table with its own colour, plus a summary card that says how much is held and what releases it.</div>
-        <div class="cp-mock"><div class="mk-tbl"><b>SustainaPak</b><span class="dg-mono">$250</span><span class="mk-pill esc">In Escrow</span><b>UrbanGrid</b><span class="dg-mono">$100</span><span class="mk-pill live">Live</span></div><div class="mk-sum"><b class="dg-mono" style="color:#0F172A">$750</b> held in escrow · released when each round closes</div></div>
+        <div class="cp-line bad"><i>✕</i>Held money looks like a failed payment.</div>
+        <div class="cp-line good"><i>✓</i>“In Escrow” is its own status, with what’s held and when it releases.</div>
+        <div class="cp-mock"><div class="mk-tbl"><b>SustainaPak</b><span class="dg-mono">$250</span><span class="mk-pill esc">In Escrow</span><b>UrbanGrid</b><span class="dg-mono">$100</span><span class="mk-pill live">Live</span></div><div class="mk-sum"><b class="dg-mono" style="color:#0F172A">$750</b> held · released at close</div></div>
       </div>
     </div>
   </div>

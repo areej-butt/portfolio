@@ -8,14 +8,26 @@
 
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      if (e.isIntersecting) { e.target.classList.add('in'); countUp(e.target); io.unobserve(e.target); }
     });
   }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
+
+  // numbers marked data-count="78.1" (optional data-dec) count up from 0 when their block arrives
+  function countUp(scope) {
+    var nums = scope.querySelectorAll ? scope.querySelectorAll('[data-count]') : [];
+    for (var i = 0; i < nums.length; i++) (function (el) {
+      var to = parseFloat(el.getAttribute('data-count')), dec = +(el.getAttribute('data-dec') || 0);
+      if (reduce || isNaN(to)) { el.textContent = to.toFixed(dec); return; }
+      var t0 = performance.now(), D = 1200;
+      (function f(t) { var k = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = (to * e).toFixed(dec); if (k < 1) requestAnimationFrame(f); })(t0);
+    })(nums[i]);
+  }
 
   function watch(el) {
     if (el.__cm) return;
     el.__cm = true;
-    if (reduce) { el.classList.add('in'); return; }
+    if (reduce) { el.classList.add('in'); countUp(el); return; }
     io.observe(el);
   }
 
@@ -38,7 +50,7 @@
   }
   function setup() {
     if (!rendered()) return;
-    var tls = document.querySelectorAll('.tl');
+    var tls = document.querySelectorAll('.tl, .sus');
     for (var i = 0; i < tls.length; i++) watch(tls[i]);
     if (reduce) return;
     var secs = sections();

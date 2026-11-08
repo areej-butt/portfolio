@@ -114,6 +114,38 @@
     .cs-reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.9,.3,1.1); }
     .cs-reveal.in { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) { .tl::after, .tl-dot, .tl-text, .cs-reveal { transform: none !important; opacity: 1 !important; transition: none !important; } }
+    .sus-plot { position: relative; display: flex; align-items: flex-end; gap: 8px; height: 200px; margin-top: 8px; }
+    .sus-col { position: relative; flex: 1; height: 100%; display: flex; align-items: flex-end; }
+    .sus-bar { width: 100%; height: 0; min-height: 0; border-radius: 6px 6px 0 0; transition: height 0.9s cubic-bezier(0.2,0.9,0.3,1.08) calc(var(--i) * 70ms), transform 0.25s, box-shadow 0.25s; }
+    .sus.in .sus-bar { height: var(--h); min-height: 4px; }
+    .sus-col:hover .sus-bar { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(33,31,46,0.14); }
+    .sus-tip { position: absolute; left: 50%; bottom: calc(var(--h) + 12px); transform: translate(-50%, 6px); white-space: nowrap; background: #211F2E; color: #fff; font: 700 11.5px 'Figtree', sans-serif; padding: 5px 9px; border-radius: 8px; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 2; }
+    .sus-col:hover .sus-tip { opacity: 1; transform: translate(-50%, 0); }
+    .sus-bench { position: absolute; left: 0; right: 0; bottom: 68%; border-top: 2px dashed #B18FCF; transform: scaleX(0); transform-origin: left center; transition: transform 0.9s ease 1.05s; z-index: 1; pointer-events: none; }
+    .sus.in .sus-bench { transform: none; }
+    .sus-bench-label { position: absolute; right: 0; bottom: calc(68% + 6px); background: #F3EBFA; color: #452256; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; opacity: 0; transition: opacity 0.4s ease 1.8s; z-index: 1; font-family: 'Figtree', sans-serif; }
+    .sus.in .sus-bench-label { opacity: 1; }
+    .sus-labels { display: flex; gap: 8px; margin-top: 6px; }
+    .sus-val { flex: 1; text-align: center; font-size: 11.5px; font-weight: 700; opacity: 0; transform: translateY(4px); transition: opacity 0.4s ease calc(0.35s + var(--i) * 70ms), transform 0.4s ease calc(0.35s + var(--i) * 70ms); }
+    .sus.in .sus-val { opacity: 1; transform: none; }
+    @media (max-width: 560px) { .sus-plot, .sus-labels { gap: 4px; } .sus-val { font-size: 9.5px; } .sus-tip { font-size: 10.5px; } }
+    @media (prefers-reduced-motion: reduce) { .sus-bar, .sus-bench, .sus-bench-label, .sus-val { transition: none !important; } }
+    .cmp-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .cmp { min-width: 620px; font-family: 'Figtree', sans-serif; }
+    .cmp-row { display: grid; grid-template-columns: minmax(150px, 1.7fr) repeat(6, minmax(0, 1fr)); align-items: center; border-top: 1px solid #ECE6DA; }
+    .cmp-row > div { padding: 12px 6px; }
+    .cmp-head { border-top: 0; }
+    .cmp-head > div { padding: 0 6px 14px; color: #211F2E; font-weight: 700; font-size: 11.5px; text-align: center; cursor: help; }
+    .cmp-head > .cmp-name { text-align: left; padding-left: 0; font-size: 12.5px; cursor: default; }
+    .cmp-name { padding-left: 0 !important; }
+    .cmp-name b { display: block; font-weight: 700; color: #211F2E; font-size: 12.5px; }
+    .cmp-name small { display: block; font-size: 11px; color: #8A8494; margin-top: 2px; line-height: 1.35; }
+    .cmp-v { text-align: center; font-size: 15px; }
+    .cmp-us { border-top: 2px solid #2F7A6F; background: #E3F2EF; border-radius: 0 0 14px 14px; }
+    .cmp-us .cmp-name { padding-left: 12px !important; }
+    .cmp-us .cmp-name b, .cmp-us .cmp-name small, .cmp-us .cmp-v { color: #1D4E46; }
+    .cmp-us .cmp-name small { opacity: 0.85; }
+    .cmp-us .cmp-v { font-weight: 700; }
     .cs-toggle { display: inline-flex; gap: 2px; padding: 4px; margin: 0 0 26px; background: #fff; border: 1px solid #ECE6DA; border-radius: 100px; font-family: 'Figtree', sans-serif; font-size: 14px; font-weight: 600; }
     .cs-toggle a { padding: 8px 16px; border-radius: 100px; color: #453F52; text-decoration: none; white-space: nowrap; transition: background 0.2s, color 0.2s; }
     .cs-toggle a:hover { color: var(--acc); }
@@ -242,44 +274,33 @@
     <div style="padding:0">
       
       
-      <table style="width:100%;table-layout:fixed;border-collapse:collapse;font-size:12.5px">
-        <thead>
-          <tr>
-            <th style="text-align:left;padding:0 8px 14px 0;color:#211F2E;font-weight:700;font-size:12.5px">Response</th>
-            <th title="Reaches you before urgency hits" style="text-align:center;padding:0 6px 14px;color:#211F2E;font-weight:700;font-size:11.5px;cursor:help">Timing</th>
-            <th title="Simulates real pressure" style="text-align:center;padding:0 6px 14px;color:#211F2E;font-weight:700;font-size:11.5px;cursor:help">Simulation</th>
-            <th title="Personalized to your risk profile" style="text-align:center;padding:0 6px 14px;color:#211F2E;font-weight:700;font-size:11.5px;cursor:help">Personalized</th>
-            <th title="Guides you through reporting" style="text-align:center;padding:0 6px 14px;color:#211F2E;font-weight:700;font-size:11.5px;cursor:help">Reporting</th>
-            <th title="Designed to reduce shame" style="text-align:center;padding:0 6px 14px;color:#211F2E;font-weight:700;font-size:11.5px;cursor:help">Reduces shame</th>
-            <th title="Available in Urdu" style="text-align:center;padding:0 0 14px 6px;color:#211F2E;font-weight:700;font-size:11.5px;cursor:help">Urdu</th>
-          </tr>
-        </thead>
-        <tbody>
-          <sc-for list="{{ comparisonRows }}" as="row" hint-placeholder-count="5">
-            <tr style="border-top:1px solid #ECE6DA">
-              <td style="padding:12px 8px 12px 0">
-                <div style="font-weight:700;color:#211F2E;font-size:12.5px">{{ row.name }}</div>
-                <div style="font-size:11px;color:#8A8494;margin-top:2px">{{ row.sub }}</div>
-              </td>
-              <td style="text-align:center;padding:12px 6px;font-size:15px;color:{{ row.c1Color }}">{{ row.c1 }}</td>
-              <td style="text-align:center;padding:12px 6px;font-size:15px;color:{{ row.c2Color }}">{{ row.c2 }}</td>
-              <td style="text-align:center;padding:12px 6px;font-size:15px;color:{{ row.c3Color }}">{{ row.c3 }}</td>
-              <td style="text-align:center;padding:12px 6px;font-size:15px;color:{{ row.c4Color }}">{{ row.c4 }}</td>
-              <td style="text-align:center;padding:12px 6px;font-size:15px;color:{{ row.c5Color }}">{{ row.c5 }}</td>
-              <td style="text-align:center;padding:12px 0 12px 6px;font-size:15px;color:{{ row.c6Color }}">{{ row.c6 }}</td>
-            </tr>
-          </sc-for>
-          <tr style="border-top:2px solid #2F7A6F">
-            <td style="padding: 12px 8px 12px 0; background: #E3F2EF; border-radius: 14px 0 0 14px; width: 125px; height: 78px"><div style="font-weight:700;color:#1D4E46;font-size:12.5px">HoshiyarPK</div><div style="font-size:11px;color:#1D4E46;opacity:0.85;margin-top:2px">Active, experiential, built around panic</div></td>
-            <td style="text-align:center;padding:12px 6px;font-size:15px;color:#1D4E46;background:#E3F2EF;font-weight:700">✓</td>
-            <td style="text-align:center;padding:12px 6px;font-size:15px;color:#1D4E46;background:#E3F2EF;font-weight:700">✓</td>
-            <td style="text-align:center;padding:12px 6px;font-size:15px;color:#1D4E46;background:#E3F2EF;font-weight:700">✓</td>
-            <td style="text-align:center;padding:12px 6px;font-size:15px;color:#1D4E46;background:#E3F2EF;font-weight:700">✓</td>
-            <td style="text-align:center;padding:12px 6px;font-size:15px;color:#1D4E46;background:#E3F2EF;font-weight:700">✓</td>
-            <td style="text-align:center;padding:12px 0 12px 6px;font-size:15px;color:#1D4E46;background:#E3F2EF;border-radius:0 14px 14px 0;font-weight:700">✓</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="cmp-scroll"><div class="cmp" role="table" aria-label="How existing responses compare with HoshiyarPK">
+        <div class="cmp-row cmp-head" role="row">
+          <div class="cmp-name" role="columnheader">Response</div>
+          <div role="columnheader" title="Reaches you before urgency hits">Timing</div>
+          <div role="columnheader" title="Simulates real pressure">Simulation</div>
+          <div role="columnheader" title="Personalized to your risk profile">Personalized</div>
+          <div role="columnheader" title="Guides you through reporting">Reporting</div>
+          <div role="columnheader" title="Designed to reduce shame">Reduces shame</div>
+          <div role="columnheader" title="Available in Urdu">Urdu</div>
+        </div>
+        <sc-for list="{{ comparisonRows }}" as="row" hint-placeholder-count="5">
+          <div class="cmp-row" role="row">
+            <div class="cmp-name" role="rowheader"><b>{{ row.name }}</b><small>{{ row.sub }}</small></div>
+            <div class="cmp-v" role="cell" style="color:{{ row.c1Color }}">{{ row.c1 }}</div>
+            <div class="cmp-v" role="cell" style="color:{{ row.c2Color }}">{{ row.c2 }}</div>
+            <div class="cmp-v" role="cell" style="color:{{ row.c3Color }}">{{ row.c3 }}</div>
+            <div class="cmp-v" role="cell" style="color:{{ row.c4Color }}">{{ row.c4 }}</div>
+            <div class="cmp-v" role="cell" style="color:{{ row.c5Color }}">{{ row.c5 }}</div>
+            <div class="cmp-v" role="cell" style="color:{{ row.c6Color }}">{{ row.c6 }}</div>
+          </div>
+        </sc-for>
+        <div class="cmp-row cmp-us" role="row">
+          <div class="cmp-name" role="rowheader"><b>HoshiyarPK</b><small>Active, experiential, built around panic</small></div>
+          <div class="cmp-v" role="cell">✓</div><div class="cmp-v" role="cell">✓</div><div class="cmp-v" role="cell">✓</div>
+          <div class="cmp-v" role="cell">✓</div><div class="cmp-v" role="cell">✓</div><div class="cmp-v" role="cell">✓</div>
+        </div>
+      </div></div>
       <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;font-size:12px;color:#8A8494"><span><span style="color:#2F7A6F;font-weight:700">✓</span> yes</span><span><span style="color:#D6A947;font-weight:700">~</span> partial</span><span><span style="color:#D97D5E;font-weight:700">✕</span> no</span><span><span style="color:#8A8494;font-weight:700">n/a</span> not applicable</span></div>
     </div>
   </div>
@@ -591,20 +612,27 @@
     <div style="background:#fff;border:1px solid #ECE6DA;border-radius:20px;padding:clamp(24px,4vw,36px)">
       <h3 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(18.9px,2.6vw,22.4px);margin:0 0 4px;color:#211F2E">Usability scores, 17 participants</h3>
       <div style="font-size:14px;color:#8A8494;margin-bottom:24px">System Usability Scale (SUS), 0 to 100</div>
+      <div class="sus">
       <div style="display:flex;gap:40px;flex-wrap:wrap;margin-bottom:28px">
-        <div><div style="font-size:32px;font-weight:700;color:#A574C9">78.1</div><div style="font-size:13px;color:#8A8494;margin-top:2px">mean score</div></div>
-        <div><div style="font-size:32px;font-weight:700;color:#2F7A6F">82.5</div><div style="font-size:13px;color:#8A8494;margin-top:2px">median score</div></div>
-        <div><div style="font-size:32px;font-weight:700;color:#D97D5E">45 to 100</div><div style="font-size:13px;color:#8A8494;margin-top:2px">full range</div></div>
+        <div><div style="font-size:32px;font-weight:700;color:#A574C9"><span data-count="78.1" data-dec="1">78.1</span></div><div style="font-size:13px;color:#8A8494;margin-top:2px">mean score</div></div>
+        <div><div style="font-size:32px;font-weight:700;color:#2F7A6F"><span data-count="82.5" data-dec="1">82.5</span></div><div style="font-size:13px;color:#8A8494;margin-top:2px">median score</div></div>
+        <div><div style="font-size:32px;font-weight:700;color:#D97D5E"><span data-count="45">45</span> to <span data-count="100">100</span></div><div style="font-size:13px;color:#8A8494;margin-top:2px">full range</div></div>
       </div>
-      <div style="position:relative;display:flex;align-items:flex-end;gap:8px;height:220px;margin-top:8px">
-        <div style="position:absolute;bottom:149.6px;left:0;right:0;border-top:2px dashed #B18FCF"></div>
-        <div style="position:absolute;bottom:154px;right:0;background:#F3EBFA;color:#452256;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px">68 avg. SUS benchmark</div>
+      <div class="sus-plot">
+        <div class="sus-bench"></div>
+        <div class="sus-bench-label">68 avg. SUS benchmark</div>
         <sc-for list="{{ susScores }}" as="s" hint-placeholder-count="13">
-          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end">
-            <div style="width:100%;background:{{ s.color }};border-radius:6px 6px 0 0;height:{{ s.h }};min-height:4px"></div>
-            <div style="font-size:11.5px;color:{{ s.labelColor }};font-weight:700">{{ s.v }}</div>
+          <div class="sus-col" style="--i:{{ s.i }};--h:{{ s.h }}">
+            <div class="sus-tip">{{ s.tip }}</div>
+            <div class="sus-bar" style="background:{{ s.color }}"></div>
           </div>
         </sc-for>
+      </div>
+      <div class="sus-labels">
+        <sc-for list="{{ susScores }}" as="s" hint-placeholder-count="13">
+          <div class="sus-val" style="--i:{{ s.i }};color:{{ s.labelColor }}">{{ s.v }}</div>
+        </sc-for>
+      </div>
       </div>
       <div style="font-size:13px;font-style:italic;color:#8A8494;margin-top:14px;text-align:center">Lower scores tracked to first-time confusion and unfamiliar vocabulary. The oldest participants scored among the highest.</div>
     </div>
@@ -793,9 +821,10 @@ class Component extends DCLogic {
       ].map((s, i) => ({ ...s, label: String(s.label).trim(), i, n: s.week || i + 1 })),
       comparisonRows: comparisonRows,
       susScores: [45,50,57.5,65,75,77.5,82.5,82.5,85,90,92.5,97.5,100].map(function(v,i){
-        var barPalette = ['#CDE7E0','#F9E8C4','#D2E2F0','#E5D5F3'];
-        var labelPalette = ['#1D4E46','#7A5716','#2C4B67','#573A70'];
-        return { v: v, h: v + '%', color: barPalette[i % barPalette.length], labelColor: labelPalette[i % labelPalette.length] };
+        // teal for scores at or above the 68 benchmark, soft coral below it
+        var above = v >= 68;
+        return { v: v, i: i, h: v + '%', color: above ? 'linear-gradient(180deg,#7FC2B5,#CDE7E0)' : 'linear-gradient(180deg,#EDB49F,#F7DDD2)',
+                 labelColor: above ? '#1D4E46' : '#B25A3C', tip: v + (above ? ' · above the benchmark' : ' · below the benchmark') };
       }),
     };
   }

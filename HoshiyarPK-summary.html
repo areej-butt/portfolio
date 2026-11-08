@@ -111,8 +111,18 @@
   .sus { display:grid; grid-template-columns:auto 1fr; gap:22px; align-items:center; background:#fff; border:1px solid var(--line); border-radius:20px; padding:24px; margin-top:20px; }
   .sus .big { font-family:'Fraunces',serif; font-variation-settings:'SOFT' 100,'WONK' 1; font-size:64px; line-height:1; color:var(--teal); }
   .bar { position:relative; height:12px; border-radius:100px; background:#F1ECE2; margin:12px 0 8px; }
-  .bar .fill { position:absolute; inset:0 auto 0 0; width:78.1%; border-radius:100px; background:linear-gradient(90deg,#7FC2B5,var(--teal)); }
-  .bar .mark { position:absolute; left:68%; top:-5px; bottom:-5px; width:2px; background:var(--coral); }
+  .bar .fill { position:absolute; inset:0 auto 0 0; width:0; border-radius:100px; background:linear-gradient(90deg,#7FC2B5,var(--teal)); transition:width 1.5s cubic-bezier(.2,.8,.2,1) .25s; }
+  .reveal.in .bar .fill { width:78.1%; }
+  .bar .fill .tip { position:absolute; right:-7px; top:50%; width:14px; height:14px; margin-top:-7px; border-radius:50%; background:#fff; border:3px solid var(--teal); box-shadow:0 0 0 0 rgba(47,122,111,.45); }
+  .reveal.in .bar .fill .tip { animation:susPing 1.8s ease-out 1.8s 3; }
+  @keyframes susPing { 0% { box-shadow:0 0 0 0 rgba(47,122,111,.45); } 100% { box-shadow:0 0 0 12px rgba(47,122,111,0); } }
+  .bar .mark { position:absolute; left:68%; top:-5px; bottom:-5px; width:2px; background:var(--coral); transform:scaleY(0); transition:transform .45s cubic-bezier(.3,1.6,.5,1) 1.2s; }
+  .reveal.in .bar .mark { transform:none; }
+  .bar-labels span { transition:opacity .4s ease 1.3s; }
+  .reveal:not(.in) .bar-labels span:nth-child(2) { opacity:0; }
+  .sus .grade { display:inline-block; margin-top:10px; font-size:12px; font-weight:700; color:var(--deep); background:var(--mint); padding:4px 10px; border-radius:100px; opacity:0; transform:translateY(6px); transition:opacity .4s ease 1.6s, transform .4s ease 1.6s; }
+  .reveal.in .sus .grade { opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce) { .bar .fill, .bar .mark, .sus .grade, .bar-labels span { transition:none !important; } .bar .fill .tip { animation:none !important; } }
   .bar-labels { display:flex; justify-content:space-between; font-size:12.5px; color:var(--muted); }
 
   .cta { margin:clamp(48px,7vw,72px) 0 0; background:linear-gradient(135deg,#EAF5F2,#F3EBFA); border-radius:24px; padding:clamp(28px,5vw,44px); text-align:center; }
@@ -234,9 +244,9 @@
     <h2 class="fr">Easy to learn, even for first-time users</h2>
     <p>17 usability sessions with adults over 45, each closed with the System Usability Scale.</p>
     <div class="sus">
-      <div><div class="big">78.1</div><div class="eyebrow">MEAN SUS SCORE</div></div>
+      <div><div class="big" data-count="78.1" data-dec="1">78.1</div><div class="eyebrow">MEAN SUS SCORE</div><span class="grade">Good · above average</span></div>
       <div>
-        <div class="bar"><div class="fill"></div><div class="mark" title="Industry average: 68"></div></div>
+        <div class="bar"><div class="fill"><i class="tip"></i></div><div class="mark" title="Industry average: 68"></div></div>
         <div class="bar-labels"><span>0</span><span style="color:var(--coral);font-weight:700">68 industry avg.</span><span>100</span></div>
         <p style="margin:12px 0 0;font-size:15px">The oldest participants scored among the highest. Confusion tracked to unfamiliar vocabulary, not age. Verify Screenshot was the most understood and most wanted feature.</p>
       </div>
@@ -284,9 +294,19 @@
 <script>
   (function () {
     var els = document.querySelectorAll('.reveal');
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function countUp(scope) {   // numbers marked data-count count up from 0 as their section arrives
+      scope.querySelectorAll('[data-count]').forEach(function (el) {
+        var to = parseFloat(el.getAttribute('data-count')), dec = +(el.getAttribute('data-dec') || 0);
+        if (reduce) { el.textContent = to.toFixed(dec); return; }
+        var t0 = performance.now(), D = 1500;
+        (function f(t) { var k = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - k, 3);
+          el.textContent = (to * e).toFixed(dec); if (k < 1) requestAnimationFrame(f); })(t0);
+      });
+    }
     if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); countUp(e.target); io.unobserve(e.target); } });
     }, { threshold: 0.12 });
     els.forEach(function (e) { io.observe(e); });
   })();

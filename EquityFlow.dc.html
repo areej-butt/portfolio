@@ -45,7 +45,7 @@
     "https://unpkg.com/@babel/standalone@7.29.0/babel.min.js": "vendor/babel.min.js"
   };
 </script>
-<link rel="stylesheet" href="diagrams.css?v=2026110802">
+<link rel="stylesheet" href="diagrams.css?v=2026110803">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -201,20 +201,11 @@
         <div style="font-size:14px;line-height:1.65;color:#453F52">Keeps the platform legally sound. Reviews identity checks, approves accreditation, sets caps and releases escrow.</div>
       </div>
     </div>
-    <div class="roles dg fx" data-role="all">
-      <div class="roles-bar"><span>Highlight a role:</span>
-        <button type="button" class="role-btn" data-role-btn="all" aria-pressed="true">All</button>
-        <button type="button" class="role-btn" data-role-btn="inv" aria-pressed="false" style="--c:#2F7A6F"><i></i>Investor</button>
-        <button type="button" class="role-btn" data-role-btn="fnd" aria-pressed="false" style="--c:#C99A1E"><i></i>Founder</button>
-        <button type="button" class="role-btn" data-role-btn="ops" aria-pressed="false" style="--c:#8A63B8"><i></i>Ops</button>
-      </div>
-      <div class="roles-grid">
-        <div class="rg dg-pop" data-who="inv fnd ops" style="--d:0"><div class="rg-tags"><span class="rt" style="--c:#2F7A6F">Investor</span><span class="rt" style="--c:#C99A1E">Founder</span><span class="rt" style="--c:#8A63B8">Ops</span></div><ul><li>Browse campaigns</li><li>Read the Form C</li></ul></div>
-        <div class="rg dg-pop" data-who="inv" style="--d:110"><div class="rg-tags"><span class="rt" style="--c:#2F7A6F">Investor</span></div><ul><li>Ask questions</li><li>Invest</li></ul></div>
-        <div class="rg dg-pop" data-who="fnd ops" style="--d:220"><div class="rg-tags"><span class="rt" style="--c:#C99A1E">Founder</span><span class="rt" style="--c:#8A63B8">Ops</span></div><ul><li>Answer questions</li></ul></div>
-        <div class="rg dg-pop" data-who="fnd" style="--d:330"><div class="rg-tags"><span class="rt" style="--c:#C99A1E">Founder</span></div><ul><li>Post updates</li></ul></div>
-        <div class="rg dg-pop" data-who="ops" style="--d:440"><div class="rg-tags"><span class="rt" style="--c:#8A63B8">Ops</span></div><ul><li>Approve ID checks</li><li>Grant accreditation</li><li>Release escrow</li></ul></div>
-      </div>
+    <div class="rcols dg fx">
+      <div class="rc dg-pop" style="--c:#2F7A6F;--d:0"><div class="rc-head"><b>Investor</b><small>wants speed</small></div><ul><li class="own">Invest</li><li class="own">Ask questions</li><li class="sh">Browse campaigns</li><li class="sh">Read the Form C</li></ul></div>
+      <div class="rc dg-pop" style="--c:#C99A1E;--d:130"><div class="rc-head"><b>Founder</b><small>wants visibility</small></div><ul><li class="own">Post updates</li><li class="own">Answer questions</li><li class="sh">Browse campaigns</li><li class="sh">Read the Form C</li></ul></div>
+      <div class="rc dg-pop" style="--c:#8A63B8;--d:260"><div class="rc-head"><b>Ops</b><small>wants a paper trail</small></div><ul><li class="own">Approve ID checks</li><li class="own">Grant accreditation</li><li class="own">Release escrow</li><li class="own">Answer questions</li><li class="sh">Browse campaigns</li><li class="sh">Read the Form C</li></ul></div>
+      <div class="rc-key"><span class="own">Role's own actions</span><span class="sh">Shared by everyone</span></div>
     </div>
   </div>
 
@@ -365,7 +356,6 @@
     <div class="fig-embed">
       <iframe title="EquityFlow moodboard in Figma" loading="lazy" allowfullscreen src="https://embed.figma.com/design/EEIDvbK7RSyF01Zq4KJUSZ/EquityFlow-%E2%80%94-Moodboard?node-id=0-1&amp;embed-host=share&amp;footer=false&amp;theme=light"></iframe>
     </div>
-    <div style="margin-top:12px"><a href="https://www.figma.com/design/EEIDvbK7RSyF01Zq4KJUSZ/EquityFlow-%E2%80%94-Moodboard?node-id=0-1&amp;p=f&amp;t=QS2GMiRaytcJ03ZA-0" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#211F2E;text-decoration:none;border:1.5px solid #ECE6DA;font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:100px" style-hover="border-color:#BF6785;color:#BF6785"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path></svg>Open the moodboard in Figma</a></div>
   </div>
 
   <!-- VISUAL SYSTEM -->

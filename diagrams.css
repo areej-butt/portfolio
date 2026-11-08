@@ -65,6 +65,25 @@
 .roles[data-role="ops"] .rg:not([data-who~="ops"]) { opacity: .25; filter: grayscale(1); transform: scale(.97); }
 .roles[data-role="inv"] .rg[data-who~="inv"], .roles[data-role="fnd"] .rg[data-who~="fnd"], .roles[data-role="ops"] .rg[data-who~="ops"] { box-shadow: 0 10px 24px rgba(33,31,46,.10); }
 
+/* role columns (EquityFlow "three users") */
+.rcols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.rc { background: #fff; border: 1px solid #ECE6DA; border-top: 4px solid var(--c); border-radius: 16px; padding: 16px 18px 18px; }
+.rc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.rc-head b { font-size: 16px; color: var(--c); }
+.rc-head small { font-size: 12px; color: #8A8494; }
+.rc ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.rc li { display: flex; align-items: center; gap: 9px; font-size: 14px; line-height: 1.35; }
+.rc li::before { content: '✓'; flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+.rc li.own { color: #211F2E; font-weight: 600; }
+.rc li.own::before { background: var(--c); color: #fff; }
+.rc li.sh { color: #8A8494; }
+.rc li.sh::before { background: #F1ECE3; color: #8A8494; }
+.rc-key { grid-column: 1 / -1; display: flex; gap: 18px; font-size: 12px; color: #8A8494; }
+.rc-key span { display: inline-flex; align-items: center; gap: 6px; }
+.rc-key span::before { content: ''; width: 10px; height: 10px; border-radius: 50%; }
+.rc-key .own::before { background: #453F52; } .rc-key .sh::before { background: #E2DCD0; }
+@media (max-width: 700px) { .rcols { grid-template-columns: 1fr; } }
+
 /* ---------- EquityFlow: information architecture ---------- */
 .ia { padding: 6px 0 4px; }
 .ia-root { width: max-content; margin: 0 auto; background: #211F2E; color: #fff; font-weight: 800; font-size: 15px; padding: 11px 26px; border-radius: 12px; opacity: 0; transform: scale(.85); transition: opacity .4s, transform .5s cubic-bezier(.3,1.6,.5,1); }

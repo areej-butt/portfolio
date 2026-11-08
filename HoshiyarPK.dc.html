@@ -45,6 +45,7 @@
     "https://unpkg.com/@babel/standalone@7.29.0/babel.min.js": "vendor/babel.min.js"
   };
 </script>
+<link rel="stylesheet" href="diagrams.css?v=20261108">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -274,34 +275,14 @@
     <div style="padding:0">
       
       
-      <div class="cmp-scroll"><div class="cmp" role="table" aria-label="How existing responses compare with HoshiyarPK">
-        <div class="cmp-row cmp-head" role="row">
-          <div class="cmp-name" role="columnheader">Response</div>
-          <div role="columnheader" title="Reaches you before urgency hits">Timing</div>
-          <div role="columnheader" title="Simulates real pressure">Simulation</div>
-          <div role="columnheader" title="Personalized to your risk profile">Personalized</div>
-          <div role="columnheader" title="Guides you through reporting">Reporting</div>
-          <div role="columnheader" title="Designed to reduce shame">Reduces shame</div>
-          <div role="columnheader" title="Available in Urdu">Urdu</div>
-        </div>
+      <div class="cov-scroll dg fx"><div class="cov-inner" role="table" aria-label="How existing responses compare with HoshiyarPK">
+        <div class="cov-head" role="row"><div role="columnheader">Response</div><div role="columnheader" title="Reaches you before urgency hits">Timing</div><div role="columnheader" title="Simulates real pressure">Simulation</div><div role="columnheader" title="Personalized to your risk profile">Personalized</div><div role="columnheader" title="Guides you through reporting">Reporting</div><div role="columnheader" title="Designed to reduce shame">Reduces shame</div><div role="columnheader" title="Available in Urdu">Urdu</div><div role="columnheader" style="text-align:right">Covers</div></div>
         <sc-for list="{{ comparisonRows }}" as="row" hint-placeholder-count="5">
-          <div class="cmp-row" role="row">
-            <div class="cmp-name" role="rowheader"><b>{{ row.name }}</b><small>{{ row.sub }}</small></div>
-            <div class="cmp-v" role="cell" style="color:{{ row.c1Color }}">{{ row.c1 }}</div>
-            <div class="cmp-v" role="cell" style="color:{{ row.c2Color }}">{{ row.c2 }}</div>
-            <div class="cmp-v" role="cell" style="color:{{ row.c3Color }}">{{ row.c3 }}</div>
-            <div class="cmp-v" role="cell" style="color:{{ row.c4Color }}">{{ row.c4 }}</div>
-            <div class="cmp-v" role="cell" style="color:{{ row.c5Color }}">{{ row.c5 }}</div>
-            <div class="cmp-v" role="cell" style="color:{{ row.c6Color }}">{{ row.c6 }}</div>
-          </div>
+          <div class="cov-row" role="row"><div class="cov-name" role="rowheader"><b>{{ row.name }}</b><small>{{ row.sub }}</small></div><div class="cov-cell {{ row.k1 }}" role="cell" style="--d:{{ row.d1 }}"><span>{{ row.c1 }}</span></div><div class="cov-cell {{ row.k2 }}" role="cell" style="--d:{{ row.d2 }}"><span>{{ row.c2 }}</span></div><div class="cov-cell {{ row.k3 }}" role="cell" style="--d:{{ row.d3 }}"><span>{{ row.c3 }}</span></div><div class="cov-cell {{ row.k4 }}" role="cell" style="--d:{{ row.d4 }}"><span>{{ row.c4 }}</span></div><div class="cov-cell {{ row.k5 }}" role="cell" style="--d:{{ row.d5 }}"><span>{{ row.c5 }}</span></div><div class="cov-cell {{ row.k6 }}" role="cell" style="--d:{{ row.d6 }}"><span>{{ row.c6 }}</span></div><div class="cov-score" role="cell"><span data-count="{{ row.score }}" data-dec="1">0</span><small> / 6</small></div></div>
         </sc-for>
-        <div class="cmp-row cmp-us" role="row">
-          <div class="cmp-name" role="rowheader"><b>HoshiyarPK</b><small>Active, experiential, built around panic</small></div>
-          <div class="cmp-v" role="cell">✓</div><div class="cmp-v" role="cell">✓</div><div class="cmp-v" role="cell">✓</div>
-          <div class="cmp-v" role="cell">✓</div><div class="cmp-v" role="cell">✓</div><div class="cmp-v" role="cell">✓</div>
-        </div>
+        <div class="cov-row us" role="row"><div class="cov-name" role="rowheader"><b>HoshiyarPK</b><small>Active, experiential, built around panic</small></div><div class="cov-cell y" role="cell" style="--d:840"><span>✓</span></div><div class="cov-cell y" role="cell" style="--d:910"><span>✓</span></div><div class="cov-cell y" role="cell" style="--d:980"><span>✓</span></div><div class="cov-cell y" role="cell" style="--d:1050"><span>✓</span></div><div class="cov-cell y" role="cell" style="--d:1120"><span>✓</span></div><div class="cov-cell y" role="cell" style="--d:1190"><span>✓</span></div><div class="cov-score" role="cell"><span data-count="6">0</span><small> / 6</small></div></div>
       </div></div>
-      <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;font-size:12px;color:#8A8494"><span><span style="color:#2F7A6F;font-weight:700">✓</span> yes</span><span><span style="color:#D6A947;font-weight:700">~</span> partial</span><span><span style="color:#D97D5E;font-weight:700">✕</span> no</span><span><span style="color:#8A8494;font-weight:700">n/a</span> not applicable</span></div>
+      <div class="cov-legend dg"><span><i style="background:#2F7A6F"></i>yes</span><span><i style="background:linear-gradient(90deg,#E8C468 50%,#F3EEE5 50%)"></i>partial</span><span><i style="background:#F3EEE5;border:1px solid #ECE6DA"></i>no</span><span><i style="background:repeating-linear-gradient(135deg,#F3EEE5 0 4px,#ECE6DA 4px 8px)"></i>not applicable</span></div>
     </div>
   </div>
   <div style="max-width:900px;margin:0 auto;padding:32px clamp(20px,5vw,64px) 20px">
@@ -777,9 +758,14 @@ class Component extends DCLogic {
     }));
     function sym(v) { if (v === 1) return '✓'; if (v === 0) return '✕'; if (v === 0.5) return '~'; return 'n/a'; }
     function col(v) { if (v === 1) return G; if (v === 0) return R; if (v === 0.5) return Y; return N; }
+    var rowN = 0;
+    function kind(v) { return v === 1 ? 'y' : v === 0.5 ? 'p' : v === 0 ? 'n' : 'na'; }
     function build(name, sub, v1, v2, v3, v4, v5, v6) {
+      var vs = [v1, v2, v3, v4, v5, v6], r = rowN++, score = vs.reduce(function (a, v) { return a + (typeof v === 'number' ? v : 0); }, 0);
       return {
-        name: name, sub: sub,
+        name: name, sub: sub, score: String(score), dScore: r * 140 + 700,
+        k1: kind(v1), k2: kind(v2), k3: kind(v3), k4: kind(v4), k5: kind(v5), k6: kind(v6),
+        d1: r * 140, d2: r * 140 + 60, d3: r * 140 + 120, d4: r * 140 + 180, d5: r * 140 + 240, d6: r * 140 + 300,
         c1: sym(v1), c1Color: col(v1),
         c2: sym(v2), c2Color: col(v2),
         c3: sym(v3), c3Color: col(v3),
